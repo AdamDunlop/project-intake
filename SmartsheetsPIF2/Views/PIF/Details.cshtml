@@ -1,0 +1,80 @@
+﻿@model SmartsheetsPIF.Models.PIFModel
+
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<h1>Project Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pif_Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pif_Id)
+        </dd>*@
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.lob)*@
+            Line of Business
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.lob)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.projectName)*@
+            Project Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.projectName)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.projectName)*@
+            Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.status)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.startDate)*@
+            Start Date
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.startDate)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.endDate)*@
+            End Date
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.endDate)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.projectName)*@
+            Producer
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.producer)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.projectName)*@
+            Request Type
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.requestType)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.projectName)*@
+            Team
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.team)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new {id = Model.pif_Id }) |
+    <a asp-action="ListPIFs">Back to List</a>
+</div>
