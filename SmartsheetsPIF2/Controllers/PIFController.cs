@@ -43,7 +43,7 @@ namespace SmartsheetsPIF2.Controllers
         public IActionResult Save(PIFModel model)
         {
             updateRow(model);
-            return View("Index");
+            return View("ListPIFs");
         }
         public SmartsheetClient initSheet()
         {
@@ -99,6 +99,10 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.status = cell.DisplayValue;
                                 break;
 
+                            case "Team":
+                                pif.team = cell.DisplayValue;                                //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
+                                break;
+
                             case "Start":
                                 pif.startDate = Convert.ToDateTime(cell.Value);
                                 //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
@@ -107,6 +111,10 @@ namespace SmartsheetsPIF2.Controllers
                             case "Ship":
                                 pif.endDate = Convert.ToDateTime(cell.Value);
                                 //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
+                                break;
+
+                            case "PIF":
+                                pif.pif_link = cell.DisplayValue;
                                 break;
                         }
                     }
@@ -125,6 +133,9 @@ namespace SmartsheetsPIF2.Controllers
             pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
+            //Get Team options
+            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(12));
+
 
             foreach (var row in sheet.Rows)
             {
@@ -168,6 +179,10 @@ namespace SmartsheetsPIF2.Controllers
                             case "Team":
                                 pif.team = cell.DisplayValue;
                                 break;
+
+                            case "PIF":
+                                pif.pif_link = cell.DisplayValue;
+                                break;
                         }
 
                     }
@@ -199,6 +214,7 @@ namespace SmartsheetsPIF2.Controllers
             var start_cell = new Cell();
             var end_cell = new Cell();
             var team_cell = new Cell();
+            var pif_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -246,13 +262,18 @@ namespace SmartsheetsPIF2.Controllers
                         team_cell.ColumnId = columnid;
                         team_cell.Value = pif.team;
                         break;
+
+                    case "PIF":
+                        pif_cell.ColumnId = columnid;
+                        pif_cell.Value = pif.pif_link;
+                        break;
                 }
             }
 
             rowToTupdate = new Row
             {
                 Id = pif.pif_Id,
-                Cells = new Cell[] { lob_cell, project_cell, status_cell, start_cell,team_cell }
+                Cells = new Cell[] { lob_cell, project_cell, status_cell, start_cell,team_cell, pif_cell }
             };
 
             try
@@ -302,6 +323,15 @@ namespace SmartsheetsPIF2.Controllers
             foreach (var status in status_col.Options)
             {
                 options.Add(new SelectListItem { Text = status, Value = status });
+            }
+            return options;
+        }
+        public IEnumerable<SelectListItem> Get_team_picklist(Column team_col)
+        {
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var team in team_col.Options)
+            {
+                options.Add(new SelectListItem { Text = team, Value = team });
             }
             return options;
         }
