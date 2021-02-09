@@ -252,7 +252,7 @@ namespace SmartsheetsPIF2.Controllers
             rowToTupdate = new Row
             {
                 Id = pif.pif_Id,
-                Cells = new Cell[] { lob_cell, project_cell, start_cell,team_cell }
+                Cells = new Cell[] { lob_cell, project_cell, status_cell, start_cell,team_cell }
             };
 
             try
@@ -289,21 +289,21 @@ namespace SmartsheetsPIF2.Controllers
 
         public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
         {
-            List<SelectListItem> lob_options = new List<SelectListItem>();
+            List<SelectListItem> options = new List<SelectListItem>();
             foreach(var lob in lob_col.Options)
             {
-                lob_options.Add(new SelectListItem { Text = lob, Value = lob });
+                options.Add(new SelectListItem { Text = lob, Value = lob });
             }
-            return lob_options;
+            return options;
         }
         public IEnumerable<SelectListItem> Get_status_picklist(Column status_col)
         {
-            List<SelectListItem> status_options = new List<SelectListItem>();
-            foreach (var new_status in status_col.Options)
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var status in status_col.Options)
             {
-                status_options.Add(new SelectListItem { Text = new_status, Value = new_status });
+                options.Add(new SelectListItem { Text = status, Value = status });
             }
-            return status_options;
+            return options;
         }
     }
 }
