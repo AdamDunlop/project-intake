@@ -95,6 +95,10 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.projectName = cell.DisplayValue;
                                 break;
 
+                            case "Status":
+                                pif.status = cell.DisplayValue;
+                                break;
+
                             case "Start":
                                 pif.startDate = Convert.ToDateTime(cell.Value);
                                 //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
@@ -119,6 +123,9 @@ namespace SmartsheetsPIF2.Controllers
 
             //Get LOB options
             pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            //Get Status options
+            pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
+
             foreach (var row in sheet.Rows)
             {
                 if (row.Id == row_id) {
@@ -187,7 +194,8 @@ namespace SmartsheetsPIF2.Controllers
 
             var lob_cell = new Cell();
             var project_cell = new Cell();
-            var pm_cell = new Cell();
+            var status_cell = new Cell();
+            //var pm_cell = new Cell();
             var start_cell = new Cell();
             var end_cell = new Cell();
             var team_cell = new Cell();
@@ -207,6 +215,11 @@ namespace SmartsheetsPIF2.Controllers
                     case "Project":
                         project_cell.ColumnId = columnid;
                         project_cell.Value = pif.projectName;
+                        break;
+
+                    case "Status":
+                        status_cell.ColumnId = columnid;
+                        status_cell.Value = pif.status;
                         break;
 
                     case "Start":
@@ -276,12 +289,21 @@ namespace SmartsheetsPIF2.Controllers
 
         public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
         {
-            List<SelectListItem> options = new List<SelectListItem>();
+            List<SelectListItem> lob_options = new List<SelectListItem>();
             foreach(var lob in lob_col.Options)
             {
-                options.Add(new SelectListItem { Text = lob, Value = lob });
+                lob_options.Add(new SelectListItem { Text = lob, Value = lob });
             }
-            return options;
+            return lob_options;
         }
-}
+        public IEnumerable<SelectListItem> Get_status_picklist(Column status_col)
+        {
+            List<SelectListItem> status_options = new List<SelectListItem>();
+            foreach (var new_status in status_col.Options)
+            {
+                status_options.Add(new SelectListItem { Text = new_status, Value = new_status });
+            }
+            return status_options;
+        }
+    }
 }

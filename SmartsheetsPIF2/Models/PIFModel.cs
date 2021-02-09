@@ -16,6 +16,8 @@ namespace SmartsheetsPIF.Models
         public IEnumerable<SelectListItem> lob_options { get; set; }
         public string projectName { get; set; }
         public string status { get; set; }
+        [BindProperty]
+        public IEnumerable<SelectListItem> status_options { get; set; }
         public string producer { get; set; }
         public string requestType { get; set; }
         public string team { get; set; }
