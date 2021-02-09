@@ -113,9 +113,6 @@ namespace SmartsheetsPIF2.Controllers
                                 //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
-                            case "PIF":
-                                pif.pifLink = cell.DisplayValue;
-                                break;
                         }
                     }
                     pif_list.Add(pif);
@@ -180,9 +177,6 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.team = cell.DisplayValue;
                                 break;
 
-                            case "PIF":
-                                pif.pifLink = cell.DisplayValue;
-                                break;
                         }
 
                     }
@@ -214,7 +208,6 @@ namespace SmartsheetsPIF2.Controllers
             var start_cell = new Cell();
             var end_cell = new Cell();
             var team_cell = new Cell();
-            var pif_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -263,17 +256,13 @@ namespace SmartsheetsPIF2.Controllers
                         team_cell.Value = pif.team;
                         break;
 
-                    case "PIF":
-                        pif_cell.ColumnId = columnid;
-                        pif_cell.Value = pif.pifLink;
-                        break;
                 }
             }
 
             rowToTupdate = new Row
             {
                 Id = pif.pif_Id,
-                Cells = new Cell[] { lob_cell, project_cell, status_cell, start_cell,team_cell, pif_cell }
+                Cells = new Cell[] { lob_cell, project_cell, status_cell, start_cell,team_cell }
             };
 
             try

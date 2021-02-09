@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SmartsheetsPIF.Models.PIFModel>
 
 @{
-    ViewData["Title"] = "PIFs for AT&T";
+    ViewData["Title"] = "PIFs";
   }
 
 <h1>List of PIFs</h1>
@@ -37,10 +37,6 @@
                 Team
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.pifLink)*@
-                PIF
-            </th>
-            <th>
                 Actions
             </th>
         </tr>
@@ -65,9 +61,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.team)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pifLink)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.pif_Id }) |

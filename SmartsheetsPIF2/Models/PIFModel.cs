@@ -31,9 +31,5 @@ namespace SmartsheetsPIF.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime endDate { get; set; }
-
-        [DataType(DataType.Url)]
-        [DisplayFormat(DataFormatString = "PIF", ApplyFormatInEditMode = true)]
-        public string pifLink { get; set; }
     }
 }
