@@ -34,6 +34,6 @@ namespace SmartsheetsPIF.Models
 
         [DataType(DataType.Url)]
         [DisplayFormat(DataFormatString = "PIF", ApplyFormatInEditMode = true)]
-        public string pif_link { get; set; }
+        public string pifLink { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace SmartsheetsPIF2.Controllers
         public IActionResult Save(PIFModel model)
         {
             updateRow(model);
-            return View("ListPIFs");
+            return View("Index");
         }
         public SmartsheetClient initSheet()
         {
@@ -114,7 +114,7 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "PIF":
-                                pif.pif_link = cell.DisplayValue;
+                                pif.pifLink = cell.DisplayValue;
                                 break;
                         }
                     }
@@ -181,7 +181,7 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "PIF":
-                                pif.pif_link = cell.DisplayValue;
+                                pif.pifLink = cell.DisplayValue;
                                 break;
                         }
 
@@ -265,7 +265,7 @@ namespace SmartsheetsPIF2.Controllers
 
                     case "PIF":
                         pif_cell.ColumnId = columnid;
-                        pif_cell.Value = pif.pif_link;
+                        pif_cell.Value = pif.pifLink;
                         break;
                 }
             }
