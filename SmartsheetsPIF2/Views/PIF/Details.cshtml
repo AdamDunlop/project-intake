@@ -16,19 +16,33 @@
             @Html.DisplayFor(model => model.pif_Id)
         </dd>*@
         <dt class="col-sm-2">
-            @*@Html.DisplayNameFor(model => model.lob)*@
-            Line of Business
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.lob)
-        </dd>
-        <dt class="col-sm-2">
             @*@Html.DisplayNameFor(model => model.projectName)*@
             Project Name
         </dt>
+
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.projectName)
         </dd>
+
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.lob)*@
+            Line of Business
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.lob)
+        </dd>
+
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.lob)*@
+           Tenrox Code
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.tenroxCode)
+        </dd>
+
+
         <dt class="col-sm-2">
             @*@Html.DisplayNameFor(model => model.status)*@
             Status
@@ -57,16 +71,40 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.producer)
         </dd>
-      
+
         <dt class="col-sm-2">
             @*@Html.DisplayFor(model => model.requestType)*@
             Team
         </dt>
-          <dd class="col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.team)
         <dd>
 
+        <dt class="col-sm-2">
+            @*@Html.DisplayFor(model => model.requestType)*@
+            Collab Deck
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@Model.collabDeck">Collab Deck</a>
+        <dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayFor(model => model.requestType)*@
+            Final Deck
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@Model.finalDeck">Final Deck</a>
+           <dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayFor(model => model.requestType)*@
+            PSDs
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@Model.photoShop">PSDs</a>
+        <dd>
+
     </dl>
+
+
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new {id = Model.pif_Id }) |

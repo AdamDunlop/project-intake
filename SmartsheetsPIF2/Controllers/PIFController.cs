@@ -87,20 +87,20 @@ namespace SmartsheetsPIF2.Controllers
                         switch (columnName)
                         {
 
-                            case "LOB":
-                                pif.lob = cell.DisplayValue;
-                                break;
-
                             case "Project":
                                 pif.projectName = cell.DisplayValue;
                                 break;
 
-                            case "Status":
-                                pif.status = cell.DisplayValue;
+                            case "LOB":
+                                pif.lob = cell.DisplayValue;
                                 break;
 
-                            case "Team":
-                                pif.team = cell.DisplayValue;                                //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
+                            case "Tenrox Codes":
+                                pif.tenroxCode = cell.DisplayValue;
+                                break;
+
+                            case "Status":
+                                pif.status = cell.DisplayValue;
                                 break;
 
                             case "Start":
@@ -113,6 +113,21 @@ namespace SmartsheetsPIF2.Controllers
                                 //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
+                            case "Team":
+                                pif.team = cell.DisplayValue;                              
+                                break;
+
+                            case "Collab Deck":
+                                pif.collabDeck = cell.DisplayValue;                              
+                                break;
+
+                            case "Final Deck":
+                                pif.collabDeck = cell.DisplayValue;
+                                break;
+
+                            case "PSDs":
+                                pif.photoShop = cell.DisplayValue;
+                                break;
                         }
                     }
                     pif_list.Add(pif);
@@ -131,7 +146,7 @@ namespace SmartsheetsPIF2.Controllers
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
-            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(12));
+            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(15));
 
 
             foreach (var row in sheet.Rows)
@@ -144,12 +159,17 @@ namespace SmartsheetsPIF2.Controllers
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {
+                            
+                            case "Project":
+                                pif.projectName = cell.DisplayValue;
+                                break;
+
                             case "LOB":
                                 pif.lob = cell.DisplayValue;
                                 break;
 
-                            case "Project":
-                                pif.projectName = cell.DisplayValue;
+                            case "Tenrox Codes":
+                                pif.tenroxCode = cell.DisplayValue;
                                 break;
 
                             case "Status":
@@ -175,6 +195,18 @@ namespace SmartsheetsPIF2.Controllers
 
                             case "Team":
                                 pif.team = cell.DisplayValue;
+                                break;
+
+                            case "Collab Deck":
+                                pif.collabDeck = cell.DisplayValue;
+                                break;
+
+                            case "Final Deck":
+                                pif.finalDeck = cell.DisplayValue;
+                                break;
+
+                            case "PSDs":
+                                pif.photoShop = cell.DisplayValue;
                                 break;
 
                         }
@@ -204,10 +236,13 @@ namespace SmartsheetsPIF2.Controllers
             var lob_cell = new Cell();
             var project_cell = new Cell();
             var status_cell = new Cell();
-            //var pm_cell = new Cell();
+            var tenrox_cell = new Cell();
             var start_cell = new Cell();
             var end_cell = new Cell();
             var team_cell = new Cell();
+            var collab_cell = new Cell();
+            var final_cell = new Cell();
+            var psds_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -216,14 +251,20 @@ namespace SmartsheetsPIF2.Controllers
                
                 switch (columnName)
                 {
+
+                    case "Project":
+                        project_cell.ColumnId = columnid;
+                        project_cell.Value = pif.projectName;
+                        break;
+
                     case "LOB":
                         lob_cell.ColumnId = columnid;
                         lob_cell.Value = pif.lob;
                         break;
 
-                    case "Project":
-                        project_cell.ColumnId = columnid;
-                        project_cell.Value = pif.projectName;
+                    case "Tenrox Codes":
+                        tenrox_cell.ColumnId = columnid;
+                        tenrox_cell.Value = pif.tenroxCode;
                         break;
 
                     case "Status":
@@ -246,14 +287,24 @@ namespace SmartsheetsPIF2.Controllers
                         end_cell.Value = pif.endDate;
                         break;
 
-                    //case "PM":
-                    //    pm_cell.ColumnId = columnid;
-                    //    pm_cell.Value = pif.producer;
-                    //    break;
-
                     case "Team":
                         team_cell.ColumnId = columnid;
                         team_cell.Value = pif.team;
+                        break;
+
+                    case "Collab Deck":
+                        collab_cell.ColumnId = columnid;
+                        collab_cell.Value = pif.collabDeck;
+                        break;
+
+                    case "Final Deck":
+                        final_cell.ColumnId = columnid;
+                        final_cell.Value = pif.finalDeck;
+                        break;
+
+                    case "PSDs":
+                        psds_cell.ColumnId = columnid;
+                        psds_cell.Value = pif.photoShop;
                         break;
 
                 }
@@ -262,7 +313,16 @@ namespace SmartsheetsPIF2.Controllers
             rowToTupdate = new Row
             {
                 Id = pif.pif_Id,
-                Cells = new Cell[] { lob_cell, project_cell, status_cell, start_cell,team_cell }
+                Cells = new Cell[] { lob_cell,
+                                     project_cell,
+                                     status_cell,
+                                     start_cell,
+                                     team_cell,
+                                     tenrox_cell,
+                                     collab_cell,
+                                     final_cell,
+                                     psds_cell
+                                    }
             };
 
             try

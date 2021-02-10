@@ -20,6 +20,12 @@
                 @Html.TextBoxFor(m => m.lob, new { @class = "form-control" })
                 <span asp-validation-for="lob" class="text-danger"></span>
             </div>*@
+
+            <div class="form-group">
+                <label asp-for="projectName" class="control-label">Project Name</label>
+                @Html.TextBoxFor(m => m.projectName, new { @class = "form-control" })
+                <span asp-validation-for="projectName" class="text-danger"></span>
+            </div>
             <div class="form-group">
 
                 <label asp-for="lob" class="control-label">Line of Business</label>
@@ -28,23 +34,17 @@
                 <span asp-validation-for="lob_options" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="projectName" class="control-label">Project Name</label>
-                @Html.TextBoxFor(m => m.projectName, new { @class = "form-control" })
-                <span asp-validation-for="projectName" class="text-danger"></span>
+                <label asp-for="tenroxCode" class="control-label">Tenrox Codes</label>
+                @Html.TextBoxFor(m => m.tenroxCode, new { @class = "form-control" })
+                <span asp-validation-for="tenroxCode" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="status" class="control-label">Status</label>
                 @Html.DropDownListFor(m => m.status, Model.status_options, new { @class = "form-control" })
                 @Html.HiddenFor(m => m.status)
                 <span asp-validation-for="status_options" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="status" class="control-label">Status</label>
-                @Html.TextBoxFor(m => m.status, new { @class = "form-control" })
-                <span asp-validation-for="status" class="text-danger"></span>
-            </div>*@
-
-
 
             <div class="form-group">
                 <label asp-for="startDate" class="control-label">Start Date</label>
@@ -67,6 +67,24 @@
                 @Html.HiddenFor(m => m.team)
                 <span asp-validation-for="team_options" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="collabDeck" class="control-label">Collab Deck</label>
+                @Html.TextBoxFor(m => m.collabDeck, new { @class = "form-control" })
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="finalDeck" class="control-label">Final Deck</label>
+                @Html.TextBoxFor(m => m.finalDeck, new { @class = "form-control" })
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="photoShop" class="control-label">PSDs</label>
+                @Html.TextBoxFor(m => m.photoShop, new { @class = "form-control" })
+                <span class="text-danger"></span>
+            </div>  
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
