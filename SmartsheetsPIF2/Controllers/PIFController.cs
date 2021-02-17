@@ -295,6 +295,9 @@ namespace SmartsheetsPIF2.Controllers
                     case "Collab Deck":
                         collab_cell.ColumnId = columnid;
                         collab_cell.Value = pif.collabDeck;
+                        //Uri url = new Uri(collab_cell.Value.ToString());
+                        //collab_cell.Hyperlink = ;
+                        //Console.WriteLine("URL: " + collab_cell.Hyperlink);
                         break;
 
                     case "Final Deck":
@@ -316,7 +319,7 @@ namespace SmartsheetsPIF2.Controllers
                 Cells = new Cell[] { lob_cell,
                                      project_cell,
                                      status_cell,
-                                     start_cell,
+                                     start_cell,                        
                                      team_cell,
                                      tenrox_cell,
                                      collab_cell,
