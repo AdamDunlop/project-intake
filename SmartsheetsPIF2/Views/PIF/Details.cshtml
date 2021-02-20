@@ -4,109 +4,141 @@
     ViewData["Title"] = "Project Details";
 }
 
-<h1>Project Details</h1>
+<h1>
+    @Html.DisplayFor(model => model.projectName) Details
+</h1>
 
-<div>
+<div class="details-view">
+
     <hr />
-    <dl class="row">
+
+    <dl class="details">
         @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.pif_Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.pif_Id)
-        </dd>*@
-        <dt class="col-sm-2">
-            @*@Html.DisplayNameFor(model => model.projectName)*@
-            Project Name
-        </dt>
+                @Html.DisplayNameFor(model => model.pif_Id)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.pif_Id)
+            </dd>*@
+        <div class="col-md-6">
+            <div class="row">
+                <dt class="col-sm-3">
+                    @*@Html.DisplayNameFor(model => model.projectName)*@
+                    Project
+                </dt>
 
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.projectName)
-        </dd>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.projectName)
+                </dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-3">
+                    @*@Html.DisplayNameFor(model => model.lob)*@
+                    LOB
+                </dt>
 
-        <dt class="col-sm-2">
-            @*@Html.DisplayNameFor(model => model.lob)*@
-            Line of Business
-        </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.lob)
+                </dd>
+            </div>
+            <div class="row">
 
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.lob)
-        </dd>
+                <dt class="col-sm-3">
+                    @*@Html.DisplayNameFor(model => model.lob)*@
+                    Tenrox
+                </dt>
 
-        <dt class="col-sm-2">
-            @*@Html.DisplayNameFor(model => model.lob)*@
-           Tenrox Code
-        </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.tenroxCode)
+                </dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-3">
+                    @*@Html.DisplayNameFor(model => model.status)*@
+                    Status
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.status)
+                </dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-3">
+                    @*@Html.DisplayNameFor(model => model.startDate)*@
+                    Start
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.startDate)
+                </dd>
+             </div>
+            <div class="row">
+                <dt class="col-sm-3">
+                    @*@Html.DisplayNameFor(model => model.endDate)*@
+                    End
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.endDate)
+                </dd>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
 
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.tenroxCode)
-        </dd>
+                <dt class="col-sm-4">
+                    @*@Html.DisplayNameFor(model => model.projectName)*@
+                    PM
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.producer)
+                </dd>
+            </div>
+            <div class="row">
 
+                <dt class="col-sm-4">
+                    @*@Html.DisplayFor(model => model.requestType)*@
+                    Team
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.team)
+                <dd>
+            </div>
+            <div class="row">
 
-        <dt class="col-sm-2">
-            @*@Html.DisplayNameFor(model => model.status)*@
-            Status
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.status)
-        </dd>
-        <dt class="col-sm-2">
-            @*@Html.DisplayNameFor(model => model.startDate)*@
-            Start Date
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.startDate)
-        </dd>
-        <dt class="col-sm-2">
-            @*@Html.DisplayNameFor(model => model.endDate)*@
-            End Date
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.endDate)
-        </dd>
-        <dt class="col-sm-2">
-            @*@Html.DisplayNameFor(model => model.projectName)*@
-            Producer
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.producer)
-        </dd>
+                <dt class="col-sm-4">
+                    @*@Html.DisplayFor(model => model.requestType)*@
+                    Collab Deck
+                </dt>
+                <dd class="col-sm-8">
+                    <a href="@Model.collabDeck">Collab Deck</a>
+                <dd>
+            </div>
+            <div class="row">
 
-        <dt class="col-sm-2">
-            @*@Html.DisplayFor(model => model.requestType)*@
-            Team
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.team)
-        <dd>
+                <dt class="col-sm-4">
+                    @*@Html.DisplayFor(model => model.requestType)*@
+                    Final Deck
+                </dt>
+                <dd class="col-sm-8">
+                    <a href="@Model.finalDeck">Final Deck</a>
+                <dd>
+            </div>
+            <div class="row">
 
-        <dt class="col-sm-2">
-            @*@Html.DisplayFor(model => model.requestType)*@
-            Collab Deck
-        </dt>
-        <dd class="col-sm-10">
-            <a href="@Model.collabDeck">Collab Deck</a>
-        <dd>
-        <dt class="col-sm-2">
-            @*@Html.DisplayFor(model => model.requestType)*@
-            Final Deck
-        </dt>
-        <dd class="col-sm-10">
-            <a href="@Model.finalDeck">Final Deck</a>
-           <dd>
-        <dt class="col-sm-2">
-            @*@Html.DisplayFor(model => model.requestType)*@
-            PSDs
-        </dt>
-        <dd class="col-sm-10">
-            <a href="@Model.photoShop">PSDs</a>
-        <dd>
+                <dt class="col-sm-4">
+                    @*@Html.DisplayFor(model => model.requestType)*@
+                    PSDs
+                </dt>
+                <dd class="col-sm-8">
+                    <a href="@Model.photoShop">PSDs</a>
+                <dd>
+            </div>
+</dl>
 
-    </dl>
+    </div>
 
-
+<div class="wbs">
+    <IFRAME WIDTH=200% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=71a4c4c580f44b5fa4f18569a4ba7796"></IFRAME>
 </div>
+
 <div>
-    @Html.ActionLink("Edit", "Edit", new {id = Model.pif_Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |
     <a asp-action="ListPIFs">Back to List</a>
 </div>
