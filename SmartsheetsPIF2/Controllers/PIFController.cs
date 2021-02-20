@@ -128,6 +128,14 @@ namespace SmartsheetsPIF2.Controllers
                             case "PSDs":
                                 pif.photoShop = cell.DisplayValue;
                                 break;
+
+                            case "Deliverables":
+                                pif.deliverbales = cell.DisplayValue;
+                                break;
+
+                            case "Deliverables Tracker":
+                                pif.deliverablesTracker = cell.DisplayValue;
+                                break;
                         }
                     }
                     pif_list.Add(pif);
@@ -209,6 +217,15 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.photoShop = cell.DisplayValue;
                                 break;
 
+                            case "Deliverables":
+                                pif.deliverbales = cell.DisplayValue;
+                                break;
+
+                            case "Deliverables Tracker":
+                                pif.deliverablesTracker = cell.DisplayValue;
+                                break;
+
+
                         }
 
                     }
@@ -243,6 +260,8 @@ namespace SmartsheetsPIF2.Controllers
             var collab_cell = new Cell();
             var final_cell = new Cell();
             var psds_cell = new Cell();
+            var deliverables_cell = new Cell();
+            var deliverables_tracker_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -278,11 +297,6 @@ namespace SmartsheetsPIF2.Controllers
                         break;
 
                     case "Ship":
-                        //var end_cell = new Cell
-                        //{
-                        //    ColumnId = columnid,
-                        //    Value = pif.endDate
-                        //};
                         end_cell.ColumnId = columnid;
                         end_cell.Value = pif.endDate;
                         break;
@@ -310,6 +324,16 @@ namespace SmartsheetsPIF2.Controllers
                         psds_cell.Value = pif.photoShop;
                         break;
 
+                    case "Deliverables":
+                        deliverables_cell.ColumnId = columnid;
+                        deliverables_cell.Value = pif.deliverbales;
+                        break;
+
+                    case "Deliverables Tracker":
+                        deliverables_tracker_cell.ColumnId = columnid;
+                        deliverables_tracker_cell.Value = pif.deliverablesTracker;
+                        break;
+
                 }
             }
 
@@ -324,7 +348,9 @@ namespace SmartsheetsPIF2.Controllers
                                      tenrox_cell,
                                      collab_cell,
                                      final_cell,
-                                     psds_cell
+                                     psds_cell,
+                                     deliverables_cell,
+                                     deliverables_tracker_cell
                                     }
             };
 
