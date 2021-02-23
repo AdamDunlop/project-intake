@@ -4,95 +4,101 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>
-    PIF - @Html.DisplayFor(m => m.projectName)
-</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        @using (Html.BeginForm("Save", "PIF", FormMethod.Post))
-        {
-            @Html.HiddenFor(m => m.pif_Id);
-            @*<div class="form-group">
+
+    <div class="col-12">
+        <h1>Edit</h1>
+
+        <h4>
+            PIF - @Html.DisplayFor(m => m.projectName)
+        </h4>
+        <hr />
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Save", "PIF", FormMethod.Post, new { @class = "form-group row" }))
+{
+    <div class="col-12 col-md-6">
+        @Html.HiddenFor(m => m.pif_Id)
+        @*<div class="form-group">
                 <label asp-for="lob" class="control-label">Line of Business</label>
                 @Html.TextBoxFor(m => m.lob, new { @class = "form-control" })
                 <span asp-validation-for="lob" class="text-danger"></span>
             </div>*@
 
-            <div class="form-group">
-                <label asp-for="projectName" class="control-label">Project Name</label>
-                @Html.TextBoxFor(m => m.projectName, new { @class = "form-control" })
-                <span asp-validation-for="projectName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+        <div class="form-group">
+            <label asp-for="projectName" class="control-label">Project Name</label>
+            @Html.TextBoxFor(m => m.projectName, new { @class = "form-control" })
+            <span asp-validation-for="projectName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
 
-                <label asp-for="lob" class="control-label">Line of Business</label>
-                @Html.DropDownListFor(m => m.lob, Model.lob_options, new { @class = "form-control" })
-                @Html.HiddenFor(m => m.lob)
-                <span asp-validation-for="lob_options" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="tenroxCode" class="control-label">Tenrox Codes</label>
-                @Html.TextBoxFor(m => m.tenroxCode, new { @class = "form-control" })
-                <span asp-validation-for="tenroxCode" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="status" class="control-label">Status</label>
-                @Html.DropDownListFor(m => m.status, Model.status_options, new { @class = "form-control" })
-                @Html.HiddenFor(m => m.status)
-                <span asp-validation-for="status_options" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="startDate" class="control-label">Start Date</label>
-                @Html.TextBoxFor(m => m.startDate, "{0:d/M/yyyy}", new { @class = "form-control" })
-                <span asp-validation-for="startDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="endDate" class="control-label">End Date</label>
-                @Html.TextBoxFor(m => m.endDate, "{0:d/M/yyyy}", new { @class = "form-control" })
-                <span asp-validation-for="endDate" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="producer" class="control-label">PM</label>
-                @Html.TextBoxFor(m => m.producer, new { @class = "form-control" })
-                <span asp-validation-for="producer" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="team" class="control-label">Team</label>
-                @Html.DropDownListFor(m => m.team, Model.team_options, new { @class = "form-control" })
-                @Html.HiddenFor(m => m.team)
-                <span asp-validation-for="team_options" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="collabDeck" class="control-label">Collab Deck</label>
-                @Html.TextBoxFor(m => m.collabDeck, new { @class = "form-control" })
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="finalDeck" class="control-label">Final Deck</label>
-                @Html.TextBoxFor(m => m.finalDeck, new { @class = "form-control" })
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="photoShop" class="control-label">PSDs</label>
-                @Html.TextBoxFor(m => m.photoShop, new { @class = "form-control" })
-                <span class="text-danger"></span>
-            </div>  
-
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        }
-    </div>
+            <label asp-for="lob" class="control-label">Line of Business</label>
+            @Html.DropDownListFor(m => m.lob, Model.lob_options, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.lob)
+            <span asp-validation-for="lob_options" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="tenroxCode" class="control-label">Tenrox Codes</label>
+            @Html.TextBoxFor(m => m.tenroxCode, new { @class = "form-control" })
+            <span asp-validation-for="tenroxCode" class="text-danger"></span>
         </div>
 
+        <div class="form-group">
+            <label asp-for="status" class="control-label">Status</label>
+            @Html.DropDownListFor(m => m.status, Model.status_options, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.status)
+            <span asp-validation-for="status_options" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="team" class="control-label">Team</label>
+            @Html.DropDownListFor(m => m.team, Model.team_options, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.team)
+            <span asp-validation-for="team_options" class="text-danger"></span>
+        </div>
+
+
+
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label asp-for="startDate" class="control-label">Start Date</label>
+            @Html.TextBoxFor(m => m.startDate, "{0:d/M/yyyy}", new { @class = "form-control" })
+            <span asp-validation-for="startDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="endDate" class="control-label">End Date</label>
+            @Html.TextBoxFor(m => m.endDate, "{0:d/M/yyyy}", new { @class = "form-control" })
+            <span asp-validation-for="endDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="collabDeck" class="control-label">Collab Deck</label>
+            @Html.TextBoxFor(m => m.collabDeck, new { @class = "form-control" })
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="finalDeck" class="control-label">Final Deck</label>
+            @Html.TextBoxFor(m => m.finalDeck, new { @class = "form-control" })
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="photoShop" class="control-label">PSDs</label>
+            @Html.TextBoxFor(m => m.photoShop, new { @class = "form-control" })
+            <span class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary float-right" />
+        </div>
+    </div>
+
+
+}
 <div>
     <a asp-action="ListPIFs">Back to List</a>
 </div>
