@@ -130,7 +130,7 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Deliverables":
-                                pif.deliverbales = cell.DisplayValue;
+                                pif.deliverables = cell.DisplayValue;
                                 break;
 
                             case "Deliverables Tracker":
@@ -218,7 +218,7 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Deliverables":
-                                pif.deliverbales = cell.DisplayValue;
+                                pif.deliverables = cell.DisplayValue;
                                 break;
 
                             case "Deliverables Tracker":
@@ -326,7 +326,7 @@ namespace SmartsheetsPIF2.Controllers
 
                     case "Deliverables":
                         deliverables_cell.ColumnId = columnid;
-                        deliverables_cell.Value = pif.deliverbales;
+                        deliverables_cell.Value = pif.deliverables;
                         break;
 
                     case "Deliverables Tracker":
