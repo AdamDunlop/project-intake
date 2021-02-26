@@ -37,8 +37,8 @@ namespace SmartsheetsPIF.Models
         public string collabDeck { get; set; }
         public string finalDeck { get; set; }
         public string photoShop { get; set; }
-        public string deliverables { get; set; }
-        public string deliverablesTracker { get; set; }
+        //public string deliverables { get; set; }
+        //public string deliverablesTracker { get; set; }
 
     }
 
