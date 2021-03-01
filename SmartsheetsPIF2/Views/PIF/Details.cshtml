@@ -12,9 +12,8 @@
     </div>
 
 </div>
-<hr />
 
-<div class="row" style="margin: auto">
+@*<div class="row" style="margin: auto">
     <div class="col-12 col-md-6 ">
         <div class="row">
             <dt class="col-sm-3">
@@ -68,181 +67,185 @@
         </dl>
         <dl class="row">
 
+    </div>
+</div>*@
+
+
 <div class="details-view">
 
-<hr />
-
-<div class="row">
-
-    <div class="col-md-6">
-        <div class="row">
-            <dt class="col-sm-3">
-                Project
-            </dt>
-
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.projectName)
-            </dd>
-        </div>
-
-        <div class="row">
-            <dt class="col-sm-3">
-                LOB
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.lob)
-            </dd>
-        </div>
-
-
-
-        <div class="row">
-
-            <dt class="col-sm-3">
-                Tenrox
-            </dt>
-
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.tenroxCode)
-            </dd>
-        </div>
-
-
-        <div class="row">
-            <dt class="col-sm-3">
-                Timing
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.startDate) -
-
-                @Html.DisplayFor(model => model.endDate)
-            </dd>
-        </div>
-
-
-
-    </div>
-
-    <div class="col-md-6">
-        <div class="column-right">
-            <div class="row">
-                <dt class="col-sm-3">
-                    PM
-                </dt>
-                <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.producer)
-                </dd>
-            </div>
-            <div class="row">
-
-                <dt class="col-sm-3">
-                    Team
-                </dt>
-                <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.team)
-                <dd>
-            </div>
-            <div class="row">
-                <dt class="col-sm-3">
-                    Status
-                </dt>
-                <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.status)
-                </dd>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="wbs">
     <hr />
 
-    <h4>WBS</h4>
+    <div class="row">
 
-    <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=71a4c4c580f44b5fa4f18569a4ba7796"></IFRAME>
-</div>
-
-
-
-
-
-<div class="project-details">
-    <hr />
-
-    <div class="details-section">
-
-        <h4>
-            Project Details
-        </h4>
-        <div class="col-md-10">
-
+        <div class="col-md-6">
             <div class="row">
-
-                <dt class="col-sm-4">
-                    Collab Deck
+                <dt class="col-sm-3">
+                    Project
                 </dt>
-                <dd class="col-sm-8">
-                    <a href="@Model.collabDeck">Collab Deck</a>
-                <dd>
-            </div>
-            <div class="row">
 
-                <dt class="col-sm-4">
-                    Final Deck
-                </dt>
-                <dd class="col-sm-8">
-                    <a href="@Model.finalDeck">Final Deck</a>
-                <dd>
-            </div>
-            <div class="row">
-
-                <dt class="col-sm-4">
-                    PSDs
-                </dt>
-                <dd class="col-sm-8">
-                    <a href="@Model.photoShop">PSDs</a>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.projectName)
                 </dd>
-
             </div>
 
-            <div class="row deliverables">
-
-                <dt class="col-sm-4">
-                    Deliverables
+            <div class="row">
+                <dt class="col-sm-3">
+                    LOB
                 </dt>
-                <dd class="col-sm-8">
-                    <p>
-                        Update these social assets with new template (in 3 sizes): <br />
-                        - UF "Game Footage" <br />
-                        - MF "Game Footage" <br />
-                        - LF "NBA LP/ HBO Max" Combo <br />
-                        <br />
-                        Update these display assets with new template (in 6 sizes):<br />
-                        - MF "Key Art"<br />
-                        - LF "NBA LP/ HBO Max" Combo<br />
-                    </p>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.lob)
                 </dd>
-
             </div>
+
+
+
             <div class="row">
 
-                <dt class="col-sm-4">
-                    Deliverables Tracker
+                <dt class="col-sm-3">
+                    Tenrox
                 </dt>
-                <dd class="col-sm-8">
-                    <a href="@Model.deliverablesTracker">Deliverables Tracker</a>
-                <dd>
 
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.tenroxCode)
+                </dd>
             </div>
+
+
+            <div class="row">
+                <dt class="col-sm-3">
+                    Timing
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.startDate) -
+
+                    @Html.DisplayFor(model => model.endDate)
+                </dd>
+            </div>
+
+
 
         </div>
 
+        <div class="col-md-6">
+            <div class="column-right">
+                <div class="row">
+                    <dt class="col-sm-3">
+                        PM
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.producer)
+                    </dd>
+                </div>
+                <div class="row">
 
-        <div class="back">
-            @*@Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |*@
-            @*<a class="back-button" asp-action="ListPIFs">Back to List</a>*@
-            <button class="back-button" onclick="window.location.href='/PIF/ListPIFs'">Back to List</button>
+                    <dt class="col-sm-3">
+                        Team
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.team)
+                    <dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-3">
+                        Status
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.status)
+                    </dd>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="wbs">
+        <hr />
+
+        <h4>WBS</h4>
+
+        <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=71a4c4c580f44b5fa4f18569a4ba7796"></IFRAME>
+    </div>
+
+
+
+
+
+    <div class="project-details">
+        <hr />
+
+        <div class="details-section">
+
+            <h4>
+                Project Details
+            </h4>
+            <div class="col-md-10">
+
+                <div class="row">
+
+                    <dt class="col-sm-4">
+                        Collab Deck
+                    </dt>
+                    <dd class="col-sm-8">
+                        <a href="@Model.collabDeck">Collab Deck</a>
+                    <dd>
+                </div>
+                <div class="row">
+
+                    <dt class="col-sm-4">
+                        Final Deck
+                    </dt>
+                    <dd class="col-sm-8">
+                        <a href="@Model.finalDeck">Final Deck</a>
+                    <dd>
+                </div>
+                <div class="row">
+
+                    <dt class="col-sm-4">
+                        PSDs
+                    </dt>
+                    <dd class="col-sm-8">
+                        <a href="@Model.photoShop">PSDs</a>
+                    </dd>
+
+                </div>
+
+                <div class="row deliverables">
+
+                    <dt class="col-sm-4">
+                        Deliverables
+                    </dt>
+                    <dd class="col-sm-8">
+                        <p>
+                            Update these social assets with new template (in 3 sizes): <br />
+                            - UF "Game Footage" <br />
+                            - MF "Game Footage" <br />
+                            - LF "NBA LP/ HBO Max" Combo <br />
+                            <br />
+                            Update these display assets with new template (in 6 sizes):<br />
+                            - MF "Key Art"<br />
+                            - LF "NBA LP/ HBO Max" Combo<br />
+                        </p>
+                    </dd>
+
+                </div>
+                <div class="row">
+
+                    <dt class="col-sm-4">
+                        Deliverables Tracker
+                    </dt>
+                    <dd class="col-sm-8">
+                        <a href="@Model.deliverablesTracker">Deliverables Tracker</a>
+                    <dd>
+
+                </div>
+
+            </div>
+
+
+            <div class="back">
+                @*@Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |*@
+                @*<a class="back-button" asp-action="ListPIFs">Back to List</a>*@
+                <button class="back-button" onclick="window.location.href='/PIF/ListPIFs'">Back to List</button>
+            </div>
+        </div>
+    </div>
 </div>

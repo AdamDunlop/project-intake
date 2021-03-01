@@ -27,18 +27,18 @@ namespace SmartsheetsPIF.Models
         public IEnumerable<SelectListItem> team_options { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime startDate { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime endDate { get; set; }
         public string team { get; set; }
         public string collabDeck { get; set; }
         public string finalDeck { get; set; }
         public string photoShop { get; set; }
-        public string deliverbales { get; set; }
-        public string deliverablesTracker { get; set; }
+        //public string deliverables { get; set; }
+        //public string deliverablesTracker { get; set; }
 
     }
 
