@@ -4,16 +4,16 @@
     ViewData["Title"] = "Project Details";
 }
 
-<div class="row">
-    <div class="col-12">
-        <h1>
-            @Html.DisplayFor(model => model.projectName) Details
-        </h1>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="edit-header">
+
+                @Html.DisplayFor(model => model.projectName) Details
+            </h1>
+        </div>
+
     </div>
-
-</div>
-
-@*<div class="row" style="margin: auto">
+<div class="row" style="margin: auto">
     <div class="col-12 col-md-6 ">
         <div class="row">
             <dt class="col-sm-3">
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(model => model.lob)
             </dd>
         </div>
-        <dl class="row">
+        <div class="row">
 
             <dt class="col-sm-3">
                 Tenrox
@@ -41,10 +41,8 @@
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.tenroxCode)
             </dd>
-        </dl>
-
-
-        <dl class="row">
+        </div>
+        <div class="row">
             <dt class="col-sm-3">
                 Timing
             </dt>
@@ -53,109 +51,104 @@
 
                 @Html.DisplayFor(model => model.endDate)
             </dd>
-        </dl>
+        </div>
+
     </div>
 
     <div class=" col-12 col-md-6 ">
-        <dl class="row">
+        <div class="row">
             <dt class="col-sm-3">
                 PM
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.producer)
             </dd>
-        </dl>
-        <dl class="row">
-
-    </div>
-</div>*@
-
-
-<div class="details-view">
-
-    <hr />
-
-    <div class="row">
-
-        <div class="col-md-6">
-            <div class="row">
-                <dt class="col-sm-3">
-                    Project
-                </dt>
-
-                <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.projectName)
-                </dd>
-            </div>
-
-            <div class="row">
-                <dt class="col-sm-3">
-                    LOB
-                </dt>
-                <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.lob)
-                </dd>
-            </div>
-
-
-
-            <div class="row">
-
-                <dt class="col-sm-3">
-                    Tenrox
-                </dt>
-
-                <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.tenroxCode)
-                </dd>
-            </div>
-
-
-            <div class="row">
-                <dt class="col-sm-3">
-                    Timing
-                </dt>
-                <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.startDate) -
-
-                    @Html.DisplayFor(model => model.endDate)
-                </dd>
-            </div>
-
-
-
         </div>
 
-        <div class="col-md-6">
-            <div class="column-right">
+        <div class="row">
+            <dt class="col-sm-3">
+                Status
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.status)
+            </dd>
+        </div>
+
+        <div class="row">
+
+            <dt class="col-sm-3">
+                Team
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.team)
+            <dd>
+        </div>
+
+    </div>
+
+    
+
+
+    @*<div class="details-view">
+
+        <hr />
+
+        <div class="row">
+
+            <div class="col-md-6">
                 <div class="row">
                     <dt class="col-sm-3">
-                        PM
+                        Project
                     </dt>
+
                     <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.producer)
+                        @Html.DisplayFor(model => model.projectName)
                     </dd>
                 </div>
+
+                <div class="row">
+                    <dt class="col-sm-3">
+                        LOB
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.lob)
+                    </dd>
+                </div>
+
+
+
                 <div class="row">
 
                     <dt class="col-sm-3">
-                        Team
+                        Tenrox
                     </dt>
+
                     <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.team)
-                    <dd>
-                </div>
-                <div class="row">
-                    <dt class="col-sm-3">
-                        Status
-                    </dt>
-                    <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.status)
+                        @Html.DisplayFor(model => model.tenroxCode)
                     </dd>
                 </div>
+
+
+
+
+
             </div>
-        </div>
-    </div>
+
+            <div class="col-md-6">
+                <div class="column-right">
+                    <div class="row">
+                        <dt class="col-sm-3">
+                            PM
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Html.DisplayFor(model => model.producer)
+                        </dd>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>*@
 
     <div class="wbs">
         <hr />
