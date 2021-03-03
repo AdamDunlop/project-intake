@@ -13,232 +13,177 @@
         </div>
 
     </div>
-<div class="row" style="margin: auto">
-    <div class="col-12 col-md-6 ">
-        <div class="row">
-            <dt class="col-sm-3">
-                Project
-            </dt>
+    <div class="row" style="margin: auto">
+        <div class="col-12 col-md-6 ">
+            <div class="row">
+                <dt class="col-sm-3">
+                    Project
+                </dt>
 
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.projectName)
-            </dd>
-        </div>
-        <div class="row">
-            <dt class="col-sm-3">
-                LOB
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.lob)
-            </dd>
-        </div>
-        <div class="row">
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.projectName)
+                </dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-3">
+                    LOB
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.lob)
+                </dd>
+            </div>
+            <div class="row">
 
-            <dt class="col-sm-3">
-                Tenrox
-            </dt>
+                <dt class="col-sm-3">
+                    Tenrox
+                </dt>
 
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.tenroxCode)
-            </dd>
-        </div>
-        <div class="row">
-            <dt class="col-sm-3">
-                Timing
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.startDate) -
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.tenroxCode)
+                </dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-3">
+                    Timing
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.startDate) -
 
-                @Html.DisplayFor(model => model.endDate)
-            </dd>
-        </div>
+                    @Html.DisplayFor(model => model.endDate)
+                </dd>
+            </div>
 
-    </div>
-
-    <div class=" col-12 col-md-6 ">
-        <div class="row">
-            <dt class="col-sm-3">
-                PM
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.producer)
-            </dd>
         </div>
 
-        <div class="row">
-            <dt class="col-sm-3">
-                Status
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.status)
-            </dd>
+        <div class=" col-12 col-md-6 ">
+            <div class="row">
+                <dt class="col-sm-3">
+                    PM
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.producer)
+                </dd>
+            </div>
+
+            <div class="row">
+                <dt class="col-sm-3">
+                    Status
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.status)
+                </dd>
+            </div>
+
+            <div class="row">
+
+                <dt class="col-sm-3">
+                    Team
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.team)
+                <dd>
+            </div>
+
         </div>
 
-        <div class="row">
+        <div class="wbs-section">
+            <hr />
 
-            <dt class="col-sm-3">
-                Team
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.team)
-            <dd>
+            <h4>WBS</h4>
+
+            <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=71a4c4c580f44b5fa4f18569a4ba7796"></IFRAME>
         </div>
 
-    </div>
-
-    
 
 
-    @*<div class="details-view">
+        <div class="project-details">
+            <hr />
 
-        <hr />
+            <div class="details-section">
 
-        <div class="row">
-
-            <div class="col-md-6">
-                <div class="row">
-                    <dt class="col-sm-3">
-                        Project
-                    </dt>
-
-                    <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.projectName)
-                    </dd>
-                </div>
-
-                <div class="row">
-                    <dt class="col-sm-3">
-                        LOB
-                    </dt>
-                    <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.lob)
-                    </dd>
-                </div>
+                <h4>
+                    Project Details
+                </h4>
 
 
+                <table class="table table-bordered">
 
-                <div class="row">
+                    <tbody>
+                        <tr>
+                            <td>Collab Deck</td>
+                            <td>
+                                <a href="@Model.collabDeck">@Model.collabDeck</a>
+                            </td>
+                        </tr>
 
-                    <dt class="col-sm-3">
-                        Tenrox
-                    </dt>
+                        <tr>
+                            <td>PSDs</td>
+                            <td>
+                                <a href="@Model.photoShop">@Model.photoShop</a>
+                            </td>
+                        </tr>
 
-                    <dd class="col-sm-9">
-                        @Html.DisplayFor(model => model.tenroxCode)
-                    </dd>
-                </div>
-
-
-
+                        <tr>
+                            <td>FxF Deck</td>
+                            <td>
+                                <a href="@Model.fxfDeck">@Model.fxfDeck</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Deliverables</td>
+                            <td>
+                                <textarea readonly class="form-control">@Html.DisplayFor(model => model.deliverables)</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Final Deck</td>
+                            <td>
+                                <a href="@Model.collabDeck">@Model.finalDeck</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Deliverables tracker</td>
+                            <td>
+                                <button onclick="showTracker()" class="deliverables-tracker">Deliverables Tracker</button>
+                                <IFRAME id="show-tracker" WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=94d7ff84ead7450ab6575c6991103740"></IFRAME>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
 
             </div>
 
-            <div class="col-md-6">
-                <div class="column-right">
-                    <div class="row">
-                        <dt class="col-sm-3">
-                            PM
-                        </dt>
-                        <dd class="col-sm-9">
-                            @Html.DisplayFor(model => model.producer)
-                        </dd>
-                    </div>
-                    
+            <div class="producer-section">
 
-                </div>
-            </div>
-        </div>*@
+                <h4> Stock Asset Libary & Tracking</h4>
 
-    <div class="wbs">
-        <hr />
+                <table class="table table-bordered">
 
-        <h4>WBS</h4>
-
-        <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=71a4c4c580f44b5fa4f18569a4ba7796"></IFRAME>
-    </div>
-
-
-
-
-
-    <div class="project-details">
-        <hr />
-
-        <div class="details-section">
-
-            <h4>
-                Project Details
-            </h4>
-            <div class="col-md-10">
-
-                <div class="row">
-
-                    <dt class="col-sm-4">
-                        Collab Deck
-                    </dt>
-                    <dd class="col-sm-8">
-                        <a href="@Model.collabDeck">Collab Deck</a>
-                    <dd>
-                </div>
-                <div class="row">
-
-                    <dt class="col-sm-4">
-                        Final Deck
-                    </dt>
-                    <dd class="col-sm-8">
-                        <a href="@Model.finalDeck">Final Deck</a>
-                    <dd>
-                </div>
-                <div class="row">
-
-                    <dt class="col-sm-4">
-                        PSDs
-                    </dt>
-                    <dd class="col-sm-8">
-                        <a href="@Model.photoShop">PSDs</a>
-                    </dd>
-
-                </div>
-
-                <div class="row deliverables">
-
-                    <dt class="col-sm-4">
-                        Deliverables
-                    </dt>
-                    <dd class="col-sm-8">
-                        <p>
-                            Update these social assets with new template (in 3 sizes): <br />
-                            - UF "Game Footage" <br />
-                            - MF "Game Footage" <br />
-                            - LF "NBA LP/ HBO Max" Combo <br />
-                            <br />
-                            Update these display assets with new template (in 6 sizes):<br />
-                            - MF "Key Art"<br />
-                            - LF "NBA LP/ HBO Max" Combo<br />
-                        </p>
-                    </dd>
-
-                </div>
-                <div class="row">
-
-                    <dt class="col-sm-4">
-                        Deliverables Tracker
-                    </dt>
-                    <dd class="col-sm-8">
-                        @*<a href="@Model.deliverablesTracker">Deliverables Tracker</a>*@
-                    <dd>
-
-                </div>
-
-            </div>
-
-
-            <div class="back">
-                @*@Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |*@
-                @*<a class="back-button" asp-action="ListPIFs">Back to List</a>*@
-                <button class="back-button" onclick="window.location.href='/PIF/ListPIFs'">Back to List</button>
+                    <tbody>
+                        <tr>
+                            <td>AUDIO ASSETS:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>VISUAL ASSETS:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>CLIEN SUPPLIED:</td>
+                            <td></td>
+                    </tbody>
+                </table>
             </div>
         </div>
+
+
+     
+
+
+        <div class="back">
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |*@
+            @*<a class="back-button" asp-action="ListPIFs">Back to List</a>*@
+            <button class="back-button" onclick="window.location.href='/PIF/ListPIFs'">Back to List</button>
+        </div>
     </div>
-</div>

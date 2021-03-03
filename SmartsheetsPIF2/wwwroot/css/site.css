@@ -24,6 +24,9 @@ a {
   border-color: #1861ac;
 }
 
+
+
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -77,20 +80,15 @@ body {
     width: 100%;
 }
 
-.wbs {
+.wbs-section {
     width: 100%;
     padding: 2rem 0;
 }
-*/
-/*.row{
-    flex-wrap: nowrap;
-}*/
 
-
-.column-right {
-    position: relative;
-    top: 2rem;
+.back {
+    padding: 1rem 0;
 }
+
 
 .back-button {
     border-radius: .5rem;
@@ -119,6 +117,34 @@ a.button:hover {
     background-color: #3A5D9D;
     color: white;
 }
+
+.stock-asset, .delivery {
+    width: 50%;
+
+}
+
+#show-tracker {
+    display: none;
+}
+
+.show {
+    display: block !important;
+}
+
+.deliverables-tracker {
+    background-color: white;
+    border: none;
+
+}
+
+.deliverables-tracker:active, .deliverables-tracker:focus, .back-button:active, .back-button:focus{
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+}
+
+
+/* ---------------------- Media Queries ---------------------- */
 
 @media screen and (max-width: 480px) {
     .details {

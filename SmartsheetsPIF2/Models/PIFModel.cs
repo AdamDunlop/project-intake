@@ -35,10 +35,10 @@ namespace SmartsheetsPIF.Models
         public DateTime endDate { get; set; }
         public string team { get; set; }
         public string collabDeck { get; set; }
-        public string finalDeck { get; set; }
         public string photoShop { get; set; }
-        //public string deliverables { get; set; }
-        //public string deliverablesTracker { get; set; }
+        public string finalDeck { get; set; }
+        public string fxfDeck { get; set; }
+        public string deliverables { get; set; }
 
     }
 

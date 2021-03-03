@@ -129,14 +129,15 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.photoShop = cell.DisplayValue;
                                 break;
 
-                            //case "Deliverables":
-                            //    pif.deliverables = cell.DisplayValue;
-                            //    break;
+                            case "FxF Deck":
+                                pif.fxfDeck= cell.DisplayValue;
+                                break;
 
-                            //case "Deliverables Tracker":
-                            //    pif.deliverablesTracker = cell.DisplayValue;
-                            //    break;
-                        }
+                            case "Deliverables":
+                                pif.deliverables = cell.DisplayValue;
+                                break;
+
+                          }
                     }
                     pif_list.Add(pif);
                 }
@@ -217,15 +218,13 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.photoShop = cell.DisplayValue;
                                 break;
 
-                            //case "Deliverables":
-                            //    pif.deliverables = cell.DisplayValue;
-                            //    break;
+                            case "FxF Deck":
+                                pif.fxfDeck = cell.DisplayValue;
+                                break;
 
-                            //case "Deliverables Tracker":
-                            //    pif.deliverablesTracker = cell.DisplayValue;
-                            //    break;
-
-
+                            case "Deliverables":
+                                pif.deliverables = cell.DisplayValue;
+                                break;
                         }
 
                     }
@@ -260,8 +259,8 @@ namespace SmartsheetsPIF2.Controllers
             var collab_cell = new Cell();
             var final_cell = new Cell();
             var psds_cell = new Cell();
-            //var deliverables_cell = new Cell();
-            //var deliverables_tracker_cell = new Cell();
+            var fxf_cell = new Cell();
+            var deliverables_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -324,16 +323,15 @@ namespace SmartsheetsPIF2.Controllers
                         psds_cell.Value = pif.photoShop;
                         break;
 
-                    //case "Deliverables":
-                    //    deliverables_cell.ColumnId = columnid;
-                    //    deliverables_cell.Value = pif.deliverables;
-                    //    break;
+                    case "FxF Deck":
+                        fxf_cell.ColumnId = columnid;
+                        fxf_cell.Value = pif.fxfDeck;
+                        break;
 
-                    //case "Deliverables Tracker":
-                    //    deliverables_tracker_cell.ColumnId = columnid;
-                    //    deliverables_tracker_cell.Value = pif.deliverablesTracker;
-                    //    break;
-
+                    case "Deliverables":
+                        deliverables_cell.ColumnId = columnid;
+                        deliverables_cell.Value = pif.deliverables;
+                        break;
                 }
             }
 
@@ -349,8 +347,8 @@ namespace SmartsheetsPIF2.Controllers
                                      collab_cell,
                                      final_cell,
                                      psds_cell,
-                                     //deliverables_cell,
-                                     //deliverables_tracker_cell
+                                     fxf_cell,
+                                     deliverables_cell
                                     }
             };
 
