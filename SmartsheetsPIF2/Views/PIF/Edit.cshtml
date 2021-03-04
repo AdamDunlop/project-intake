@@ -59,13 +59,6 @@
         <span asp-validation-for="team_options" class="text-danger"></span>
     </div>
 
-   
-
-
-
-</div>
-
-<div class="col-12 col-md-6">
     <div class="form-group">
         <label asp-for="startDate" class="control-label">Start Date</label>
         @Html.TextBoxFor(m => m.startDate, "{0:d/M/yyyy}", new { @class = "form-control" })
@@ -76,6 +69,10 @@
         @Html.TextBoxFor(m => m.endDate, "{0:d/M/yyyy}", new { @class = "form-control" })
         <span asp-validation-for="endDate" class="text-danger"></span>
     </div>
+</div>
+
+<div class="col-12 col-md-6">
+
 
     <div class="form-group">
         <label asp-for="collabDeck" class="control-label">Collab Deck</label>
@@ -109,7 +106,7 @@
 
 
     <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary float-right" />
+        <input type="submit" value="Save" class="btn btn-success float-right" />
     </div>
 </div>
 
@@ -118,6 +115,6 @@
 <div class="back">
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |*@
     @*<a class="back-button" asp-action="ListPIFs">Back to List</a>*@
-    <button class="back-button" onclick="window.location.href='/PIF/ListPIFs'">Back to List</button>
+    <button class="btn btn-secondary" onclick="window.location.href='/PIF/ListPIFs'">Back to List</button>
 </div>
 
