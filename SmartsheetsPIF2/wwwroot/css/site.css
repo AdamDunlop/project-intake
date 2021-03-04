@@ -143,9 +143,32 @@ a.button:hover {
     -moz-outline-style: none;
 }
 
+.table-split tr {
+    width: 50%;
+}
+
+
+.table-fixed {
+    width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.status-col {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+input {
+    margin-right: 10px;
+}
+
+.wander tr td:first-child{
+    width: 25%;
+}
 
 /* ---------------------- Media Queries ---------------------- */
-
 @media screen and (max-width: 480px) {
     .details {
         display: flex;
