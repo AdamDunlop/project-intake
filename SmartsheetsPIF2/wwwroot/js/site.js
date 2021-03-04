@@ -3,13 +3,15 @@
 
 // Write your JavaScript code.
 
-function showTracker() {
-    var element = document.getElementById("show-tracker");
-    element.classList.toggle("show");
-}
+//function showTracker() {
+//    var element = document.getElementById("show-tracker");
+//    element.classList.toggle("show");
+//}
 
 $(function () {
     $('textarea').each(function () {
         $(this).height($(this).prop('scrollHeight'));
     });
 });
+
+

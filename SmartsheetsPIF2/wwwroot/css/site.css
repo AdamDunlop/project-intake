@@ -118,14 +118,7 @@ a.button:hover {
     color: white;
 }
 
-.stock-asset, .delivery {
-    width: 50%;
 
-}
-
-#show-tracker {
-    display: none;
-}
 
 .show {
     display: block !important;
@@ -134,7 +127,6 @@ a.button:hover {
 .deliverables-tracker {
     background-color: white;
     border: none;
-
 }
 
 .deliverables-tracker:active, .deliverables-tracker:focus, .back-button:active, .back-button:focus{
@@ -143,25 +135,37 @@ a.button:hover {
     -moz-outline-style: none;
 }
 
-.table-split tr {
-    width: 50%;
+.producer-section, .wander-section {
+    display: none;
 }
 
 
+/*.table-split tr {
+    width: 50%;
+}
+*/
+/*
 .table-fixed {
     width: 100%;
     table-layout: fixed;
     word-wrap: break-word;
 }
+*/
 
-input {
-    margin-right: 10px;
+
+/*.stock-asset, .delivery {
+    width: 50%;
 }
+*/
+/*input {
+    margin-right: 10px;
+}*/
 
-.wander tr td:first-child{
+
+/*.wander tr td:first-child{
     width: 25%;
     text-transform: uppercase;
-}
+}*/
 
 /* ---------------------- Media Queries ---------------------- */
 
