@@ -89,7 +89,6 @@ body {
     padding: 1rem 0;
 }
 
-
 .back-button {
     border-radius: .5rem;
     background: white;
@@ -117,8 +116,6 @@ a.button:hover {
     background-color: #3A5D9D;
     color: white;
 }
-
-
 
 .show {
     display: block !important;

@@ -193,6 +193,9 @@
         <div class="back">
             @*@Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |*@
             @*<a class="back-button" asp-action="ListPIFs">Back to List</a>*@
-            <button class="btn btn-secondary" onclick="window.location.href='/PIF/ListPIFs'">Back to List</button>
+            <button class="btn btn-secondary" onclick="window.location.href='/PIF/ListPIFs'">
+                <i class="bi bi-arrow-bar-left"></i>
+                Back to List
+            </button>
         </div>
     </div>
