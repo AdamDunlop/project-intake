@@ -154,12 +154,6 @@ a.button:hover {
     word-wrap: break-word;
 }
 
-.status-col {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 input {
     margin-right: 10px;
 }
