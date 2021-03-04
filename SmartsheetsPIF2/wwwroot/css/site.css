@@ -167,21 +167,29 @@ input {
 .wander tr td:first-child{
     width: 25%;
     text-transform: uppercase;
-
 }
 
 /* ---------------------- Media Queries ---------------------- */
-@media screen and (max-width: 480px) {
-    .details {
-        display: flex;
-        flex-direction: column;
-/*        padding-left: 15px;*/
+
+@media screen and (max-width: 720px) {
+    .wander tr td:first-child {
+        width: 35%;
     }
-    .column-right {
-        top: 0;
-    }
-    div.row.deliverables{
-        flex-wrap: wrap;
-    }
-   
 }
+
+
+    @media screen and (max-width: 480px) {
+        .details {
+            display: flex;
+            flex-direction: column;
+            /*        padding-left: 15px;*/
+        }
+
+        .column-right {
+            top: 0;
+        }
+
+        div.row.deliverables {
+            flex-wrap: wrap;
+        }
+    }
