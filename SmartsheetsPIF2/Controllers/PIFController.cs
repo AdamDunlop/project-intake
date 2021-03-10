@@ -114,30 +114,30 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Team":
-                                pif.team = cell.DisplayValue;                              
+                                pif.team = cell.DisplayValue;
                                 break;
 
-                            case "Collab Deck":
-                                pif.collabDeck = cell.DisplayValue;                              
-                                break;
+                                //case "Deck":
+                                //    pif.Deck = cell.DisplayValue;                              
+                                //    break;
 
-                            case "Final Deck":
-                                pif.collabDeck = cell.DisplayValue;
-                                break;
+                                //case "Box Folder":
+                                //    pif.boxFolder = cell.DisplayValue;
+                                //    break;
 
-                            case "PSDs":
-                                pif.photoShop = cell.DisplayValue;
-                                break;
+                                //case "PSDs":
+                                //    pif.PSDs = cell.DisplayValue;
+                                //    break;
 
-                            case "FxF Deck":
-                                pif.fxfDeck= cell.DisplayValue;
-                                break;
+                                //case "Final Delivery":
+                                //    pif.finalDeliveryFolder= cell.DisplayValue;
+                                //    break;
 
-                            case "Deliverables":
-                                pif.deliverables = cell.DisplayValue;
-                                break;
+                                //case "Deliverables":
+                                //    pif.Specs = cell.DisplayValue;
+                                //    break;
 
-                          }
+                        }
                     }
                     pif_list.Add(pif);
                 }
@@ -155,9 +155,7 @@ namespace SmartsheetsPIF2.Controllers
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
-            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(15));
-
-
+            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
             foreach (var row in sheet.Rows)
             {
                 if (row.Id == row_id) {
@@ -167,8 +165,7 @@ namespace SmartsheetsPIF2.Controllers
                         string columnName = sheet.GetColumnById(columnid).Title.ToString();
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
-                        {
-                            
+                        {                            
                             case "Project":
                                 pif.projectName = cell.DisplayValue;
                                 break;
@@ -177,7 +174,7 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.lob = cell.DisplayValue;
                                 break;
 
-                            case "Tenrox Codes":
+                            case "Tenrox Code":
                                 pif.tenroxCode = cell.DisplayValue;
                                 break;
 
@@ -206,27 +203,42 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.team = cell.DisplayValue;
                                 break;
 
-                            case "Collab Deck":
-                                pif.collabDeck = cell.DisplayValue;
+                            case "Deck":
+                                pif.Deck = cell.DisplayValue;
                                 break;
 
-                            case "Final Deck":
-                                pif.finalDeck = cell.DisplayValue;
+                            case "Final Delivery":
+                                pif.finalDeliveryFolder = cell.DisplayValue;
                                 break;
 
                             case "PSDs":
-                                pif.photoShop = cell.DisplayValue;
+                                pif.PSDs = cell.DisplayValue;
                                 break;
 
-                            case "FxF Deck":
-                                pif.fxfDeck = cell.DisplayValue;
+                            case "Box Folder":
+                                pif.boxFolder = cell.DisplayValue;
                                 break;
 
-                            case "Deliverables":
-                                pif.deliverables = cell.DisplayValue;
+                            case "Specs":
+                                pif.Specs = cell.DisplayValue;
+                                break;
+
+                            case "WBS":
+                                string[] wbs = cell.DisplayValue.Split(" ");
+                                wbs = wbs[4].Split('"');
+                                cell.DisplayValue = wbs[1].ToString().Trim('"');
+                                pif.wbs_link = cell.DisplayValue;
+                               // cell.DisplayValue = words[1].ToString();
+                                break;
+
+                            case "Deliverables Tracker":
+                                string[] del_trckr = cell.DisplayValue.Split(" ");
+                                del_trckr = del_trckr[4].Split('"');
+                                cell.DisplayValue = del_trckr[1].ToString().Trim('"');
+                                pif.deliverables_tracker_link = cell.DisplayValue;
+                                // cell.DisplayValue = words[1].ToString();
                                 break;
                         }
-
                     }
                 }
             }
@@ -256,11 +268,11 @@ namespace SmartsheetsPIF2.Controllers
             var start_cell = new Cell();
             var end_cell = new Cell();
             var team_cell = new Cell();
-            var collab_cell = new Cell();
-            var final_cell = new Cell();
+            var collab_deck_cell = new Cell();
+            var box_folder_cell = new Cell();
             var psds_cell = new Cell();
-            var fxf_cell = new Cell();
-            var deliverables_cell = new Cell();
+            var final_delivery_cell = new Cell();
+            var specs_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -280,7 +292,7 @@ namespace SmartsheetsPIF2.Controllers
                         lob_cell.Value = pif.lob;
                         break;
 
-                    case "Tenrox Codes":
+                    case "Tenrox Code":
                         tenrox_cell.ColumnId = columnid;
                         tenrox_cell.Value = pif.tenroxCode;
                         break;
@@ -305,32 +317,32 @@ namespace SmartsheetsPIF2.Controllers
                         team_cell.Value = pif.team;
                         break;
 
-                    case "Collab Deck":
-                        collab_cell.ColumnId = columnid;
-                        collab_cell.Value = pif.collabDeck;
+                    case "Box Folder":
+                        box_folder_cell.ColumnId = columnid;
+                        box_folder_cell.Value = pif.boxFolder;
+                        break;
+
+                    case "Deck":
+                        collab_deck_cell.ColumnId = columnid;
+                        collab_deck_cell.Value = pif.Deck;
                         //Uri url = new Uri(collab_cell.Value.ToString());
                         //collab_cell.Hyperlink = ;
                         //Console.WriteLine("URL: " + collab_cell.Hyperlink);
                         break;
 
-                    case "Final Deck":
-                        final_cell.ColumnId = columnid;
-                        final_cell.Value = pif.finalDeck;
-                        break;
-
                     case "PSDs":
                         psds_cell.ColumnId = columnid;
-                        psds_cell.Value = pif.photoShop;
+                        psds_cell.Value = pif.PSDs;
                         break;
 
-                    case "FxF Deck":
-                        fxf_cell.ColumnId = columnid;
-                        fxf_cell.Value = pif.fxfDeck;
+                    case "Final Delivery":
+                        final_delivery_cell.ColumnId = columnid;
+                        final_delivery_cell.Value = pif.finalDeliveryFolder;
                         break;
 
-                    case "Deliverables":
-                        deliverables_cell.ColumnId = columnid;
-                        deliverables_cell.Value = pif.deliverables;
+                    case "Specs":
+                        specs_cell.ColumnId = columnid;
+                        specs_cell.Value = pif.Specs;
                         break;
                 }
             }
@@ -344,11 +356,11 @@ namespace SmartsheetsPIF2.Controllers
                                      start_cell,                        
                                      team_cell,
                                      tenrox_cell,
-                                     collab_cell,
-                                     final_cell,
+                                     collab_deck_cell,
+                                     box_folder_cell,
                                      psds_cell,
-                                     fxf_cell,
-                                     deliverables_cell
+                                     final_delivery_cell,
+                                     specs_cell
                                     }
             };
 
@@ -383,7 +395,6 @@ namespace SmartsheetsPIF2.Controllers
             long sheetId = 1478730146178948; //Display TEST
             */
         }
-
         public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
         {
             List<SelectListItem> options = new List<SelectListItem>();

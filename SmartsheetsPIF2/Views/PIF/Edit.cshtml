@@ -73,34 +73,40 @@
 
 <div class="col-12 col-md-6">
 
+    <div class="form-group">
+        <label asp-for="boxFolder" class="control-label">Box Folder</label>
+        @Html.TextBoxFor(m => m.boxFolder, new { @class = "form-control" })
+        <span class="text-danger"></span>
+    </div>
+
 
     <div class="form-group">
-        <label asp-for="collabDeck" class="control-label">Collab Deck</label>
-        @Html.TextBoxFor(m => m.collabDeck, new { @class = "form-control" })
+        <label asp-for="Deck" class="control-label">Deck</label>
+        @Html.TextBoxFor(m => m.Deck, new { @class = "form-control" })
         <span class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="photoShop" class="control-label">PSDs</label>
-        @Html.TextBoxFor(m => m.photoShop, new { @class = "form-control" })
+        <label asp-for="PSDs" class="control-label">PSDs</label>
+        @Html.TextBoxFor(m => m.PSDs, new { @class = "form-control" })
         <span class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="finalDeck" class="control-label">Final Deck</label>
-        @Html.TextBoxFor(m => m.finalDeck, new { @class = "form-control" })
+        <label asp-for="boxFolder" class="control-label">Final Deck</label>
+        @Html.TextBoxFor(m => m.boxFolder, new { @class = "form-control" })
         <span class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="fxfDeck" class="control-label">FxF Deck</label>
-        @Html.TextBoxFor(m => m.fxfDeck, new { @class = "form-control" })
+        <label asp-for="finalDeliveryFolder" class="control-label">FxF Deck</label>
+        @Html.TextBoxFor(m => m.finalDeliveryFolder, new { @class = "form-control" })
         <span class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="deliverables" class="control-label">Deliverables</label>
-        @Html.TextAreaFor(m => m.deliverables, new { @class = "form-control" })
+        <label asp-for="Specs" class="control-label">Deliverables</label>
+        @Html.TextAreaFor(m => m.Specs, new { @class = "form-control" })
         <span asp-validation-for="tenroxCode" class="text-danger"></span>
     </div>
 
@@ -109,14 +115,11 @@
     </div>
 </div>
 
-
 }
 <div class="back">
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |*@
-    @*<a class="back-button" asp-action="ListPIFs">Back to List</a>*@
-    <button class="btn btn-secondary" onclick="window.location.href='/PIF/ListPIFs'">
+    <a asp-action="ListPIFs" class="btn btn-secondary">
         <i class="bi bi-arrow-bar-left"></i>
-        Back to List
-    </button>
+        <span>Back to List</span>
+    </a>
 </div>
 

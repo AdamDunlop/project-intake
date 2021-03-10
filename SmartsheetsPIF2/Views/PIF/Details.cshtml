@@ -50,7 +50,7 @@
             <hr />
             <h4>WBS</h4>
             <div class="wbs">
-                <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=71a4c4c580f44b5fa4f18569a4ba7796"></IFRAME>
+                <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC= "@Model.wbs_link"></IFRAME>
             </div>
         </div>
         <div class="project-details">
@@ -60,142 +60,38 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Collab Deck</td>
-                            <td><a href="@Model.collabDeck">@Model.collabDeck</a></td>
+                            <td>Deck</td>
+                            <td><a href="@Model.Deck"> Deck</a></td>
                         </tr>
 
                         <tr>
                             <td>PSDs</td>
-                            <td><a href="@Model.photoShop">@Model.photoShop</a></td>
+                            <td><a href="@Model.PSDs">PSDs</a></td>
                         </tr>
 
                         <tr>
-                            <td>FxF Deck</td>
-                            <td><a href="@Model.fxfDeck">@Model.fxfDeck</a></td>
+                            <td>Box Folder</td>
+                            <td><a href="@Model.boxFolder"> Box Folder</a></td>
                         </tr>
                         <tr>
-                            <td>Deliverables</td>
-                            <td><textarea readonly class="form-control">@Html.DisplayFor(model => model.deliverables)</textarea></td>
+                            <td>Specs</td>
+                            <td><textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)</textarea></td>
                         </tr>
                         <tr>
-                            <td>Final Deck</td>
-                            <td><a href="@Model.collabDeck">@Model.finalDeck</a></td>
+                            <td>Delivery Folder</td>
+                            <td><a href="@Model.finalDeliveryFolder">Delivery Folder</a></td>
                         </tr>
                     </tbody>
                 </table>
                 <h4>Deliverables Tracker</h4>
                 <div id="deliverablesTracker">
-                    <IFRAME id="show-tracker" WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=94d7ff84ead7450ab6575c6991103740"></IFRAME>
+                    @*<IFRAME id="show-tracker" WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=94d7ff84ead7450ab6575c6991103740"></IFRAME>*@
+                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
                 </div>
             </div>
         </div>
-
-        @*<div class="producer-section">
-            <hr />
-            <h4> Stock Asset Libary & Tracking</h4>
-
-            <table class="table table-bordered table-fixed">
-
-                <tbody class="assets">
-                    <tr>
-                        <td>Audio Assets:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Visual Assets:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Client Supplied:</td>
-                        <td></td>
-                </tbody>
-            </table>
-
-            <h4>Delivery:</h4>
-
-            <table class="table table-bordered table-fixed">
-
-                <tbody class="table-split">
-                    <tr>
-                        <td>Contracts + Licences:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Final Deliverbales File Location:</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-
-
-        </div>
-
-
-        <div class="wander-section">
-            <hr />
-            <h4>
-                Wander Internal Notes
-            </h4>
-            <p>To be compeleted by Wander</p>
-            <table class="table table-bordered">
-
-                <tbody class="wander">
-                    <tr>
-                        <td>Producer:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Editor:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Path On Studio Server:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Contractor Files:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Review Links:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Change Log</td>
-                        <td class="producer-data">
-                            <p><input type="checkbox" />Kickoff</p>
-                            <p>
-                                Audio:<br />
-                                <input type="checkbox" />Quoted <br />
-                                <input type="checkbox" />License<br />
-                            </p>
-                            <p>
-                                Visual:<br />
-                                <input type="checkbox" />Quoted<br />
-                                <input type="checkbox" />License<br />
-                            </p>
-                            <p>
-                                Lincenses(link):
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>QC Log</td>
-                        <td><p><input type="checkbox" />Kickoff <br />
-                            <input type="checkbox" />QC Check</p></td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>*@
-        <div class="back">
-            @*@Html.ActionLink("Edit", "Edit", new { id = Model.pif_Id }) |*@
-            @*<a class="back-button" asp-action="ListPIFs">Back to List</a>*@
-            <button class="btn btn-secondary" onclick="window.location.href='/PIF/ListPIFs'">
-                <i class="bi bi-arrow-bar-left"></i>
-                Back to List
-            </button>
-        </div>
+        <a asp-action="ListPIFs" class="btn btn-secondary">
+            <i class="bi bi-arrow-bar-left"></i>
+            <span>Back to List</span>
+        </a>
     </div>
