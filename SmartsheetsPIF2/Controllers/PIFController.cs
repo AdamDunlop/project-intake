@@ -44,6 +44,7 @@ namespace SmartsheetsPIF2.Controllers
         {
             updateRow(model);
             return View("Index");
+            //return ListPIFs();
         }
         public SmartsheetClient initSheet()
         {
@@ -224,19 +225,24 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "WBS":
-                                string[] wbs = cell.DisplayValue.Split(" ");
-                                wbs = wbs[4].Split('"');
-                                cell.DisplayValue = wbs[1].ToString().Trim('"');
-                                pif.wbs_link = cell.DisplayValue;
-                               // cell.DisplayValue = words[1].ToString();
+                                if (cell.Value != null) {
+                                    string[] wbs = cell.DisplayValue.Split(" ");
+                                    wbs = wbs[4].Split('"');
+                                    cell.DisplayValue = wbs[1].ToString().Trim('"');
+                                    pif.wbs_link = cell.DisplayValue;
+                                    // cell.DisplayValue = words[1].ToString();) { }
+                                }
                                 break;
 
                             case "Deliverables Tracker":
-                                string[] del_trckr = cell.DisplayValue.Split(" ");
-                                del_trckr = del_trckr[4].Split('"');
-                                cell.DisplayValue = del_trckr[1].ToString().Trim('"');
-                                pif.deliverables_tracker_link = cell.DisplayValue;
-                                // cell.DisplayValue = words[1].ToString();
+                                if (cell.Value != null)
+                                {
+                                    string[] del_trckr = cell.DisplayValue.Split(" ");
+                                    del_trckr = del_trckr[4].Split('"');
+                                    cell.DisplayValue = del_trckr[1].ToString().Trim('"');
+                                    pif.deliverables_tracker_link = cell.DisplayValue;
+                                    // cell.DisplayValue = words[1].ToString();
+                                }
                                 break;
                         }
                     }

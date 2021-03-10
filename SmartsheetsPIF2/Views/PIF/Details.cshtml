@@ -50,7 +50,16 @@
             <hr />
             <h4>WBS</h4>
             <div class="wbs">
-                <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC= "@Model.wbs_link"></IFRAME>
+                @if (Model.wbs_link != null)
+                {
+                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs_link"></IFRAME>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        There's no WBS Link
+                    </div>
+                }
             </div>
         </div>
         <div class="project-details">
@@ -84,9 +93,19 @@
                     </tbody>
                 </table>
                 <h4>Deliverables Tracker</h4>
+
                 <div id="deliverablesTracker">
-                    @*<IFRAME id="show-tracker" WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=94d7ff84ead7450ab6575c6991103740"></IFRAME>*@
+
+                    @if (Model.deliverables_tracker_link != null)
+                    {
                     <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
+                    }
+                    else { 
+                    <div class="alert alert-warning" role="alert">
+                        There's no Deliverables Tracker Link
+                    </div>
+                    }
+                    @*<IFRAME id="show-tracker" WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=94d7ff84ead7450ab6575c6991103740"></IFRAME>*@                  
                 </div>
             </div>
         </div>
