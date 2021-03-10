@@ -69,9 +69,6 @@
         @Html.TextBoxFor(m => m.endDate, "{0:d/M/yyyy}", new { @class = "form-control" })
         <span asp-validation-for="endDate" class="text-danger"></span>
     </div>
-</div>
-
-<div class="col-12 col-md-6">
 
     <div class="form-group">
         <label asp-for="boxFolder" class="control-label">Box Folder</label>
@@ -83,6 +80,21 @@
     <div class="form-group">
         <label asp-for="Deck" class="control-label">Deck</label>
         @Html.TextBoxFor(m => m.Deck, new { @class = "form-control" })
+        <span class="text-danger"></span>
+    </div>
+</div>
+
+<div class="col-12 col-md-6">
+
+    <div class="form-group">
+        <label asp-for="deliverables_tracker_link" class="control-label">Deliverables Tracker</label>
+        @Html.TextBoxFor(m => m.deliverables_tracker_link, new { @class = "form-control" })
+        <span class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="wbs_link" class="control-label">WBS</label>
+        @Html.TextBoxFor(m => m.wbs_link, new { @class = "form-control" })
         <span class="text-danger"></span>
     </div>
 

@@ -145,6 +145,8 @@ namespace SmartsheetsPIF2.Controllers
             }
             return pif_list;
         }
+
+        //neeed to duplicate this method and get rid of code that strips out the url
         public PIFModel GetProject(long row_id)
         {
             PIFModel pif = new PIFModel();
@@ -278,6 +280,8 @@ namespace SmartsheetsPIF2.Controllers
             var box_folder_cell = new Cell();
             var psds_cell = new Cell();
             var final_delivery_cell = new Cell();
+            var wbs_cell = new Cell();
+            var deliverables_t_cell = new Cell();
             var specs_cell = new Cell();
 
             foreach (var cell in row.Cells)
@@ -350,6 +354,16 @@ namespace SmartsheetsPIF2.Controllers
                         specs_cell.ColumnId = columnid;
                         specs_cell.Value = pif.Specs;
                         break;
+
+                    case "Deliverables Tracker":
+                        deliverables_t_cell.ColumnId = columnid;
+                        deliverables_t_cell.Value = pif.deliverables_tracker_link;
+                        break;
+
+                    case "WBS":
+                        wbs_cell.ColumnId = columnid;
+                        wbs_cell.Value = pif.wbs_link;
+                        break;
                 }
             }
 
@@ -366,6 +380,8 @@ namespace SmartsheetsPIF2.Controllers
                                      box_folder_cell,
                                      psds_cell,
                                      final_delivery_cell,
+                                     wbs_cell,
+                                     deliverables_t_cell,
                                      specs_cell
                                     }
             };
