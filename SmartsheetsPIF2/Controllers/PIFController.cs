@@ -30,13 +30,13 @@ namespace SmartsheetsPIF2.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            return View(GetProject(id));
+            return View(GetProjectEdit(id));
         }
 
         [HttpGet]
         public IActionResult Details(long id)
         {
-            return View(GetProject(id));
+            return View(GetProjectDetails(id));
         }
 
         [HttpPost]
@@ -147,7 +147,7 @@ namespace SmartsheetsPIF2.Controllers
         }
 
         //neeed to duplicate this method and get rid of code that strips out the url
-        public PIFModel GetProject(long row_id)
+        public PIFModel GetProjectEdit(long row_id)
         {
             PIFModel pif = new PIFModel();
             pif.pif_Id = row_id;
@@ -169,6 +169,98 @@ namespace SmartsheetsPIF2.Controllers
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {                            
+                            case "Project":
+                                pif.projectName = cell.DisplayValue;
+                                break;
+
+                            case "LOB":
+                                pif.lob = cell.DisplayValue;
+                                break;
+
+                            case "Tenrox Code":
+                                pif.tenroxCode = cell.DisplayValue;
+                                break;
+
+                            case "Status":
+                                pif.status = cell.DisplayValue;
+                                break;
+
+                            case "Start":
+                                pif.startDate = Convert.ToDateTime(cell.Value);
+                                break;
+
+                            case "Ship":
+                                pif.endDate = Convert.ToDateTime(cell.Value);
+                                break;
+                            case "PM":
+                                pif.producer = cell.DisplayValue;
+                                break;
+
+                            case "Type":
+                                pif.requestType = cell.DisplayValue;
+                                break;
+
+                            case "Team":
+                                pif.team = cell.DisplayValue;
+                                break;
+
+                            case "Deck":
+                                pif.Deck = cell.DisplayValue;
+                                break;
+
+                            case "Final Delivery":
+                                pif.finalDeliveryFolder = cell.DisplayValue;
+                                break;
+
+                            case "PSDs":
+                                pif.PSDs = cell.DisplayValue;
+                                break;
+
+                            case "Box Folder":
+                                pif.boxFolder = cell.DisplayValue;
+                                break;
+
+                            case "WBS":
+                                pif.wbs_link = cell.DisplayValue;
+                                break;
+
+                            case "Deliverables Tracker":
+                                pif.deliverables_tracker_link = cell.DisplayValue;
+                                break;
+
+                            case "Specs":
+                                pif.Specs = cell.DisplayValue;
+                                break;
+                        }
+                    }
+                }
+            }
+            return pif;
+        }
+
+        public PIFModel GetProjectDetails(long row_id)
+        {
+            PIFModel pif = new PIFModel();
+            pif.pif_Id = row_id;
+            Sheet sheet = LoadSheet(sheetId, initSheet());
+
+            //Get LOB options
+            pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            //Get Status options
+            pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
+            //Get Team options
+            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
+            foreach (var row in sheet.Rows)
+            {
+                if (row.Id == row_id)
+                {
+                    foreach (var cell in row.Cells)
+                    {
+                        long columnid = cell.ColumnId.Value;
+                        string columnName = sheet.GetColumnById(columnid).Title.ToString();
+                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
+                        switch (columnName)
+                        {
                             case "Project":
                                 pif.projectName = cell.DisplayValue;
                                 break;
@@ -227,7 +319,8 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "WBS":
-                                if (cell.Value != null) {
+                                if (cell.Value != null)
+                                {
                                     string[] wbs = cell.DisplayValue.Split(" ");
                                     wbs = wbs[4].Split('"');
                                     cell.DisplayValue = wbs[1].ToString().Trim('"');
@@ -252,6 +345,8 @@ namespace SmartsheetsPIF2.Controllers
             }
             return pif;
         }
+
+
         public void updateRow(PIFModel pif)
         {
             SmartsheetClient smartsheet_CL = initSheet();
