@@ -28,9 +28,7 @@
                 }
                 else
                 {
-                    <dd class="alert alert-warning" role="alert">
-                        No Tenrox Code Provided.
-                    </dd>
+                    <dd class="alert alert-warning" role="alert">No Tenrox Code Provided.</dd>
                 }
             </div>
             <div class="row">
@@ -66,9 +64,7 @@
                 }
                 else
                 {
-                    <div class="alert alert-warning" role="alert">
-                        No WBS Link provided
-                    </div>
+                    <div class="alert alert-warning" role="alert">No WBS provided.</div>
                 }
             </div>
         </div>
@@ -82,13 +78,11 @@
                             <td>Deck</td>
                             @if (Model.Deck != null)
                             {
-                             <td><a href="@Model.Deck"> Deck</a></td>
+                                <td><a href="@Model.Deck"> Deck</a></td>
                             }
                             else
                             {
-                            <td class="alert alert-warning" role="alert">
-                                No Deck link provided
-                            </td>
+                                <td class="alert alert-warning" role="alert">No Deck link provided.</td>
                             }
                         </tr>
 
@@ -96,16 +90,14 @@
                             <td>PSDs</td>
                             @if (Model.PSDs != null)
                             {
-                            <td><a href="@Model.PSDs">PSDs</a></td>
+                                <td><a href="@Model.PSDs">PSDs</a></td>
                             }
                             else
                             {
-                            <td class="alert alert-warning" role="alert">
-                                No PSDs link provided
-                            </td>
+                                <td class="alert alert-warning" role="alert">No PSDs link provided.</td>
                             }
                         </tr>
-                       
+
                         <tr>
                             <td>Box Folder</td>
                             @if (Model.boxFolder != null)
@@ -114,52 +106,51 @@
                             }
                             else
                             {
-                                <td class="alert alert-warning" role="alert">
-                                    No Box Folder link provided
-                                </td>
+                                <td class="alert alert-warning" role="alert">No Box Folder link provided.</td>
                             }
                         </tr>
-                        
+
                         <tr>
-
-                            <td>Specs</td>
+                            <td>Specs </td>
                             @if (Model.Specs != null)
-
                             {
                         <td>
-                            <textarea readonly class="form-control">
-                                       @Html.DisplayFor(model => model.Specs)
-                                    </textarea>
+                            @if (Model.numberOfSets != null)
+                            {
+                                <span class="sets">Number of Sets: </span> @Html.DisplayFor(model => model.numberOfSets)<br />
+                            }
+                            @if (Model.animatedPerSet != null)
+                            {
+                                <span class="sets">Animated Per Set:</span> @Html.DisplayFor(model => model.animatedPerSet)<br />
+                            }
+                            @if (Model.staticPerSet != null)
+                            {
+                                <span class="sets">Static Per Set:</span>
+                            }
+                            @if (Model.staticPerSet != null)
+                            {
+                                <span>@Html.DisplayFor(model => model.staticPerSet)</span><br />
+                            }
+                             <textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)</textarea>
                         </td>
-                                    }
-                                    else
-                                    {
-                                <td class="alert alert-warning" role="alert">
-                                    No Specs Provided.
-                                </td>
-                                }
-                                
-                                @*@if (Model.numberOfSets != null) {
-
-            Number of Sets: @Html.DisplayFor(model => model.numberOfSets)
-                }*@
-                            Animated per Set: @Html.DisplayFor(model => model.animatedPerSet)
-                            Static per Set @Html.DisplayFor(model => model.staticPerSet)
-
+                            }
+                            else
+                            {
+                                <td class="alert alert-warning" role="alert">No Specs provided.</td>
+                            }
                         </tr>
-                            <tr>
-                                <td>Delivery Folder</td>
-                                @if (Model.finalDeliveryFolder != null)
-                                {
-                                    <td><a href="@Model.finalDeliveryFolder">Delivery Folder</a></td>
-                                }
-                                else
-                                {
-                                    <td class="alert alert-warning" role="alert">
-                                        No Final Delivery Folder link provided
-                                    </td>
-                                }
-                            </tr>
+
+                        <tr>
+                            <td>Delivery Folder</td>
+                            @if (Model.finalDeliveryFolder != null)
+                            {
+                                <td><a href="@Model.finalDeliveryFolder">Delivery Folder</a></td>
+                            }
+                            else
+                            {
+                                <td class="alert alert-warning" role="alert">No Final Delivery Folder link provided.</td>
+                            }
+                        </tr>
                     </tbody>
                 </table>
                 <!--<h4>Deliverables Tracker</h4>
