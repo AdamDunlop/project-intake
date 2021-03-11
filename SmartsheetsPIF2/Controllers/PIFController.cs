@@ -118,9 +118,17 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.team = cell.DisplayValue;
                                 break;
 
-                                //case "Deck":
-                                //    pif.Deck = cell.DisplayValue;                              
-                                //    break;
+                            case "Number Of Sets":
+                                pif.numberOfSets = cell.DisplayValue;
+                                break;
+
+                            case "Animated Per Set":
+                                pif.animatedPerSet = cell.DisplayValue;
+                                break;
+
+                            case "Static Per Set":
+                                pif.staticPerSet = cell.DisplayValue;
+                                break;
 
                                 //case "Box Folder":
                                 //    pif.boxFolder = cell.DisplayValue;
@@ -192,6 +200,7 @@ namespace SmartsheetsPIF2.Controllers
                             case "Ship":
                                 pif.endDate = Convert.ToDateTime(cell.Value);
                                 break;
+
                             case "PM":
                                 pif.producer = cell.DisplayValue;
                                 break;
@@ -231,6 +240,19 @@ namespace SmartsheetsPIF2.Controllers
                             case "Specs":
                                 pif.Specs = cell.DisplayValue;
                                 break;
+
+                            case "Number Of Sets":
+                                pif.numberOfSets = cell.DisplayValue;
+                                break;
+
+                            case "Animated Per Set":
+                                pif.animatedPerSet = cell.DisplayValue;
+                                break;
+
+                            case "Static Per Set":
+                                pif.staticPerSet = cell.DisplayValue;
+                                break;
+
                         }
                     }
                 }
@@ -286,6 +308,7 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.endDate = Convert.ToDateTime(cell.Value);
                                 //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
+
                             case "PM":
                                 pif.producer = cell.DisplayValue;
                                 break;
@@ -318,6 +341,19 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.Specs = cell.DisplayValue;
                                 break;
 
+                            case "Number Of Sets":
+                                pif.numberOfSets = cell.DisplayValue;
+                                break;
+
+                            case "Animated Per Set":
+                                pif.animatedPerSet = cell.DisplayValue;
+                                break;
+
+                            case "Static Per Set":
+                                pif.staticPerSet = cell.DisplayValue;
+                                break;
+
+
                             case "WBS":
                                 if (cell.Value != null)
                                 {
@@ -339,6 +375,8 @@ namespace SmartsheetsPIF2.Controllers
                                     // cell.DisplayValue = words[1].ToString();
                                 }
                                 break;
+
+                        
                         }
                     }
                 }
@@ -378,6 +416,10 @@ namespace SmartsheetsPIF2.Controllers
             var wbs_cell = new Cell();
             var deliverables_t_cell = new Cell();
             var specs_cell = new Cell();
+            var number_of_sets_cell = new Cell();
+            var animated_per_set_cell = new Cell();
+            var static_per_set_cell = new Cell();
+
 
             foreach (var cell in row.Cells)
             {
@@ -459,6 +501,21 @@ namespace SmartsheetsPIF2.Controllers
                         wbs_cell.ColumnId = columnid;
                         wbs_cell.Value = pif.wbs_link;
                         break;
+
+                    case "Number Of Sets":
+                        number_of_sets_cell.ColumnId = columnid;
+                        number_of_sets_cell.Value = pif.numberOfSets;
+                        break;
+
+                    case "Animated Pet Set":
+                        animated_per_set_cell.ColumnId = columnid;
+                        animated_per_set_cell.Value = pif.animatedPerSet;
+                        break;
+
+                    case "Static Per Sets":
+                        static_per_set_cell.ColumnId = columnid;
+                        static_per_set_cell.Value = pif.staticPerSet;
+                        break;
                 }
             }
 
@@ -477,7 +534,10 @@ namespace SmartsheetsPIF2.Controllers
                                      final_delivery_cell,
                                      wbs_cell,
                                      deliverables_t_cell,
-                                     specs_cell
+                                     specs_cell,
+                                     number_of_sets_cell,
+                                     animated_per_set_cell,
+                                     static_per_set_cell
                                     }
             };
 

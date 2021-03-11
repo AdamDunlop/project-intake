@@ -86,17 +86,21 @@
 
 <div class="col-12 col-md-6">
 
-    @*<div class="form-group">
+    <div class="form-group">
         <label asp-for="deliverables_tracker_link" class="control-label">Deliverables Tracker</label>
         @Html.TextBoxFor(m => m.deliverables_tracker_link, new { @class = "form-control" })
         <span class="text-danger"></span>
-    </div>*@
+    </div>
 
     <div class="form-group">
         <label asp-for="wbs_link" class="control-label">WBS</label>
         @Html.TextBoxFor(m => m.wbs_link, new { @class = "form-control" })
         <span class="text-danger"></span>
     </div>
+
+
+
+
 
     <div class="form-group">
         <label asp-for="PSDs" class="control-label">PSDs</label>
@@ -121,6 +125,25 @@
         @Html.TextAreaFor(m => m.Specs, new { @class = "form-control" })
         <span asp-validation-for="tenroxCode" class="text-danger"></span>
     </div>
+
+    @*<div class="form-group">
+        <label asp-for="numberOfSets" class="control-label">Number Of Sets</label>
+        @Html.TextBoxFor(m => m.numberOfSets, new { @class = "form-control" })
+        <span class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="animatedPerSet" class="control-label">Animated Per Set</label>
+        @Html.TextBoxFor(m => m.animatedPerSet, new { @class = "form-control" })
+        <span class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="staticPerSet" class="control-label">Static Per Set</label>
+        @Html.TextBoxFor(m => m.staticPerSet, new { @class = "form-control" })
+        <span class="text-danger"></span>
+    </div>*@
+
 
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-success float-right" />

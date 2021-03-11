@@ -84,7 +84,14 @@
                         </tr>
                         <tr>
                             <td>Specs</td>
-                            <td><textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)</textarea></td>
+                            <td><textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)
+
+Number of Sets: @Html.DisplayFor(model => model.numberOfSets)
+
+Animated per Set: @Html.DisplayFor(model => model.animatedPerSet)
+
+Static per Set @Html.DisplayFor(model => model.staticPerSet)
+</textarea></td>
                         </tr>
                         <tr>
                             <td>Delivery Folder</td>
@@ -105,7 +112,6 @@
                         There's no Deliverables Tracker Link
                     </div>
                     }-->
-                    @*<IFRAME id="show-tracker" WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=94d7ff84ead7450ab6575c6991103740"></IFRAME>*@                  
                 <!--</div>
             </div>-->
         </div>
