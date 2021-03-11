@@ -122,13 +122,13 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.numberOfSets = cell.DisplayValue;
                                 break;
 
-                            case "Animated Per Set":
-                                pif.animatedPerSet = cell.DisplayValue;
-                                break;
+                            //case "Animated Per Set":
+                            //    pif.animatedPerSet = cell.DisplayValue;
+                            //    break;
 
-                            case "Static Per Set":
-                                pif.staticPerSet = cell.DisplayValue;
-                                break;
+                            //case "Static Per Set":
+                            //    pif.staticPerSet = cell.DisplayValue;
+                            //    break;
 
                                 //case "Box Folder":
                                 //    pif.boxFolder = cell.DisplayValue;
@@ -245,13 +245,13 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.numberOfSets = cell.DisplayValue;
                                 break;
 
-                            case "Animated Per Set":
-                                pif.animatedPerSet = cell.DisplayValue;
-                                break;
+                            //case "Animated Per Set":
+                            //    pif.animatedPerSet = cell.DisplayValue;
+                            //    break;
 
-                            case "Static Per Set":
-                                pif.staticPerSet = cell.DisplayValue;
-                                break;
+                            //case "Static Per Set":
+                            //    pif.staticPerSet = cell.DisplayValue;
+                            //    break;
 
                         }
                     }
@@ -272,6 +272,7 @@ namespace SmartsheetsPIF2.Controllers
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
             pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
+
             foreach (var row in sheet.Rows)
             {
                 if (row.Id == row_id)
@@ -345,13 +346,13 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.numberOfSets = cell.DisplayValue;
                                 break;
 
-                            case "Animated Per Set":
-                                pif.animatedPerSet = cell.DisplayValue;
-                                break;
+                            //case "Animated Per Set":
+                            //    pif.animatedPerSet = cell.DisplayValue;
+                            //    break;
 
-                            case "Static Per Set":
-                                pif.staticPerSet = cell.DisplayValue;
-                                break;
+                            //case "Static Per Set":
+                            //    pif.staticPerSet = cell.DisplayValue;
+                            //    break;
 
 
                             case "WBS":
@@ -417,8 +418,8 @@ namespace SmartsheetsPIF2.Controllers
             var deliverables_t_cell = new Cell();
             var specs_cell = new Cell();
             var number_of_sets_cell = new Cell();
-            var animated_per_set_cell = new Cell();
-            var static_per_set_cell = new Cell();
+            //var animated_per_set_cell = new Cell();
+            //var static_per_set_cell = new Cell();
 
 
             foreach (var cell in row.Cells)
@@ -492,6 +493,21 @@ namespace SmartsheetsPIF2.Controllers
                         specs_cell.Value = pif.Specs;
                         break;
 
+                    case "Number Of Sets":
+                        number_of_sets_cell.ColumnId = columnid;
+                        number_of_sets_cell.Value = pif.numberOfSets;
+                        break;
+
+                    //case "Animated Pet Set":
+                    //    animated_per_set_cell.ColumnId = columnid;
+                    //    animated_per_set_cell.Value = pif.animatedPerSet;
+                    //    break;
+
+                    //case "Static Per Sets":
+                    //    static_per_set_cell.ColumnId = columnid;
+                    //    static_per_set_cell.Value = pif.staticPerSet;
+                    //    break;
+
                     case "Deliverables Tracker":
                         deliverables_t_cell.ColumnId = columnid;
                         deliverables_t_cell.Value = pif.deliverables_tracker_link;
@@ -502,20 +518,7 @@ namespace SmartsheetsPIF2.Controllers
                         wbs_cell.Value = pif.wbs_link;
                         break;
 
-                    case "Number Of Sets":
-                        number_of_sets_cell.ColumnId = columnid;
-                        number_of_sets_cell.Value = pif.numberOfSets;
-                        break;
-
-                    case "Animated Pet Set":
-                        animated_per_set_cell.ColumnId = columnid;
-                        animated_per_set_cell.Value = pif.animatedPerSet;
-                        break;
-
-                    case "Static Per Sets":
-                        static_per_set_cell.ColumnId = columnid;
-                        static_per_set_cell.Value = pif.staticPerSet;
-                        break;
+                   
                 }
             }
 
@@ -535,9 +538,9 @@ namespace SmartsheetsPIF2.Controllers
                                      wbs_cell,
                                      deliverables_t_cell,
                                      specs_cell,
-                                     number_of_sets_cell,
-                                     animated_per_set_cell,
-                                     static_per_set_cell
+                                     number_of_sets_cell
+                                     //animated_per_set_cell
+                                     //static_per_set_cell
                                     }
             };
 

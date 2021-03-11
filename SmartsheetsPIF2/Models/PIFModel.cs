@@ -38,8 +38,8 @@ namespace SmartsheetsPIF.Models
         public string wbs_link { get; set; }
         public string deliverables_tracker_link { get; set; }
         public string numberOfSets { get; set; }
-        public string animatedPerSet { get; set; }
-        public string staticPerSet { get; set; }
+        //public string animatedPerSet { get; set; }
+        //public string staticPerSet { get; set; }
     }
 
 }
