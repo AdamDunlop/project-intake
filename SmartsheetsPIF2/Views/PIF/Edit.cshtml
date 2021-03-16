@@ -2,12 +2,14 @@
 
 @{
     ViewData["Title"] = "Edit";
+
+
 }
 
 <div class="row">
 
     <div class="col-12">
-        <h1>Edit</h1>
+        @*<h1>Edit</h1>*@
 
         <h4>
             PIF - @Html.DisplayFor(m => m.projectName)
@@ -17,7 +19,7 @@
 </div>
 
 
-@using (Html.BeginForm("Save", "PIF", FormMethod.Post, new { @class = "form-group row" }))
+@using (Html.BeginForm("Edit", "PIF", FormMethod.Post, new { @class = "form-group row" }))
 {
 <div class="col-12 col-md-6">
     @Html.HiddenFor(m => m.pif_Id)
@@ -36,7 +38,10 @@
 
         <label asp-for="lob" class="control-label">Line of Business</label>
         @Html.DropDownListFor(m => m.lob, Model.lob_options, new { @class = "form-control" })
+        @*@Html.DropDownListFor(m => m.lob, new SelectList((System.Collections.IEnumerable)ViewData["lobs"], "Text", "Value"), new { @class = "form-control" })*@
+       
         @Html.HiddenFor(m => m.lob)
+        @Html.HiddenFor(m => m.lob_options)
         <span asp-validation-for="lob_options" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -49,24 +54,26 @@
         <label asp-for="status" class="control-label">Status</label>
         @Html.DropDownListFor(m => m.status, Model.status_options, new { @class = "form-control" })
         @Html.HiddenFor(m => m.status)
+        @Html.HiddenFor(m => m.status_options)
         <span asp-validation-for="status_options" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="team" class="control-label">Team</label>
         @Html.DropDownListFor(m => m.team, Model.team_options, new { @class = "form-control" })
-        @Html.HiddenFor(m => m.team)
+        @Html.HiddenFor(m => Model.team)
+        @Html.HiddenFor(Model => Model.lob_options)
         <span asp-validation-for="team_options" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="startDate" class="control-label">Start Date</label>
-        @Html.TextBoxFor(m => m.startDate, "{0:d/M/yyyy}", new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
         <span asp-validation-for="startDate" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="endDate" class="control-label">End Date</label>
-        @Html.TextBoxFor(m => m.endDate, "{0:d/M/yyyy}", new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.endDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
         <span asp-validation-for="endDate" class="text-danger"></span>
     </div>
 
@@ -116,30 +123,39 @@
         <span class="text-danger"></span>
     </div>
 
+    <div class=" row">
+        <div class=" col-sm-12 col-md-4">
+
+            <div class="form-group">
+                <label asp-for="numberOfSets" class="control-label">Nº of Sets</label>
+                @Html.TextBoxFor(m => m.numberOfSets, new { @class = "form-control text-center" })
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class=" col-sm-12 col-md-4">
+
+            <div class="form-group">
+                <label asp-for="animatedPerSet" class="control-label">Animated per Set</label>
+                @Html.TextBoxFor(m => m.animatedPerSet, new { @class = "form-control text-center" })
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class=" col-sm-12 col-md-4">
+
+            <div class="form-group">
+                <label asp-for="staticPerSet" class="control-label">Statics per Set</label>
+                @Html.TextBoxFor(m => m.staticPerSet, new { @class = "form-control text-center" })
+                <span class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+
     <div class="form-group">
         <label asp-for="Specs" class="control-label">Deliverables</label>
         @Html.TextAreaFor(m => m.Specs, new { @class = "form-control" })
         <span asp-validation-for="tenroxCode" class="text-danger"></span>
     </div>
-
-    <div class="form-group">
-        <label asp-for="numberOfSets" class="control-label">Number Of Sets</label>
-        @Html.TextBoxFor(m => m.numberOfSets, new { @class = "form-control" })
-        <span class="text-danger"></span>
-    </div>
-
-    @*<div class="form-group">
-        <label asp-for="animatedPerSet" class="control-label">Animated Per Set</label>
-        @Html.TextBoxFor(m => m.animatedPerSet, new { @class = "form-control" })
-        <span class="text-danger"></span>
-    </div>*@
-
-     @*<div class="form-group">
-            <label asp-for="staticPerSet" class="control-label">Static Per Set</label>
-            @Html.TextBoxFor(m => m.staticPerSet, new { @class = "form-control" })
-            <span class="text-danger"></span>
-        </div>*@
-
 
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-success float-right" />

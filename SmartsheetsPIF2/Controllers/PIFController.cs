@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Smartsheet.Api.Models;
 using Smartsheet.Api;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace SmartsheetsPIF2.Controllers
 {
@@ -28,23 +29,40 @@ namespace SmartsheetsPIF2.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(long id)
+        public IActionResult Details(long id)
         {
-            return View(GetProjectEdit(id));
+            PIFModel model = new PIFModel();
+            model = GetProjectDetails(id);
+            return View(model);
         }
 
         [HttpGet]
-        public IActionResult Details(long id)
+        public IActionResult Edit(long id)
         {
-            return View(GetProjectDetails(id));
+            PIFModel model = new PIFModel();
+            model = GetProjectEdit(id);
+            return View(model);
         }
 
+
         [HttpPost]
-        public IActionResult Save(PIFModel model)
+        public IActionResult Edit(PIFModel model)
         {
-            updateRow(model);
-            return View("Index");
-            //return ListPIFs();
+            if (!ModelState.IsValid)
+            {
+                PIFModel model_lists = GetPickLists(model.pif_Id);
+                model.lob_options = model_lists.lob_options;
+                model.status_options = model_lists.status_options;
+                model.team_options = model_lists.team_options;
+                return View(model);
+                //return RedirectToAction("Edit", new { id = model.pif_Id });
+            }
+            else 
+            {
+                updateProject(model);
+                return View("Index");
+                //return RedirectToAction("Details", new { id = model.pif_Id });
+            }
         }
         public SmartsheetClient initSheet()
         {
@@ -116,36 +134,7 @@ namespace SmartsheetsPIF2.Controllers
 
                             case "Team":
                                 pif.team = cell.DisplayValue;
-                                break;
-
-                            case "Number Of Sets":
-                                pif.numberOfSets = cell.DisplayValue;
-                                break;
-
-                            //case "Animated Per Set":
-                            //    pif.animatedPerSet = cell.DisplayValue;
-                            //    break;
-
-                            //case "Static Per Set":
-                            //    pif.staticPerSet = cell.DisplayValue;
-                            //    break;
-
-                                //case "Box Folder":
-                                //    pif.boxFolder = cell.DisplayValue;
-                                //    break;
-
-                                //case "PSDs":
-                                //    pif.PSDs = cell.DisplayValue;
-                                //    break;
-
-                                //case "Final Delivery":
-                                //    pif.finalDeliveryFolder= cell.DisplayValue;
-                                //    break;
-
-                                //case "Deliverables":
-                                //    pif.Specs = cell.DisplayValue;
-                                //    break;
-
+                                break;                           
                         }
                     }
                     pif_list.Add(pif);
@@ -182,7 +171,15 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "LOB":
-                                pif.lob = cell.DisplayValue;
+                                foreach (var item in pif.lob_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        //pif.lob_options.
+                                        item.Selected = true;
+                                    }
+                                }
+                                //pif.lob = cell.DisplayValue;
                                 break;
 
                             case "Tenrox Code":
@@ -245,13 +242,13 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.numberOfSets = cell.DisplayValue;
                                 break;
 
-                            //case "Animated Per Set":
-                            //    pif.animatedPerSet = cell.DisplayValue;
-                            //    break;
+                            case "Animated Per Set":
+                                pif.animatedPerSet = cell.DisplayValue;
+                                break;
 
-                            //case "Static Per Set":
-                            //    pif.staticPerSet = cell.DisplayValue;
-                            //    break;
+                            case "Static Per Set":
+                                pif.staticPerSet = cell.DisplayValue;
+                                break;
 
                         }
                     }
@@ -346,13 +343,13 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.numberOfSets = cell.DisplayValue;
                                 break;
 
-                            //case "Animated Per Set":
-                            //    pif.animatedPerSet = cell.DisplayValue;
-                            //    break;
+                            case "Animated Per Set":
+                                pif.animatedPerSet = cell.DisplayValue;
+                                break;
 
-                            //case "Static Per Set":
-                            //    pif.staticPerSet = cell.DisplayValue;
-                            //    break;
+                            case "Static Per Set":
+                                pif.staticPerSet = cell.DisplayValue;
+                                break;
 
 
                             case "WBS":
@@ -385,8 +382,7 @@ namespace SmartsheetsPIF2.Controllers
             return pif;
         }
 
-
-        public void updateRow(PIFModel pif)
+        public void updateProject(PIFModel pif)
         {
             SmartsheetClient smartsheet_CL = initSheet();
             Sheet sheet = LoadSheet(sheetId, smartsheet_CL);
@@ -418,8 +414,8 @@ namespace SmartsheetsPIF2.Controllers
             var deliverables_t_cell = new Cell();
             var specs_cell = new Cell();
             var number_of_sets_cell = new Cell();
-            //var animated_per_set_cell = new Cell();
-            //var static_per_set_cell = new Cell();
+            var animated_per_set_cell = new Cell();
+            var static_per_set_cell = new Cell();
 
 
             foreach (var cell in row.Cells)
@@ -498,15 +494,15 @@ namespace SmartsheetsPIF2.Controllers
                         number_of_sets_cell.Value = pif.numberOfSets;
                         break;
 
-                    //case "Animated Pet Set":
-                    //    animated_per_set_cell.ColumnId = columnid;
-                    //    animated_per_set_cell.Value = pif.animatedPerSet;
-                    //    break;
+                    case "Animated Per Set":
+                        animated_per_set_cell.ColumnId = columnid;
+                        animated_per_set_cell.Value = pif.animatedPerSet;
+                        break;
 
-                    //case "Static Per Sets":
-                    //    static_per_set_cell.ColumnId = columnid;
-                    //    static_per_set_cell.Value = pif.staticPerSet;
-                    //    break;
+                    case "Static Per Set":
+                        static_per_set_cell.ColumnId = columnid;
+                        static_per_set_cell.Value = pif.staticPerSet;
+                        break;
 
                     case "Deliverables Tracker":
                         deliverables_t_cell.ColumnId = columnid;
@@ -528,7 +524,8 @@ namespace SmartsheetsPIF2.Controllers
                 Cells = new Cell[] { lob_cell,
                                      project_cell,
                                      status_cell,
-                                     start_cell,                        
+                                     start_cell,    
+                                     //end_cell, - does not work
                                      team_cell,
                                      tenrox_cell,
                                      collab_deck_cell,
@@ -538,9 +535,9 @@ namespace SmartsheetsPIF2.Controllers
                                      wbs_cell,
                                      deliverables_t_cell,
                                      specs_cell,
-                                     number_of_sets_cell
-                                     //animated_per_set_cell
-                                     //static_per_set_cell
+                                     number_of_sets_cell,
+                                     animated_per_set_cell,
+                                     static_per_set_cell
                                     }
             };
 
@@ -555,6 +552,22 @@ namespace SmartsheetsPIF2.Controllers
             {
                 Console.WriteLine("Update row Failed: " + e.Message);
             };
+        }
+
+
+        public PIFModel GetPickLists(long row_id) {
+            PIFModel pif = new PIFModel();
+            pif.pif_Id = row_id;
+            Sheet sheet = LoadSheet(sheetId, initSheet());
+
+            //Get LOB options
+            pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            //Get Status options
+            pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
+            //Get Team options
+            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
+
+            return pif;
         }
         public void runthroughallsheets()
         {
