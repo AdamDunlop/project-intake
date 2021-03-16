@@ -44,7 +44,6 @@ namespace SmartsheetsPIF2.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         public IActionResult Edit(PIFModel model)
         {
@@ -61,6 +60,7 @@ namespace SmartsheetsPIF2.Controllers
             {
                 updateProject(model);
                 //return View("Index");
+                TempData["Success"] = "Success";
                 return RedirectToAction("ListPIFs");
             }
         }
@@ -142,8 +142,6 @@ namespace SmartsheetsPIF2.Controllers
             }
             return pif_list;
         }
-
-        //neeed to duplicate this method and get rid of code that strips out the url
         public PIFModel GetProjectEdit(long row_id)
         {
             PIFModel pif = new PIFModel();
@@ -356,25 +354,34 @@ namespace SmartsheetsPIF2.Controllers
                                 if (cell.Value != null)
                                 {
                                     string[] wbs = cell.DisplayValue.Split(" ");
-                                    wbs = wbs[4].Split('"');
-                                    cell.DisplayValue = wbs[1].ToString().Trim('"');
+                                    foreach (var item in wbs)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            wbs = item.Split('"');
+                                            foreach (var url in wbs)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
                                     pif.wbs_link = cell.DisplayValue;
-                                    // cell.DisplayValue = words[1].ToString();) { }
                                 }
                                 break;
 
-                            case "Deliverables Tracker":
-                                if (cell.Value != null)
-                                {
-                                    string[] del_trckr = cell.DisplayValue.Split(" ");
-                                    del_trckr = del_trckr[4].Split('"');
-                                    cell.DisplayValue = del_trckr[1].ToString().Trim('"');
-                                    pif.deliverables_tracker_link = cell.DisplayValue;
-                                    // cell.DisplayValue = words[1].ToString();
-                                }
-                                break;
-
-                        
+                            //case "Deliverables Tracker":
+                            //    if (cell.Value != null)
+                            //    {
+                            //        string[] del_trckr = cell.DisplayValue.Split(" ");
+                            //        del_trckr = del_trckr[4].Split('"');
+                            //        cell.DisplayValue = del_trckr[1].ToString().Trim('"');
+                            //        pif.deliverables_tracker_link = cell.DisplayValue;
+                            //        // cell.DisplayValue = words[1].ToString();
+                            //    }
+                            //    break;
                         }
                     }
                 }

@@ -2,81 +2,98 @@
 
 @{
     ViewData["Title"] = "PIFs";
-  }
-
-<h1>Project List</h1>
-
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
-<table class="table table-striped">
-    <thead class="pif-list-header">
-        <tr>
-            <th>
-                LOB
-            </th>
-            <th>
-                Project
-            </th>
-            <th>
-                Team
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Start Date
-            </th>
-            <th>
-                End Date
-            </th>
-
-            <th style="min-width:130px" >
-                Actions
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.lob)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.projectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.team)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.startDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.endDate)
-            </td>
-
-            <td>
-                @* @Html.ActionLink("Edit", "Edit", new { id = item.pif_Id }, new { @class = "button" })*@
-
-
-                <a href="@Url.Action("Edit", "PIF",new { id = item.pif_Id } )" class="btn btn-warning">
-                    <i class="bi bi-pencil-fill"></i>
-                </a>
-
-
-                <a href="@Url.Action("Details", "PIF",new { id = item.pif_Id } )" class="btn btn-primary">
-                    <i class="bi bi-card-list"></i>
-                </a>
-
-
-
-               @* @Html.ActionLink("Details", "Details", new { id = item.pif_Id }, new { @class = "button" })*@
-                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-            </td>
-        </tr>
 }
-    </tbody>
-</table>
+
+<div class="row">
+    <div class="col-12">
+        @{
+
+            if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>THIS IS SPARTA!</strong> Your changes have been saved successfully.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h1>Project List</h1>
+            <table class="table table-striped">
+                <thead class="pif-list-header">
+                    <tr>
+                        <th>
+                            LOB
+                        </th>
+                        <th>
+                            Project
+                        </th>
+                        <th>
+                            Team
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Start Date
+                        </th>
+                        <th>
+                            End Date
+                        </th>
+
+                        <th style="min-width:130px">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.lob)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.projectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.team)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.startDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.endDate)
+                            </td>
+
+                            <td>
+                                @* @Html.ActionLink("Edit", "Edit", new { id = item.pif_Id }, new { @class = "button" })*@
+
+
+                                <a href="@Url.Action("Edit", "PIF",new { id = item.pif_Id } )" class="btn btn-warning">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+
+
+                                <a href="@Url.Action("Details", "PIF",new { id = item.pif_Id } )" class="btn btn-primary">
+                                    <i class="bi bi-card-list"></i>
+                                </a>
+
+
+
+                                @* @Html.ActionLink("Details", "Details", new { id = item.pif_Id }, new { @class = "button" })*@
+                                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
