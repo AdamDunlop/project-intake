@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Edit";
 
-
 }
 
 <div class="row">
@@ -11,9 +10,14 @@
     <div class="col-12">
         @*<h1>Edit</h1>*@
 
-        <h4>
-            PIF - @Html.DisplayFor(m => m.projectName)
-        </h4>
+        @if (Model.projectName != null)
+
+        {
+            <h4>PIF - @Html.DisplayFor(m => m.projectName)</h4>
+        }
+        else {
+        <h4>PIF</h4>
+        }
         <hr />
     </div>
 </div>
@@ -80,14 +84,14 @@
     <div class="form-group">
         <label asp-for="boxFolder" class="control-label">Box Folder</label>
         @Html.TextBoxFor(m => m.boxFolder, new { @class = "form-control" })
-        <span class="text-danger"></span>
+        <span asp-validation-for="boxFolder" class="text-danger"></span>
     </div>
 
 
     <div class="form-group">
         <label asp-for="Deck" class="control-label">Deck</label>
         @Html.TextBoxFor(m => m.Deck, new { @class = "form-control" })
-        <span class="text-danger"></span>
+        <span asp-validation-for="Deck" class="text-danger"></span>
     </div>
 </div>
 
@@ -96,31 +100,31 @@
     <div class="form-group">
         <label asp-for="deliverables_tracker_link" class="control-label">Deliverables Tracker</label>
         @Html.TextBoxFor(m => m.deliverables_tracker_link, new { @class = "form-control" })
-        <span class="text-danger"></span>
+        <span asp-validation-for="deliverables_tracker_link" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="wbs_link" class="control-label">WBS</label>
         @Html.TextBoxFor(m => m.wbs_link, new { @class = "form-control" })
-        <span class="text-danger"></span>
+        <span asp-validation-for="wbs_link" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="PSDs" class="control-label">PSDs</label>
         @Html.TextBoxFor(m => m.PSDs, new { @class = "form-control" })
-        <span class="text-danger"></span>
+        <span asp-validation-for="PSDs" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="boxFolder" class="control-label">Final Deck</label>
+        <label asp-for="boxFolder" class="control-label">Box Folder</label>
         @Html.TextBoxFor(m => m.boxFolder, new { @class = "form-control" })
-        <span class="text-danger"></span>
+        <span asp-validation-for="boxFolder" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="finalDeliveryFolder" class="control-label">FxF Deck</label>
+        <label asp-for="finalDeliveryFolder" class="control-label">Final Delivery Folder</label>
         @Html.TextBoxFor(m => m.finalDeliveryFolder, new { @class = "form-control" })
-        <span class="text-danger"></span>
+        <span asp-validation-for="finalDeliveryFolder" class="text-danger"></span>
     </div>
 
     <div class=" row">
@@ -129,23 +133,23 @@
             <div class="form-group">
                 <label asp-for="numberOfSets" class="control-label">Nº of Sets</label>
                 @Html.TextBoxFor(m => m.numberOfSets, new { @class = "form-control text-center" })
-                <span class="text-danger"></span>
+                <span asp-validation-for="numberOfSets" class="text-danger"></span>
             </div>
         </div>
         <div class=" col-sm-12 col-md-4">
 
             <div class="form-group">
-                <label asp-for="animatedPerSet" class="control-label">Animated per Set</label>
+                <label asp-for="animatedPerSet" class="control-label">Animated /p set</label>
                 @Html.TextBoxFor(m => m.animatedPerSet, new { @class = "form-control text-center" })
-                <span class="text-danger"></span>
+                <span asp-validation-for="animatedPerSet" class="text-danger"></span>
             </div>
         </div>
         <div class=" col-sm-12 col-md-4">
 
             <div class="form-group">
-                <label asp-for="staticPerSet" class="control-label">Statics per Set</label>
+                <label asp-for="staticPerSet" class="control-label">Statics /p set</label>
                 @Html.TextBoxFor(m => m.staticPerSet, new { @class = "form-control text-center" })
-                <span class="text-danger"></span>
+                <span asp-validation-for="staticPerSet" class="text-danger"></span>
             </div>
 
         </div>
@@ -154,7 +158,7 @@
     <div class="form-group">
         <label asp-for="Specs" class="control-label">Deliverables</label>
         @Html.TextAreaFor(m => m.Specs, new { @class = "form-control" })
-        <span asp-validation-for="tenroxCode" class="text-danger"></span>
+        <span asp-validation-for="Specs" class="text-danger"></span>
     </div>
 
     <div class="form-group">

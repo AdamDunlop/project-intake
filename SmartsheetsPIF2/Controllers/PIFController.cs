@@ -60,8 +60,8 @@ namespace SmartsheetsPIF2.Controllers
             else 
             {
                 updateProject(model);
-                return View("Index");
-                //return RedirectToAction("Details", new { id = model.pif_Id });
+                //return View("Index");
+                return RedirectToAction("ListPIFs");
             }
         }
         public SmartsheetClient initSheet()
@@ -521,24 +521,25 @@ namespace SmartsheetsPIF2.Controllers
             rowToTupdate = new Row
             {
                 Id = pif.pif_Id,
-                Cells = new Cell[] { lob_cell,
-                                     project_cell,
-                                     status_cell,
-                                     start_cell,    
-                                     //end_cell, - does not work
-                                     team_cell,
-                                     tenrox_cell,
-                                     collab_deck_cell,
-                                     box_folder_cell,
-                                     psds_cell,
-                                     final_delivery_cell,
-                                     wbs_cell,
-                                     deliverables_t_cell,
-                                     specs_cell,
-                                     number_of_sets_cell,
-                                     animated_per_set_cell,
-                                     static_per_set_cell
-                                    }
+                Cells = new Cell[] {
+                    lob_cell,
+                    project_cell,
+                    status_cell,
+                    start_cell,
+                    end_cell,
+                    team_cell,
+                    tenrox_cell,
+                    collab_deck_cell,
+                    box_folder_cell,
+                    psds_cell,
+                    final_delivery_cell,
+                    wbs_cell,
+                    deliverables_t_cell,
+                    specs_cell,
+                    number_of_sets_cell,
+                    animated_per_set_cell,
+                    static_per_set_cell
+                }
             };
 
             try
