@@ -60,8 +60,8 @@ namespace SmartsheetsPIF2.Controllers
             else 
             {
                 updateProject(model);
-                return View("Index");
-                //return RedirectToAction("Details", new { id = model.pif_Id });
+                //return View("Index");
+                return RedirectToAction("ListPIFs");
             }
         }
         public SmartsheetClient initSheet()
