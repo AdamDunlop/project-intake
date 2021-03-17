@@ -373,15 +373,28 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             //case "Deliverables Tracker":
+
                             //    if (cell.Value != null)
                             //    {
-                            //        string[] del_trckr = cell.DisplayValue.Split(" ");
-                            //        del_trckr = del_trckr[4].Split('"');
-                            //        cell.DisplayValue = del_trckr[1].ToString().Trim('"');
+                            //        string[] tracker = cell.DisplayValue.Split(" ");
+                            //        foreach (var item in tracker)
+                            //        {
+                            //            if (item.Contains("https:"))
+                            //            {
+                            //                tracker = item.Split('"');
+                            //                foreach (var url in tracker)
+                            //                {
+                            //                    if (url.Contains("https:"))
+                            //                    {
+                            //                        cell.DisplayValue = url.Trim('"'); ;
+                            //                    }
+                            //                }
+                            //            }
+                            //        }
                             //        pif.deliverables_tracker_link = cell.DisplayValue;
-                            //        // cell.DisplayValue = words[1].ToString();
                             //    }
                             //    break;
+                              
                         }
                     }
                 }

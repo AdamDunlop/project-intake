@@ -114,23 +114,23 @@
                             <td>Specs </td>
                             @if (Model.Specs != null)
                             {
-                        <td>
-                            @if (Model.numberOfSets != null)
-                            {
-                                <span class="sets">Number of Sets: </span> @Html.DisplayFor(model => model.numberOfSets)<br />
-                            }
-                             @if (Model.animatedPerSet != null)
-                            {
-                                <span class="sets">Animated per Set:</span> @Html.DisplayFor(model => model.animatedPerSet)<br />
-                            }
+                                <td>
+                                    @if (Model.numberOfSets != null)
+                                    {
+                                        <span class="sets">Number of Sets: </span> @Html.DisplayFor(model => model.numberOfSets)<br />
+                                    }
+                                    @if (Model.animatedPerSet != null)
+                                    {
+                                        <span class="sets">Animated per Set:</span> @Html.DisplayFor(model => model.animatedPerSet)<br />
+                                    }
 
-                            @if (Model.staticPerSet != null)
-                            {
-                                <span class="sets">Static per Set:</span> @Html.DisplayFor(model => model.staticPerSet) <br />
-                            }
-                          
-                            <textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)</textarea>
-                        </td>
+                                    @if (Model.staticPerSet != null)
+                                    {
+                                        <span class="sets">Static per Set:</span> @Html.DisplayFor(model => model.staticPerSet) <br />
+                                    }
+
+                                    <textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)</textarea>
+                                </td>
                             }
                             else
                             {
@@ -151,21 +151,21 @@
                         </tr>
                     </tbody>
                 </table>
-                <!--<h4>Deliverables Tracker</h4>
+                @*  <h4>Deliverables Tracker</h4>
 
-                <div id="deliverablesTracker">
+                    <div id="deliverablesTracker">
 
-                    @if (Model.deliverables_tracker_link != null)
-                    {
-                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
-                    }
-                    else { 
-                    <div class="alert alert-warning" role="alert">
-                        There's no Deliverables Tracker Link
-                    </div>
-                    }-->
-                <!--</div>
-            </div>-->
+                        @if (Model.deliverables_tracker_link != null)
+                        {
+                        <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
+                        }
+                        else {
+                        <div class="alert alert-warning" role="alert">
+                            No Deliverables Tracker link provided.
+                        </div>
+                        }
+                    </div>*@
+            </div>
         </div>
         <a asp-action="ListPIFs" class="btn btn-secondary">
             <i class="bi bi-arrow-bar-left"></i>
