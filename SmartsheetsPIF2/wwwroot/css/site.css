@@ -24,6 +24,9 @@ a {
   border-color: #1861ac;
 }
 
+.spacing {
+    margin-top: 1rem;
+}
 
 
 
@@ -130,16 +133,15 @@ a.button:hover {
 .deliverables-tracker:active, .deliverables-tracker:focus, .back-button:active, .back-button:focus{
     outline: 0;
     border: none;
-    -moz-outline-style: none;
 }
 
 .producer-section, .wander-section {
     display: none;
 }
 
-.project-title {
+.header-title {
     text-transform: capitalize;
-    padding-top: 1rem;
+    padding-top: .5rem;
 }
 
 .details-view {
@@ -174,10 +176,26 @@ a.button:hover {
     text-transform: uppercase;
 }*/
 /* ---------------------- Media Queries ---------------------- */
-@media screen and (max-width: 720px) {
-    .wander tr td:first-child {
+
+@media screen and (max-width: 767px) {
+    .spec-details {
+        width: 50%;
+    }
+
+    .project-dates {
+        width: 50%;
+    }
+
+}
+
+
+
+    @media screen and (max-width: 720px) {
+        .wander tr td:first-child {
             width: 35%;
         }
+
+      
     }
 
     @media screen and (max-width: 480px) {
@@ -200,10 +218,18 @@ a.button:hover {
         div.row.deliverables {
             flex-wrap: wrap;
         }
+
+        .spec-details {
+            width: auto;
+        }
+
+        .project-dates {
+            width: auto;
+        }
     }
 
     /*Background Colors*/
 
-.container-color {
-    background-color: white;;
-}
+    .container-color {
+        background-color: white;
+    }

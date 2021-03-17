@@ -74,15 +74,15 @@ namespace SmartsheetsPIF.Models
         public string deliverables_tracker_link { get; set; }
 
         [Required(ErrorMessage = "Please enter a number.")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Value must be numeric")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Must be a number")]
         public string numberOfSets { get; set; }
 
         [Required(ErrorMessage = "Please enter a number.")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Value must be numeric")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Must be a number")]
         public string animatedPerSet { get; set; }
 
         [Required(ErrorMessage = "Please enter a number.")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Value must be numeric")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Must be a number")]
         public string staticPerSet { get; set; }
     }
 
@@ -106,7 +106,7 @@ namespace SmartsheetsPIF.Models
             }
             else
             {
-                return new ValidationResult("End date must be after the start date");
+                return new ValidationResult("The end date occurs before the start date");
             }
         }
     }

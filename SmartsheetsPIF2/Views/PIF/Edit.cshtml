@@ -13,10 +13,10 @@
         @if (Model.projectName != null)
 
         {
-            <h4 class="project-title">PIF - @Html.DisplayFor(m => m.projectName)</h4>
+           <h2 class="header-title">PIF - @Html.DisplayFor(m => m.projectName)</h2>
         }
         else {
-        <h4 class="project-title">PIF</h4>
+           <h2 class="header-title">PIF</h2>
         }
         <hr />
     </div>
@@ -70,12 +70,12 @@
         <span asp-validation-for="team_options" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group project-dates" >
         <label asp-for="startDate" class="control-label">Start Date</label>
         @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
         <span asp-validation-for="startDate" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    <div class="form-group project-dates">
         <label asp-for="endDate" class="control-label">End Date</label>
         @Html.TextBoxFor(m => m.endDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
         <span asp-validation-for="endDate" class="text-danger"></span>
@@ -127,12 +127,12 @@
         <span asp-validation-for="finalDeliveryFolder" class="text-danger"></span>
     </div>
 
-    <div class=" row">
+    <div class="row spec-details">
         <div class=" col-sm-12 col-md-4">
 
             <div class="form-group">
                 <label asp-for="numberOfSets" class="control-label">Nº of Sets</label>
-                @Html.TextBoxFor(m => m.numberOfSets, new { @class = "form-control text-center" })
+                @Html.TextBoxFor(m => m.numberOfSets, new { @class = "form-control" })
                 <span asp-validation-for="numberOfSets" class="text-danger"></span>
             </div>
         </div>
@@ -140,7 +140,7 @@
 
             <div class="form-group">
                 <label asp-for="animatedPerSet" class="control-label">Animated</label>
-                @Html.TextBoxFor(m => m.animatedPerSet, new { @class = "form-control text-center" })
+                @Html.TextBoxFor(m => m.animatedPerSet, new { @class = "form-control" })
                 <span asp-validation-for="animatedPerSet" class="text-danger"></span>
             </div>
         </div>
@@ -148,7 +148,7 @@
 
             <div class="form-group">
                 <label asp-for="staticPerSet" class="control-label">Static(s)</label>
-                @Html.TextBoxFor(m => m.staticPerSet, new { @class = "form-control text-center" })
+                @Html.TextBoxFor(m => m.staticPerSet, new { @class = "form-control" })
                 <span asp-validation-for="staticPerSet" class="text-danger"></span>
             </div>
 
