@@ -61,7 +61,9 @@ namespace SmartsheetsPIF.Models
         [Required(ErrorMessage = "Please provide a link")]
 
         public string finalDeliveryFolder { get; set; }
+
         [Required(ErrorMessage = "Please provide the project's details")]
+        [StringLength(200, MinimumLength = 3, ErrorMessage = "Please provide more information or N/A if no details are needed   ")]
 
         public string Specs { get; set; }
         [Required(ErrorMessage = "Please provide a link")]
