@@ -62,15 +62,17 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #0278ae;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: white;
 }
 
 
@@ -190,3 +192,9 @@ a.button:hover {
             flex-wrap: wrap;
         }
     }
+
+    /*Background Colors*/
+
+.container-color {
+    background-color: white;;
+}
