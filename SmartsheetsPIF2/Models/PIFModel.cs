@@ -17,6 +17,7 @@ namespace SmartsheetsPIF.Models
         [BindProperty]
         public IEnumerable<SelectListItem> lob_options { get; set; }
         [Required(ErrorMessage = "Please provide the Tenrox Code.")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Tenrox Code must be numeric")]
         public string tenroxCode { get; set; }
         public string status { get; set; }
         [BindProperty]
