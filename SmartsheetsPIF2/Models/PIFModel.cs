@@ -11,7 +11,7 @@ namespace SmartsheetsPIF.Models
     public class PIFModel
     {
         public long pif_Id { get; set; }
-        [Required(ErrorMessage = "Please provide the project's name")]
+        [Required(ErrorMessage = "Please enter the name")]
 
         public string projectName { get; set; }
 
@@ -63,7 +63,7 @@ namespace SmartsheetsPIF.Models
         public string finalDeliveryFolder { get; set; }
 
         [Required(ErrorMessage = "Please provide the project's details")]
-        [StringLength(200, MinimumLength = 3, ErrorMessage = "Please provide more information or N/A if no details are needed")]
+        [StringLength(200, MinimumLength = 3, ErrorMessage = "Please provide more information or N/A")]
 
         public string Specs { get; set; }
         [Required(ErrorMessage = "Please provide a link")]
@@ -106,7 +106,7 @@ namespace SmartsheetsPIF.Models
             }
             else
             {
-                return new ValidationResult("End date must be set after the start date");
+                return new ValidationResult("End date must be after the start date");
             }
         }
     }

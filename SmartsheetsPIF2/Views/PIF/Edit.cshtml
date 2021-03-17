@@ -13,7 +13,7 @@
         @if (Model.projectName != null)
 
         {
-            <h4>PIF - @Html.DisplayFor(m => m.projectName)</h4>
+            <h4 class="project-title">PIF - @Html.DisplayFor(m => m.projectName)</h4>
         }
         else {
         <h4>PIF</h4>
@@ -139,7 +139,7 @@
         <div class=" col-sm-12 col-md-4">
 
             <div class="form-group">
-                <label asp-for="animatedPerSet" class="control-label">Animated /p set</label>
+                <label asp-for="animatedPerSet" class="control-label">Animated</label>
                 @Html.TextBoxFor(m => m.animatedPerSet, new { @class = "form-control text-center" })
                 <span asp-validation-for="animatedPerSet" class="text-danger"></span>
             </div>
@@ -147,7 +147,7 @@
         <div class=" col-sm-12 col-md-4">
 
             <div class="form-group">
-                <label asp-for="staticPerSet" class="control-label">Statics /p set</label>
+                <label asp-for="staticPerSet" class="control-label">Static(s)</label>
                 @Html.TextBoxFor(m => m.staticPerSet, new { @class = "form-control text-center" })
                 <span asp-validation-for="staticPerSet" class="text-danger"></span>
             </div>

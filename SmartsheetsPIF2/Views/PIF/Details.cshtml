@@ -4,14 +4,15 @@
     ViewData["Title"] = "Project Details";
 }
 
-    <div class="row">
-        <div class="col-12">
-            <h1 class="edit-header">@Html.DisplayFor(model => model.projectName) Details</h1>
-        </div>
-
+<div class="row">
+    <div class="col-12 details-view">
+        <h1 class="project-title">@Html.DisplayFor(model => model.projectName) Details</h1>
     </div>
+
+</div>
     <div class="row" style="margin: auto">
-        <div class="col-12 col-md-6">
+
+        <div class="col-12 col-md-6 details">
             <div class="row">
                 <dt class="col-sm-3">Project</dt>
                 <dd class="col-sm-9">@Html.DisplayFor(model => model.projectName)</dd>
@@ -39,7 +40,7 @@
                 </dd>
             </div>
         </div>
-        <div class=" col-12 col-md-6 ">
+        <div class="col-12 col-md-6 details-col-2">
             <div class="row">
                 <dt class="col-sm-3">PM</dt>
 
@@ -153,18 +154,18 @@
                 </table>
                 @*  <h4>Deliverables Tracker</h4>
 
-                    <div id="deliverablesTracker">
+                <div id="deliverablesTracker">
 
-                        @if (Model.deliverables_tracker_link != null)
-                        {
-                        <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
-                        }
-                        else {
-                        <div class="alert alert-warning" role="alert">
-                            No Deliverables Tracker link provided.
-                        </div>
-                        }
-                    </div>*@
+                    @if (Model.deliverables_tracker_link != null)
+                    {
+                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
+                    }
+                    else {
+                    <div class="alert alert-warning" role="alert">
+                        No Deliverables Tracker link provided.
+                    </div>
+                    }
+                </div>*@
             </div>
         </div>
         <a asp-action="ListPIFs" class="btn btn-secondary">

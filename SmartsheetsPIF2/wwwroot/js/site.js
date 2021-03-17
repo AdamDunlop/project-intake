@@ -13,5 +13,3 @@ $(function () {
         $(this).height($(this).prop('scrollHeight'));
     });
 });
-
-
