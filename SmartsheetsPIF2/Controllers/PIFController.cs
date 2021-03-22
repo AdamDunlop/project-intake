@@ -19,10 +19,22 @@ namespace SmartsheetsPIF2.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult SocialPIFs()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult PdsPIFs()
+        {
+            return View();
+        }
+
         public static long sheetId = 508222156105604;
 
         [HttpGet]
-        public IActionResult ListPIFs()
+        public IActionResult DisplayPIFs()
         {
             var sheet = LoadSheet(sheetId, initSheet());
             return View(GetRows(sheet));
@@ -61,7 +73,7 @@ namespace SmartsheetsPIF2.Controllers
                 updateProject(model);
                 //return View("Index");
                 TempData["Success"] = "Success";
-                return RedirectToAction("ListPIFs");
+                return RedirectToAction("DisplayPIFs");
             }
         }
         public SmartsheetClient initSheet()

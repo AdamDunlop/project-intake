@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <Content Remove="C:\Users\Pc\.nuget\packages\smartsheet-csharp-sdk\2.101.0\contentFiles\any\netstandard2.0\icons\logo.png" />
+    <Content Remove="Views\PIF\SocialPIFs.cshtml" />
+    <Content Remove="Views\PIF\PDSPIFs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
