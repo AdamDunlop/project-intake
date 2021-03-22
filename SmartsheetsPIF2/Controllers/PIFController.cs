@@ -372,29 +372,29 @@ namespace SmartsheetsPIF2.Controllers
                                 }
                                 break;
 
-                            //case "Deliverables Tracker":
+                            case "Deliverables Tracker":
 
-                            //    if (cell.Value != null)
-                            //    {
-                            //        string[] tracker = cell.DisplayValue.Split(" ");
-                            //        foreach (var item in tracker)
-                            //        {
-                            //            if (item.Contains("https:"))
-                            //            {
-                            //                tracker = item.Split('"');
-                            //                foreach (var url in tracker)
-                            //                {
-                            //                    if (url.Contains("https:"))
-                            //                    {
-                            //                        cell.DisplayValue = url.Trim('"'); ;
-                            //                    }
-                            //                }
-                            //            }
-                            //        }
-                            //        pif.deliverables_tracker_link = cell.DisplayValue;
-                            //    }
-                            //    break;
-                              
+                                if (cell.Value != null)
+                                {
+                                    string[] tracker = cell.DisplayValue.Split(" ");
+                                    foreach (var item in tracker)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            tracker = item.Split('"');
+                                            foreach (var url in tracker)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    pif.deliverables_tracker_link = cell.DisplayValue;
+                                }
+                                break;
+
                         }
                     }
                 }
