@@ -2,6 +2,78 @@
     ViewData["Title"] = "PDS Pipeline";
 }
 
-<h2>PDS Pipeline</h2>
+<div class="row">
+    <div class="col-12">
+        <h2 class="header-title">PDS Pipeline</h2>
+        <table class="table table-striped">
+            <thead class="pif-list-header">
+                <tr>
+                    <th>
+                        LOB
+                    </th>
+                    <th>
+                        Project
+                    </th>
+                    <th>
+                        Team
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        End Date
+                    </th>
 
-<p>Hello World!</p>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                    <tr>
+                        <td>
+                            LOB
+                        </td>
+                        <td>
+                            Project Name
+
+                        </td>
+                        <td>
+                            Hanger
+                        </td>
+                        <td>
+                            Waiting On Feedback
+                        </td>
+                        <td>
+                            03/02/2021
+                        </td>
+                        <td>
+                            04/02/2021
+
+                        </td>
+
+                        <td class="action-buttons">
+                            @* @Html.ActionLink("Edit", "Edit", new { id = item.pif_Id }, new { @class = "button" })*@
+
+
+                            <a href="" class="btn btn-warning">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+
+
+                            <a href="" class="btn btn-primary">
+                                <i class="bi bi-card-list"></i>
+                            </a>
+
+                            @* @Html.ActionLink("Details", "Details", new { id = item.pif_Id }, new { @class = "button" })*@
+                            @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
