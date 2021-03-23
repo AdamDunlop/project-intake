@@ -13,3 +13,49 @@ $(function () {
         $(this).height($(this).prop('scrollHeight'));
     });
 });
+
+//let start = $('#startDate').val;
+//let end = $('#endData').text;
+
+//console.log(start);
+
+//function startDate() {
+//    //var start = document.getElementById('startDate')
+//    //console.log("start=", start)
+
+//    var str = 'some text that you send to the console...';
+//    document.getElementById("startDate").innerHTML = str;
+//}
+
+
+//let start = .slice(0, 5); 
+
+$('#startDate').each(function (i, text) {
+    var $this = $(this),
+        data = $this.text().slice(0, 5);
+
+    var arr = data.split(',');
+    $.each(arr, function (i, strip) {
+        $this.text(strip);
+    });
+})
+
+$('#endDate').each(function (i, text) {
+    var $this = $(this),
+        data = $this.text().slice(0, 5);
+
+    var arr = data.split(',');
+    $.each(arr, function (i, strip) {
+        $this.text(strip);
+    });
+})
+//console.log(start)
+
+//start.each(function (i) {
+//    strip = i.text().slice(0, 5);
+//    document.getElementById("startDate").innerHTML = strip;
+//})
+
+
+//let end = $('#endDate').text().slice(0, 5);
+//document.getElementById("endDate").innerHTML = end;

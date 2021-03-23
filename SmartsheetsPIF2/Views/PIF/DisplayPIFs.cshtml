@@ -40,10 +40,10 @@
                         Status
                     </th>
                     <th>
-                        Start Date
+                        Start
                     </th>
                     <th>
-                        End Date
+                        Ship
                     </th>
 
                     <th>
@@ -67,12 +67,9 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.status)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.startDate)
+                        <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.endDate)
-                        </td>
+                        <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
 
                         <td class="action-buttons">
                             @* @Html.ActionLink("Edit", "Edit", new { id = item.pif_Id }, new { @class = "button" })*@
