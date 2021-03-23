@@ -30,6 +30,10 @@ a {
 }
 
 
+.nav-right {
+   position: fixed;
+   right: 2rem;
+}
 
 /* Sticky footer styles
 -------------------------------------------------- */
