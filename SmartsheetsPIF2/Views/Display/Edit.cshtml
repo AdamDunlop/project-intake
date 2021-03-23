@@ -1,4 +1,4 @@
-﻿@model SmartsheetsPIF.Models.PIFModel
+﻿@model SmartsheetsPIF.Models.DisplayModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -23,7 +23,7 @@
 </div>
 
 
-@using (Html.BeginForm("Edit", "PIF", FormMethod.Post, new { @class = "form-group row" }))
+@using (Html.BeginForm("Edit", "Display", FormMethod.Post, new { @class = "form-group row" }))
 {
 <div class="col-12 col-md-6">
     @Html.HiddenFor(m => m.pif_Id)
@@ -168,7 +168,7 @@
 
 }
 <div class="back">
-    <a asp-action="DisplayPIFs" class="btn btn-secondary">
+    <a asp-action="List" class="btn btn-secondary">
         <i class="bi bi-arrow-bar-left"></i>
         <span>Back to List</span>
     </a>

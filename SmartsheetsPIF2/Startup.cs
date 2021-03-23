@@ -50,7 +50,7 @@ namespace SmartsheetsPIF2
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=PIF}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

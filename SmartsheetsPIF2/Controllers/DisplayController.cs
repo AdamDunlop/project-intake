@@ -11,13 +11,8 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace SmartsheetsPIF2.Controllers
 {
-    public class PIFController : Controller
+    public class DisplayController : Controller
     {
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [HttpGet]
         public IActionResult SocialPIFs()
@@ -34,7 +29,7 @@ namespace SmartsheetsPIF2.Controllers
         public static long sheetId = 508222156105604;
 
         [HttpGet]
-        public IActionResult DisplayPIFs()
+        public IActionResult List()
         {
             var sheet = LoadSheet(sheetId, initSheet());
             return View(GetRows(sheet));
@@ -43,7 +38,7 @@ namespace SmartsheetsPIF2.Controllers
         [HttpGet]
         public IActionResult Details(long id)
         {
-            PIFModel model = new PIFModel();
+            DisplayModel model = new DisplayModel();
             model = GetProjectDetails(id);
             return View(model);
         }
@@ -51,17 +46,17 @@ namespace SmartsheetsPIF2.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            PIFModel model = new PIFModel();
+            DisplayModel model = new DisplayModel();
             model = GetProjectEdit(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(PIFModel model)
+        public IActionResult Edit(DisplayModel model)
         {
             if (!ModelState.IsValid)
             {
-                PIFModel model_lists = GetPickLists(model.pif_Id);
+                DisplayModel model_lists = GetPickLists(model.pif_Id);
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
                 model.team_options = model_lists.team_options;
@@ -100,15 +95,15 @@ namespace SmartsheetsPIF2.Controllers
             Console.WriteLine("Loaded " + sheet.Rows.Count + " rows from sheet: " + sheet.Name);
             return sheet;
         }
-        public List<PIFModel> GetRows(Sheet sheet)
+        public List<DisplayModel> GetRows(Sheet sheet)
         {
-            List<PIFModel> pif_list = new List<PIFModel>();
+            List<DisplayModel> pif_list = new List<DisplayModel>();
             //Get_lobs_picklist(sheet.GetColumnByIndex(0));
 
             foreach (var row in sheet.Rows)
             {
                 if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue)) {
-                    PIFModel pif = new PIFModel();
+                    DisplayModel pif = new DisplayModel();
                     pif.pif_Id = (long)row.Id;
                     foreach (var cell in row.Cells)
                     {
@@ -154,9 +149,9 @@ namespace SmartsheetsPIF2.Controllers
             }
             return pif_list;
         }
-        public PIFModel GetProjectEdit(long row_id)
+        public DisplayModel GetProjectEdit(long row_id)
         {
-            PIFModel pif = new PIFModel();
+            DisplayModel pif = new DisplayModel();
             pif.pif_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
@@ -267,9 +262,9 @@ namespace SmartsheetsPIF2.Controllers
             return pif;
         }
 
-        public PIFModel GetProjectDetails(long row_id)
+        public DisplayModel GetProjectDetails(long row_id)
         {
-            PIFModel pif = new PIFModel();
+            DisplayModel pif = new DisplayModel();
             pif.pif_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
@@ -414,7 +409,7 @@ namespace SmartsheetsPIF2.Controllers
             return pif;
         }
 
-        public void updateProject(PIFModel pif)
+        public void updateProject(DisplayModel pif)
         {
             SmartsheetClient smartsheet_CL = initSheet();
             Sheet sheet = LoadSheet(sheetId, smartsheet_CL);
@@ -588,8 +583,8 @@ namespace SmartsheetsPIF2.Controllers
         }
 
 
-        public PIFModel GetPickLists(long row_id) {
-            PIFModel pif = new PIFModel();
+        public DisplayModel GetPickLists(long row_id) {
+            DisplayModel pif = new DisplayModel();
             pif.pif_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SmartsheetsPIF.Models
 {
-    public class PIFModel
+    public class DisplayModel
     {
         public long pif_Id { get; set; }
         [Required(ErrorMessage = "Please enter the name")]

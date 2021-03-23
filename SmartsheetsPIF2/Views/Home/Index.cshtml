@@ -1,8 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model SmartsheetsPIF.Models.DisplayModel
+
+@{
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2 class="header-title">Create New PIF</h2>
+<div class="row">
+    <div class="col-12">
+        @*<iframe width="1000" height="700" frameborder="0" src=" @Html.HiddenFor(m => m.iframe_Create_Pif)"></iframe>*@
+        <iframe width="100%" height="700" frameborder="0" src="https://app.smartsheet.com/b/form/7d0d6b92cb3f4982a1973ace072a652c"></iframe>
+    </div>
 </div>
