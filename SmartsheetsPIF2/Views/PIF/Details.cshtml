@@ -112,32 +112,31 @@
                         </tr>
 
                         <tr>
-                            <td>Specs </td>
-                            @if (Model.Specs != null)
-                            {
-                                <td>
-                                    @if (Model.numberOfSets != null)
-                                    {
-                                        <span class="sets">Number of Sets: </span> @Html.DisplayFor(model => model.numberOfSets)<br />
-                                    }
-                                    @if (Model.animatedPerSet != null)
-                                    {
-                                        <span class="sets">Animated per Set:</span> @Html.DisplayFor(model => model.animatedPerSet)<br />
-                                    }
+                            <td>Deliverables </td>
+                            <td>
+                                @if (Model.numberOfSets != null)
+                                {
+                                    <span class="sets">Number of Sets: </span> @Html.DisplayFor(model => model.numberOfSets)<br />
+                                }
+                                @if (Model.animatedPerSet != null)
+                                {
+                                    <span class="sets">Animated per Set:</span> @Html.DisplayFor(model => model.animatedPerSet)<br />
+                                }
 
-                                    @if (Model.staticPerSet != null)
-                                    {
-                                        <span class="sets">Static per Set:</span> @Html.DisplayFor(model => model.staticPerSet) <br />
-                                    }
-
+                                @if (Model.staticPerSet != null)
+                                {
+                                    <span class="sets">Static per Set:</span> @Html.DisplayFor(model => model.staticPerSet) <br />
+                                }
+                                @if (Model.Specs != null)
+                                {
                                     <textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)</textarea>
+                                }
+                                else
+                                {
+                                    <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
+                                }
                                 </td>
-                            }
-                            else
-                            {
-                                <td class="alert alert-warning" role="alert">No Specs provided.</td>
-                            }
-                        </tr>
+                            </tr>
 
                         <tr>
                             <td>Delivery Folder</td>
