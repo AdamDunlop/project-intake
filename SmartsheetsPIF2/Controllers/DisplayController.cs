@@ -14,18 +14,6 @@ namespace SmartsheetsPIF2.Controllers
     public class DisplayController : Controller
     {
 
-        [HttpGet]
-        public IActionResult SocialPIFs()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult PdsPIFs()
-        {
-            return View();
-        }
-
         public static long sheetId = 508222156105604;
 
         [HttpGet]

@@ -1,1 +1,174 @@
-﻿
+﻿@model SmartsheetsPIF.Models.PDSModel
+
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<div class="row">
+    <div class="col-12">
+        @*<h2 class="header-title">@Html.DisplayFor(model => model.projectName) Details</h2>*@
+        <hr />
+
+    </div>
+</div>
+<div class="row" style="margin: auto">
+    <div class="col-12 col-md-6 details">
+        <div class="row">
+            <dt class="col-sm-3">Project</dt>
+            @*<dd class="col-sm-9">@Html.DisplayFor(model => model.projectName)</dd>*@
+        </div>
+        <div class="row">
+            <dt class="col-sm-3">LOB</dt>
+            @*<dd class="col-sm-9">@Html.DisplayFor(model => model.lob)</dd>*@
+        </div>
+        <div class="row">
+            <dt class="col-sm-3">Tenrox</dt>
+            @*@if (Model.tenroxCode != null)
+            {
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.tenroxCode)</dd>
+            }
+            else
+            {
+                <dd class="alert alert-warning" role="alert">No Tenrox Code Provided.</dd>
+            }*@
+        </div>
+        <div class="row">
+            <dt class="col-sm-3">Timing</dt>
+            <dd class="col-sm-9">
+                @*@Html.DisplayFor(model => model.startDate) -
+                @Html.DisplayFor(model => model.endDate)*@
+            </dd>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 details-col-2">
+        <div class="row">
+            <dt class="col-sm-3">PM</dt>
+            @*<dd class="col-sm-9">@Html.DisplayFor(model => model.producer)</dd>*@
+        </div>
+        <div class="row">
+            <dt class="col-sm-3">Status</dt>
+            @*<dd class="col-sm-9">@Html.DisplayFor(model => model.status)</dd>*@
+        </div>
+        <div class="row">
+            <dt class="col-sm-3">Team</dt>
+            @*<dd class="col-sm-9">@Html.DisplayFor(model => model.team)</dd>*@
+        </div>
+    </div>
+    <div class="wbs-section">
+        <hr />
+        <h4>WBS</h4>
+        <div class="wbs">
+            @*@if (Model.wbs_link != null)
+            {
+                <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs_link"></IFRAME>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">No WBS provided.</div>
+            }*@
+        </div>
+    </div>
+    <div class="project-details">
+        <div class="details-section">
+            <hr />
+            <h4>Project Details</h4>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Deck</td>
+                        @*@if (Model.Deck != null)
+                        {
+                            <td><a href="@Model.Deck"> Deck</a></td>
+                        }
+                        else
+                        {
+                            <td class="alert alert-warning" role="alert">No Deck link provided.</td>
+                        }*@
+                    </tr>
+
+                    <tr>
+                        <td>PSDs</td>
+                        @*@if (Model.PSDs != null)
+                        {
+                            <td><a href="@Model.PSDs">PSDs</a></td>
+                        }
+                        else
+                        {
+                            <td class="alert alert-warning" role="alert">No PSDs link provided.</td>
+                        }*@
+                    </tr>
+
+                    <tr>
+                        <td>Box Folder</td>
+                        @*@if (Model.boxFolder != null)
+                        {
+                            <td><a href="@Model.boxFolder"> Box Folder</a></td>
+                        }
+                        else
+                        {
+                            <td class="alert alert-warning" role="alert">No Box Folder link provided.</td>
+                        }*@
+                    </tr>
+
+                    <tr>
+                        <td>Deliverables </td>
+                        <td>
+                            @*@if (Model.numberOfSets != null)
+                            {
+                                <span class="sets">Number of Sets: </span> @Html.DisplayFor(model => model.numberOfSets)<br />
+                            }
+                            @if (Model.animatedPerSet != null)
+                            {
+                                <span class="sets">Animated per Set:</span> @Html.DisplayFor(model => model.animatedPerSet)<br />
+                            }
+
+                            @if (Model.staticPerSet != null)
+                            {
+                                <span class="sets">Static per Set:</span> @Html.DisplayFor(model => model.staticPerSet) <br />
+                            }
+                            @if (Model.Specs != null)
+                            {
+                                <textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)</textarea>
+                            }
+                            else
+                            {
+                                <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
+                            }*@
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Delivery Folder</td>
+                        @*@if (Model.finalDeliveryFolder != null)
+                        {
+                            <td><a href="@Model.finalDeliveryFolder">Delivery Folder</a></td>
+                        }
+                        else
+                        {
+                            <td class="alert alert-warning" role="alert">No Final Delivery Folder link provided.</td>
+                        }*@
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Deliverables Tracker</h4>
+
+            <div id="deliverablesTracker">
+
+                @*@if (Model.deliverables_tracker_link != null)
+                {
+                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        No Deliverables Tracker link provided.
+                    </div>
+                }*@
+            </div>
+        </div>
+    </div>
+    <a asp-action="List" class="btn btn-secondary">
+        <i class="bi bi-arrow-bar-left"></i>
+        <span>Back to List</span>
+    </a>
+</div>

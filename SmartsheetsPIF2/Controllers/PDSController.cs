@@ -12,5 +12,31 @@ namespace SmartsheetsPIF.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Details()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult List()
+        {
+            return View();
+            //var sheet = LoadSheet(sheetId, initSheet());
+            //return View(GetRows(sheet));
+        }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            //DisplayModel model = new DisplayModel();
+            //model = GetProjectEdit(id);
+            //return View(model);
+            return View();
+
+        }
+
     }
+
+
 }

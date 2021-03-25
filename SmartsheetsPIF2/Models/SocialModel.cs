@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace SmartsheetsPIF.Models
 {
-    public class Social
+    public class SocialModel
     {
+
     }
 }
