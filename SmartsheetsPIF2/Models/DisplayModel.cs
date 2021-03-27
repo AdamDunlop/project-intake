@@ -66,11 +66,17 @@ namespace SmartsheetsPIF.Models
         [StringLength(200, MinimumLength = 3, ErrorMessage = "Please provide more information or N/A")]
 
         public string Specs { get; set; }
-        [Required(ErrorMessage = "Please provide a link")]
 
+        [BindProperty]
+        public IEnumerable<SelectListItem> SpecsList { get; set; }
+
+        [BindProperty]
+        public IEnumerable<SelectListItem>  SelectedSpecs { get; set; }
+
+        [Required(ErrorMessage = "Please provide a link")]
         public string wbs_link { get; set; }
-        [Required(ErrorMessage = "Please provide a link")]
 
+        [Required(ErrorMessage = "Please provide a link")]
         public string deliverables_tracker_link { get; set; }
 
         [Required(ErrorMessage = "Please enter a number.")]

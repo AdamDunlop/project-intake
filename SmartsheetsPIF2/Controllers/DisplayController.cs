@@ -56,7 +56,7 @@ namespace SmartsheetsPIF2.Controllers
                 updateProject(model);
                 //return View("Index");
                 TempData["Success"] = "Success";
-                return RedirectToAction("DisplayPIFs");
+                return RedirectToAction("List");
             }
         }
         public SmartsheetClient initSheet()
@@ -85,8 +85,7 @@ namespace SmartsheetsPIF2.Controllers
         }
         public List<DisplayModel> GetRows(Sheet sheet)
         {
-            List<DisplayModel> pif_list = new List<DisplayModel>();
-            //Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            List<DisplayModel> pif_list = new List<DisplayModel>();        
 
             foreach (var row in sheet.Rows)
             {
@@ -149,6 +148,9 @@ namespace SmartsheetsPIF2.Controllers
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
             pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
+            //Get Specs List
+            pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
+
             foreach (var row in sheet.Rows)
             {
                 if (row.Id == row_id) {
@@ -228,7 +230,36 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Specs":
+                                // gone soon
                                 pif.Specs = cell.DisplayValue;
+
+                                List<SelectListItem> selectedvalues = new List<SelectListItem>();
+                                var list = cell.DisplayValue.Split(",");
+
+                                    foreach (var spec in list)
+                                    {
+                                        IEnumerable<SelectListItem>  variable = pif.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+                                        var id = "";
+
+                                        foreach ( var i in variable)
+                                        {
+                                            id = i.Value;
+                                        }
+
+                                        selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                        variable = null;
+                                    }
+
+                                pif.SelectedSpecs = selectedvalues;
+
+                                foreach (var sl in pif.SpecsList)
+                                {
+                                    var id = selectedvalues.Find(x => x.Value == sl.Value);
+                                    if (id != null) {
+                                        sl.Selected = true;
+                                    }
+                                }
+                                //pif.SelectedSpecs = new MultiSelectList(selectedvalues, "Value", "Text", selectedvalues);
                                 break;
 
                             case "Number Of Sets":
@@ -249,7 +280,6 @@ namespace SmartsheetsPIF2.Controllers
             }
             return pif;
         }
-
         public DisplayModel GetProjectDetails(long row_id)
         {
             DisplayModel pif = new DisplayModel();
@@ -570,7 +600,6 @@ namespace SmartsheetsPIF2.Controllers
             };
         }
 
-
         public DisplayModel GetPickLists(long row_id) {
             DisplayModel pif = new DisplayModel();
             pif.pif_Id = row_id;
@@ -583,7 +612,9 @@ namespace SmartsheetsPIF2.Controllers
             //Get Team options
             pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
 
-            return pif;
+            pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
+
+                return pif;
         }
         public void runthroughallsheets()
         {
@@ -603,6 +634,17 @@ namespace SmartsheetsPIF2.Controllers
             }
             long sheetId = 1478730146178948; //Display TEST
             */
+        }
+
+        public ICollection<SelectListItem> Get_Specs_List(Column specs_col) {
+            List<SelectListItem> list = new List<SelectListItem>();
+            int cont = 0;
+            foreach (var spec in specs_col.Options)
+            {
+                cont++;
+                list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+            }
+            return list;
         }
         public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
         {

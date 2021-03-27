@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - CM PIFs</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/chosen.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 </head>
 <body>
@@ -33,7 +34,7 @@
                         </li>
 
 
-         
+
                     </ul>
                     <ul class="navbar-nav nav-right">
                         <li class="nav-item">
@@ -56,11 +57,14 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - Smartsheets - PIFs - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            - <a href="https://app.smartsheet.com/b/form/b710beb600394eb3bf81cbdf36e24561">Feedback</a> 
+            - <a href="https://app.smartsheet.com/b/form/b710beb600394eb3bf81cbdf36e24561">Feedback</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/chosen/chosen.jquery.js"></script>
+    <script src="~/lib/chosen/init.js"></script>
+    <script src="~/lib/chosen/prism.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
