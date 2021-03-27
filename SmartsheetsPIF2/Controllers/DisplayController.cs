@@ -233,6 +233,9 @@ namespace SmartsheetsPIF2.Controllers
                                 // gone soon
                                 pif.Specs = cell.DisplayValue;
 
+
+                                // Still need to define if this is necessary
+
                                 List<SelectListItem> selectedvalues = new List<SelectListItem>();
                                 var list = cell.DisplayValue.Split(",");
 
@@ -247,11 +250,13 @@ namespace SmartsheetsPIF2.Controllers
                                         }
 
                                         selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                        
                                         variable = null;
                                     }
 
                                 pif.SelectedSpecs = selectedvalues;
 
+                                //Temp => This doesn't affect anytihing, it can be removed
                                 foreach (var sl in pif.SpecsList)
                                 {
                                     var id = selectedvalues.Find(x => x.Value == sl.Value);
@@ -259,6 +264,18 @@ namespace SmartsheetsPIF2.Controllers
                                         sl.Selected = true;
                                     }
                                 }
+
+
+                                //Temp => This works
+                                List<string> list2 = new List<string>();
+
+                                foreach (var sl2 in selectedvalues) 
+                                {
+                                    list2.Add(sl2.Value);
+                                }
+                                pif.SelectedSpecs2 = list2;
+
+                                //Temp for Multiselect
                                 //pif.SelectedSpecs = new MultiSelectList(selectedvalues, "Value", "Text", selectedvalues);
                                 break;
 
@@ -580,7 +597,7 @@ namespace SmartsheetsPIF2.Controllers
                     final_delivery_cell,
                     wbs_cell,
                     deliverables_t_cell,
-                    specs_cell,
+                    //specs_cell, -> on hold while the specs feature is ready
                     number_of_sets_cell,
                     animated_per_set_cell,
                     static_per_set_cell

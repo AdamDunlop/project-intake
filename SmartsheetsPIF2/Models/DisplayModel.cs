@@ -73,6 +73,10 @@ namespace SmartsheetsPIF.Models
         [BindProperty]
         public IEnumerable<SelectListItem>  SelectedSpecs { get; set; }
 
+
+        [BindProperty]
+        public IEnumerable<string> SelectedSpecs2 { get; set; }
+
         [Required(ErrorMessage = "Please provide a link")]
         public string wbs_link { get; set; }
 
