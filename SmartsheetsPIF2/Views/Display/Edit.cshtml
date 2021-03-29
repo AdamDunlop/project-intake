@@ -162,7 +162,7 @@
 
         <div class="form-group">
             <label asp-for="Specs" class="control-label">Multi-Select Specs - (In Dev)</label>
-            @Html.ListBoxFor(m => m.SelectedSpecs2, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
+            @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
             @Html.HiddenFor(m => m.SelectedSpecs)
             @Html.HiddenFor(m => m.SpecsList)
         </div>

@@ -48,14 +48,15 @@ namespace SmartsheetsPIF2.Controllers
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
                 model.team_options = model_lists.team_options;
+                model.SpecsList = model_lists.SpecsList;
                 return View(model);
                 //return RedirectToAction("Edit", new { id = model.pif_Id });
             }
-            else 
+            else
             {
                 updateProject(model);
                 //return View("Index");
-                TempData["Success"] = "Success";
+               
                 return RedirectToAction("List");
             }
         }
@@ -85,11 +86,12 @@ namespace SmartsheetsPIF2.Controllers
         }
         public List<DisplayModel> GetRows(Sheet sheet)
         {
-            List<DisplayModel> pif_list = new List<DisplayModel>();        
+            List<DisplayModel> pif_list = new List<DisplayModel>();
 
             foreach (var row in sheet.Rows)
             {
-                if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue)) {
+                if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue))
+                {
                     DisplayModel pif = new DisplayModel();
                     pif.pif_Id = (long)row.Id;
                     foreach (var cell in row.Cells)
@@ -128,7 +130,7 @@ namespace SmartsheetsPIF2.Controllers
 
                             case "Team":
                                 pif.team = cell.DisplayValue;
-                                break;                           
+                                break;
                         }
                     }
                     pif_list.Add(pif);
@@ -153,14 +155,15 @@ namespace SmartsheetsPIF2.Controllers
 
             foreach (var row in sheet.Rows)
             {
-                if (row.Id == row_id) {
+                if (row.Id == row_id)
+                {
                     foreach (var cell in row.Cells)
                     {
                         long columnid = cell.ColumnId.Value;
                         string columnName = sheet.GetColumnById(columnid).Title.ToString();
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
-                        {                            
+                        {
                             case "Project":
                                 pif.projectName = cell.DisplayValue;
                                 break;
@@ -233,47 +236,48 @@ namespace SmartsheetsPIF2.Controllers
                                 // gone soon
                                 pif.Specs = cell.DisplayValue;
 
+                                // List<SelectListItem> selectedvalues = new List<SelectListItem>();
+                                List<string> selectedvalues = new List<string>();
 
-                                // Still need to define if this is necessary
-
-                                List<SelectListItem> selectedvalues = new List<SelectListItem>();
                                 var list = cell.DisplayValue.Split(",");
 
-                                    foreach (var spec in list)
+                                foreach (var spec in list)
+                                {
+                                    IEnumerable<SelectListItem> variable = pif.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+
+                                    var id = "";
+
+                                    foreach (var i in variable)
                                     {
-                                        IEnumerable<SelectListItem>  variable = pif.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
-                                        var id = "";
-
-                                        foreach ( var i in variable)
-                                        {
-                                            id = i.Value;
-                                        }
-
-                                        selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
-                                        
-                                        variable = null;
+                                        id = i.Value;
                                     }
+
+                                    //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                    selectedvalues.Add(id);
+
+                                    variable = null;
+                                }
 
                                 pif.SelectedSpecs = selectedvalues;
 
-                                //Temp => This doesn't affect anytihing, it can be removed
-                                foreach (var sl in pif.SpecsList)
-                                {
-                                    var id = selectedvalues.Find(x => x.Value == sl.Value);
-                                    if (id != null) {
-                                        sl.Selected = true;
-                                    }
-                                }
+                                ////Temp => This doesn't affect anytihing, it can be removed
+                                //foreach (var sl in pif.SpecsList)
+                                //{
+                                //    var id = selectedvalues.Find(x => x.Value == sl.Value,);
+                                //    if (id != null) {
+                                //        sl.Selected = true;
+                                //    }
+                                //}
 
 
                                 //Temp => This works
-                                List<string> list2 = new List<string>();
+                                //List<string> list2 = new List<string>();
 
-                                foreach (var sl2 in selectedvalues) 
-                                {
-                                    list2.Add(sl2.Value);
-                                }
-                                pif.SelectedSpecs2 = list2;
+                                //foreach (var sl2 in selectedvalues) 
+                                //{
+                                //    list2.Add(sl2.Value);
+                                //}
+                                //pif.SelectedSpecs = list2;
 
                                 //Temp for Multiselect
                                 //pif.SelectedSpecs = new MultiSelectList(selectedvalues, "Value", "Text", selectedvalues);
@@ -452,14 +456,14 @@ namespace SmartsheetsPIF2.Controllers
             int row_number = 0;
             foreach (var row_b in sheet.Rows)
             {
-                if (row_b.Id == pif.pif_Id) 
+                if (row_b.Id == pif.pif_Id)
                 {
                     row_number = row_b.RowNumber.Value;
                 }
             }
 
             Row row = sheet.GetRowByRowNumber(row_number);
-            var rowToTupdate = new Row ();
+            var rowToTupdate = new Row();
 
             var lob_cell = new Cell();
             var project_cell = new Cell();
@@ -484,7 +488,7 @@ namespace SmartsheetsPIF2.Controllers
             {
                 long columnid = cell.ColumnId.Value;
                 string columnName = sheet.GetColumnById(columnid).Title.ToString();
-               
+
                 switch (columnName)
                 {
 
@@ -531,9 +535,6 @@ namespace SmartsheetsPIF2.Controllers
                     case "Deck":
                         collab_deck_cell.ColumnId = columnid;
                         collab_deck_cell.Value = pif.Deck;
-                        //Uri url = new Uri(collab_cell.Value.ToString());
-                        //collab_cell.Hyperlink = ;
-                        //Console.WriteLine("URL: " + collab_cell.Hyperlink);
                         break;
 
                     case "PSDs":
@@ -548,7 +549,27 @@ namespace SmartsheetsPIF2.Controllers
 
                     case "Specs":
                         specs_cell.ColumnId = columnid;
-                        specs_cell.Value = pif.Specs;
+                        ObjectValue objct = null;
+                        bool flag = false;
+                        if (pif.SelectedSpecs != null)
+                        {
+                            foreach (var size in pif.SelectedSpecs)
+                            {
+                                if (size.Contains("System.String"))
+                                {                                    
+                                    flag = true;
+                                }
+                            }
+                            if (flag) 
+                            {
+                                pif.SelectedSpecs.RemoveAt(pif.SelectedSpecs.Count() - 1);
+                            }
+
+                            objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+                        }
+
+                        specs_cell.ObjectValue = objct;
+
                         break;
 
                     case "Number Of Sets":
@@ -576,7 +597,7 @@ namespace SmartsheetsPIF2.Controllers
                         wbs_cell.Value = pif.wbs_link;
                         break;
 
-                   
+
                 }
             }
 
@@ -597,7 +618,7 @@ namespace SmartsheetsPIF2.Controllers
                     final_delivery_cell,
                     wbs_cell,
                     deliverables_t_cell,
-                    //specs_cell, -> on hold while the specs feature is ready
+                    specs_cell,
                     number_of_sets_cell,
                     animated_per_set_cell,
                     static_per_set_cell
@@ -610,14 +631,17 @@ namespace SmartsheetsPIF2.Controllers
                 sheet.Id.Value,
                 new Row[] { rowToTupdate }
             );
+                TempData["Result"] = "Success";
             }
             catch (Exception e)
             {
-                Console.WriteLine("Update row Failed: " + e.Message);
+                Console.WriteLine("Project Update has Failed: " + e.Message);
+                TempData["Result"] = "Failed";
             };
         }
 
-        public DisplayModel GetPickLists(long row_id) {
+        public DisplayModel GetPickLists(long row_id)
+        {
             DisplayModel pif = new DisplayModel();
             pif.pif_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
@@ -628,10 +652,10 @@ namespace SmartsheetsPIF2.Controllers
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
             pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
-
+            //Get Specs List
             pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
 
-                return pif;
+            return pif;
         }
         public void runthroughallsheets()
         {
@@ -653,20 +677,22 @@ namespace SmartsheetsPIF2.Controllers
             */
         }
 
-        public ICollection<SelectListItem> Get_Specs_List(Column specs_col) {
+        public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
+        {
             List<SelectListItem> list = new List<SelectListItem>();
-            int cont = 0;
+            //int cont = 0;
             foreach (var spec in specs_col.Options)
             {
-                cont++;
-                list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+                //cont++;
+                //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+                list.Add(new SelectListItem { Text = spec, Value = spec });
             }
             return list;
         }
         public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
         {
             List<SelectListItem> options = new List<SelectListItem>();
-            foreach(var lob in lob_col.Options)
+            foreach (var lob in lob_col.Options)
             {
                 options.Add(new SelectListItem { Text = lob, Value = lob });
             }
