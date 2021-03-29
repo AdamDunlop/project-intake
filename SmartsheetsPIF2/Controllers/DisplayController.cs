@@ -149,6 +149,7 @@ namespace SmartsheetsPIF2.Controllers
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
             pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
+
             foreach (var row in sheet.Rows)
             {
                 if (row.Id == row_id) {
