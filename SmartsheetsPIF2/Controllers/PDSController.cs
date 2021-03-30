@@ -123,38 +123,44 @@ namespace SmartsheetsPIF.Controllers
                                 break;
 
                             case "Start":
-                                pif.startDate = Convert.ToDateTime(cell.Value);
-                                //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                if (pif.startDate != null)
+                                {
+                                    pif.startDate = Convert.ToDateTime(cell.Value);
+                                }
+                                    //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
                             case "Ship":
-                                pif.endDate = Convert.ToDateTime(cell.Value);
+                                if (pif.endDate != null)
+                                {
+                                    pif.endDate = Convert.ToDateTime(cell.Value);
+                                }
                                 //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
-                            case "PM":
-                                pif.pm = cell.DisplayValue;
-                                break;
+                            //case "PM":
+                            //    pif.pm = cell.DisplayValue;
+                            //    break;
 
-                            case "Type of Work":
-                                pif.typeOfWork = cell.DisplayValue;
-                                break;
+                            //case "Type of Work":
+                            //    pif.typeOfWork = cell.DisplayValue;
+                            //    break;
 
-                            case "Assigned to":
-                                pif.assignedTo = cell.DisplayValue;
-                                break;
+                            //case "Assigned to":
+                            //    pif.assignedTo = cell.DisplayValue;
+                            //    break;
 
-                            case "Deliverables":
-                                pif.deliverables = cell.DisplayValue;
-                                break;
+                            //case "Deliverables":
+                            //    pif.deliverables = cell.DisplayValue;
+                            //    break;
 
-                            case "Desciption":
-                                pif.description = cell.DisplayValue;
-                                break;
+                            //case "Desciption":
+                            //    pif.description = cell.DisplayValue;
+                            //    break;
 
-                            case "Creative Lead":
-                                pif.creativeLead = cell.DisplayValue;
-                                break;
+                            //case "Creative Lead":
+                            //    pif.creativeLead = cell.DisplayValue;
+                            //    break;
 
 
                         }
@@ -221,21 +227,21 @@ namespace SmartsheetsPIF.Controllers
                                 pif.pm = cell.DisplayValue;
                                 break;
 
-                            case "Type of Work":
-                                pif.typeOfWork = cell.DisplayValue;
-                                break;
+                            //case "Type of Work":
+                            //    pif.typeOfWork = cell.DisplayValue;
+                            //    break;
 
-                            case "Deliverables":
-                                pif.deliverables = cell.DisplayValue;
-                                break;
+                            //case "Deliverables":
+                            //    pif.deliverables = cell.DisplayValue;
+                            //    break;
 
-                            case "Description":
-                                pif.description = cell.DisplayValue;
-                                break;
+                            //case "Description":
+                            //    pif.description = cell.DisplayValue;
+                            //    break;
 
-                            case "Creative Lead":
-                                pif.creativeLead = cell.DisplayValue;
-                                break;
+                            //case "Creative Lead":
+                            //    pif.creativeLead = cell.DisplayValue;
+                            //    break;
                         }
                     }
                 }
@@ -298,17 +304,21 @@ namespace SmartsheetsPIF.Controllers
                                 pif.pm = cell.DisplayValue;
                                 break;
 
-                            case "Type of Work":
-                                pif.typeOfWork = cell.DisplayValue;
-                                break;
+                            //case "Type of Work":
+                            //    pif.typeOfWork = cell.DisplayValue;
+                            //    break;
 
-                            case "Description":
-                                pif.description = cell.DisplayValue;
-                                break;
+                                //case "Description":
+                                //    pif.description = cell.DisplayValue;
+                                //    break;
 
-                            case "Deliverables":
-                                pif.deliverables = cell.DisplayValue;
-                                break;
+                                //case "Deliverables":
+                                //    pif.deliverables = cell.DisplayValue;
+                                //    break;
+
+                                //case "Creative Lead":
+                                //    pif.creativeLead = cell.DisplayValue;
+                                //    break;
 
 
                         }
@@ -386,35 +396,35 @@ namespace SmartsheetsPIF.Controllers
                         end_cell.Value = pif.endDate;
                         break;
 
-                    case "Type of Work":
-                        type_cell.ColumnId = columnid;
-                        type_cell.Value = pif.typeOfWork;
-                        break;
+                    //case "Type of Work":
+                    //    type_cell.ColumnId = columnid;
+                    //    type_cell.Value = pif.typeOfWork;
+                    //    break;
 
-                    case "Assigned to":
-                        assigned_cell.ColumnId = columnid;
-                        assigned_cell.Value = pif.assignedTo;
-                        break;
+                    //case "Assigned to":
+                    //    assigned_cell.ColumnId = columnid;
+                    //    assigned_cell.Value = pif.assignedTo;
+                    //    break;
 
-                    case "PM":
-                        pm_cell.ColumnId = columnid;
-                        pm_cell.Value = pif.pm;
-                        break;
+                    //case "PM":
+                    //    pm_cell.ColumnId = columnid;
+                    //    pm_cell.Value = pif.pm;
+                    //    break;
 
-                    case "Total Deliverables":
-                        deliverables_cell.ColumnId = columnid;
-                        deliverables_cell.Value = pif.deliverables;
-                        break;
+                    //case "Total Deliverables":
+                    //    deliverables_cell.ColumnId = columnid;
+                    //    deliverables_cell.Value = pif.deliverables;
+                    //    break;
 
-                    case "Description":
-                        description_cell.ColumnId = columnid;
-                        description_cell.Value = pif.description;
-                        break;
+                    //case "Description":
+                    //    description_cell.ColumnId = columnid;
+                    //    description_cell.Value = pif.description;
+                    //    break;
 
-                    case "Creative Lead":
-                        creative_cell.ColumnId = columnid;
-                        creative_cell.Value = pif.creativeLead;
-                        break;
+                    //case "Creative Lead":
+                    //    creative_cell.ColumnId = columnid;
+                    //    creative_cell.Value = pif.creativeLead;
+                    //    break;
 
                         //case "Static Per Set":
                         //    static_per_set_cell.ColumnId = columnid;

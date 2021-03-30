@@ -37,17 +37,17 @@ namespace SmartsheetsPIF.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime endDate { get; set; }
 
-        public string typeOfWork { get; set; }
+        //public string typeOfWork { get; set; }
 
         public string pm { get; set; }
         
-        public string assignedTo { get; set; }
+        //public string assignedTo { get; set; }
 
-        public string description { get; set; }
+        //public string description { get; set; }
 
-        public string deliverables { get; set; }
+        //public string deliverables { get; set; }
 
-        public string creativeLead { get; set; }
+        //public string creativeLead { get; set; }
 
     }
 }

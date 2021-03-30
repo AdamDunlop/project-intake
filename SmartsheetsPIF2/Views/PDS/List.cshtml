@@ -54,34 +54,34 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.lob)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.projectName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.typeOfWork)
-                    </td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lob)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.projectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.typeOfWork)*@
+                        </td>
 
-                    <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
-                    <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
+                        <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
+                        <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
 
-                    <td class="action-buttons">
+                        <td class="action-buttons">
 
-                        <a href="@Url.Action("Edit", "PDS",new { id = item.pif_Id } )" class="btn btn-warning">
-                            <i class="bi bi-pencil-fill"></i>
-                        </a>
+                            <a href="@Url.Action("Edit", "PDS",new { id = item.pif_Id } )" class="btn btn-warning">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
 
-                        <a href="@Url.Action("Details", "PDS",new { id = item.pif_Id } )" class="btn btn-primary">
-                            <i class="bi bi-card-list"></i>
-                        </a>
-                    </td>
-                </tr>
+                            <a href="@Url.Action("Details", "PDS",new { id = item.pif_Id } )" class="btn btn-primary">
+                                <i class="bi bi-card-list"></i>
+                            </a>
+                        </td>
+                    </tr>
                 }
 
 

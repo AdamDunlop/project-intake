@@ -55,8 +55,8 @@ namespace SmartsheetsPIF2.Controllers
             {
                 updateProject(model);
                 //return View("Index");
-                TempData["Success"] = "Success";
-                return RedirectToAction("List");
+                //TempData["Success"] = "Success";
+                return RedirectToAction("DisplayPIFs");
             }
         }
         public SmartsheetClient initSheet()

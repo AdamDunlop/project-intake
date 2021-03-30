@@ -42,6 +42,7 @@ namespace SmartsheetsPIF.Controllers
                 SocialModel model_lists = GetPickLists(model.pif_Id);
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
+                model.type_options = model_lists.type_options;
                 return View(model);
                 //return RedirectToAction("Edit", new { id = model.pif_Id });
             }
@@ -159,7 +160,9 @@ namespace SmartsheetsPIF.Controllers
 
             pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
-            
+            pif.type_options = Get_status_picklist(sheet.GetColumnByIndex(8));
+
+
             foreach (var row in sheet.Rows)
             {
                 if (row.Id == row_id)
@@ -208,7 +211,15 @@ namespace SmartsheetsPIF.Controllers
                                 break;
 
                             case "Type":
-                                pif.type = cell.DisplayValue;
+                                foreach (var item in pif.type_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        //pif.lob_options.
+                                        item.Selected = true;
+                                    }
+                                }
+                                //pif.lob = cell.DisplayValue;
                                 break;
 
                             case "Masters":
@@ -236,6 +247,8 @@ namespace SmartsheetsPIF.Controllers
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
             //Get Team options
+            pif.type_options = Get_status_picklist(sheet.GetColumnByIndex(8));
+
 
             foreach (var row in sheet.Rows)
             {
@@ -443,6 +456,8 @@ namespace SmartsheetsPIF.Controllers
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
             //Get Team options
+            pif.type_options = Get_status_picklist(sheet.GetColumnByIndex(8));
+
 
             return pif;
         }
@@ -474,6 +489,17 @@ namespace SmartsheetsPIF.Controllers
             }
             return options;
         }
+
+        public IEnumerable<SelectListItem> Get_types_picklist(Column type_col)
+        {
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var type in type_col.Options)
+            {
+                options.Add(new SelectListItem { Text = type, Value = type });
+            }
+            return options;
+        }
+
         public IEnumerable<SelectListItem> Get_status_picklist(Column status_col)
         {
             List<SelectListItem> options = new List<SelectListItem>();

@@ -36,6 +36,9 @@ namespace SmartsheetsPIF.Models
 
         public string type { get; set; }
 
+        [BindProperty]
+        public IEnumerable<SelectListItem> type_options { get; set; }
+
         public string producer { get; set; }
 
         public string pm { get; set; }
