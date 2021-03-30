@@ -1,8 +1,24 @@
-﻿@model SmartsheetsPIF.Models.SocialModel
+﻿@model IEnumerable<SmartsheetsPIF.Models.SocialModel>
 
 @{
     ViewData["Title"] = "Social Pipeline";
 }
+
+<div class="row">
+    <div class="col-12">
+        @{
+            if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show spacing" role="alert">
+                    Your changes have been saved successfully.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        }
+    </div>
+</div>
 
 <div class="row">
     <div class="col-12">
@@ -17,7 +33,7 @@
                         Project
                     </th>
                     <th>
-                        Team
+                        Type
                     </th>
                     <th>
                         Status
@@ -28,48 +44,44 @@
                     <th>
                         Ship
                     </th>
-
                     <th>
                         Actions
                     </th>
                 </tr>
             </thead>
             <tbody>
-
-                <tr>
-                    <td>
-                        LOB
-                    </td>
-                    <td>
-                        Project 
-                    </td>
-                    <td>
-                        Hanger
-                    </td>
-                    <td>
-                        Waiting On Feedback
-                    </td>
-                    <td id="startDate">03/02/2021</td>
-                    <td id="endDate">04/02/2021</td>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lob)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.projectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
+                        <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
 
                     <td class="action-buttons">
-                        @* @Html.ActionLink("Edit", "Edit", new { id = item.pif_Id }, new { @class = "button" })*@
 
-
-                        <a href="/Social/Edit" class="btn btn-warning">
+                        <a href="@Url.Action("Edit", "Social",new { id = item.pif_Id } )" class="btn btn-warning">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
 
-
-                        <a href="/Social/Details" class="btn btn-primary">
+                        <a href="@Url.Action("Details", "Social",new { id = item.pif_Id } )" class="btn btn-primary">
                             <i class="bi bi-card-list"></i>
                         </a>
-
-                        @* @Html.ActionLink("Details", "Details", new { id = item.pif_Id }, new { @class = "button" })*@
-                        @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                     </td>
                 </tr>
+            }
             </tbody>
         </table>
     </div>
 </div>
+
