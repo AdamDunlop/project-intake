@@ -50,13 +50,15 @@ namespace SmartsheetsPIF.Controllers
                 updateProject(model);
                 //return View("Index");
                 TempData["Success"] = "Success";
-                return RedirectToAction("DisplayPIFs");
+                return RedirectToAction("List");
             }
         }
         [HttpGet]
-        public IActionResult Details()
+        public IActionResult Details(long id)
         {
-            return View();
+            SocialModel model = new SocialModel();
+            model = GetProjectDetails(id);
+            return View(model);
         }
 
         public SmartsheetClient initSheet()
@@ -112,10 +114,6 @@ namespace SmartsheetsPIF.Controllers
                                 pif.lob = cell.DisplayValue;
                                 break;
 
-                            //case "Tenrox Codes":
-                            //    pif.tenroxCode = cell.DisplayValue;
-                            //    break;
-
                             case "Status":
                                 pif.status = cell.DisplayValue;
                                 break;
@@ -130,8 +128,20 @@ namespace SmartsheetsPIF.Controllers
                                 //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
+                            case "PM":
+                                pif.pm = cell.DisplayValue;
+                                break;
+
                             case "Type":
                                 pif.type = cell.DisplayValue;
+                                break;
+
+                            case "Masters":
+                                pif.masters = cell.DisplayValue;
+                                break;
+
+                            case "Deliverables":
+                                pif.deliverables = cell.DisplayValue;
                                 break;
                         }
                     }
@@ -201,17 +211,87 @@ namespace SmartsheetsPIF.Controllers
                                 pif.type = cell.DisplayValue;
                                 break;
 
-                            //case "Deliverables":
-                            //    pif.deliverables = cell.DisplayValue;
-                            //    break;
+                            case "Masters":
+                                pif.masters = cell.DisplayValue;
+                                break;
 
-                            //case "Masters":
-                            //    pif.masters = cell.DisplayValue;
-                            //    break;
+                            case "Deliverables":
+                                pif.deliverables = cell.DisplayValue;
+                                break;
+                        }
+                    }
+                }
+            }
+            return pif;
+        }
 
-                            //case "Notes":
-                            //    pif.notes = cell.DisplayValue;
-                            //    break;
+        public SocialModel GetProjectDetails(long row_id)
+        {
+            SocialModel pif = new SocialModel();
+            pif.pif_Id = row_id;
+            Sheet sheet = LoadSheet(sheetId, initSheet());
+
+            //Get LOB options
+            pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            //Get Status options
+            pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
+            //Get Team options
+
+            foreach (var row in sheet.Rows)
+            {
+                if (row.Id == row_id)
+                {
+                    foreach (var cell in row.Cells)
+                    {
+                        long columnid = cell.ColumnId.Value;
+                        string columnName = sheet.GetColumnById(columnid).Title.ToString();
+                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
+                        switch (columnName)
+                        {
+                            case "Project":
+                                pif.projectName = cell.DisplayValue;
+                                break;
+
+                            case "LOB":
+                                pif.lob = cell.DisplayValue;
+                                break;
+
+                            case "Status":
+                                pif.status = cell.DisplayValue;
+                                break;
+
+                            case "Start":
+                                pif.startDate = Convert.ToDateTime(cell.Value);
+                                //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                break;
+
+                            case "Ship":
+                                pif.endDate = Convert.ToDateTime(cell.Value);
+                                //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
+                                break;
+
+                            case "PM":
+                                pif.pm = cell.DisplayValue;
+                                break;
+
+                            case "Producer":
+                                pif.producer = cell.DisplayValue;
+                                break;
+
+                            case "Type":
+                                pif.type = cell.DisplayValue;
+                                break;
+
+
+                            case "Masters":
+                                pif.masters = cell.DisplayValue;
+                                break;
+
+                            case "Deliverables":
+                                pif.deliverables = cell.DisplayValue;
+                                break;
+
+
                         }
                     }
                 }
@@ -242,6 +322,8 @@ namespace SmartsheetsPIF.Controllers
             var start_cell = new Cell();
             var end_cell = new Cell();
             var type_cell = new Cell();
+            var masters_cell = new Cell();
+            var deliverables_cell = new Cell();
 
 
             foreach (var cell in row.Cells)
@@ -282,45 +364,41 @@ namespace SmartsheetsPIF.Controllers
                         type_cell.Value = pif.type;
                         break;
 
-                    //case "PSDs":
-                    //    psds_cell.ColumnId = columnid;
-                    //    psds_cell.Value = pif.PSDs;
-                    //    break;
+                    case "Masters":
+                        masters_cell.ColumnId = columnid;
+                        masters_cell.Value = pif.masters;
+                        break;
 
-                    //case "Final Delivery":
-                    //    final_delivery_cell.ColumnId = columnid;
-                    //    final_delivery_cell.Value = pif.finalDeliveryFolder;
-                    //    break;
 
-                    //case "Specs":
-                    //    specs_cell.ColumnId = columnid;
-                    //    specs_cell.Value = pif.Specs;
-                    //    break;
+                    case "Deliverables":
+                        deliverables_cell.ColumnId = columnid;
+                        deliverables_cell.Value = pif.deliverables;
+                        break;
 
-                    //case "Number Of Sets":
-                    //    number_of_sets_cell.ColumnId = columnid;
-                    //    number_of_sets_cell.Value = pif.numberOfSets;
-                    //    break;
+                        //case "Number Of Sets":
+                        //    number_of_sets_cell.ColumnId = columnid;
+                        //    number_of_sets_cell.Value = pif.numberOfSets;
+                        //    break;
 
-                    //case "Animated Per Set":
-                    //    animated_per_set_cell.ColumnId = columnid;
-                    //    animated_per_set_cell.Value = pif.animatedPerSet;
-                    //    break;
+                        //case "Animated Per Set":
+                        //    animated_per_set_cell.ColumnId = columnid;
+                        //    animated_per_set_cell.Value = pif.animatedPerSet;
+                        //    break;
 
-                    //case "Static Per Set":
-                    //    static_per_set_cell.ColumnId = columnid;
-                    //    static_per_set_cell.Value = pif.staticPerSet;
-                    //    break;
+                        //case "Static Per Set":
+                        //    static_per_set_cell.ColumnId = columnid;
+                        //    static_per_set_cell.Value = pif.staticPerSet;
+                        //    break;
 
-                    //case "Deliverables Tracker":
-                    //    deliverables_t_cell.ColumnId = columnid;
-                    //    deliverables_t_cell.Value = pif.deliverables_tracker_link;
-                    //    break;
+                        //case "Deliverables Tracker":
+                        //    deliverables_t_cell.ColumnId = columnid;
+                        //    deliverables_t_cell.Value = pif.deliverables_tracker_link;
+                        //    break;
 
-                    //case "WBS":
-                    //    wbs_cell.ColumnId = columnid;
-                    //    wbs_cell.Value = pif.wbs_link;
-                    //    break;
+                        //case "WBS":
+                        //    wbs_cell.ColumnId = columnid;
+                        //    wbs_cell.Value = pif.wbs_link;
+                        //    break;
 
 
                 }
@@ -335,7 +413,9 @@ namespace SmartsheetsPIF.Controllers
                     status_cell,
                     start_cell,
                     end_cell,
-                    type_cell
+                    type_cell,
+                    masters_cell,
+                    deliverables_cell
                 }
             };
 

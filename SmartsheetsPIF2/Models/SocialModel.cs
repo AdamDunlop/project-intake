@@ -40,6 +40,11 @@ namespace SmartsheetsPIF.Models
 
         public string pm { get; set; }
 
+        public string masters { get; set; }
+
+        public string deliverables { get; set; }
+
+
 
     }
 }

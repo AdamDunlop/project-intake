@@ -1,9 +1,24 @@
-﻿@model SmartsheetsPIF.Models.PDSModel
-
+﻿@model IEnumerable<SmartsheetsPIF.Models.PDSModel>
 
 @{
     ViewData["Title"] = "PDS Pipeline";
 }
+
+<div class="row">
+    <div class="col-12">
+        @{
+            if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show spacing" role="alert">
+                    Your changes have been saved successfully.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        }
+    </div>
+</div>
 
 <div class="row">
     <div class="col-12">
@@ -18,11 +33,12 @@
                         Project
                     </th>
                     <th>
-                        Team
-                    </th>
-                    <th>
                         Status
                     </th>
+                    <th>
+                        Type of Work
+                    </th>
+
                     <th>
                         Start
                     </th>
@@ -36,53 +52,39 @@
                 </tr>
             </thead>
             <tbody>
-
+                @foreach (var item in Model)
+                {
                 <tr>
                     <td>
-                        LOB
+                        @Html.DisplayFor(modelItem => item.lob)
                     </td>
                     <td>
-                        Project Name
+                        @Html.DisplayFor(modelItem => item.projectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.typeOfWork)
+                    </td>
 
-                    </td>
-                    <td>
-                        Hanger
-                    </td>
-                    <td>
-                        Waiting On Feedback
-                    </td>
-                    <td id="startDate">03/02/2021</td>
-                    <td id="endDate">04/02/2021</td>
+                    <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
+                    <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
 
                     <td class="action-buttons">
-                        @* @Html.ActionLink("Edit", "Edit", new { id = item.pif_Id }, new { @class = "button" })*@
 
-
-                        <a href="/PDS/Edit" class="btn btn-warning">
+                        <a href="@Url.Action("Edit", "PDS",new { id = item.pif_Id } )" class="btn btn-warning">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
 
-
-                        <a href="/PDS/Details" class="btn btn-primary">
+                        <a href="@Url.Action("Details", "PDS",new { id = item.pif_Id } )" class="btn btn-primary">
                             <i class="bi bi-card-list"></i>
                         </a>
-                        @* @Html.ActionLink("Edit", "Edit", new { id = item.pif_Id }, new { @class = "button" })*@
-
-
-                        @*<a href="@Url.Action("Edit", "Display",new { id = item.pif_Id } )" class="btn btn-warning">
-                            <i class="bi bi-pencil-fill"></i>
-                        </a>
-
-
-                        <a href="@Url.Action("Details", "Display",new { id = item.pif_Id } )" class="btn btn-primary">
-                            <i class="bi bi-card-list"></i>
-                        </a>*@
-
-                       
-                    @* @Html.ActionLink("Details", "Details", new { id = item.pif_Id }, new { @class = "button" })*@
-                    @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                     </td>
                 </tr>
+                }
+
+
             </tbody>
         </table>
     </div>

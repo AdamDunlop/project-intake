@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-12">
-        @*<h2 class="header-title">@Html.DisplayFor(model => model.projectName) Details</h2>*@
+        <h2 class="header-title">@Html.DisplayFor(model => model.projectName) Details</h2>
         <hr />
 
     </div>
@@ -21,22 +21,22 @@
             <dt class="col-sm-3">LOB</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.lob)</dd>
         </div>
-        <div class="row">
+        @*<div class="row">
             <dt class="col-sm-3">Tenrox</dt>
-            @*@if (Model.tenroxCode != null)
+            @if (Model.tenroxCode != null)
                 {
                     <dd class="col-sm-9">@Html.DisplayFor(model => model.tenroxCode)</dd>
                 }
                 else
                 {
                     <dd class="alert alert-warning" role="alert">No Tenrox Code Provided.</dd>
-                }*@
-        </div>
+                }
+        </div>*@
         <div class="row">
             <dt class="col-sm-3">Timing</dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.startDate) -
-                    @Html.DisplayFor(model => model.endDate)
+                @Html.DisplayFor(model => model.endDate)
             </dd>
         </div>
     </div>
@@ -46,42 +46,33 @@
             <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
         </div>
         <div class="row">
+
+            <dt class="col-sm-3">Producer</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.producer)</dd>
+        </div>
+        <div class="row">
             <dt class="col-sm-3">Status</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.status)</dd>
+            <dt class="col-sm-3">Type</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.type)</dd>
         </div>
-      <dd class="col-sm-9">@Html.DisplayFor(model => model.type)</dd>
-        </div>
+
     </div>
-    <div class="wbs-section">
-        <hr />
- 
     </div>
+  
     <div class="project-details">
         <div class="details-section">
             <hr />
             <h4>Project Details</h4>
             <table class="table table-bordered">
                 <tbody>
-                    @*<tr>
-                        <td>Notes</td>
-                        @if (Model.Deck != null)
-                            {
-                                <td><a href="@Model.notes"> Deck</a></td>
-                            }
-                            else
-                            {
-                                <td class="alert alert-warning" role="alert">No Deck link provided.</td>
-                            }
-                    </tr>*@
-
-                        @*@if (Model.finalDeliveryFolder != null)
-                            {
-                                <td><a href="@Model.finalDeliveryFolder">Delivery Folder</a></td>
-                            }
-                            else
-                            {
-                                <td class="alert alert-warning" role="alert">No Final Delivery Folder link provided.</td>
-                            }*@
+                    <tr>
+                        <td>Masters</td>
+                        <td>@Html.DisplayFor(model => model.masters)</dd>
+                    </tr>
+                    <tr>
+                        <td>Deliverables</td>
+                        <td>@Html.DisplayFor(model => model.deliverables)</dd>
                     </tr>
                 </tbody>
             </table>
