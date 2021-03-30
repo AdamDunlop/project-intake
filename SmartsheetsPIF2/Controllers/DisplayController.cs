@@ -54,9 +54,7 @@ namespace SmartsheetsPIF2.Controllers
             }
             else
             {
-                updateProject(model);
-                //return View("Index");
-               
+                updateProject(model);      
                 return RedirectToAction("List");
             }
         }
@@ -119,12 +117,19 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Start":
-                                pif.startDate = Convert.ToDateTime(cell.Value);
+                                if (pif.startDate != null) 
+                                {
+                                    pif.startDate = Convert.ToDateTime(cell.Value);
+                                }
+                                
                                 //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
                             case "Ship":
-                                pif.endDate = Convert.ToDateTime(cell.Value);
+                                if (pif.endDate != null) 
+                                {
+                                    pif.endDate = Convert.ToDateTime(cell.Value);
+                                }                                
                                 //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
