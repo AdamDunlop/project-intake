@@ -63,9 +63,8 @@ namespace SmartsheetsPIF.Models
         public string finalDeliveryFolder { get; set; }
 
         [Required(ErrorMessage = "Please provide the project's details")]
-        [StringLength(200, MinimumLength = 3, ErrorMessage = "Please provide more information or N/A")]
-
-        public string Specs { get; set; }
+        [StringLength(500, MinimumLength = 3, ErrorMessage = "Please provide more information or N/A")]
+        public string notes { get; set; }
 
         [BindProperty]
         public IEnumerable<SelectListItem> SpecsList { get; set; }
