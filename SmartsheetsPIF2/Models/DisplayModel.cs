@@ -38,12 +38,12 @@ namespace SmartsheetsPIF.Models
         public IEnumerable<SelectListItem> team_options { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Please provide a start date")]
         public DateTime startDate { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Please provide an end date")]
         [DateGreaterThan("startDate")]
         public DateTime endDate { get; set; }
