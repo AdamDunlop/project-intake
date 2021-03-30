@@ -127,9 +127,9 @@
                                 {
                                     <span class="sets">Static per Set:</span> @Html.DisplayFor(model => model.staticPerSet) <br />
                                 }
-                                @if (Model.Specs != null)
+                                @if (Model.notes != null)
                                 {
-                                    <textarea readonly class="form-control">@Html.DisplayFor(model => model.Specs)</textarea>
+                                    <textarea readonly class="form-control">@Html.DisplayFor(model => model.notes)</textarea>
                                 }
                                 else
                                 {

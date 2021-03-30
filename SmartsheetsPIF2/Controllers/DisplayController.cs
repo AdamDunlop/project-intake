@@ -189,11 +189,17 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Start":
-                                pif.startDate = Convert.ToDateTime(cell.Value);
+                                if (cell.Value != null) 
+                                {
+                                    pif.startDate = Convert.ToDateTime(cell.Value);
+                                }                                
                                 break;
 
                             case "Ship":
-                                pif.endDate = Convert.ToDateTime(cell.Value);
+                                if (cell.Value != null) 
+                                {
+                                    pif.endDate = Convert.ToDateTime(cell.Value);
+                                }                                
                                 break;
 
                             case "PM":
@@ -233,33 +239,34 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Specs":
-                                // gone soon
-                                pif.Specs = cell.DisplayValue;
 
                                 // List<SelectListItem> selectedvalues = new List<SelectListItem>();
-                                List<string> selectedvalues = new List<string>();
 
-                                var list = cell.DisplayValue.Split(",");
-
-                                foreach (var spec in list)
+                                if (cell.DisplayValue != null)
                                 {
-                                    IEnumerable<SelectListItem> variable = pif.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+                                    List<string> selectedvalues = new List<string>();
 
-                                    var id = "";
+                                    var list = cell.DisplayValue.Split(",");
 
-                                    foreach (var i in variable)
+                                    foreach (var spec in list)
                                     {
-                                        id = i.Value;
+                                        IEnumerable<SelectListItem> variable = pif.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+
+                                        var id = "";
+
+                                        foreach (var i in variable)
+                                        {
+                                            id = i.Value;
+                                        }
+
+                                        //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                        selectedvalues.Add(id);
+
+                                        variable = null;
                                     }
-
-                                    //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
-                                    selectedvalues.Add(id);
-
-                                    variable = null;
+                                    pif.SelectedSpecs = selectedvalues;
                                 }
-
-                                pif.SelectedSpecs = selectedvalues;
-
+                                
                                 ////Temp => This doesn't affect anytihing, it can be removed
                                 //foreach (var sl in pif.SpecsList)
                                 //{
@@ -268,7 +275,6 @@ namespace SmartsheetsPIF2.Controllers
                                 //        sl.Selected = true;
                                 //    }
                                 //}
-
 
                                 //Temp => This works
                                 //List<string> list2 = new List<string>();
@@ -283,6 +289,10 @@ namespace SmartsheetsPIF2.Controllers
                                 //pif.SelectedSpecs = new MultiSelectList(selectedvalues, "Value", "Text", selectedvalues);
                                 break;
 
+                         case "Notes":
+                                pif.notes = cell.DisplayValue;
+                                break;
+
                             case "Number Of Sets":
                                 pif.numberOfSets = cell.DisplayValue;
                                 break;
@@ -294,7 +304,6 @@ namespace SmartsheetsPIF2.Controllers
                             case "Static Per Set":
                                 pif.staticPerSet = cell.DisplayValue;
                                 break;
-
                         }
                     }
                 }
@@ -322,7 +331,7 @@ namespace SmartsheetsPIF2.Controllers
                     {
                         long columnid = cell.ColumnId.Value;
                         string columnName = sheet.GetColumnById(columnid).Title.ToString();
-                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
+                        //Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {
                             case "Project":
@@ -342,13 +351,17 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Start":
-                                pif.startDate = Convert.ToDateTime(cell.Value);
-                                //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                if (cell.Value != null)
+                                {
+                                    pif.startDate = Convert.ToDateTime(cell.Value);
+                                }
                                 break;
 
                             case "Ship":
-                                pif.endDate = Convert.ToDateTime(cell.Value);
-                                //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
+                                if (cell.Value != null)
+                                {
+                                    pif.endDate = Convert.ToDateTime(cell.Value);
+                                }
                                 break;
 
                             case "PM":
@@ -379,8 +392,12 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.boxFolder = cell.DisplayValue;
                                 break;
 
+                            case "Notes":
+                                pif.notes = cell.DisplayValue;
+                                break;
+
                             case "Specs":
-                                pif.Specs = cell.DisplayValue;
+                                //TBD
                                 break;
 
                             case "Number Of Sets":
@@ -394,7 +411,6 @@ namespace SmartsheetsPIF2.Controllers
                             case "Static Per Set":
                                 pif.staticPerSet = cell.DisplayValue;
                                 break;
-
 
                             case "WBS":
                                 if (cell.Value != null)
@@ -479,10 +495,10 @@ namespace SmartsheetsPIF2.Controllers
             var wbs_cell = new Cell();
             var deliverables_t_cell = new Cell();
             var specs_cell = new Cell();
+            var notes_cell = new Cell();
             var number_of_sets_cell = new Cell();
             var animated_per_set_cell = new Cell();
             var static_per_set_cell = new Cell();
-
 
             foreach (var cell in row.Cells)
             {
@@ -491,7 +507,6 @@ namespace SmartsheetsPIF2.Controllers
 
                 switch (columnName)
                 {
-
                     case "Project":
                         project_cell.ColumnId = columnid;
                         project_cell.Value = pif.projectName;
@@ -567,9 +582,13 @@ namespace SmartsheetsPIF2.Controllers
 
                             objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
                         }
-
                         specs_cell.ObjectValue = objct;
 
+                        break;
+
+                    case "Notes":
+                        notes_cell.ColumnId = columnid;
+                        notes_cell.Value = pif.notes;
                         break;
 
                     case "Number Of Sets":
@@ -596,8 +615,6 @@ namespace SmartsheetsPIF2.Controllers
                         wbs_cell.ColumnId = columnid;
                         wbs_cell.Value = pif.wbs_link;
                         break;
-
-
                 }
             }
 
@@ -619,6 +636,7 @@ namespace SmartsheetsPIF2.Controllers
                     wbs_cell,
                     deliverables_t_cell,
                     specs_cell,
+                    notes_cell,
                     number_of_sets_cell,
                     animated_per_set_cell,
                     static_per_set_cell
