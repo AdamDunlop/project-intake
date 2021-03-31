@@ -154,7 +154,7 @@ namespace SmartsheetsPIF2.Controllers
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
-            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
+            pif.team_options = Get_team_picklist(sheet.GetColumnByIndex(16));
             //Get Specs List
             pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
 

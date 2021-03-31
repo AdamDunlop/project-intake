@@ -17,7 +17,7 @@ namespace SmartsheetsPIF.Models
 
         public string projectName { get; set; }
 
-        public string tenrox { get; set; }
+        public string tenroxCode { get; set; }
 
         [BindProperty]
         public IEnumerable<SelectListItem> lob_options { get; set; }
@@ -37,17 +37,32 @@ namespace SmartsheetsPIF.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         public DateTime endDate { get; set; }
 
-        //public string typeOfWork { get; set; }
+        public string typeOfWork { get; set; }
 
         public string pm { get; set; }
-        
-        //public string assignedTo { get; set; }
 
-        //public string description { get; set; }
+        public string assignedTo { get; set; }
 
-        //public string deliverables { get; set; }
+        public string collabDeck { get; set; }
+        [Required(ErrorMessage = "Please provide a link")]
 
-        //public string creativeLead { get; set; }
+        public string PSDs { get; set; }
+        [Required(ErrorMessage = "Please provide a link")]
+
+        public string fxfDeck { get; set; }
+        [Required(ErrorMessage = "Please provide a link")]
+
+        public string finalDeliveryFolder { get; set; }
+
+        public string description { get; set; }
+
+        public string deliverables { get; set; }
+
+        public string creativeLead { get; set; }
+
+        public string wbs_link { get; set; }
+
+        public string deliverables_tracker_link { get; set; }
 
     }
 }
