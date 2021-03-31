@@ -51,7 +51,17 @@
         </div>
         <div class="row">
             <dt class="col-sm-3">Status</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.status)</dd>
+
+
+            @if (Model.status != null)
+            {
+                <dd class="col-sm-3">@Html.DisplayFor(model => model.status)</dd>
+            }
+            else
+            {
+                <dd class="alert alert-warning" role="alert">Status unavailable</dd>
+            }
+
         </div>
         <div class="row">
             <dt class="col-sm-3">Type of Work</dt>
@@ -141,12 +151,16 @@
                         <td>
                             @if (Model.description != null)
                             {
-                                <textarea readonly class="form-control">@Html.DisplayFor(model => model.description)</textarea>
+                                <textarea readonly class="form-control">@Html.DisplayFor(model => model.description)
+
+                                </textarea>
                             }
                             else
                             {
                                 <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
                             }
+                        <span> Total Deliverables:</span> @Html.DisplayFor(model => model.deliverables)
+
                         </td>
                     </tr>
                 </tbody>
