@@ -43,7 +43,6 @@ namespace SmartsheetsPIF.Controllers
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
                 return View(model);
-                //return RedirectToAction("Edit", new { id = model.pif_Id });
             }
             else
             {
@@ -246,13 +245,13 @@ namespace SmartsheetsPIF.Controllers
                                 pif.endDate = Convert.ToDateTime(cell.Value);
                                 break;
 
-                            case "PM":
-                                pif.pm = cell.DisplayValue;
-                                break;
+                            //case "PM":
+                            //    pif.pm = cell.DisplayValue;
+                            //    break;
 
-                            case "Assigned to":
-                                pif.assignedTo = cell.DisplayValue;
-                                break;
+                            //case "Assigned to":
+                            //    pif.assignedTo = cell.DisplayValue;
+                            //    break;
 
                             case "Collab Deck":
                                 pif.collabDeck = cell.DisplayValue;
@@ -278,16 +277,12 @@ namespace SmartsheetsPIF.Controllers
                                 pif.deliverables_tracker_link = cell.DisplayValue;
                                 break;
 
-                            case "Deliverables":
-                                pif.deliverables = cell.DisplayValue;
-                                break;
-
                             case "Description":
                                 pif.description = cell.DisplayValue;
                                 break;
 
-                            case "Creative Lead":
-                                pif.creativeLead = cell.DisplayValue;
+                            case "Deliverables":
+                                pif.deliverables = cell.DisplayValue;
                                 break;
 
                         }
@@ -333,11 +328,8 @@ namespace SmartsheetsPIF.Controllers
                                 pif.projectName = cell.DisplayValue;
                                 break;
 
-                            case "Status":
-                                if (pif.status != null)
-                                {
-                                    pif.status = cell.DisplayValue;
-                                }
+                            case "Status":    
+                                pif.status = cell.DisplayValue;
                                 break;
 
                             case "Type of Work":
@@ -360,13 +352,55 @@ namespace SmartsheetsPIF.Controllers
                                 pif.pm = cell.DisplayValue;
                                 break;
 
+                            case "Creative Lead":
+                                pif.creativeLead = cell.DisplayValue;
+                                break;
+
                             case "WBS":
-                                pif.wbs_link = cell.DisplayValue;
+                                if (cell.Value != null)
+                                {
+                                    string[] wbs = cell.DisplayValue.Split(" ");
+                                    foreach (var item in wbs)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            wbs = item.Split('"');
+                                            foreach (var url in wbs)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    pif.wbs_link = cell.DisplayValue;
+                                }
                                 break;
 
                             case "Deliverables Tracker":
-                                pif.deliverables_tracker_link = cell.DisplayValue;
+
+                                if (cell.Value != null)
+                                {
+                                    string[] tracker = cell.DisplayValue.Split(" ");
+                                    foreach (var item in tracker)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            tracker = item.Split('"');
+                                            foreach (var url in tracker)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    pif.deliverables_tracker_link = cell.DisplayValue;
+                                }
                                 break;
+
 
                             case "Collab Deck":
                                 pif.collabDeck = cell.DisplayValue;
@@ -390,10 +424,6 @@ namespace SmartsheetsPIF.Controllers
 
                             case "Total Deliverables":
                                 pif.deliverables = cell.DisplayValue;
-                                break;
-
-                            case "Creative Lead":
-                                pif.creativeLead = cell.DisplayValue;
                                 break;
 
                         }
@@ -570,10 +600,12 @@ namespace SmartsheetsPIF.Controllers
                 sheet.Id.Value,
                 new Row[] { rowToTupdate }
             );
+                TempData["Result"] = "Success";
             }
             catch (Exception e)
             {
-                Console.WriteLine("Update row Failed: " + e.Message);
+                Console.WriteLine("Project Update has Failed: " + e.Message);
+                TempData["Result"] = "Failed";
             };
         }
 

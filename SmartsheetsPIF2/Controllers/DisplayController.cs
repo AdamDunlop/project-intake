@@ -113,7 +113,10 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Status":
-                                pif.status = cell.DisplayValue;
+                                if (pif.status != null)
+                                {
+                                    pif.status = cell.DisplayValue;
+                                }
                                 break;
 
                             case "Start":
@@ -192,7 +195,13 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Status":
-                                pif.status = cell.DisplayValue;
+                                foreach (var item in pif.status_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        item.Selected = true;
+                                    }
+                                }
                                 break;
 
                             case "Start":
@@ -300,17 +309,17 @@ namespace SmartsheetsPIF2.Controllers
                                 pif.notes = cell.DisplayValue;
                                 break;
 
-                            case "Number Of Sets":
-                                pif.numberOfSets = cell.DisplayValue;
-                                break;
+                         case "Number Of Sets":
+                            pif.numberOfSets = cell.DisplayValue;
+                            break;
+ 
+                         case "Animated Per Set":
+                            pif.animatedPerSet = cell.DisplayValue;
+                            break;
 
-                            case "Animated Per Set":
-                                pif.animatedPerSet = cell.DisplayValue;
-                                break;
-
-                            case "Static Per Set":
-                                pif.staticPerSet = cell.DisplayValue;
-                                break;
+                         case "Static Per Set":
+                            pif.staticPerSet = cell.DisplayValue;
+                            break;
                         }
                     }
                 }
