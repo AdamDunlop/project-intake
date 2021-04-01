@@ -181,9 +181,7 @@ namespace SmartsheetsPIF.Controllers
 
                             case "Creative Lead":
                                 pif.creativeLead = cell.DisplayValue;
-                                break;
-
-                            
+                                break; 
 
                         }
                     }

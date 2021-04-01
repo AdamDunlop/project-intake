@@ -47,7 +47,7 @@ namespace SmartsheetsPIF.Models
 
         public string deliverables { get; set; }
 
-
+        public string notes { get; set;  }
 
     }
 }

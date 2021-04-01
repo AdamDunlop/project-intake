@@ -116,7 +116,10 @@ namespace SmartsheetsPIF.Controllers
                                 break;
 
                             case "Status":
-                                pif.status = cell.DisplayValue;
+                                if (pif.status != null)
+                                {
+                                    pif.status = cell.DisplayValue;
+                                }
                                 break;
 
                             case "Start":
@@ -144,6 +147,10 @@ namespace SmartsheetsPIF.Controllers
                             case "Deliverables":
                                 pif.deliverables = cell.DisplayValue;
                                 break;
+
+                            case "Notes":
+                                pif.notes = cell.DisplayValue;
+                                break;
                         }
                     }
                     pif_list.Add(pif);
@@ -160,7 +167,7 @@ namespace SmartsheetsPIF.Controllers
 
             pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
-            pif.type_options = Get_status_picklist(sheet.GetColumnByIndex(8));
+            pif.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
 
 
             foreach (var row in sheet.Rows)
@@ -191,7 +198,14 @@ namespace SmartsheetsPIF.Controllers
                                 break;
 
                             case "Status":
-                                pif.status = cell.DisplayValue;
+                                foreach (var item in pif.status_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        //pif.lob_options.
+                                        item.Selected = true;
+                                    }
+                                }
                                 break;
 
                             case "Start":
@@ -229,6 +243,10 @@ namespace SmartsheetsPIF.Controllers
                             case "Deliverables":
                                 pif.deliverables = cell.DisplayValue;
                                 break;
+
+                            case "Notes":
+                                pif.notes = cell.DisplayValue;
+                                break;
                         }
                     }
                 }
@@ -247,7 +265,7 @@ namespace SmartsheetsPIF.Controllers
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
             //Get Team options
-            pif.type_options = Get_status_picklist(sheet.GetColumnByIndex(8));
+            pif.type_options = Get_status_picklist(sheet.GetColumnByIndex(9));
 
 
             foreach (var row in sheet.Rows)
@@ -270,7 +288,10 @@ namespace SmartsheetsPIF.Controllers
                                 break;
 
                             case "Status":
-                                pif.status = cell.DisplayValue;
+                                if (pif.status != null)
+                                {
+                                    pif.status = cell.DisplayValue;
+                                }
                                 break;
 
                             case "Start":
@@ -295,13 +316,16 @@ namespace SmartsheetsPIF.Controllers
                                 pif.type = cell.DisplayValue;
                                 break;
 
-
                             case "Masters":
                                 pif.masters = cell.DisplayValue;
                                 break;
 
                             case "Deliverables":
                                 pif.deliverables = cell.DisplayValue;
+                                break;
+
+                            case "Notes":
+                                pif.notes = cell.DisplayValue;
                                 break;
 
 
@@ -337,6 +361,7 @@ namespace SmartsheetsPIF.Controllers
             var type_cell = new Cell();
             var masters_cell = new Cell();
             var deliverables_cell = new Cell();
+            var notes_cell = new Cell();
 
 
             foreach (var cell in row.Cells)
@@ -358,8 +383,11 @@ namespace SmartsheetsPIF.Controllers
                         break;
 
                     case "Status":
-                        status_cell.ColumnId = columnid;
-                        status_cell.Value = pif.status;
+                        if (status_cell != null)
+                        {
+                            status_cell.ColumnId = columnid;
+                            status_cell.Value = pif.status;
+                        }
                         break;
 
                     case "Start":
@@ -388,20 +416,10 @@ namespace SmartsheetsPIF.Controllers
                         deliverables_cell.Value = pif.deliverables;
                         break;
 
-                        //case "Number Of Sets":
-                        //    number_of_sets_cell.ColumnId = columnid;
-                        //    number_of_sets_cell.Value = pif.numberOfSets;
-                        //    break;
-
-                        //case "Animated Per Set":
-                        //    animated_per_set_cell.ColumnId = columnid;
-                        //    animated_per_set_cell.Value = pif.animatedPerSet;
-                        //    break;
-
-                        //case "Static Per Set":
-                        //    static_per_set_cell.ColumnId = columnid;
-                        //    static_per_set_cell.Value = pif.staticPerSet;
-                        //    break;
+                    case "Notes":
+                        notes_cell.ColumnId = columnid;
+                        notes_cell.Value = pif.notes;
+                        break;
 
                         //case "Deliverables Tracker":
                         //    deliverables_t_cell.ColumnId = columnid;
@@ -428,7 +446,8 @@ namespace SmartsheetsPIF.Controllers
                     end_cell,
                     type_cell,
                     masters_cell,
-                    deliverables_cell
+                    deliverables_cell,
+                    notes_cell
                 }
             };
 
@@ -456,7 +475,7 @@ namespace SmartsheetsPIF.Controllers
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
             //Get Team options
-            pif.type_options = Get_status_picklist(sheet.GetColumnByIndex(8));
+            pif.type_options = Get_status_picklist(sheet.GetColumnByIndex(9));
 
 
             return pif;
@@ -503,6 +522,7 @@ namespace SmartsheetsPIF.Controllers
         public IEnumerable<SelectListItem> Get_status_picklist(Column status_col)
         {
             List<SelectListItem> options = new List<SelectListItem>();
+
             foreach (var status in status_col.Options)
             {
                 options.Add(new SelectListItem { Text = status, Value = status });

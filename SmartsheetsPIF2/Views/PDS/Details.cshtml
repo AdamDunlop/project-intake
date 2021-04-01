@@ -33,23 +33,6 @@
             }
         </div>
         <div class="row">
-            <dt class="col-sm-3">Timing</dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.startDate) -
-                @Html.DisplayFor(model => model.endDate)
-            </dd>
-        </div>
-    </div>
-    <div class="col-12 col-md-6 details-col-2">
-        <div class="row">
-            <dt class="col-sm-3">PM</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
-        </div>
-        <div class="row">
-            <dt class="col-sm-3">Creative Lead</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.creativeLead)</dd>
-        </div>
-        <div class="row">
             <dt class="col-sm-3">Status</dt>
 
 
@@ -64,16 +47,31 @@
 
         </div>
         <div class="row">
-            <dt class="col-sm-3">Type of Work</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.typeOfWork)</dd>
+            <dt class="col-sm-3">Timing</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.startDate) -
+                @Html.DisplayFor(model => model.endDate)
+            </dd>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 details-col-2">
+        <div class="row">
+            <dt class="col-sm-3">PM</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-3">Creative</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.creativeLead)</dd>
         </div>
 
         <div class="row">
             <dt class="col-sm-3">Designer</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.assignedTo)</dd>
         </div>
-
-
+        <div class="row">
+            <dt class="col-sm-3">Type of Work</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.typeOfWork)</dd>
+        </div>
 
     </div>
     <div class="wbs-section">
@@ -89,7 +87,6 @@
             {
                 <div class="alert alert-warning" role="alert">No WBS provided.</div>
             }
-
         </div>
     </div>
     <div class="project-details">

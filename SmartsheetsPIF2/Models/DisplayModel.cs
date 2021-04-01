@@ -30,7 +30,7 @@ namespace SmartsheetsPIF.Models
         [BindProperty]
         public IEnumerable<SelectListItem> status_options { get; set; }
 
-        public string producer { get; set; }
+        public string pm { get; set; }
 
         public string requestType { get; set; }
 

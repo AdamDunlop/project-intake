@@ -22,8 +22,6 @@ namespace SmartsheetsPIF.Models
         [BindProperty]
         public IEnumerable<SelectListItem> lob_options { get; set; }
 
-        //public string tenroxCode { get; set; }
-
         public string status { get; set; }
 
         [BindProperty]
@@ -64,5 +62,30 @@ namespace SmartsheetsPIF.Models
 
         public string deliverables_tracker_link { get; set; }
 
+
+
     }
+    //public class DateGreaterThan : ValidationAttribute
+    //{
+    //    private string _startDatePropertyName;
+    //    public DateGreaterThan(string startDatePropertyName)
+    //    {
+    //        _startDatePropertyName = startDatePropertyName;
+    //    }
+
+    //    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    //    {
+    //        var propertyInfo = validationContext.ObjectType.GetProperty(_startDatePropertyName);
+    //        var propertyValue = propertyInfo.GetValue(validationContext.ObjectInstance, null);
+
+    //        if ((DateTime)value > (DateTime)propertyValue)
+    //        {
+    //            return ValidationResult.Success;
+    //        }
+    //        else
+    //        {
+    //            return new ValidationResult("The end date occurs before the start date");
+    //        }
+    //    }
+    //}
 }

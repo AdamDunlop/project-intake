@@ -43,10 +43,10 @@
         <span asp-validation-for="lob_options" class="text-danger"></span>
     </div>
     @*<div class="form-group">
-            <label asp-for="tenroxCode" class="control-label">Tenrox Codes</label>
-            @Html.TextBoxFor(m => m.tenroxCode, new { @class = "form-control" })
-            <span asp-validation-for="tenroxCode" class="text-danger"></span>
-        </div>*@
+        <label asp-for="tenroxCode" class="control-label">Tenrox Codes</label>
+        @Html.TextBoxFor(m => m.tenroxCode, new { @class = "form-control" })
+        <span asp-validation-for="tenroxCode" class="text-danger"></span>
+    </div>*@
 
     <div class="form-group">
         <label asp-for="status" class="control-label">Status</label>
@@ -77,6 +77,11 @@
 
     <div class="col-12 col-md-6">
 
+        <div class="form-group">
+            <label asp-for="notes" class="control-label">Notes</label>
+            @Html.TextAreaFor(m => m.notes, new { @class = "form-control" })
+            <span asp-validation-for="notes" class="text-danger"></span>
+        </div>
         <div class="row spec-details">
             <div class=" col-sm-12 col-md-4">
 
@@ -95,14 +100,11 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-success float-right" />
     </div>
-
 
 </div>
 

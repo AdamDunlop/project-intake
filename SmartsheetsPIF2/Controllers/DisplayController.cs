@@ -153,10 +153,12 @@ namespace SmartsheetsPIF2.Controllers
             pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             //Get Status options
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
-            //Get Team options
-            pif.team_options = Get_team_picklist(sheet.GetColumnByIndex(16));
+            
             //Get Specs List
             pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
+
+            //Get Team options
+            pif.team_options = Get_team_picklist(sheet.GetColumnByIndex(16));
 
             foreach (var row in sheet.Rows)
             {
@@ -208,7 +210,7 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "PM":
-                                pif.producer = cell.DisplayValue;
+                                pif.pm = cell.DisplayValue;
                                 break;
 
                             case "Type":
@@ -370,7 +372,7 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "PM":
-                                pif.producer = cell.DisplayValue;
+                                pif.pm = cell.DisplayValue;
                                 break;
 
                             case "Type":
