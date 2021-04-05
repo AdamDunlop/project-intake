@@ -575,22 +575,19 @@ namespace SmartsheetsPIF.Controllers
                 Cells = new Cell[] {
                     lob_cell,
                     tenrox_cell,
-                    type_cell,
+                    //type_cell,
                     project_cell,
                     status_cell,
                     start_cell,
                     end_cell,
-                    assigned_cell,
-                    pm_cell,
                     wbs_cell,
                     deliverables_tracker_cell,
-                    collab_cell,
+                    //collab_cell,
                     fxf_cell,
                     psds_cell,
                     final_delivery_cell,
                     deliverables_cell,
-                    description_cell,
-                    creative_cell
+                    description_cell
                 }
             };
 

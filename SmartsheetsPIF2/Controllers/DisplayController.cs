@@ -113,10 +113,7 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Status":
-                                if (pif.status != null)
-                                {
-                                    pif.status = cell.DisplayValue;
-                                }
+                                pif.status = cell.DisplayValue;
                                 break;
 
                             case "Start":

@@ -1,20 +1,32 @@
 ﻿@model IEnumerable<SmartsheetsPIF.Models.PDSModel>
 
 @{
-    ViewData["Title"] = "PDS Pipeline";
+    ViewData["Title"] = "Design Studio Pipeline";
 }
 
 <div class="row">
     <div class="col-12">
         @{
-            if (TempData["Success"] != null)
+            if (TempData["Result"] != null)
             {
-                <div class="alert alert-success alert-dismissible fade show spacing" role="alert">
-                    Your changes have been saved successfully.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                if (TempData["Result"].Equals("Success"))
+                {
+                    <div class="alert alert-success alert-dismissible fade show spacing" role="alert">
+                        Your changes have been saved successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                else if (TempData["Result"].Equals("Failed"))
+                {
+                    <div class="alert alert-warning alert-dismissible fade show spacing" role="alert">
+                        Oh Snap! An error has ocurred, please try again.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
             }
         }
     </div>
@@ -22,7 +34,7 @@
 
 <div class="row">
     <div class="col-12">
-        <h2 class="header-title">PDS Pipeline</h2>
+        <h2 class="header-title">Design Studio Pipeline</h2>
         <table class="table table-striped">
             <thead class="pif-list-header">
                 <tr>
