@@ -281,7 +281,7 @@ namespace SmartsheetsPIF.Controllers
                                 pif.description = cell.DisplayValue;
                                 break;
 
-                            case "Deliverables":
+                            case "Total Deliverables":
                                 pif.deliverables = cell.DisplayValue;
                                 break;
 
@@ -507,20 +507,20 @@ namespace SmartsheetsPIF.Controllers
                         end_cell.Value = pif.endDate;
                         break;
 
-                    case "Type of Work":
-                        type_cell.ColumnId = columnid;
-                        type_cell.Value = pif.typeOfWork;
-                        break;
+                    //case "Type of Work":
+                    //    type_cell.ColumnId = columnid;
+                    //    type_cell.Value = pif.typeOfWork;
+                    //    break;
 
-                    case "Assigned to":
-                        assigned_cell.ColumnId = columnid;
-                        assigned_cell.Value = pif.assignedTo;
-                        break;
+                    //case "Assigned to":
+                    //    assigned_cell.ColumnId = columnid;
+                    //    assigned_cell.Value = pif.assignedTo;
+                    //    break;
 
-                    case "PM":
-                        pm_cell.ColumnId = columnid;
-                        pm_cell.Value = pif.pm;
-                        break;
+                    //case "PM":
+                    //    pm_cell.ColumnId = columnid;
+                    //    pm_cell.Value = pif.pm;
+                    //    break;
 
                     case "WBS":
                         wbs_cell.ColumnId = columnid;
@@ -532,10 +532,10 @@ namespace SmartsheetsPIF.Controllers
                         deliverables_tracker_cell.Value = pif.deliverables_tracker_link;
                         break;
 
-                    case "Collab Deck":
-                        collab_cell.ColumnId = columnid;
-                        collab_cell.Value = pif.collabDeck;
-                        break;
+                    //case "Collab Deck":
+                    //    collab_cell.ColumnId = columnid;
+                    //    collab_cell.Value = pif.collabDeck;
+                    //    break;
 
                     case "FxF Deck":
                         fxf_cell.ColumnId = columnid;
@@ -547,7 +547,7 @@ namespace SmartsheetsPIF.Controllers
                         psds_cell.Value = pif.PSDs;
                         break;
 
-                    case "Final Deliverbales":
+                    case "Final Delivery":
                         final_delivery_cell.ColumnId = columnid;
                         final_delivery_cell.Value = pif.finalDeliveryFolder;
                         break;
@@ -562,10 +562,10 @@ namespace SmartsheetsPIF.Controllers
                         description_cell.Value = pif.description;
                         break;
 
-                    case "Creative Lead":
-                        creative_cell.ColumnId = columnid;
-                        creative_cell.Value = pif.creativeLead;
-                        break;
+                    //case "Creative Lead":
+                    //    creative_cell.ColumnId = columnid;
+                    //    creative_cell.Value = pif.creativeLead;
+                    //    break;
                 }
             }
 
@@ -601,7 +601,7 @@ namespace SmartsheetsPIF.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Project Update has Failed: " + e.Message);
+                Console.WriteLine("Project Update has Failed: " + e.Message + e.Data.ToString());
                 TempData["Result"] = "Failed";
             };
         }
