@@ -158,6 +158,22 @@ a.button:hover {
 .action-buttons {
     min-width: 115px;
 }
+
+.project-col {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+
+    .project-col:hover {
+        text-decoration: none;
+        color: black;
+    }
+
+
+
+.centered {
+    text-align: center;
+}
 /*.table-split tr {
     width: 50%;
 }
@@ -180,9 +196,30 @@ a.button:hover {
     width: 25%;
     text-transform: uppercase;
 }*/
+
+
 /* ---------------------- Media Queries ---------------------- */
 
+@media screen and (max-width: 991px) {
+        .designer-col {
+            display: none;
+        }
+    }
+
+
+
 @media screen and (max-width: 767px) {
+
+    .project-col {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 120px;
+    }
+   
+    .designer-col {
+        display: none;
+    }
     .spec-details {
         width: 50%;
     }
@@ -202,6 +239,16 @@ a.button:hover {
 
       
     }
+
+@media screen and (max-width: 575px) {
+    .project-col {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        max-width: inherit;
+    }
+}
+
 
     @media screen and (max-width: 480px) {
         .details {
