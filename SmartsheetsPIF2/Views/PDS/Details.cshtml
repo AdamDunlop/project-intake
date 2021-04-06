@@ -149,14 +149,18 @@
                             @if (Model.description != null)
                             {
                                 <textarea readonly class="form-control">@Html.DisplayFor(model => model.description)
-
+                                
+                                
                                 </textarea>
                             }
                             else
                             {
                                 <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
                             }
-                        <span> Total Deliverables:</span> @Html.DisplayFor(model => model.deliverables)
+                            <span>List of Deliverables:</span>
+                            <ul>
+                                <li>@Html.DisplayFor(model => model.SelectedSpecs)</li>
+                            </ul>
 
                         </td>
                     </tr>
