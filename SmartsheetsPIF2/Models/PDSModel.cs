@@ -62,7 +62,11 @@ namespace SmartsheetsPIF.Models
 
         public string deliverables_tracker_link { get; set; }
 
+        [BindProperty]
+        public IEnumerable<SelectListItem> SpecsList { get; set; }
 
+        [BindProperty]
+        public IList<string> SelectedSpecs { get; set; }
 
     }
     //public class DateGreaterThan : ValidationAttribute

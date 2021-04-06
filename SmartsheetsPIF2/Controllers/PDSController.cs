@@ -42,6 +42,7 @@ namespace SmartsheetsPIF.Controllers
                 PDSModel model_lists = GetPickLists(model.pif_Id);
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
+                model.SpecsList = model_lists.SpecsList;
                 return View(model);
             }
             else
@@ -114,10 +115,6 @@ namespace SmartsheetsPIF.Controllers
                                 pif.projectName = cell.DisplayValue;
                                 break;
 
-                            case "Type of Work":
-                                pif.typeOfWork = cell.DisplayValue;
-                                break;
-
                             case "Status":
                                 pif.status = cell.DisplayValue;
                                 break;
@@ -146,42 +143,6 @@ namespace SmartsheetsPIF.Controllers
                                 pif.pm = cell.DisplayValue;
                                 break;
 
-                            case "WBS":
-                                pif.wbs_link = cell.DisplayValue;
-                                break;
-
-                            case "Deliverables Tracker":
-                                pif.deliverables_tracker_link = cell.DisplayValue;
-                                break;
-
-                            case "Collab Deck":
-                                pif.collabDeck = cell.DisplayValue;
-                                break;
-
-                            case "FxF Deck":
-                                pif.fxfDeck = cell.DisplayValue;
-                                break;
-
-                            case "PSDs":
-                                pif.PSDs = cell.DisplayValue;
-                                break;
-
-                            case "Final Delivery":
-                                pif.finalDeliveryFolder = cell.DisplayValue;
-                                break;
-
-                            case "Deliverables":
-                                pif.deliverables = cell.DisplayValue;
-                                break;
-
-                            case "Desciption":
-                                pif.description = cell.DisplayValue;
-                                break;
-
-                            case "Creative Lead":
-                                pif.creativeLead = cell.DisplayValue;
-                                break; 
-
                         }
                     }
                     pif_list.Add(pif);
@@ -198,6 +159,8 @@ namespace SmartsheetsPIF.Controllers
 
             pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
+
+            pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(17));
 
             foreach (var row in sheet.Rows)
             {
@@ -234,7 +197,13 @@ namespace SmartsheetsPIF.Controllers
                                 break;
 
                             case "Status":
-                                pif.status = cell.DisplayValue;
+                                foreach (var item in pif.status_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        item.Selected = true;
+                                    }
+                                }
                                 break;
 
                             case "Start":
@@ -285,6 +254,35 @@ namespace SmartsheetsPIF.Controllers
                                 pif.deliverables = cell.DisplayValue;
                                 break;
 
+                            case "Specs":
+
+                                // List<SelectListItem> selectedvalues = new List<SelectListItem>();
+
+                                if (cell.DisplayValue != null)
+                                {
+                                    List<string> selectedvalues = new List<string>();
+
+                                    var list = cell.DisplayValue.Split(",");
+
+                                    foreach (var spec in list)
+                                    {
+                                        IEnumerable<SelectListItem> variable = pif.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+
+                                        var id = "";
+
+                                        foreach (var i in variable)
+                                        {
+                                            id = i.Value;
+                                        }
+
+                                        //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                        selectedvalues.Add(id);
+
+                                        variable = null;
+                                    }
+                                    pif.SelectedSpecs = selectedvalues;
+                                }
+                                break;
                         }
                     }
                 }
@@ -426,6 +424,10 @@ namespace SmartsheetsPIF.Controllers
                                 pif.deliverables = cell.DisplayValue;
                                 break;
 
+                            case "Specs":
+                                //TBD
+                                break;
+
                         }
                     }
                 }
@@ -468,6 +470,7 @@ namespace SmartsheetsPIF.Controllers
             var creative_cell = new Cell();
             var wbs_cell = new Cell();
             var deliverables_tracker_cell = new Cell();
+            var specs_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -562,10 +565,31 @@ namespace SmartsheetsPIF.Controllers
                         description_cell.Value = pif.description;
                         break;
 
-                    //case "Creative Lead":
-                    //    creative_cell.ColumnId = columnid;
-                    //    creative_cell.Value = pif.creativeLead;
-                    //    break;
+
+                    case "Specs":
+                        specs_cell.ColumnId = columnid;
+                        ObjectValue objct = null;
+                        bool flag = false;
+                        if (pif.SelectedSpecs != null)
+                        {
+                            foreach (var size in pif.SelectedSpecs)
+                            {
+                                if (size.Contains("System.String"))
+                                {
+                                    flag = true;
+                                }
+                            }
+                            if (flag)
+                            {
+                                pif.SelectedSpecs.RemoveAt(pif.SelectedSpecs.Count() - 1);
+                            }
+
+                            objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+                        }
+                        specs_cell.ObjectValue = objct;
+
+                        break;
+
                 }
             }
 
@@ -587,7 +611,8 @@ namespace SmartsheetsPIF.Controllers
                     psds_cell,
                     final_delivery_cell,
                     deliverables_cell,
-                    description_cell
+                    description_cell,
+                    specs_cell
                 }
             };
 
@@ -616,6 +641,7 @@ namespace SmartsheetsPIF.Controllers
            
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
 
+            pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(17));
 
             return pif;
         }
@@ -637,6 +663,18 @@ namespace SmartsheetsPIF.Controllers
             }
             long sheetId = 1478730146178948; //Display TEST
             */
+        }
+        public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //int cont = 0;
+            foreach (var spec in specs_col.Options)
+            {
+                //cont++;
+                //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+                list.Add(new SelectListItem { Text = spec, Value = spec });
+            }
+            return list;
         }
         public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
         {
