@@ -588,12 +588,17 @@ namespace SmartsheetsPIF2.Controllers
                                     flag = true;
                                 }
                             }
-                            if (flag) 
+                            if (pif.SelectedSpecs.Count() == 0)
                             {
-                                pif.SelectedSpecs.RemoveAt(pif.SelectedSpecs.Count() - 1);
-                            }
+                                pif.SelectedSpecs.Add("TBD");
+                                objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
 
-                            objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+                            }
+                            else
+                            {
+                                objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+
+                            }
                         }
                         specs_cell.ObjectValue = objct;
 
