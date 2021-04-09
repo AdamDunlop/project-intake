@@ -572,13 +572,20 @@ namespace SmartsheetsPIF.Controllers
                         specs_cell.ColumnId = columnid;
                         ObjectValue objct = null;
                         bool flag = false;
+                        //count = pif.SelectedSpecs.Count();
+
                         if (pif.SelectedSpecs != null)
                         {
+
                             foreach (var size in pif.SelectedSpecs)
+
                             {
-                                if (size.Contains("System.String"))
+                                if (size != null)
                                 {
-                                    flag = true;
+                                    if (size.Contains("System.String"))
+                                    {
+                                        flag = true;
+                                    }
                                 }
                             }
                             if (flag)
@@ -586,10 +593,19 @@ namespace SmartsheetsPIF.Controllers
                                 pif.SelectedSpecs.RemoveAt(pif.SelectedSpecs.Count() - 1);
                             }
 
-                            objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+                            if (pif.SelectedSpecs.Count() == 0) {
+                                pif.SelectedSpecs.Add("TBD");
+                                objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+
+                            }
+                            else
+                            {
+                                objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+
+                            }
+
                         }
                         specs_cell.ObjectValue = objct;
-
                         break;
 
                 }
