@@ -582,12 +582,21 @@ namespace SmartsheetsPIF2.Controllers
                         if (pif.SelectedSpecs != null)
                         {
                             foreach (var size in pif.SelectedSpecs)
+
                             {
-                                if (size.Contains("System.String"))
-                                {                                    
-                                    flag = true;
+                                if (size != null)
+                                {
+                                    if (size.Contains("System.String"))
+                                    {
+                                        flag = true;
+                                    }
                                 }
                             }
+                            if (flag)
+                            {
+                                pif.SelectedSpecs.RemoveAt(pif.SelectedSpecs.Count() - 1);
+                            }
+
                             if (pif.SelectedSpecs.Count() == 0)
                             {
                                 pif.SelectedSpecs.Add("TBD");
