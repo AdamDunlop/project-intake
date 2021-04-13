@@ -135,8 +135,8 @@
                                 {
                                     <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
                                 }
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
 
                         <tr>
                             <td>Delivery Folder</td>
@@ -151,19 +151,84 @@
                         </tr>
                     </tbody>
                 </table>
-                  <h4>Deliverables Tracker</h4>
+                <h4>Deliverables Tracker</h4>
 
                 <div id="deliverablesTracker">
 
                     @if (Model.deliverables_tracker_link != null)
                     {
-                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
+                        <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
                     }
-                    else {
-                    <div class="alert alert-warning" role="alert">
-                        No Deliverables Tracker link provided.
-                    </div>
+                    else
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            No Deliverables Tracker link provided.
+                        </div>
                     }
+                </div>
+                <div class="wander-section">
+                    <hr />
+                    <h4>Wander Internal Notes</h4>
+                    <table class="table table-bordered">
+                        <tbody>
+
+                            <tr>
+                                <td>Producer</td>
+
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td>Editor</td>
+
+                                <td></td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Path on Studio Server</td>
+
+                                <td></td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td>Contractor Files</td>
+
+                                <td></td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Review Links </td>
+                                <td>
+
+                                    <p><b>Social:</b></p>
+                                    <p><b>Display:</b></p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Art Buyer</td>
+                                <td>
+                                    <p><input type="checkbox" /> Kickoff </p>
+                                    <p>Audio:</p>
+                                    <p><input type="checkbox" /> Quoted </p>
+                                    <p><input type="checkbox" /> Purchased </p>
+                                    <p>Visual:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>QC Log</td>
+                                <td>
+                                    <p><input type="checkbox" /> Kickoff Meeting</p>
+                                    <p><input type="checkbox" /> Archived </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
