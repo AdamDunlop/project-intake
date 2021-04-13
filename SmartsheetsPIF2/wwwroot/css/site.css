@@ -141,13 +141,28 @@ a.button:hover {
 }
 
 .producer-section, .wander-section {
-    display: none;
+/*    display: none;*/
 }
+
+
+
 
 .header-title {
     text-transform: capitalize;
     padding-top: .5rem;
 }
+
+.main-header {
+    z-index: 1;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+
 
 .details-view {
     display: flex;

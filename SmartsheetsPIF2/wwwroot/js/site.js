@@ -9,3 +9,18 @@ $(function () {
         $(this).height($(this).prop('scrollHeight'));
     });
 });
+
+
+$window = $(window);
+$window.scroll(function() {
+  $scroll_position = $window.scrollTop();
+    if ($scroll_position > 150) { 
+        $('.main-header').addClass('sticky');
+
+        header_height = $('.main-header').innerHeight();
+        $('body').css('padding-top' , header_height);
+    } else {
+        $('body').css('padding-top' , '0');
+        $('.main-header').removeClass('sticky');
+    }
+ });
