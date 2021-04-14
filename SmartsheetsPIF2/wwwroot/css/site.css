@@ -181,7 +181,7 @@ a.button:hover {
 
 .project-col:hover {
     text-decoration: none;
-    color: black;
+    color: inherit;
 }
 
 

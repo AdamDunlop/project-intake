@@ -115,11 +115,8 @@ namespace SmartsheetsPIF.Controllers
                                 pif.lob = cell.DisplayValue;
                                 break;
 
-                            case "Status":
-                                if (pif.status != null)
-                                {
-                                    pif.status = cell.DisplayValue;
-                                }
+                            case "Status": 
+                                pif.status = cell.DisplayValue;
                                 break;
 
                             case "Start":
@@ -213,7 +210,10 @@ namespace SmartsheetsPIF.Controllers
                                 break;
 
                             case "Ship":
-                                pif.endDate = Convert.ToDateTime(cell.Value);
+                                if (cell.Value != null)
+                                {
+                                    pif.endDate = Convert.ToDateTime(cell.Value);
+                                }
                                 break;
 
                             case "PM":
@@ -288,10 +288,7 @@ namespace SmartsheetsPIF.Controllers
                                 break;
 
                             case "Status":
-                                if (pif.status != null)
-                                {
-                                    pif.status = cell.DisplayValue;
-                                }
+                                pif.status = cell.DisplayValue;
                                 break;
 
                             case "Start":
@@ -383,11 +380,8 @@ namespace SmartsheetsPIF.Controllers
                         break;
 
                     case "Status":
-                        if (status_cell != null)
-                        {
                             status_cell.ColumnId = columnid;
                             status_cell.Value = pif.status;
-                        }
                         break;
 
                     case "Start":
