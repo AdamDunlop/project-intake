@@ -116,9 +116,13 @@ body {
 }
 
 a.button:hover {
-    text-decoration: none;
+
     color: white;
     border-color: #3A5D9D;
+}
+
+a:hover {
+    text-decoration: underline !important;
 }
 
 .pif-list-header {
@@ -300,3 +304,4 @@ a.button:hover {
     .container-color {
         background-color: white;
     }
+
