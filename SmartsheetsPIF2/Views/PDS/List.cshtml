@@ -41,13 +41,13 @@
                     <th>
                         LOB
                     </th>
-                    <th>
+                    <th class="project-col">
                         Project
                     </th>
                     <th>
                         PM
                     </th>
-                    <th>
+                    <th class="designer-col">
                         Designer
                     </th>
                     @*<th>
@@ -62,7 +62,7 @@
                     </th>
 
                     <th>
-                        Actions
+                        Edit
                     </th>
                 </tr>
             </thead>
@@ -73,13 +73,15 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.lob)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.projectName)
+                    <td class="project-col">
+                        <a href="@Url.Action("Details", "PDS",new { id = item.pif_Id } )" class="project-col">
+                            @Html.DisplayFor(modelItem => item.projectName)
+                        </a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.pm)
                     </td>
-                    <td>
+                    <td class="designer-col">
                         @Html.DisplayFor(modelItem => item.assignedTo)
                     </td>
                     @*<td>
@@ -90,15 +92,16 @@
                     <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
                     <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
 
-                    <td class="action-buttons">
+                    <td class="centered">
 
                         <a href="@Url.Action("Edit", "PDS",new { id = item.pif_Id } )" class="btn btn-warning">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
 
-                        <a href="@Url.Action("Details", "PDS",new { id = item.pif_Id } )" class="btn btn-primary">
+                        @*<a href="@Url.Action("Details", "PDS",new { id = item.pif_Id } )" class="btn btn-primary">
                             <i class="bi bi-card-list"></i>
-                        </a>
+                        </a>*@
+
                     </td>
                 </tr>
                 }
