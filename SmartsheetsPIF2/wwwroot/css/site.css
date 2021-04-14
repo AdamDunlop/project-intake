@@ -24,6 +24,17 @@ a {
   border-color: #1861ac;
 }
 
+.spacing {
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+
+.nav-right {
+/*   position: fixed;*/
+   right: 2rem;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -59,13 +70,238 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #0278ae;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: white;
 }
+
+
+/* PIF Details View --------------------- */
+
+.details-view, .project-details, .wbs {
+    width: 100%;
+}
+
+.wbs-section {
+    width: 100%;
+}
+
+.back {
+    padding: 1rem 0;
+}
+
+.back-button {
+    border-radius: .5rem;
+    background: white;
+    padding: .5rem;
+}
+
+.button {
+    display: block;
+    background: #60B3F7;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+    margin-bottom: 3px; 
+}
+
+a.button:hover {
+
+    color: white;
+    border-color: #3A5D9D;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+.pif-list-header {
+    background-color: #3A5D9D;
+    color: white;
+}
+
+.show {
+    display: block !important;
+}
+
+.deliverables-tracker {
+    background-color: white;
+    border: none;
+}
+
+.deliverables-tracker:active, .deliverables-tracker:focus, .back-button:active, .back-button:focus{
+    outline: 0;
+    border: none;
+}
+
+.producer-section, .wander-section {
+/*    display: none;*/
+}
+
+
+
+
+.header-title {
+    text-transform: capitalize;
+    padding-top: .5rem;
+}
+
+.main-header {
+    z-index: 1;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+
+
+.details-view {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+}
+
+/*.action-buttons {
+    min-width: 115px;
+}*/
+
+.project-col {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+
+.project-col:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+.centered {
+    text-align: center;
+}
+/*.table-split tr {
+    width: 50%;
+}
+*/
+/*
+.table-fixed {
+    width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+*/
+/*.stock-asset, .delivery {
+    width: 50%;
+}
+*/
+/*input {
+    margin-right: 10px;
+}*/
+/*.wander tr td:first-child{
+    width: 25%;
+    text-transform: uppercase;
+}*/
+
+
+/* ---------------------- Media Queries ---------------------- */
+
+@media screen and (max-width: 991px) {
+        .hide-col {
+            display: none;
+        }
+    }
+
+
+
+@media screen and (max-width: 767px) {
+
+    .project-col {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 120px;
+    }
+
+    .hide-col {
+        display: none;
+    }
+    .spec-details {
+        width: 50%;
+    }
+
+    .project-dates {
+        width: 50%;
+    }
+
+}
+
+
+
+    @media screen and (max-width: 720px) {
+        .wander tr td:first-child {
+            width: 35%;
+        }
+
+      
+    }
+
+@media screen and (max-width: 575px) {
+    .project-col {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        max-width: inherit;
+    }
+}
+
+
+    @media screen and (max-width: 480px) {
+        .details {
+            display: flex;
+            flex-direction: column;
+            padding-top: 1rem;
+            padding-left: 0;
+            /*        padding-left: 15px;*/
+        }
+
+        .details-col-2 {
+            padding: 0;
+        }
+
+        .column-right {
+            top: 0;
+        }
+
+        div.row.deliverables {
+            flex-wrap: wrap;
+        }
+
+        .spec-details {
+            width: auto;
+        }
+
+        .project-dates {
+            width: auto;
+        }
+    }
+
+    /*Background Colors*/
+
+    .container-color {
+        background-color: white;
+    }
+

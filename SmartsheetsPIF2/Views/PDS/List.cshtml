@@ -1,0 +1,113 @@
+﻿@model IEnumerable<SmartsheetsPIF.Models.PDSModel>
+
+@{
+    ViewData["Title"] = "Design Studio Pipeline";
+}
+
+<div class="row">
+    <div class="col-12">
+        @{
+            if (TempData["Result"] != null)
+            {
+                if (TempData["Result"].Equals("Success"))
+                {
+                    <div class="alert alert-success alert-dismissible fade show spacing" role="alert">
+                        Your changes have been saved successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                else if (TempData["Result"].Equals("Failed"))
+                {
+                    <div class="alert alert-warning alert-dismissible fade show spacing" role="alert">
+                        Oh Snap! An error has ocurred, please try again.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="header-title">Design Studio Pipeline</h2>
+        <table class="table table-striped">
+            <thead class="pif-list-header">
+                <tr>
+                    <th>
+                        LOB
+                    </th>
+                    <th class="project-col">
+                        Project
+                    </th>
+                    <th>
+                        PM
+                    </th>
+                    <th class="hide-col">
+                        Designer
+                    </th>
+                    @*<th>
+                        Status
+                    </th>*@
+
+                    <th>
+                        Start
+                    </th>
+                    <th>
+                        Ship
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lob)
+                    </td>
+                    <td class="project-col">
+                        <a href="@Url.Action("Details", "PDS",new { id = item.pif_Id } )" class="project-col">
+                            @Html.DisplayFor(modelItem => item.projectName)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pm)
+                    </td>
+                    <td class="hide-col">
+                        @Html.DisplayFor(modelItem => item.assignedTo)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>*@
+
+
+                    <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
+                    <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
+
+                    <td class="centered">
+
+                        <a href="@Url.Action("Edit", "PDS",new { id = item.pif_Id } )" class="btn btn-warning">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+
+                        @*<a href="@Url.Action("Details", "PDS",new { id = item.pif_Id } )" class="btn btn-primary">
+                            <i class="bi bi-card-list"></i>
+                        </a>*@
+
+                    </td>
+                </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
