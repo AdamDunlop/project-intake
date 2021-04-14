@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  smartsheetspif:
-    image: ${DOCKER_REGISTRY-}smartsheetspif
-    build:
-      context: .
-      dockerfile: SmartsheetsPIF2/Dockerfile
