@@ -43,7 +43,7 @@
                     <th>
                         Project
                     </th>
-                    <th>
+                    <th  class="hide-col">
                         Team
                     </th>
                     <th>
@@ -68,11 +68,12 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.lob)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.projectName)
+                        <td class="project-col">
+                            <a href="@Url.Action("Details", "Display",new { id = item.pif_Id } )" class="project-col">
+                                @Html.DisplayFor(modelItem => item.projectName)
+                            </a>
                         </td>
-                        <td>
-
+                        <td class="hide-col">
                             @Html.DisplayFor(modelItem => item.team)
                         </td>
                         <td>
@@ -88,9 +89,9 @@
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
 
-                            <a href="@Url.Action("Details", "Display",new { id = item.pif_Id } )" class="btn btn-primary">
+                            @*<a href="@Url.Action("Details", "Display",new { id = item.pif_Id } )" class="btn btn-primary">
                                 <i class="bi bi-card-list"></i>
-                            </a>
+                            </a>*@
                             @* @Html.ActionLink("Details", "Details", new { id = item.pif_Id }, new { @class = "button" })*@
                             @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                         </td>

@@ -170,19 +170,19 @@ a.button:hover {
     height: 10vh;
 }
 
-.action-buttons {
+/*.action-buttons {
     min-width: 115px;
-}
+}*/
 
 .project-col {
     color: inherit; /* blue colors for links too */
     text-decoration: inherit; /* no underline */
 }
 
-    .project-col:hover {
-        text-decoration: none;
-        color: black;
-    }
+.project-col:hover {
+    text-decoration: none;
+    color: black;
+}
 
 
 
@@ -216,7 +216,7 @@ a.button:hover {
 /* ---------------------- Media Queries ---------------------- */
 
 @media screen and (max-width: 991px) {
-        .designer-col {
+        .hide-col {
             display: none;
         }
     }
@@ -231,8 +231,8 @@ a.button:hover {
         white-space: nowrap;
         max-width: 120px;
     }
-   
-    .designer-col {
+
+    .hide-col {
         display: none;
     }
     .spec-details {
