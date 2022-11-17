@@ -107,12 +107,13 @@ namespace SmartsheetsPIF.Controllers
                         switch (columnName)
                         {
 
-                            case "Project":
-                                pif.projectName = cell.DisplayValue;
-                                break;
 
                             case "LOB":
                                 pif.lob = cell.DisplayValue;
+                                break;
+
+                            case "Project":
+                                pif.projectName = cell.DisplayValue;
                                 break;
 
                             case "Status": 
