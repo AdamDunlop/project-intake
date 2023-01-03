@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace SmartsheetsPIF.Controllers
 {
-    public class PDSController : Controller
+    public class ArtbotController : Controller
     {
 
         public static long sheetId = 4495384983693188;
@@ -29,17 +29,17 @@ namespace SmartsheetsPIF.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            PDSModel model = new PDSModel();
+            ArtbotModel model = new ArtbotModel();
             model = GetProjectEdit(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(PDSModel model)
+        public IActionResult Edit(ArtbotModel model)
         {
             if (!ModelState.IsValid)
             {
-                PDSModel model_lists = GetPickLists(model.pif_Id);
+                ArtbotModel model_lists = GetPickLists(model.pif_Id);
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
                 model.SpecsList = model_lists.SpecsList;
@@ -54,7 +54,7 @@ namespace SmartsheetsPIF.Controllers
         [HttpGet]
         public IActionResult Details(long id)
         {
-            PDSModel model = new PDSModel();
+            ArtbotModel model = new ArtbotModel();
             model = GetProjectDetails(id);
             return View(model);
         }
@@ -85,15 +85,15 @@ namespace SmartsheetsPIF.Controllers
             return sheet;
         }
 
-        public List<PDSModel> GetRows(Sheet sheet)
+        public List<ArtbotModel> GetRows(Sheet sheet)
         {
-            List<PDSModel> pif_list = new List<PDSModel>();
+            List<ArtbotModel> pif_list = new List<ArtbotModel>();
 
             foreach (var row in sheet.Rows)
             {
                 if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue))
                 {
-                    PDSModel pif = new PDSModel();
+                    ArtbotModel pif = new ArtbotModel();
                     pif.pif_Id = (long)row.Id;
                     foreach (var cell in row.Cells)
                     {
@@ -151,9 +151,9 @@ namespace SmartsheetsPIF.Controllers
             return pif_list;
         }
 
-        public PDSModel GetProjectEdit(long row_id)
+        public ArtbotModel GetProjectEdit(long row_id)
         {
-            PDSModel pif = new PDSModel();
+            ArtbotModel pif = new ArtbotModel();
             pif.pif_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
@@ -290,9 +290,9 @@ namespace SmartsheetsPIF.Controllers
             return pif;
         }
 
-        public PDSModel GetProjectDetails(long row_id)
+        public ArtbotModel GetProjectDetails(long row_id)
         {
-            PDSModel pif = new PDSModel();
+            ArtbotModel pif = new ArtbotModel();
             pif.pif_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
@@ -437,7 +437,7 @@ namespace SmartsheetsPIF.Controllers
             return pif;
         }
 
-        public void updateProject(PDSModel pif)
+        public void updateProject(ArtbotModel pif)
         {
             SmartsheetClient smartsheet_CL = initSheet();
             Sheet sheet = LoadSheet(sheetId, smartsheet_CL);
@@ -649,9 +649,9 @@ namespace SmartsheetsPIF.Controllers
             };
         }
 
-        public PDSModel GetPickLists(long row_id)
+        public ArtbotModel GetPickLists(long row_id)
         {
-            PDSModel pif = new PDSModel();
+            ArtbotModel pif = new ArtbotModel();
             pif.pif_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 

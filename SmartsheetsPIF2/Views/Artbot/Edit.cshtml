@@ -1,4 +1,4 @@
-﻿@model SmartsheetsPIF.Models.PDSModel
+﻿@model SmartsheetsPIF.Models.ArtbotModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -21,7 +21,7 @@
 </div>
 
 
-@using (Html.BeginForm("Edit", "PDS", FormMethod.Post, new { @class = "form-group row" }))
+@using (Html.BeginForm("Edit", "Artbot", FormMethod.Post, new { @class = "form-group row" }))
 {
 <div class="col-12 col-md-6">
     @Html.HiddenFor(m => m.pif_Id)

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SmartsheetsPIF.Models
 {
-    public class PDSModel
+    public class ArtbotModel
     {
 
         public long pif_Id { get; set; }
