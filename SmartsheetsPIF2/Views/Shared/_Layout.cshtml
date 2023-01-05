@@ -6,8 +6,13 @@
     <title>@ViewData["Title"] - CM PIFs</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/css/chosen.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <style>
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -19,15 +24,28 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav  mr-auto flex-grow-1">
-                        <li class="nav-item">
+                        <li class="nav-item red">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Create Project</a>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Artbot" asp-action="List">Artbot</a>
-
                         </li>
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Display" asp-action="List">Display Production</a>
-                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Social" asp-action="List">Display Production</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="https://login.flashtalking.net/hub" target="_blank" rel="noopener noreferrer">Flashtalking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="https://critical-mass.celtra.io/#/campaigns" target="_blank" rel="noopener noreferrer">Celtra</a>
+                        </li>
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                            <li class="nav-item" stlye="float: right">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Metrics">Metrics</a>
+                            </li>
+                            <li class="nav-item" stlye="float: right">
+                                <a class="nav-link text-dark" href="">log in</a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -53,4 +71,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

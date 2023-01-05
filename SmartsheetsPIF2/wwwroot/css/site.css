@@ -193,6 +193,12 @@ a:hover {
 .centered {
     text-align: center;
 }
+
+.nav-link .login {
+    position: absolute;
+    right: 5%;     
+}
+
 /*.table-split tr {
     width: 50%;
 }

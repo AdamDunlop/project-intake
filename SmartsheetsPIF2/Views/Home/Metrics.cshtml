@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Metrics";
+}
+
+
+
+<section id="main">
+    <h1>Dashboard Metrics</h1>
+
+
+    <form>
+        <div data-form-order="1">
+
+            <div id="opening-question">
+                <select id="select-box" class="js-revealer">
+                    <option value="0" data-r-show-target="" data-r-hide-target=".opt-1, .opt-2, .opt-3, .opt-4, .opt-other">- please select -</option>
+                    <option value="1" data-r-show-target=".opt-1, .opt-other" data-r-hide-target=".opt-2, .opt-3, .opt-4">DTV</option>
+                    <option value="2" data-r-show-target=".opt-2, .opt-other" data-r-hide-target=".opt-1, .opt-3, .opt-4">ATT</option>
+                    <option value="3" data-r-show-target=".opt-3, .opt-other" data-r-hide-target=".opt-1, .opt-2, .opt-4">Nike</option>
+                    <option value="4" data-r-show-target=".opt-4, .opt-other" data-r-hide-target=".opt-1, .opt-2, .opt-3">QuickBooks</option>
+                </select>
+            </div>
+
+            <div data-response="op1" class="opt-1 is-hidden">
+                <IFRAME WIDTH=1000 HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=fe3ea69b6dfb40438f9e46924a0ecfd4"></IFRAME>
+            </div>
+            <div data-response="op2" class="opt-2 is-hidden">
+                <IFRAME WIDTH=1000 HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=b5bea69601304bb18a662e99d26a6c15"></IFRAME>
+
+            </div>
+            <div data-response="op3" class="opt-3 is-hidden">
+                <IFRAME WIDTH=1000 HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=b3bdf9bc0e534eafa876b48e1734010a"></IFRAME>
+            </div>
+            <div data-response="op4" class="opt-4 is-hidden">
+                <IFRAME WIDTH=1000 HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=d75c4eb0069245969267d2e6b3ec43c4"></IFRAME>
+            </div>
+           
+        </div>
+
+       
+    </form>
+
+
+
+</section>
