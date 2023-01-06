@@ -26,21 +26,20 @@
                     <ul class="navbar-nav  mr-auto flex-grow-1">
                         <li class="nav-item red">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Create Project</a>
+                            
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Artbot" asp-action="List">Artbot</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Artbot" asp-action="List" id="artbot">Artbot</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Social" asp-action="List">Display Production</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="https://login.flashtalking.net/hub" target="_blank" rel="noopener noreferrer">Flashtalking</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="https://critical-mass.celtra.io/#/campaigns" target="_blank" rel="noopener noreferrer">Celtra</a>
-                        </li>
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav>
                             <li class="nav-item" stlye="float: right">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Metrics">Metrics</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Metrics">Artbot Metrics</a>
+                            </li
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="LATAM">LATAM Metrics</a>
                             </li>
                             <li class="nav-item" stlye="float: right">
                                 <a class="nav-link text-dark" href="">log in</a>
@@ -59,8 +58,9 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Smartsheets - PIFs - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            - <a href="https://app.smartsheet.com/b/form/b710beb600394eb3bf81cbdf36e24561">Feedback</a>
+            &copy; 2023 - Smartsheets - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            - <a href="https://app.smartsheet.com/b/form/b710beb600394eb3bf81cbdf36e24561">Feedback</a> - 
+            <a a asp-area="" asp-controller="Home" asp-action="Process">Artbot Process</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

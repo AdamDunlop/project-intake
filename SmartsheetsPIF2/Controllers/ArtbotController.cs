@@ -119,6 +119,11 @@ namespace SmartsheetsPIF.Controllers
                                 pif.status = cell.DisplayValue;
                                 break;
 
+
+                            case "Jira":
+                                pif.jiraLink = cell.DisplayValue;
+                                break;
+
                             case "Start":
                                 if (pif.startDate != null)
                                 {
@@ -237,6 +242,11 @@ namespace SmartsheetsPIF.Controllers
                             case "Final Delivery":
                                 pif.finalDeliveryFolder = cell.DisplayValue;
                                 break;
+
+                            case "Jira":
+                                pif.jiraLink = cell.DisplayValue;
+                                break;
+
 
                             case "WBS":
                                 pif.wbs_link = cell.DisplayValue;
@@ -416,6 +426,10 @@ namespace SmartsheetsPIF.Controllers
                                 pif.finalDeliveryFolder = cell.DisplayValue;
                                 break;
 
+                            case "Jira":
+                                pif.jiraLink = cell.DisplayValue;
+                                break;
+
                             case "Description":
                                 pif.description = cell.DisplayValue;
                                 break;
@@ -466,6 +480,7 @@ namespace SmartsheetsPIF.Controllers
             var psds_cell = new Cell();
             var fxf_cell = new Cell();
             var final_delivery_cell = new Cell();
+            var jira_cell = new Cell();
             var pm_cell = new Cell();
             var deliverables_cell = new Cell();
             var description_cell = new Cell();
@@ -557,6 +572,11 @@ namespace SmartsheetsPIF.Controllers
                         final_delivery_cell.Value = pif.finalDeliveryFolder;
                         break;
 
+                    case "Jira":
+                        jira_cell.ColumnId = columnid;
+                        jira_cell.Value = pif.jiraLink;
+                        break;
+
                     case "Total Deliverables":
                         deliverables_cell.ColumnId = columnid;
                         deliverables_cell.Value = pif.deliverables;
@@ -628,6 +648,7 @@ namespace SmartsheetsPIF.Controllers
                     fxf_cell,
                     psds_cell,
                     final_delivery_cell,
+                    jira_cell,
                     deliverables_cell,
                     description_cell,
                     specs_cell

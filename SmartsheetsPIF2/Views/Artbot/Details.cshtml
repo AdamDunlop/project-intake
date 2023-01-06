@@ -4,6 +4,7 @@
     ViewData["Title"] = "Project Details";
 }
 
+
 <div class="row">
     <div class="col-12">
         <h2 class="header-title">@Html.DisplayFor(model => model.projectName) Details</h2>
@@ -74,28 +75,24 @@
         </div>
 
     </div>
-    <div class="wbs-section">
-        <hr />
-        <h4>WBS</h4>
-        <div class="wbs">
-            @if (Model.wbs_link != null)
-            {
-                <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs_link"></IFRAME>
-
-            }
-            else
-            {
-                <div class="alert alert-warning" role="alert">No WBS provided.</div>
-            }
-        </div>
-    </div>
+   
     <div class="project-details">
         <div class="details-section">
             <hr />
             <h4>Project Details</h4>
             <table class="table table-bordered">
                 <tbody>
-
+                    <tr>
+                        <td>Jira</td>
+                        @if (Model.jiraLink != null)
+                        {
+                            <td><a href="@Model.jiraLink">Jira</a></td>
+                        }
+                        else
+                        {
+                            <td class="alert alert-warning" role="alert">No PSDs link provided.</td>
+                        }
+                    </tr>
                     <tr>
                         <td>Collab Deck</td>
                         @if (Model.collabDeck != null)
@@ -157,96 +154,46 @@
                             {
                                 <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
                             }
-                            <span>List of Deliverables:</span>
-                            <ul>
-                                <li>@Html.DisplayFor(model => model.SelectedSpecs)</li>
-                            </ul>
 
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>Deliverables:</td>
+                        <td>
+                            @Html.DisplayFor(model => model.SelectedSpecs)
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <h4>Deliverables Tracker</h4>
 
-            <div id="deliverablesTracker">
 
-                @if (Model.deliverables_tracker_link != null)
+
+            <h4>Figma Board </h4>
+
+            <div id="figma">
+
+                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="700" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FULTzdNKQ7B7ypAruyDCny2%2FTEMPLATE---JUMP-CUTS%3Fnode-id%3D1008%253A22320%26t%3DToJFMk0f3sgeUC2z-1" allowfullscreen></iframe>            </div>
+        </div>
+
+
+        <div class="wbs-section">
+            <hr />
+            <h4>WBS</h4>
+            <div class="wbs">
+                @if (Model.wbs_link != null)
                 {
-                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
+                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs_link"></IFRAME>
+
                 }
                 else
                 {
-                    <div class="alert alert-warning" role="alert">
-                        No Deliverables Tracker link provided.
-                    </div>
+                    <div class="alert alert-warning" role="alert">No WBS provided.</div>
                 }
             </div>
         </div>
 
-        <div class="wander-section">
-            <hr />
-            <h4>Wander Internal Notes</h4>
-            <table class="table table-bordered">
-                <tbody>
-
-                    <tr>
-                        <td>Producer</td>
-
-                        <td></td>
-
-                    </tr>
-                    <tr>
-                        <td>Editor</td>
-
-                        <td></td>
-
-                    </tr>
-
-                    <tr>
-                        <td>Path on Studio Server</td>
-
-                        <td></td>
-
-
-                    </tr>
-
-                    <tr>
-                        <td>Contractor Files</td>
-
-                        <td></td>
-
-                    </tr>
-
-                    <tr>
-                        <td>Review Links </td>
-                        <td>
-
-                            <p><b>Social:</b></p>
-                            <p><b>Display:</b></p>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Art Buyer</td>
-                        <td>
-                            <p><input type="checkbox" /> Kickoff </p>
-                            <p>Audio:</p>
-                            <p><input type="checkbox" /> Quoted </p>
-                            <p><input type="checkbox" /> Purchased </p>
-                            <p>Visual:</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>QC Log</td>
-                        <td>
-                            <p><input type="checkbox" /> Kickoff Meeting</p>
-                            <p><input type="checkbox" /> Archived </p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
     </div>
     <a asp-action="List" class="btn btn-secondary">
         <i class="bi bi-arrow-bar-left"></i>

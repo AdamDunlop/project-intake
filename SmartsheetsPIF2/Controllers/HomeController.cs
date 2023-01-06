@@ -34,6 +34,22 @@ namespace SmartsheetsPIF2.Controllers
             return View();
         }
 
+
+        public IActionResult BidSheet()
+        {
+            return View();
+        }
+
+        public IActionResult LATAM()
+        {
+            return View();
+        }
+
+        public IActionResult Process()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -52,6 +52,8 @@ namespace SmartsheetsPIF.Models
 
         public string finalDeliveryFolder { get; set; }
 
+        public string jiraLink { get; set; }
+
         public string description { get; set; }
 
         public string deliverables { get; set; }

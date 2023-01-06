@@ -50,15 +50,12 @@
                     <th class="hide-col">
                         Designer
                     </th>
-                    @*<th>
-                        Status
-                    </th>*@
-
+                 
                     <th>
                         Start
                     </th>
                     <th>
-                        Ship
+                        Due
                     </th>
 
                     <th>
@@ -69,45 +66,42 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.lob)
-                    </td>
-                    <td class="project-col">
-                        <a href="@Url.Action("Details", "Artbot",new { id = item.pif_Id } )" class="project-col">
-                            @Html.DisplayFor(modelItem => item.projectName)
-                        </a>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pm)
-                    </td>
-                    <td class="hide-col">
-                        @Html.DisplayFor(modelItem => item.assignedTo)
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.status)
-                    </td>*@
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lob)
+                        </td>
+                        <td class="project-col">
+                            <a href="@Url.Action("Details", "Artbot", new { id = item.pif_Id } )" class="project-col">
+                                @Html.DisplayFor(modelItem => item.projectName)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pm)
+                        </td>
+                        <td class="hide-col">
+                            @Html.DisplayFor(modelItem => item.assignedTo)
+                        </td>
+                       
 
 
-                    <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
-                    <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
+                        <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
+                        <td id="endDate">@Html.DisplayFor(modelItem => item.endDate)</td>
+                        <td class="centered flex">
 
-                    <td class="centered">
+                            <a href="@Url.Action("Edit", "Artbot",new { id = item.pif_Id } )" class="btn btn-warning">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
 
-                        <a href="@Url.Action("Edit", "Artbot",new { id = item.pif_Id } )" class="btn btn-warning">
-                            <i class="bi bi-pencil-fill"></i>
-                        </a>
+                            <a href="@Url.Action("Details", "Artbot",new { id = item.pif_Id } )" class="btn btn-primary">
+                                <i class="bi bi-card-list"></i>
+                            </a>
 
-                        @*<a href="@Url.Action("Details", "Artbot",new { id = item.pif_Id } )" class="btn btn-primary">
-                            <i class="bi bi-card-list"></i>
-                        </a>*@
-
-                    </td>
-                </tr>
-                }
+                        </td>
+        </tr>
+    }
 
 
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+                </table>
+            </div>
 </div>

@@ -1,7 +1,7 @@
 ﻿@model SmartsheetsPIF.Models.ArtbotModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Update Project";
 
 }
 
@@ -10,16 +10,21 @@
     <div class="col-12">
         @if (Model.projectName != null)
         {
-            <h2 class="header-title">PIF - @Html.DisplayFor(m => m.projectName)</h2>
+            <h2 class="header-title">@Html.DisplayFor(m => m.projectName)</h2>
         }
         else
         {
-            <h2 class="header-title">PIF</h2>
+            <h2 class="header-title"></h2>
         }
         <hr />
     </div>
 </div>
 
+
+<div>
+
+    <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=3ce37696c9ca4987806543cfb8352785"></IFRAME>
+</div>
 
 @using (Html.BeginForm("Edit", "Artbot", FormMethod.Post, new { @class = "form-group row" }))
 {
@@ -54,23 +59,25 @@
         <span asp-validation-for="status_options" class="text-danger"></span>
     </div>
 
-    @*<div class="form-group">
-            <label asp-for="pm" class="control-label">Project Manager</label>
-            @Html.TextBoxFor(m => m.pm, new { @class = "form-control" })
-            <span asp-validation-for="pm" class="text-danger"></span>
-    </div>*@
+   
 
     @*<div class="form-group">
-        <label asp-for="creativeLead" class="control-label">Creative Lead</label>
-        @Html.TextBoxFor(m => m.creativeLead, new { @class = "form-control" })
-        <span asp-validation-for="creativeLead" class="text-danger"></span>
-    </div>*@
+                <label asp-for="pm" class="control-label">Project Manager</label>
+                @Html.TextBoxFor(m => m.pm, new { @class = "form-control" })
+                <span asp-validation-for="pm" class="text-danger"></span>
+        </div>*@
 
     @*<div class="form-group">
-        <label asp-for="assignedTo" class="control-label">Designer</label>
-        @Html.TextBoxFor(m => m.assignedTo, new { @class = "form-control" })
-        <span asp-validation-for="assignedTo" class="text-danger"></span>
-    </div>*@
+            <label asp-for="creativeLead" class="control-label">Creative Lead</label>
+            @Html.TextBoxFor(m => m.creativeLead, new { @class = "form-control" })
+            <span asp-validation-for="creativeLead" class="text-danger"></span>
+        </div>*@
+
+    @*<div class="form-group">
+            <label asp-for="assignedTo" class="control-label">Designer</label>
+            @Html.TextBoxFor(m => m.assignedTo, new { @class = "form-control" })
+            <span asp-validation-for="assignedTo" class="text-danger"></span>
+        </div>*@
 
     <div class="form-group project-dates">
         <label asp-for="startDate" class="control-label">Start Date</label>
@@ -89,10 +96,16 @@
 <div class="col-12 col-md-6">
 
     <div class="form-group">
+        <label asp-for="jiraLink" class="control-label">Jira</label>
+        @Html.TextBoxFor(m => m.jiraLink, new { @class = "form-control" })
+        <span asp-validation-for="jiraLink" class="text-danger"></span>
+    </div>
+
+    @*<div class="form-group">
         <label asp-for="deliverables_tracker_link" class="control-label">Deliverables Tracker</label>
         @Html.TextBoxFor(m => m.deliverables_tracker_link, new { @class = "form-control" })
         <span asp-validation-for="deliverables_tracker_link" class="text-danger"></span>
-    </div>
+    </div>*@
 
     <div class="form-group">
         <label asp-for="wbs_link" class="control-label">WBS</label>
@@ -107,10 +120,10 @@
     </div>
 
     @*<div class="form-group">
-        <label asp-for="collabDeck" class="control-label">Collab Deck</label>
-        @Html.TextBoxFor(m => m.collabDeck, new { @class = "form-control" })
-        <span asp-validation-for="collabDeck" class="text-danger"></span>
-    </div>*@
+            <label asp-for="collabDeck" class="control-label">Collab Deck</label>
+            @Html.TextBoxFor(m => m.collabDeck, new { @class = "form-control" })
+            <span asp-validation-for="collabDeck" class="text-danger"></span>
+        </div>*@
 
     <div class="form-group">
         <label asp-for="fxfDeck" class="control-label">FxF Deck</label>
@@ -123,6 +136,8 @@
         @Html.TextBoxFor(m => m.finalDeliveryFolder, new { @class = "form-control" })
         <span asp-validation-for="finalDeliveryFolder" class="text-danger"></span>
     </div>
+
+
 
 
     <div class="form-group">
@@ -146,11 +161,11 @@
     </div>
 
     <div class="form-group">
-            <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>
-            @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
-            @Html.HiddenFor(m => m.SelectedSpecs)
-            @Html.HiddenFor(m => m.SpecsList)
-        </div>
+        <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>
+        @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
+        @Html.HiddenFor(m => m.SelectedSpecs)
+        @Html.HiddenFor(m => m.SpecsList)
+    </div>
 
     <div class="form-group">
         <input type="submit" asp-action="Edit" value="Save" class="btn btn-success float-right" />

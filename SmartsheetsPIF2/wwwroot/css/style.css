@@ -1,7 +1,16 @@
-﻿.hide {
-    display: none;
+﻿.flex {
+    display: flex;
 }
 
 .is-hidden {
     display: none;
+}
+
+#artbot {
+    display: none
+}
+
+.js-revealer {
+    border: none;
+
 }
