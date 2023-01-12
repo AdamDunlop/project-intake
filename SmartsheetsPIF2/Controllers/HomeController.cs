@@ -23,9 +23,25 @@ namespace SmartsheetsPIF2.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        //public IActionResult Privacy()
+        //{
+        //    return View();
+        //}
+
+        public IActionResult Tech()
         {
             return View();
+        }
+
+        public IActionResult Video()
+        {
+            return View();
+        }
+
+        public IActionResult MKS()
+        {
+            return View();
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
