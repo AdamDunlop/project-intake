@@ -1,0 +1,7 @@
+﻿.is-hidden {
+    display: none;
+}
+
+form#pipelines {
+    height: 800px;
+}

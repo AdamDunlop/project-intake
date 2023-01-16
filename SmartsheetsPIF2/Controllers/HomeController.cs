@@ -28,20 +28,9 @@ namespace SmartsheetsPIF2.Controllers
         //    return View();
         //}
 
-        public IActionResult Tech()
+        public IActionResult Pipeline()
         {
             return View();
-        }
-
-        public IActionResult Video()
-        {
-            return View();
-        }
-
-        public IActionResult MKS()
-        {
-            return View();
-
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

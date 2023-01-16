@@ -23,4 +23,17 @@ $window.scroll(function() {
         $('body').css('padding-top' , '0');
         $('.main-header').removeClass('sticky');
     }
- });
+});
+
+
+$(document).ready(() => {
+    $('.js-revealer').on('change', function () {
+        var $select = $(this);
+        var $selected = $select.find('option:selected');
+        var hideSelector = $selected.data('r-hide-target');
+        var showSelector = $selected.data('r-show-target');
+
+        $(hideSelector).addClass('is-hidden');
+        $(showSelector).removeClass('is-hidden');
+    });
+});

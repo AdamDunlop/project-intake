@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Pipeline";
+}
+
+<form id="pipelines">
+    <div data-form-order="1">
+
+        <div id="select-form">
+            <select id="select-box" class="js-revealer">
+                <option value="0" data-r-show-target="" data-r-hide-target=".opt-1, .opt-2, .opt-3, .opt-other">- Select a Pipeline -</option>
+                <option value="1" data-r-show-target=".opt-1, .opt-other" data-r-hide-target=".opt-2, opt-3">Tech/QA</option>
+                <option value="2" data-r-show-target=".opt-2, .opt-other" data-r-hide-target=".opt-1, .opt-3">Video Production</option>
+                <option value="3" data-r-show-target=".opt-3, .opt-other" data-r-hide-target=".opt-2, opt-1">MKS</option>
+            </select>
+        </div>
+            
+        <div data-response="op1" class="opt-1 is-hidden">
+            <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=7eb07fff896e4f73b06e3554bf828559"></IFRAME>
+        </div>
+        <div data-response="op2" class="opt-2 is-hidden">
+            <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=e43898e92cf94eb092664affebd93013"></IFRAME>
+        </div>
+
+        <div data-response="op3" class="opt-3 is-hidden">
+            <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=b07386b3ac6442ebaf8d490becccc687"></IFRAME>
+        </div>
+    </div>
+
+
+</form>
+
