@@ -5,3 +5,14 @@
 form#pipelines {
     height: 800px;
 }
+
+#pipeline {
+    max-width: 85% !important;
+    height: 850px;
+}
+.nifti{
+    padding-top: 1rem;
+}
+.pipeline {
+    padding-top: 1rem;
+}

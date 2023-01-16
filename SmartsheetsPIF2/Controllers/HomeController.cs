@@ -23,10 +23,10 @@ namespace SmartsheetsPIF2.Controllers
             return View();
         }
 
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
+        public IActionResult Finance()
+        {
+            return View();
+        }
 
         public IActionResult Pipeline()
         {

@@ -29,18 +29,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Pipeline">Pipelines</a>
                         </li>
-                       
+
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNav>
-                        <li class="nav-item" stlye="float: right">
-                            <a class="nav-link text-dark" href="https://app.smartsheet.com/sheets/FR7hj56J6fmgRM39vrPFwrcMP5xPxCJX4W6X6rQ1">Financial Roadmap</a>
-                        </li>
-                    </div>
+                            <li class="nav-item" stlye="float: right">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Finance">Financial Roadmap</a>
+                            </li>
+                        </div>
                 </ul>
-            </div>
             </div>
         </nav>
     </header>
-    <div class="container container-color">
+    <div id="pipeline" class="container container-color">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
