@@ -101,8 +101,6 @@ namespace SmartsheetsPIF.Controllers
         }
 
 
-
-
         public NiftiModel GetProjectDetails(long row_id)
         {
             NiftiModel project = new NiftiModel();
@@ -125,7 +123,10 @@ namespace SmartsheetsPIF.Controllers
                                 project.projectName = cell.DisplayValue;
                                 break;
 
-                          
+                            case "Date Requested":
+                                project.dateRequested = Convert.ToDateTime(cell.Value);
+                                break;
+
                         }
                     }
                 }
