@@ -159,7 +159,6 @@ namespace SmartsheetsPIF.Controllers
 
             pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
-
             pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(17));
 
             foreach (var row in sheet.Rows)

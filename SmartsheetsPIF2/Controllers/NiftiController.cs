@@ -18,12 +18,12 @@ namespace SmartsheetsPIF.Controllers
         public static long sheetId = 5536034378278788;
 
 
-        //[HttpGet]
-        //public IActionResult List()
-        //{
-        //    var sheet = LoadSheet(sheetId, initSheet());
-        //return View(GetRows(sheet));
-        //}
+        [HttpGet]
+        public IActionResult List()
+        {
+            var sheet = LoadSheet(sheetId, initSheet());
+            return View(GetRows(sheet));
+        }
 
 
 
@@ -61,44 +61,44 @@ namespace SmartsheetsPIF.Controllers
             return sheet;
         }
 
-        //public List<NiftiModel> GetRows(Sheet sheet)
-        //{
-        //    List<NiftiModel> project_list = new List<NiftiModel>();
+        public List<NiftiModel> GetRows(Sheet sheet)
+        {
+            List<NiftiModel> project_list = new List<NiftiModel>();
 
-        //    foreach (var row in sheet.Rows)
-        //    {
-        //        if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue))
-        //        {
-        //            NiftiModel project = new NiftiModel();
-        //            project.pipeline_Id = (long)row.Id;
-        //            foreach (var cell in row.Cells)
-        //            {
-        //                long columnid = cell.ColumnId.Value;
-        //                string columnName = sheet.GetColumnById(columnid).Title.ToString();
-        //                Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
-        //                switch (columnName)
-        //                {
+            foreach (var row in sheet.Rows)
+            {
+                if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue))
+                {
+                    NiftiModel project = new NiftiModel();
+                    project.pipeline_Id = (long)row.Id;
+                    foreach (var cell in row.Cells)
+                    {
+                        long columnid = cell.ColumnId.Value;
+                        string columnName = sheet.GetColumnById(columnid).Title.ToString();
+                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
+                        switch (columnName)
+                        {
 
-        //                    case "Project Name":
-        //                        project.projectName = cell.DisplayValue;
-        //                        break;
+                            case "Project Name":
+                                project.projectName = cell.DisplayValue;
+                                break;
 
-        //                    case "Date Requested":
-        //                        if(project.dateRequested != null)
-        //                        {
-        //                            project.dateRequested = Convert.ToDateTime(cell.Value);
-        //                        }
-        //                        //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
-        //                        break;
+                            case "Date Requested":
+                                if (project.dateRequested != null)
+                                {
+                                    project.dateRequested = Convert.ToDateTime(cell.Value);
+                                }
+                                //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                break;
 
 
-        //                }
-        //            }
-        //            project_list.Add(project);
-        //        }
-        //    }
-        //    return project_list;
-        //}
+                        }
+                    }
+                    project_list.Add(project);
+                }
+            }
+            return project_list;
+        }
 
 
 
