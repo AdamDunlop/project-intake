@@ -23,6 +23,11 @@ namespace SmartsheetsPIF2.Controllers
             return View();
         }
 
+        public IActionResult Nifti()
+        {
+            return View();
+        }
+
         public IActionResult Finance()
         {
             return View();

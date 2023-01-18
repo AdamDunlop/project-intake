@@ -8,7 +8,7 @@ form#pipelines {
 
 #pipeline {
     max-width: 85% !important;
-    height: 850px;
+/*    height: 850px;*/
 }
 .nifti, .pipeline, .finance {
     padding-top: 1rem;

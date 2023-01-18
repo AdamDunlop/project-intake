@@ -61,7 +61,7 @@ namespace SmartsheetsPIF2.Controllers
         public SmartsheetClient initSheet()
         {
             // Initialize client
-            SmartsheetClient smartsheet_CL = new SmartsheetBuilder().SetAccessToken("voic91jwhahv2mws2cow5frz96")
+            SmartsheetClient smartsheet_CL = new SmartsheetBuilder().SetAccessToken("x5QRZ9m5hrjG4xdlnnHbQVcxHZnrC37oYPpO8")
                 // TODO: Set your API access in environment variable SMARTSHEET_ACCESS_TOKEN or else here
                 .Build();
             return smartsheet_CL;

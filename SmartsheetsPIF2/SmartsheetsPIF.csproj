@@ -20,4 +20,17 @@
     <PackageReference Include="smartsheet-csharp-sdk" Version="2.101.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Models\appsettings.cs">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Nifti\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Nifti\" />
+  </ItemGroup>
 </Project>
