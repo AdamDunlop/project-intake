@@ -72,6 +72,8 @@ namespace SmartsheetsPIF.Controllers
                     NiftiModel project = new NiftiModel();
                     project.pipeline_Id = (long)row.Id;
                     foreach (var cell in row.Cells)
+
+
                     {
                         long columnid = cell.ColumnId.Value;
                         string columnName = sheet.GetColumnById(columnid).Title.ToString();
@@ -81,7 +83,7 @@ namespace SmartsheetsPIF.Controllers
 
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;
-                                break;
+                                break;               
 
                             case "Date Requested":
                                 if (project.dateRequested != null)
@@ -91,6 +93,13 @@ namespace SmartsheetsPIF.Controllers
                                 //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
+                            case "Type of Project":
+                                project.type = cell.DisplayValue;
+                                break;
+
+                            case "Client Group":
+                                project.clientGroup = cell.DisplayValue;
+                                break;
 
                         }
                     }
@@ -106,6 +115,7 @@ namespace SmartsheetsPIF.Controllers
             NiftiModel project = new NiftiModel();
             project.pipeline_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
+
 
 
             foreach (var row in sheet.Rows)
@@ -127,11 +137,36 @@ namespace SmartsheetsPIF.Controllers
                                 project.dateRequested = Convert.ToDateTime(cell.Value);
                                 break;
 
+                            case "Type of Project":
+                                project.type = cell.DisplayValue;
+                                break;
+
+
+                            case "Lead Client Stakeholder":
+                                project.clientStakeholder = cell.DisplayValue;
+                                break;
+
+                            case "Client Budget":
+                                project.clientBudget = cell.DisplayValue;
+                                break;
+
+                            case "Project Briefing Date":
+                                project.briefDate = Convert.ToDateTime(cell.Value);
+                                break;
+
+                            case "Project Live Date":
+                                project.liveDate = Convert.ToDateTime(cell.Value);
+                                break;
+
+
+
                         }
                     }
                 }
             }
             return project;
         }
+
+
     }
 }

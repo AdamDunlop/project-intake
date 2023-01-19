@@ -13,3 +13,15 @@ form#pipelines {
 .nifti, .pipeline, .finance {
     padding-top: 1rem;
 }
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    background-color: lightblue;
+}
+
+.table-striped tbody tr:nth-of-type(odd):hover {
+    background-color: lightblue !important;
+}

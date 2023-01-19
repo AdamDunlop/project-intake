@@ -38,33 +38,46 @@
         <table class="table table-striped">
             <thead class="pif-list-header">
                 <tr>
-                   
+
                     <th class="project-col">
                         Project
                     </th>
-                   
+
                     <th>
-                        Date
+                        Date Submitted
                     </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Client Group
+                    </th>
+
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var data in Model)
                 {
-                    <tr>
-                   
-                        <td class="project-col">
-                            <a href="@Url.Action("Details", "Nifti",new { id = item.pipeline_Id } )" class="project-col">
-                                @Html.DisplayFor(modelItem => item.projectName)
-                            </a>
-                        </td>
-                       
-                        <td id="startDate">
-                            @Html.DisplayFor(modelItem => item.dateRequested)
-                        </td>
-                  
+                <tr class="clickable-row" data-href="@Url.Action("Details", "Nifti",new { id = data.pipeline_Id } )"     >
+
+                    <td>
+                         @Html.DisplayFor(modelItem => data.projectName)
+                    </td>
+
+                    <td id="startDate">
+                        @Html.DisplayFor(modelItem => data.dateRequested)
+                    </td>
+
+                    <td id="type">
+                        @Html.DisplayFor(modelItem => data.type)
+                    </td>
+
+                    <td id="client-group">
+                        @Html.DisplayFor(modelItem => data.clientGroup)
+                    </td>
+
                 </tr>
-            }
+                 }
             </tbody>
         </table>
     </div>

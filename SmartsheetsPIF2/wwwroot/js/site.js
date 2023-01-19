@@ -37,3 +37,10 @@ $(document).ready(() => {
         $(showSelector).removeClass('is-hidden');
     });
 });
+
+
+jQuery(document).ready(function ($) {
+    $(".clickable-row").click(function () {
+        window.location = $(this).data("href");
+    });
+});
