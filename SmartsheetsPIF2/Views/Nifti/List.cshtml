@@ -44,6 +44,10 @@
                     </th>
 
                     <th>
+                        Intake Type
+                    </th>
+
+                    <th>
                         Date Submitted
                     </th>
                     <th>
@@ -58,10 +62,13 @@
             <tbody>
                 @foreach (var data in Model)
                 {
-                <tr class="clickable-row" data-href="@Url.Action("Details", "Nifti",new { id = data.pipeline_Id } )"     >
+                <tr class="clickable-row" data-href="@Url.Action("Details", "Nifti",new { id = data.pipeline_Id } )">
 
                     <td>
-                         @Html.DisplayFor(modelItem => data.projectName)
+                        @Html.DisplayFor(modelItem => data.projectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => data.intakeType)
                     </td>
 
                     <td id="startDate">

@@ -1,0 +1,44 @@
+﻿@model SmartsheetsPIF.Models.NiftiModel
+
+@{
+    ViewData["Title"] = "Change Request";
+}
+
+
+<div class="row">
+
+    <div class="col-12">
+
+
+        @if (Model.projectName != null)
+
+        {
+            <h5 class="header-title">Project - @Html.DisplayFor(m => m.projectName)</h5>
+        }
+
+        @using (Html.BeginForm("Edit", "Nifti", FormMethod.Post, new { @class = "form-group row" }))
+        {
+            <div class="col-12 col-md-6">
+                @Html.HiddenFor(m => m.pipeline_Id)
+
+                <div class="form-group">
+                    <label asp-for="projectName" class="control-label">Project Name</label>
+                    @Html.TextBoxFor(m => m.projectName, new { @class = "form-control" })
+                    <span asp-validation-for="projectName" class="text-danger"></span>
+                </div>
+
+                <hr />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" asp-action="Edit" value="Save" class="btn btn-success float-right" />
+            </div>
+
+
+        }
+        <div class="back">
+            <a asp-action="List" class="btn btn-secondary">
+                <i class="bi bi-arrow-bar-left"></i>
+                <span>Back to List</span>
+            </a>
+        </div>

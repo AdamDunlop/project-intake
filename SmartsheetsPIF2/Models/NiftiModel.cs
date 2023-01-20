@@ -29,6 +29,8 @@ namespace SmartsheetsPIF.Models
 
         public string type { get; set; }
 
+        public string intakeType { get; set; }
+
         public string clientGroup { get; set; }
 
         public string clientBudget { get; set; }

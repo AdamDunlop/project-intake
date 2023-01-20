@@ -25,14 +25,29 @@ namespace SmartsheetsPIF.Controllers
             return View(GetRows(sheet));
         }
 
-
-
         [HttpGet]
         public IActionResult Details(long id)
         {
             NiftiModel model = new NiftiModel();
             model = GetProjectDetails(id);
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(long id)
+        {
+            NiftiModel model = new NiftiModel();
+            model = GetProjectEdit(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(NiftiModel model)
+        {
+          
+                updateProject(model);
+                return RedirectToAction("List");
+         
         }
 
 
@@ -83,7 +98,11 @@ namespace SmartsheetsPIF.Controllers
 
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;
-                                break;               
+                                break;
+
+                            case "Intake Type":
+                                project.intakeType = cell.DisplayValue;
+                                break;
 
                             case "Date Requested":
                                 if (project.dateRequested != null)
@@ -133,6 +152,11 @@ namespace SmartsheetsPIF.Controllers
                                 project.projectName = cell.DisplayValue;
                                 break;
 
+
+                            case "Intake Type":
+                                project.intakeType = cell.DisplayValue;
+                                break;
+
                             case "Date Requested":
                                 project.dateRequested = Convert.ToDateTime(cell.Value);
                                 break;
@@ -140,7 +164,6 @@ namespace SmartsheetsPIF.Controllers
                             case "Type of Project":
                                 project.type = cell.DisplayValue;
                                 break;
-
 
                             case "Lead Client Stakeholder":
                                 project.clientStakeholder = cell.DisplayValue;
@@ -168,5 +191,92 @@ namespace SmartsheetsPIF.Controllers
         }
 
 
+        public NiftiModel GetProjectEdit(long row_id)
+        {
+            NiftiModel project = new NiftiModel();
+            project.pipeline_Id = row_id;
+            Sheet sheet = LoadSheet(sheetId, initSheet());
+
+
+            foreach (var row in sheet.Rows)
+            {
+                if (row.Id == row_id)
+                {
+                    foreach (var cell in row.Cells)
+                    {
+                        long columnid = cell.ColumnId.Value;
+                        string columnName = sheet.GetColumnById(columnid).Title.ToString();
+                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
+                        switch (columnName)
+                        {
+                            case "Project Name":
+                                project.projectName = cell.DisplayValue;
+                                break;
+
+                        }
+                    }
+                }
+            }
+            return project;
+        }
+
+        public void updateProject(NiftiModel project)
+        {
+            SmartsheetClient smartsheet_CL = initSheet();
+            Sheet sheet = LoadSheet(sheetId, smartsheet_CL);
+
+            int row_number = 0;
+            foreach (var row_b in sheet.Rows)
+            {
+                if (row_b.Id == project.pipeline_Id)
+                {
+                    row_number = row_b.RowNumber.Value;
+                }
+            }
+
+            Row row = sheet.GetRowByRowNumber(row_number);
+            var rowToTupdate = new Row();
+            var project_cell = new Cell();
+
+
+            foreach (var cell in row.Cells)
+            {
+                long columnid = cell.ColumnId.Value;
+                string columnName = sheet.GetColumnById(columnid).Title.ToString();
+
+                switch (columnName)
+                {
+                    case "Project Name":
+                        project_cell.ColumnId = columnid;
+                        project_cell.Value = project.projectName;
+                        break;
+
+
+                }
+            };
+
+            rowToTupdate = new Row
+            {
+                Id = project.pipeline_Id,
+                Cells = new Cell[] {
+                    project_cell
+                }
+            };
+
+            try
+            {
+                IList<Row> updatedRow = smartsheet_CL.SheetResources.RowResources.UpdateRows(
+                sheet.Id.Value,
+                new Row[] { rowToTupdate }
+            );
+                TempData["Result"] = "Success";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Project Update has Failed: " + e.Message);
+                TempData["Result"] = "Failed";
+            };
+        }
+        
     }
 }
