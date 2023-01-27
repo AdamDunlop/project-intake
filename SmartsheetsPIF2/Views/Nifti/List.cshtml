@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmartsheetsPIF.Models.NiftiModel>
+﻿@model IEnumerable<Smartsheetsproject.Models.NiftiModel>
 
 @{
     ViewData["Title"] = "Nifti Pipeline";
@@ -36,7 +36,7 @@
     <div class="col-12">
         <h2 class="header-title">Nifti Pipeline</h2>
         <table class="table table-striped">
-            <thead class="pif-list-header">
+            <thead class="project-list-header">
                 <tr>
 
                     <th class="project-col">
@@ -56,16 +56,19 @@
                     <th>
                         Client Group
                     </th>
-
+                    <th>
+                        edit
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var data in Model)
                 {
-                <tr class="clickable-row" data-href="@Url.Action("Details", "Nifti",new { id = data.pipeline_Id } )">
-
-                    <td>
-                        @Html.DisplayFor(modelItem => data.projectName)
+                <tr>
+                    <td class="project-col">
+                        <a class="clickable-row" href="@Url.Action("Details", "Nifti", new { id = data.pipelineId  } )">
+                            @Html.DisplayFor(modelItem => data.projectName)
+                        </a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => data.intakeType)
@@ -82,9 +85,17 @@
                     <td id="client-group">
                         @Html.DisplayFor(modelItem => data.clientGroup)
                     </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Nifti",new { id = data.pipelineId } )">
+                            Edit
+                        </a>
+                    </td>
 
                 </tr>
-                 }
+                } 
+
+
+
             </tbody>
         </table>
     </div>

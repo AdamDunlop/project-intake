@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace SmartsheetsPIF.Models
+namespace Smartsheetsproject.Models
 {
     public class PDSModel
     {
 
-        public long pif_Id { get; set; }
+        public long project_Id { get; set; }
 
         public string lob { get; set; }
 

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Smartsheet.Api;
 using Smartsheet.Api.Models;
-using SmartsheetsPIF.Models;
+using Smartsheetsproject.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SmartsheetsPIF.Controllers
+namespace Smartsheetsproject.Controllers
 {
     public class NiftiController : Controller
     {
@@ -24,6 +25,14 @@ namespace SmartsheetsPIF.Controllers
             var sheet = LoadSheet(sheetId, initSheet());
             return View(GetRows(sheet));
         }
+
+        //public ActionResult GetId(int id)
+        //{
+        //    ViewData["project_Id"] = id;
+        //    return View();
+        //}
+   
+
 
         [HttpGet]
         public IActionResult Details(long id)
@@ -44,9 +53,24 @@ namespace SmartsheetsPIF.Controllers
         [HttpPost]
         public IActionResult Edit(NiftiModel model)
         {
-          
+
+
+
+            if (!ModelState.IsValid)
+            {
+                NiftiModel model_lists = GetListValues(model.pipelineId);
+                model.intake_options = model_lists.intake_options;
+                //model.type_options = model_lists.type_options;
+                return View(model);
+                //return RedirectToAction("Edit", new { id = model.project_Id });
+            }
+            else
+            {
                 updateProject(model);
+                //return View("Index");
+                TempData["Success"] = "Success";
                 return RedirectToAction("List");
+            };
          
         }
 
@@ -85,7 +109,7 @@ namespace SmartsheetsPIF.Controllers
                 if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue))
                 {
                     NiftiModel project = new NiftiModel();
-                    project.pipeline_Id = (long)row.Id;
+                    project.pipelineId = (long)row.Id;
                     foreach (var cell in row.Cells)
 
 
@@ -104,12 +128,13 @@ namespace SmartsheetsPIF.Controllers
                                 project.intakeType = cell.DisplayValue;
                                 break;
 
+
                             case "Date Requested":
                                 if (project.dateRequested != null)
                                 {
                                     project.dateRequested = Convert.ToDateTime(cell.Value);
                                 }
-                                //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
                             case "Type of Project":
@@ -120,6 +145,7 @@ namespace SmartsheetsPIF.Controllers
                                 project.clientGroup = cell.DisplayValue;
                                 break;
 
+                          
                         }
                     }
                     project_list.Add(project);
@@ -132,9 +158,10 @@ namespace SmartsheetsPIF.Controllers
         public NiftiModel GetProjectDetails(long row_id)
         {
             NiftiModel project = new NiftiModel();
-            project.pipeline_Id = row_id;
+            project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
+            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
 
 
             foreach (var row in sheet.Rows)
@@ -152,7 +179,6 @@ namespace SmartsheetsPIF.Controllers
                                 project.projectName = cell.DisplayValue;
                                 break;
 
-
                             case "Intake Type":
                                 project.intakeType = cell.DisplayValue;
                                 break;
@@ -168,6 +194,10 @@ namespace SmartsheetsPIF.Controllers
                             case "Lead Client Stakeholder":
                                 project.clientStakeholder = cell.DisplayValue;
                                 break;
+
+                            //case "Category":
+                            //    project.CategoryList = cell.DisplayValue;
+                            //    break;
 
                             case "Client Budget":
                                 project.clientBudget = cell.DisplayValue;
@@ -194,9 +224,12 @@ namespace SmartsheetsPIF.Controllers
         public NiftiModel GetProjectEdit(long row_id)
         {
             NiftiModel project = new NiftiModel();
-            project.pipeline_Id = row_id;
+            project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
+            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
+
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(6));
 
             foreach (var row in sheet.Rows)
             {
@@ -213,6 +246,39 @@ namespace SmartsheetsPIF.Controllers
                                 project.projectName = cell.DisplayValue;
                                 break;
 
+                            case "Intake Type":
+                                project.intakeType = cell.DisplayValue;
+                                break;
+
+                            case "Category":
+
+                                // List<SelectListItem> selectedvalues = new List<SelectListItem>();
+
+                                if (cell.DisplayValue != null)
+                                {
+                                    List<string> selectedvalues = new List<string>();
+
+                                    var list = cell.DisplayValue.Split(",");
+
+                                    foreach (var spec in list)
+                                    {
+                                        IEnumerable<SelectListItem> variable = project.CategoryList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+
+                                        var id = "";
+
+                                        foreach (var i in variable)
+                                        {
+                                            id = i.Value;
+                                        }
+
+                                        //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                        selectedvalues.Add(id);
+
+                                        variable = null;
+                                    }
+                                    project.CategoryList = (IEnumerable<SelectListItem>)selectedvalues;
+                                }
+                                break;
                         }
                     }
                 }
@@ -228,7 +294,7 @@ namespace SmartsheetsPIF.Controllers
             int row_number = 0;
             foreach (var row_b in sheet.Rows)
             {
-                if (row_b.Id == project.pipeline_Id)
+                if (row_b.Id == project.pipelineId)
                 {
                     row_number = row_b.RowNumber.Value;
                 }
@@ -236,8 +302,10 @@ namespace SmartsheetsPIF.Controllers
 
             Row row = sheet.GetRowByRowNumber(row_number);
             var rowToTupdate = new Row();
-            var project_cell = new Cell();
 
+            var intake_cell = new Cell();
+            var project_cell = new Cell();
+            var category_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -246,20 +314,66 @@ namespace SmartsheetsPIF.Controllers
 
                 switch (columnName)
                 {
+                    case "Intake Type":
+                        intake_cell.ColumnId = columnid;
+                        intake_cell.Value = project.intakeType;
+                        break;
+
                     case "Project Name":
                         project_cell.ColumnId = columnid;
                         project_cell.Value = project.projectName;
                         break;
 
 
+                    case "Category":
+                        category_cell.ColumnId = columnid;
+                        ObjectValue objct = null;
+                        bool flag = false;
+                        if (project.SelectedCategory != null)
+                        {
+                            foreach (var size in project.SelectedCategory)
+
+                            {
+                                if (size != null)
+                                {
+                                    if (size.Contains("System.String"))
+                                    {
+                                        flag = true;
+                                    }
+                                }
+                            }
+                            if (flag)
+                            {
+                                project.SelectedCategory.RemoveAt(project.SelectedCategory.Count() - 1);
+                            }
+
+                            if (project.SelectedCategory.Count() == 0)
+                            {
+                                project.SelectedCategory.Add("TBD");
+                                objct = new MultiPicklistObjectValue(project.SelectedCategory);
+
+                            }
+                            else
+                            {
+                                objct = new MultiPicklistObjectValue(project.SelectedCategory);
+
+                            }
+                        }
+                        category_cell.ObjectValue = objct;
+
+                        break;
+
                 }
             };
 
             rowToTupdate = new Row
             {
-                Id = project.pipeline_Id,
+                Id = project.pipelineId,
                 Cells = new Cell[] {
-                    project_cell
+                    intake_cell,
+                    project_cell,
+                    category_cell
+
                 }
             };
 
@@ -277,6 +391,50 @@ namespace SmartsheetsPIF.Controllers
                 TempData["Result"] = "Failed";
             };
         }
-        
+
+
+        public NiftiModel GetListValues(long row_id)
+        {
+            NiftiModel project = new NiftiModel();
+            project.pipelineId = row_id;
+            Sheet sheet = LoadSheet(sheetId, initSheet());
+
+       
+            //Get Status options
+            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
+            //project.category_options = Get_Category_List(sheet.GetColumnByIndex(6));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(6));
+
+            //Get Team options
+            //project.type_options = Get_status_picklist(sheet.GetColumnByIndex(9));
+
+
+            return project;
+        }
+
+        public IEnumerable<SelectListItem> Get_Intake_List(Column type_col)
+        {
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var type in type_col.Options)
+            {
+                options.Add(new SelectListItem { Text = type, Value = type });
+            }
+            return options;
+        }
+
+        public ICollection<SelectListItem> Get_Category_List(Column category_col)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //int cont = 0;
+            foreach (var category in category_col.Options)
+            {
+                //cont++;
+                //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+                list.Add(new SelectListItem { Text = category, Value = category });
+            }
+            return list;
+        }
+
+       
     }
 }

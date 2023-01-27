@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace SmartsheetsPIF2.Models
+namespace Smartsheetsproject2.Models
 {
     public class ErrorViewModel
     {

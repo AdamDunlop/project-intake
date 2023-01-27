@@ -7,8 +7,7 @@
     <UserSecretsId>54e3c396-49cd-495d-8902-eec797aece3b</UserSecretsId>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'SmartsheetsPIF2' " />
-
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Smartsheetsproject2' " />
   <ItemGroup>
     <Content Remove="C:\Users\Pc\.nuget\packages\smartsheet-csharp-sdk\2.101.0\contentFiles\any\netstandard2.0\icons\logo.png" />
     <Content Remove="Views\Display\SocialPIFs.cshtml" />
@@ -26,11 +25,25 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Compile>
+    <Compile Update="Views\Components\DesignForm.cs">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Nifti\" />
+    <None Remove="Views\Components\" />
+    <None Remove="Views\Components\DesignForm\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Nifti\" />
+    <Folder Include="Views\Components\" />
+    <Folder Include="Views\Components\DesignForm\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\Components\DesignForm">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 </Project>

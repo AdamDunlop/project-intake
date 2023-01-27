@@ -1,4 +1,4 @@
-﻿@model SmartsheetsPIF.Models.PDSModel
+﻿@model Smartsheetsproject.Models.PDSModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,11 +10,11 @@
     <div class="col-12">
         @if (Model.projectName != null)
         {
-            <h2 class="header-title">PIF - @Html.DisplayFor(m => m.projectName)</h2>
+            <h2 class="header-title">project - @Html.DisplayFor(m => m.projectName)</h2>
         }
         else
         {
-            <h2 class="header-title">PIF</h2>
+            <h2 class="header-title">project</h2>
         }
         <hr />
     </div>
@@ -24,7 +24,7 @@
 @using (Html.BeginForm("Edit", "PDS", FormMethod.Post, new { @class = "form-group row" }))
 {
 <div class="col-12 col-md-6">
-    @Html.HiddenFor(m => m.pif_Id)
+    @Html.HiddenFor(m => m.project_Id)
 
 
     <div class="form-group">

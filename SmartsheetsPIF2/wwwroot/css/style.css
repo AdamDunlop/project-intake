@@ -25,3 +25,8 @@ form#pipelines {
 .table-striped tbody tr:nth-of-type(odd):hover {
     background-color: lightblue !important;
 }
+
+.project-col a{
+    color: black;
+
+}

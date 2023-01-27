@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SmartsheetsPIF2.Models;
+using Smartsheetsproject2.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SmartsheetsPIF2.Controllers
+namespace Smartsheetsproject2.Controllers
 {
     public class HomeController : Controller
     {

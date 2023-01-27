@@ -84,7 +84,7 @@ body {
 }
 
 
-/* PIF Details View --------------------- */
+/* project Details View --------------------- */
 
 .details-view, .project-details, .wbs {
     width: 100%;
@@ -125,7 +125,7 @@ a:hover {
     text-decoration: underline !important;
 }
 
-.pif-list-header {
+.project-list-header {
     background-color: #3A5D9D;
     color: white;
 }

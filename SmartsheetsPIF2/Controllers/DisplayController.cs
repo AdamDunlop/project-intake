@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SmartsheetsPIF.Models;
+using Smartsheetsproject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using Smartsheet.Api;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace SmartsheetsPIF2.Controllers
+namespace Smartsheetsproject2.Controllers
 {
     public class DisplayController : Controller
     {
@@ -44,13 +44,13 @@ namespace SmartsheetsPIF2.Controllers
         {
             if (!ModelState.IsValid)
             {
-                DisplayModel model_lists = GetPickLists(model.pif_Id);
+                DisplayModel model_lists = GetPickLists(model.project_Id);
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
                 model.team_options = model_lists.team_options;
                 model.SpecsList = model_lists.SpecsList;
                 return View(model);
-                //return RedirectToAction("Edit", new { id = model.pif_Id });
+                //return RedirectToAction("Edit", new { id = model.project_Id });
             }
             else
             {
@@ -84,14 +84,14 @@ namespace SmartsheetsPIF2.Controllers
         }
         public List<DisplayModel> GetRows(Sheet sheet)
         {
-            List<DisplayModel> pif_list = new List<DisplayModel>();
+            List<DisplayModel> project_list = new List<DisplayModel>();
 
             foreach (var row in sheet.Rows)
             {
                 if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue))
                 {
-                    DisplayModel pif = new DisplayModel();
-                    pif.pif_Id = (long)row.Id;
+                    DisplayModel project = new DisplayModel();
+                    project.project_Id = (long)row.Id;
                     foreach (var cell in row.Cells)
                     {
                         long columnid = cell.ColumnId.Value;
@@ -101,64 +101,64 @@ namespace SmartsheetsPIF2.Controllers
                         {
 
                             case "Project":
-                                pif.projectName = cell.DisplayValue;
+                                project.projectName = cell.DisplayValue;
                                 break;
 
                             case "LOB":
-                                pif.lob = cell.DisplayValue;
+                                project.lob = cell.DisplayValue;
                                 break;
 
                             case "Tenrox Codes":
-                                pif.tenroxCode = cell.DisplayValue;
+                                project.tenroxCode = cell.DisplayValue;
                                 break;
 
                             case "Status":
-                                pif.status = cell.DisplayValue;
+                                project.status = cell.DisplayValue;
                                 break;
 
                             case "Start":
-                                if (pif.startDate != null) 
+                                if (project.startDate != null) 
                                 {
-                                    pif.startDate = Convert.ToDateTime(cell.Value);
+                                    project.startDate = Convert.ToDateTime(cell.Value);
                                 }
                                 
-                                //pif.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
                             case "Ship":
-                                if (pif.endDate != null) 
+                                if (project.endDate != null) 
                                 {
-                                    pif.endDate = Convert.ToDateTime(cell.Value);
+                                    project.endDate = Convert.ToDateTime(cell.Value);
                                 }                                
-                                //pif.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
+                                //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
                             case "Team":
-                                pif.team = cell.DisplayValue;
+                                project.team = cell.DisplayValue;
                                 break;
                         }
                     }
-                    pif_list.Add(pif);
+                    project_list.Add(project);
                 }
             }
-            return pif_list;
+            return project_list;
         }
         public DisplayModel GetProjectEdit(long row_id)
         {
-            DisplayModel pif = new DisplayModel();
-            pif.pif_Id = row_id;
+            DisplayModel project = new DisplayModel();
+            project.project_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             //Get LOB options
-            pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             //Get Status options
-            pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             
             //Get Specs List
-            pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
+            project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
 
             //Get Team options
-            pif.team_options = Get_team_picklist(sheet.GetColumnByIndex(16));
+            project.team_options = Get_team_picklist(sheet.GetColumnByIndex(16));
 
             foreach (var row in sheet.Rows)
             {
@@ -172,27 +172,27 @@ namespace SmartsheetsPIF2.Controllers
                         switch (columnName)
                         {
                             case "Project":
-                                pif.projectName = cell.DisplayValue;
+                                project.projectName = cell.DisplayValue;
                                 break;
 
                             case "LOB":
-                                foreach (var item in pif.lob_options)
+                                foreach (var item in project.lob_options)
                                 {
                                     if (item.Value.ToString() == cell.DisplayValue)
                                     {
-                                        //pif.lob_options.
+                                        //project.lob_options.
                                         item.Selected = true;
                                     }
                                 }
-                                //pif.lob = cell.DisplayValue;
+                                //project.lob = cell.DisplayValue;
                                 break;
 
                             case "Tenrox Code":
-                                pif.tenroxCode = cell.DisplayValue;
+                                project.tenroxCode = cell.DisplayValue;
                                 break;
 
                             case "Status":
-                                foreach (var item in pif.status_options)
+                                foreach (var item in project.status_options)
                                 {
                                     if (item.Value.ToString() == cell.DisplayValue)
                                     {
@@ -204,56 +204,55 @@ namespace SmartsheetsPIF2.Controllers
                             case "Start":
                                 if (cell.Value != null) 
                                 {
-                                    pif.startDate = Convert.ToDateTime(cell.Value);
+                                    project.startDate = Convert.ToDateTime(cell.Value);
                                 }                                
                                 break;
 
                             case "Ship":
                                 if (cell.Value != null) 
                                 {
-                                    pif.endDate = Convert.ToDateTime(cell.Value);
+                                    project.endDate = Convert.ToDateTime(cell.Value);
                                 }                                
                                 break;
 
                             case "PM":
-                                pif.pm = cell.DisplayValue;
+                                project.pm = cell.DisplayValue;
                                 break;
 
                             case "Type":
-                                pif.requestType = cell.DisplayValue;
+                                project.requestType = cell.DisplayValue;
                                 break;
 
                             case "Team":
-                                pif.team = cell.DisplayValue;
+                                project.team = cell.DisplayValue;
                                 break;
 
                             case "Deck":
-                                pif.Deck = cell.DisplayValue;
+                                project.Deck = cell.DisplayValue;
                                 break;
 
                             case "Final Delivery":
-                                pif.finalDeliveryFolder = cell.DisplayValue;
+                                project.finalDeliveryFolder = cell.DisplayValue;
                                 break;
 
                             case "PSDs":
-                                pif.PSDs = cell.DisplayValue;
+                                project.PSDs = cell.DisplayValue;
                                 break;
 
                             case "Box Folder":
-                                pif.boxFolder = cell.DisplayValue;
+                                project.boxFolder = cell.DisplayValue;
                                 break;
 
                             case "WBS":
-                                pif.wbs_link = cell.DisplayValue;
+                                project.wbs_link = cell.DisplayValue;
                                 break;
 
                             case "Deliverables Tracker":
-                                pif.deliverables_tracker_link = cell.DisplayValue;
+                                project.deliverables_tracker_link = cell.DisplayValue;
                                 break;
 
                             case "Specs":
 
-                                // List<SelectListItem> selectedvalues = new List<SelectListItem>();
 
                                 if (cell.DisplayValue != null)
                                 {
@@ -263,7 +262,7 @@ namespace SmartsheetsPIF2.Controllers
 
                                     foreach (var spec in list)
                                     {
-                                        IEnumerable<SelectListItem> variable = pif.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+                                        IEnumerable<SelectListItem> variable = project.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
 
                                         var id = "";
 
@@ -277,64 +276,45 @@ namespace SmartsheetsPIF2.Controllers
 
                                         variable = null;
                                     }
-                                    pif.SelectedSpecs = selectedvalues;
+                                    project.SelectedSpecs = selectedvalues;
                                 }
-                                
-                                ////Temp => This doesn't affect anytihing, it can be removed
-                                //foreach (var sl in pif.SpecsList)
-                                //{
-                                //    var id = selectedvalues.Find(x => x.Value == sl.Value,);
-                                //    if (id != null) {
-                                //        sl.Selected = true;
-                                //    }
-                                //}
-
-                                //Temp => This works
-                                //List<string> list2 = new List<string>();
-
-                                //foreach (var sl2 in selectedvalues) 
-                                //{
-                                //    list2.Add(sl2.Value);
-                                //}
-                                //pif.SelectedSpecs = list2;
-
-                                //Temp for Multiselect
-                                //pif.SelectedSpecs = new MultiSelectList(selectedvalues, "Value", "Text", selectedvalues);
                                 break;
 
-                         case "Notes":
-                                pif.notes = cell.DisplayValue;
+                         
+
+                            case "Notes":
+                                project.notes = cell.DisplayValue;
                                 break;
 
                          case "Number Of Sets":
-                            pif.numberOfSets = cell.DisplayValue;
+                            project.numberOfSets = cell.DisplayValue;
                             break;
  
                          case "Animated Per Set":
-                            pif.animatedPerSet = cell.DisplayValue;
+                            project.animatedPerSet = cell.DisplayValue;
                             break;
 
                          case "Static Per Set":
-                            pif.staticPerSet = cell.DisplayValue;
+                            project.staticPerSet = cell.DisplayValue;
                             break;
                         }
                     }
                 }
             }
-            return pif;
+            return project;
         }
         public DisplayModel GetProjectDetails(long row_id)
         {
-            DisplayModel pif = new DisplayModel();
-            pif.pif_Id = row_id;
+            DisplayModel project = new DisplayModel();
+            project.project_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             //Get LOB options
-            pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             //Get Status options
-            pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
-            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
+            project.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
 
             foreach (var row in sheet.Rows)
             {
@@ -348,65 +328,65 @@ namespace SmartsheetsPIF2.Controllers
                         switch (columnName)
                         {
                             case "Project":
-                                pif.projectName = cell.DisplayValue;
+                                project.projectName = cell.DisplayValue;
                                 break;
 
                             case "LOB":
-                                pif.lob = cell.DisplayValue;
+                                project.lob = cell.DisplayValue;
                                 break;
 
                             case "Tenrox Code":
-                                pif.tenroxCode = cell.DisplayValue;
+                                project.tenroxCode = cell.DisplayValue;
                                 break;
 
                             case "Status":
-                                pif.status = cell.DisplayValue;
+                                project.status = cell.DisplayValue;
                                 break;
 
                             case "Start":
                                 if (cell.Value != null)
                                 {
-                                    pif.startDate = Convert.ToDateTime(cell.Value);
+                                    project.startDate = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
                             case "Ship":
                                 if (cell.Value != null)
                                 {
-                                    pif.endDate = Convert.ToDateTime(cell.Value);
+                                    project.endDate = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
                             case "PM":
-                                pif.pm = cell.DisplayValue;
+                                project.pm = cell.DisplayValue;
                                 break;
 
                             case "Type":
-                                pif.requestType = cell.DisplayValue;
+                                project.requestType = cell.DisplayValue;
                                 break;
 
                             case "Team":
-                                pif.team = cell.DisplayValue;
+                                project.team = cell.DisplayValue;
                                 break;
 
                             case "Deck":
-                                pif.Deck = cell.DisplayValue;
+                                project.Deck = cell.DisplayValue;
                                 break;
 
                             case "Final Delivery":
-                                pif.finalDeliveryFolder = cell.DisplayValue;
+                                project.finalDeliveryFolder = cell.DisplayValue;
                                 break;
 
                             case "PSDs":
-                                pif.PSDs = cell.DisplayValue;
+                                project.PSDs = cell.DisplayValue;
                                 break;
 
                             case "Box Folder":
-                                pif.boxFolder = cell.DisplayValue;
+                                project.boxFolder = cell.DisplayValue;
                                 break;
 
                             case "Notes":
-                                pif.notes = cell.DisplayValue;
+                                project.notes = cell.DisplayValue;
                                 break;
 
                             case "Specs":
@@ -414,15 +394,15 @@ namespace SmartsheetsPIF2.Controllers
                                 break;
 
                             case "Number Of Sets":
-                                pif.numberOfSets = cell.DisplayValue;
+                                project.numberOfSets = cell.DisplayValue;
                                 break;
 
                             case "Animated Per Set":
-                                pif.animatedPerSet = cell.DisplayValue;
+                                project.animatedPerSet = cell.DisplayValue;
                                 break;
 
                             case "Static Per Set":
-                                pif.staticPerSet = cell.DisplayValue;
+                                project.staticPerSet = cell.DisplayValue;
                                 break;
 
                             case "WBS":
@@ -443,7 +423,7 @@ namespace SmartsheetsPIF2.Controllers
                                             }
                                         }
                                     }
-                                    pif.wbs_link = cell.DisplayValue;
+                                    project.wbs_link = cell.DisplayValue;
                                 }
                                 break;
 
@@ -466,7 +446,7 @@ namespace SmartsheetsPIF2.Controllers
                                             }
                                         }
                                     }
-                                    pif.deliverables_tracker_link = cell.DisplayValue;
+                                    project.deliverables_tracker_link = cell.DisplayValue;
                                 }
                                 break;
 
@@ -474,10 +454,10 @@ namespace SmartsheetsPIF2.Controllers
                     }
                 }
             }
-            return pif;
+            return project;
         }
 
-        public void updateProject(DisplayModel pif)
+        public void updateProject(DisplayModel project)
         {
             SmartsheetClient smartsheet_CL = initSheet();
             Sheet sheet = LoadSheet(sheetId, smartsheet_CL);
@@ -485,7 +465,7 @@ namespace SmartsheetsPIF2.Controllers
             int row_number = 0;
             foreach (var row_b in sheet.Rows)
             {
-                if (row_b.Id == pif.pif_Id)
+                if (row_b.Id == project.project_Id)
                 {
                     row_number = row_b.RowNumber.Value;
                 }
@@ -522,66 +502,66 @@ namespace SmartsheetsPIF2.Controllers
                 {
                     case "Project":
                         project_cell.ColumnId = columnid;
-                        project_cell.Value = pif.projectName;
+                        project_cell.Value = project.projectName;
                         break;
 
                     case "LOB":
                         lob_cell.ColumnId = columnid;
-                        lob_cell.Value = pif.lob;
+                        lob_cell.Value = project.lob;
                         break;
 
                     case "Tenrox Code":
                         tenrox_cell.ColumnId = columnid;
-                        tenrox_cell.Value = pif.tenroxCode;
+                        tenrox_cell.Value = project.tenroxCode;
                         break;
 
                     case "Status":
                         status_cell.ColumnId = columnid;
-                        status_cell.Value = pif.status;
+                        status_cell.Value = project.status;
                         break;
 
                     case "Start":
                         start_cell.ColumnId = columnid;
-                        start_cell.Value = pif.startDate;
+                        start_cell.Value = project.startDate;
                         break;
 
                     case "Ship":
                         end_cell.ColumnId = columnid;
-                        end_cell.Value = pif.endDate;
+                        end_cell.Value = project.endDate;
                         break;
 
                     case "Team":
                         team_cell.ColumnId = columnid;
-                        team_cell.Value = pif.team;
+                        team_cell.Value = project.team;
                         break;
 
                     case "Box Folder":
                         box_folder_cell.ColumnId = columnid;
-                        box_folder_cell.Value = pif.boxFolder;
+                        box_folder_cell.Value = project.boxFolder;
                         break;
 
                     case "Deck":
                         collab_deck_cell.ColumnId = columnid;
-                        collab_deck_cell.Value = pif.Deck;
+                        collab_deck_cell.Value = project.Deck;
                         break;
 
                     case "PSDs":
                         psds_cell.ColumnId = columnid;
-                        psds_cell.Value = pif.PSDs;
+                        psds_cell.Value = project.PSDs;
                         break;
 
                     case "Final Delivery":
                         final_delivery_cell.ColumnId = columnid;
-                        final_delivery_cell.Value = pif.finalDeliveryFolder;
+                        final_delivery_cell.Value = project.finalDeliveryFolder;
                         break;
 
                     case "Specs":
                         specs_cell.ColumnId = columnid;
                         ObjectValue objct = null;
                         bool flag = false;
-                        if (pif.SelectedSpecs != null)
+                        if (project.SelectedSpecs != null)
                         {
-                            foreach (var size in pif.SelectedSpecs)
+                            foreach (var size in project.SelectedSpecs)
 
                             {
                                 if (size != null)
@@ -594,18 +574,18 @@ namespace SmartsheetsPIF2.Controllers
                             }
                             if (flag)
                             {
-                                pif.SelectedSpecs.RemoveAt(pif.SelectedSpecs.Count() - 1);
+                                project.SelectedSpecs.RemoveAt(project.SelectedSpecs.Count() - 1);
                             }
 
-                            if (pif.SelectedSpecs.Count() == 0)
+                            if (project.SelectedSpecs.Count() == 0)
                             {
-                                pif.SelectedSpecs.Add("TBD");
-                                objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+                                project.SelectedSpecs.Add("TBD");
+                                objct = new MultiPicklistObjectValue(project.SelectedSpecs);
 
                             }
                             else
                             {
-                                objct = new MultiPicklistObjectValue(pif.SelectedSpecs);
+                                objct = new MultiPicklistObjectValue(project.SelectedSpecs);
 
                             }
                         }
@@ -615,39 +595,39 @@ namespace SmartsheetsPIF2.Controllers
 
                     case "Notes":
                         notes_cell.ColumnId = columnid;
-                        notes_cell.Value = pif.notes;
+                        notes_cell.Value = project.notes;
                         break;
 
                     case "Number Of Sets":
                         number_of_sets_cell.ColumnId = columnid;
-                        number_of_sets_cell.Value = pif.numberOfSets;
+                        number_of_sets_cell.Value = project.numberOfSets;
                         break;
 
                     case "Animated Per Set":
                         animated_per_set_cell.ColumnId = columnid;
-                        animated_per_set_cell.Value = pif.animatedPerSet;
+                        animated_per_set_cell.Value = project.animatedPerSet;
                         break;
 
                     case "Static Per Set":
                         static_per_set_cell.ColumnId = columnid;
-                        static_per_set_cell.Value = pif.staticPerSet;
+                        static_per_set_cell.Value = project.staticPerSet;
                         break;
 
                     case "Deliverables Tracker":
                         deliverables_t_cell.ColumnId = columnid;
-                        deliverables_t_cell.Value = pif.deliverables_tracker_link;
+                        deliverables_t_cell.Value = project.deliverables_tracker_link;
                         break;
 
                     case "WBS":
                         wbs_cell.ColumnId = columnid;
-                        wbs_cell.Value = pif.wbs_link;
+                        wbs_cell.Value = project.wbs_link;
                         break;
                 }
             }
 
             rowToTupdate = new Row
             {
-                Id = pif.pif_Id,
+                Id = project.project_Id,
                 Cells = new Cell[] {
                     lob_cell,
                     project_cell,
@@ -687,20 +667,21 @@ namespace SmartsheetsPIF2.Controllers
 
         public DisplayModel GetPickLists(long row_id)
         {
-            DisplayModel pif = new DisplayModel();
-            pif.pif_Id = row_id;
+            DisplayModel project = new DisplayModel();
+            project.project_Id = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             //Get LOB options
-            pif.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
             //Get Status options
-            pif.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(3));
             //Get Team options
-            pif.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
+            project.team_options = Get_status_picklist(sheet.GetColumnByIndex(16));
             //Get Specs List
-            pif.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
+            project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(11));
 
-            return pif;
+
+            return project;
         }
         public void runthroughallsheets()
         {
