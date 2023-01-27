@@ -44,6 +44,8 @@ namespace Smartsheetsproject.Models
         [BindProperty]
         public IList<string> SelectedCategory { get; set; }
 
+
+
         public string clientGroup { get; set; }
 
         public string clientBudget { get; set; }

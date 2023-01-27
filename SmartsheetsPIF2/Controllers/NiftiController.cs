@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Smartsheetsproject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Smartsheet.Api;
 using Smartsheet.Api.Models;
-using Smartsheetsproject.Models;
+using Smartsheet.Api;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,12 +28,18 @@ namespace Smartsheetsproject.Controllers
             return View(GetRows(sheet));
         }
 
+        public IActionResult DeleteRow()
+        {
+            var sheet = LoadSheet(sheetId, initSheet());
+            return DeleteRow();
+        }
+
         //public ActionResult GetId(int id)
         //{
         //    ViewData["project_Id"] = id;
         //    return View();
         //}
-   
+
 
 
         [HttpGet]
@@ -52,15 +60,14 @@ namespace Smartsheetsproject.Controllers
 
         [HttpPost]
         public IActionResult Edit(NiftiModel model)
-        {
-
-
+        {   
 
             if (!ModelState.IsValid)
             {
                 NiftiModel model_lists = GetListValues(model.pipelineId);
                 model.intake_options = model_lists.intake_options;
-                //model.type_options = model_lists.type_options;
+                model.CategoryList = model_lists.CategoryList;
+
                 return View(model);
                 //return RedirectToAction("Edit", new { id = model.project_Id });
             }
@@ -260,9 +267,9 @@ namespace Smartsheetsproject.Controllers
 
                                     var list = cell.DisplayValue.Split(",");
 
-                                    foreach (var spec in list)
+                                    foreach (var cat in list)
                                     {
-                                        IEnumerable<SelectListItem> variable = project.CategoryList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+                                        IEnumerable<SelectListItem> variable = project.CategoryList.Where(x => x.Text.Contains(cat.TrimStart(' ')));
 
                                         var id = "";
 
@@ -276,7 +283,7 @@ namespace Smartsheetsproject.Controllers
 
                                         variable = null;
                                     }
-                                    project.CategoryList = (IEnumerable<SelectListItem>)selectedvalues;
+                                    project.SelectedCategory = selectedvalues;
                                 }
                                 break;
                         }
@@ -285,6 +292,7 @@ namespace Smartsheetsproject.Controllers
             }
             return project;
         }
+   
 
         public void updateProject(NiftiModel project)
         {
@@ -329,8 +337,11 @@ namespace Smartsheetsproject.Controllers
                         category_cell.ColumnId = columnid;
                         ObjectValue objct = null;
                         bool flag = false;
+                        //count = project.SelectedSpecs.Count();
+
                         if (project.SelectedCategory != null)
                         {
+
                             foreach (var size in project.SelectedCategory)
 
                             {
@@ -358,13 +369,13 @@ namespace Smartsheetsproject.Controllers
                                 objct = new MultiPicklistObjectValue(project.SelectedCategory);
 
                             }
+
                         }
                         category_cell.ObjectValue = objct;
-
                         break;
 
                 }
-            };
+            }
 
             rowToTupdate = new Row
             {
@@ -400,13 +411,8 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
        
-            //Get Status options
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            //project.category_options = Get_Category_List(sheet.GetColumnByIndex(6));
             project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(6));
-
-            //Get Team options
-            //project.type_options = Get_status_picklist(sheet.GetColumnByIndex(9));
 
 
             return project;
@@ -426,15 +432,17 @@ namespace Smartsheetsproject.Controllers
         {
             List<SelectListItem> list = new List<SelectListItem>();
             //int cont = 0;
-            foreach (var category in category_col.Options)
+            foreach (var spec in category_col.Options)
             {
                 //cont++;
                 //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
-                list.Add(new SelectListItem { Text = category, Value = category });
+                list.Add(new SelectListItem { Text = spec, Value = spec });
             }
             return list;
         }
 
-       
+
+
+        
     }
 }
