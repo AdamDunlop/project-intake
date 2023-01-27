@@ -57,7 +57,7 @@
                         Client Group
                     </th>
                     <th>
-                        edit
+                        Edit
                     </th>
                 </tr>
             </thead>
@@ -79,7 +79,7 @@
                     </td>
 
                     <td id="type">
-                        @Html.DisplayFor(modelItem => data.type)
+                        @Html.DisplayFor(modelItem => data.projectType)
                     </td>
 
                     <td id="client-group">
@@ -87,7 +87,7 @@
                     </td>
                     <td>
                         <a href="@Url.Action("Edit", "Nifti",new { id = data.pipelineId } )">
-                            Edit
+                            edit
                         </a>
                     </td>
 

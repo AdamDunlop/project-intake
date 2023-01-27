@@ -14,24 +14,13 @@
         <div class="flex">
             <h2 class="header-title">@Html.DisplayFor(model => model.projectName)</h2>
         </div>
-        <p id="GFG_UP" style="font-size: 19px; font-weight: bold;">
-        </p>
-
-        <button onclick="GFG_Fun()">
-            click here
-        </button>
-
-        <p id="GFG_DOWN" style="color: green; font-size: 24px; font-weight: bold;">
-        </p>
+      
     </div>
 
-        @Html.ActionLink("Edit", "Edit", "Nifti", new { id = 194091862845316 }, null)
-
-        <hr />
+      
 
 
 
-        <div class="row" style="margin: auto">
 
 
 
@@ -47,7 +36,7 @@
 
                 <div class="row">
                     <dt class="col-sm-3">Type</dt>
-                    <dd class="col-sm-9"> @Html.DisplayFor(model => model.type)</dd>
+                    <dd class="col-sm-9"> @Html.DisplayFor(model => model.projectType)</dd>
 
 
                 </div>
@@ -76,9 +65,4 @@
 
             </div>
         </div>
-        
-</div>
-
-<script type="text/javascript">
-
-</script>
+       

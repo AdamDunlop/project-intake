@@ -144,8 +144,8 @@ namespace Smartsheetsproject.Controllers
                                 //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
-                            case "Type of Project":
-                                project.type = cell.DisplayValue;
+                            case "Project Type":
+                                project.projectType = cell.DisplayValue;
                                 break;
 
                             case "Client Group":
@@ -194,8 +194,8 @@ namespace Smartsheetsproject.Controllers
                                 project.dateRequested = Convert.ToDateTime(cell.Value);
                                 break;
 
-                            case "Type of Project":
-                                project.type = cell.DisplayValue;
+                            case "Project Type":
+                                project.projectType = cell.DisplayValue;
                                 break;
 
                             case "Lead Client Stakeholder":
@@ -257,6 +257,10 @@ namespace Smartsheetsproject.Controllers
                                 project.intakeType = cell.DisplayValue;
                                 break;
 
+                            case "Project Type":
+                                project.projectType = cell.DisplayValue;
+                                break;
+
                             case "Category":
 
                                 // List<SelectListItem> selectedvalues = new List<SelectListItem>();
@@ -313,6 +317,7 @@ namespace Smartsheetsproject.Controllers
 
             var intake_cell = new Cell();
             var project_cell = new Cell();
+            var project_type_cell = new Cell();
             var category_cell = new Cell();
 
             foreach (var cell in row.Cells)
@@ -332,6 +337,11 @@ namespace Smartsheetsproject.Controllers
                         project_cell.Value = project.projectName;
                         break;
 
+
+                    case "Project Type":
+                        project_type_cell.ColumnId = columnid;
+                        project_type_cell.Value = project.projectType;
+                        break;
 
                     case "Category":
                         category_cell.ColumnId = columnid;

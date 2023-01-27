@@ -32,7 +32,7 @@ namespace Smartsheetsproject.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime liveDate { get; set; }
 
-        public string type { get; set; }
+        public string projectType { get; set; }
 
         public string intakeType { get; set; }
 
