@@ -28,5 +28,20 @@ form#pipelines {
 
 .project-col a{
     color: black;
+}
 
+input.save-changes {
+    background: #5bc073;
+    color: white;
+    border: none;
+    border-radius: 7%;
+}
+
+.btn.back {
+    background: #0232ae59;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 400;
+    text-align: center;
 }

@@ -37,7 +37,11 @@
         </div>
 
         <div class="form-group">
-
+            <div class="form-group">
+                <label asp-for="projectDetails" class="control-label">Project Details</label>
+                @Html.TextAreaFor(m => m.projectDetails, new { @class = "form-control" })
+                <span asp-validation-for="projectDetails" class="text-danger"></span>
+            </div>
         </div>
 
 
@@ -63,25 +67,26 @@
         *@
         <hr />
         <div class="form-group">
-            <input type="submit" asp-action="Edit" value="Save" class="float-left" />
+            <input type="submit" asp-action="Edit" value="Save" class="float-left save-changes" />
         </div>
     </div>
 
 
 
     <div class="col-12 col-md-6">
-        
 
-        @*<div class="form-group">
-            <label asp-for="projectName" class="control-label">Project Name</label>
-            @Html.TextBoxFor(m => m.client, new { @class = "form-control" })
-            <span asp-validation-for="projectName" class="text-danger"></span>
+
+        @*<div class="form-group project-dates">
+            <label asp-for="briefDate" class="control-label">Project Brief Date</label>
+            @Html.TextBoxFor(m => m.briefDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+            <span asp-validation-for="briefDate" class="text-danger"></span>
+        </div>
+        <div class="form-group project-dates">
+            <label asp-for="liveDate" class="control-label">Project Live Date</label>
+            @Html.TextBoxFor(m => m.liveDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+            <span asp-validation-for="liveDate" class="text-danger"></span>
         </div>*@
-        @*<div class="form-group">
-            <label asp-for="projectName" class="control-label">Project Name</label>
-            @Html.TextBoxFor(m => m.clientBudget, new { @class = "form-control" })
-            <span asp-validation-for="projectName" class="text-danger"></span>
-        </div>*@
+
         <hr />
 
     </div>
@@ -89,7 +94,7 @@
             
         }
         <div class="back">
-            <a asp-action="List" class="btn btn-secondary">
+            <a asp-action="List" class="btn back">
                 <i class="bi bi-arrow-bar-left"></i>
                 <span>Back to List</span>
             </a>

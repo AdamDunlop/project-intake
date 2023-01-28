@@ -34,6 +34,8 @@ namespace Smartsheetsproject.Models
 
         public string projectType { get; set; }
 
+        public string projectDetails { get; set; }
+
         public string intakeType { get; set; }
 
         //public string category { get; set; }
@@ -44,13 +46,13 @@ namespace Smartsheetsproject.Models
         [BindProperty]
         public IList<string> SelectedCategory { get; set; }
 
-
-
         public string clientGroup { get; set; }
 
         public string clientBudget { get; set; }
 
         public string clientStakeholder { get; set; }
+
+        public bool removeProject { get; set; }
     }
 
 }

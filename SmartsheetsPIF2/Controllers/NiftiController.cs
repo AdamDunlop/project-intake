@@ -28,20 +28,6 @@ namespace Smartsheetsproject.Controllers
             return View(GetRows(sheet));
         }
 
-        public IActionResult DeleteRow()
-        {
-            var sheet = LoadSheet(sheetId, initSheet());
-            return DeleteRow();
-        }
-
-        //public ActionResult GetId(int id)
-        //{
-        //    ViewData["project_Id"] = id;
-        //    return View();
-        //}
-
-
-
         [HttpGet]
         public IActionResult Details(long id)
         {
@@ -79,6 +65,14 @@ namespace Smartsheetsproject.Controllers
                 return RedirectToAction("List");
             };
          
+        }
+
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            NiftiModel model = new NiftiModel();
+
+            return View(model);
         }
 
 
@@ -119,7 +113,6 @@ namespace Smartsheetsproject.Controllers
                     project.pipelineId = (long)row.Id;
                     foreach (var cell in row.Cells)
 
-
                     {
                         long columnid = cell.ColumnId.Value;
                         string columnName = sheet.GetColumnById(columnid).Title.ToString();
@@ -135,6 +128,9 @@ namespace Smartsheetsproject.Controllers
                                 project.intakeType = cell.DisplayValue;
                                 break;
 
+                            case "Project Details":
+                                project.projectDetails = cell.DisplayValue;
+                                break;
 
                             case "Date Requested":
                                 if (project.dateRequested != null)
@@ -152,7 +148,23 @@ namespace Smartsheetsproject.Controllers
                                 project.clientGroup = cell.DisplayValue;
                                 break;
 
-                          
+                            case "Project Brief Date":
+                                if (project.briefDate != null)
+                                {
+                                    project.briefDate = Convert.ToDateTime(cell.Value);
+                                }
+                                //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                break;
+
+                            case "Project Live Date":
+                                if (project.liveDate != null)
+                                {
+                                    project.liveDate = Convert.ToDateTime(cell.Value);
+                                }
+                                //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
+                                break;
+
+
                         }
                     }
                     project_list.Add(project);
@@ -162,7 +174,7 @@ namespace Smartsheetsproject.Controllers
         }
 
 
-        public NiftiModel GetProjectDetails(long row_id)
+            public NiftiModel GetProjectDetails(long row_id)
         {
             NiftiModel project = new NiftiModel();
             project.pipelineId = row_id;
@@ -202,21 +214,21 @@ namespace Smartsheetsproject.Controllers
                                 project.clientStakeholder = cell.DisplayValue;
                                 break;
 
-                            //case "Category":
-                            //    project.CategoryList = cell.DisplayValue;
-                            //    break;
+                            case "Project Details":
+                                project.projectDetails = cell.DisplayValue;
+                                break;
 
                             case "Client Budget":
                                 project.clientBudget = cell.DisplayValue;
                                 break;
 
-                            case "Project Briefing Date":
-                                project.briefDate = Convert.ToDateTime(cell.Value);
-                                break;
+                            //case "Project Brief Date":
+                            //    project.briefDate = Convert.ToDateTime(cell.Value);
+                            //    break;
 
-                            case "Project Live Date":
-                                project.liveDate = Convert.ToDateTime(cell.Value);
-                                break;
+                            //case "Project Live Date":
+                            //    project.liveDate = Convert.ToDateTime(cell.Value);
+                            //    break;
 
 
 
@@ -235,7 +247,6 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-
             project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(6));
 
             foreach (var row in sheet.Rows)
@@ -261,35 +272,47 @@ namespace Smartsheetsproject.Controllers
                                 project.projectType = cell.DisplayValue;
                                 break;
 
+                            case "Project Details":
+                                project.projectDetails = cell.DisplayValue;
+                                break;
+
                             case "Category":
 
-                                // List<SelectListItem> selectedvalues = new List<SelectListItem>();
+                            // List<SelectListItem> selectedvalues = new List<SelectListItem>();
 
-                                if (cell.DisplayValue != null)
+                            if (cell.DisplayValue != null)
+                            {
+                                List<string> selectedvalues = new List<string>();
+
+                                var list = cell.DisplayValue.Split(",");
+
+                                foreach (var cat in list)
                                 {
-                                    List<string> selectedvalues = new List<string>();
+                                    IEnumerable<SelectListItem> variable = project.CategoryList.Where(x => x.Text.Contains(cat.TrimStart(' ')));
 
-                                    var list = cell.DisplayValue.Split(",");
+                                    var id = "";
 
-                                    foreach (var cat in list)
+                                    foreach (var i in variable)
                                     {
-                                        IEnumerable<SelectListItem> variable = project.CategoryList.Where(x => x.Text.Contains(cat.TrimStart(' ')));
-
-                                        var id = "";
-
-                                        foreach (var i in variable)
-                                        {
-                                            id = i.Value;
-                                        }
-
-                                        //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
-                                        selectedvalues.Add(id);
-
-                                        variable = null;
+                                        id = i.Value;
                                     }
-                                    project.SelectedCategory = selectedvalues;
+
+                                    //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                    selectedvalues.Add(id);
+
+                                    variable = null;
                                 }
-                                break;
+                                project.SelectedCategory = selectedvalues;
+                            }
+                            break; 
+
+                            //case "Project Brief Date":
+                            //    project.briefDate = Convert.ToDateTime(cell.Value);
+                            //    break;
+
+                            //case "Project Live Date":
+                            //    project.liveDate = Convert.ToDateTime(cell.Value);
+                            //    break;
                         }
                     }
                 }
@@ -316,9 +339,13 @@ namespace Smartsheetsproject.Controllers
             var rowToTupdate = new Row();
 
             var intake_cell = new Cell();
-            var project_cell = new Cell();
+            var project_name_cell = new Cell();
+            var project_details_cell = new Cell();
             var project_type_cell = new Cell();
+            //var project_brief_cell = new Cell();
+            //var project_live_cell = new Cell();
             var category_cell = new Cell();
+            var remove_cell = new Cell(); 
 
             foreach (var cell in row.Cells)
             {
@@ -333,10 +360,14 @@ namespace Smartsheetsproject.Controllers
                         break;
 
                     case "Project Name":
-                        project_cell.ColumnId = columnid;
-                        project_cell.Value = project.projectName;
+                        project_name_cell.ColumnId = columnid;
+                        project_name_cell.Value = project.projectName;
                         break;
 
+                    case "Project Details":
+                        project_details_cell.ColumnId = columnid;
+                        project_details_cell.Value = project.projectDetails;
+                        break;
 
                     case "Project Type":
                         project_type_cell.ColumnId = columnid;
@@ -352,12 +383,12 @@ namespace Smartsheetsproject.Controllers
                         if (project.SelectedCategory != null)
                         {
 
-                            foreach (var size in project.SelectedCategory)
+                            foreach (var cat in project.SelectedCategory)
 
                             {
-                                if (size != null)
+                                if (cat != null)
                                 {
-                                    if (size.Contains("System.String"))
+                                    if (cat.Contains("System.String"))
                                     {
                                         flag = true;
                                     }
@@ -377,12 +408,19 @@ namespace Smartsheetsproject.Controllers
                             else
                             {
                                 objct = new MultiPicklistObjectValue(project.SelectedCategory);
-
                             }
 
                         }
                         category_cell.ObjectValue = objct;
                         break;
+
+                    //case "Project Brief Date":
+                    //    project.briefDate = Convert.ToDateTime(cell.Value);
+                    //    break;
+
+                    //case "Project Live Date":
+                    //    project.liveDate = Convert.ToDateTime(cell.Value);
+                    //    break;
 
                 }
             }
@@ -392,7 +430,10 @@ namespace Smartsheetsproject.Controllers
                 Id = project.pipelineId,
                 Cells = new Cell[] {
                     intake_cell,
-                    project_cell,
+                    project_name_cell,
+                    project_details_cell,
+                    //project_brief_cell,
+                    //project_live_cell,
                     category_cell
 
                 }
@@ -413,17 +454,14 @@ namespace Smartsheetsproject.Controllers
             };
         }
 
-
         public NiftiModel GetListValues(long row_id)
         {
             NiftiModel project = new NiftiModel();
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-       
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
             project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(6));
-
 
             return project;
         }
@@ -450,9 +488,6 @@ namespace Smartsheetsproject.Controllers
             }
             return list;
         }
-
-
-
         
     }
 }
