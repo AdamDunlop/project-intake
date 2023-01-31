@@ -39,7 +39,7 @@ namespace Smartsheetsproject2.Controllers
         }
 
 
-        public IActionResult UpdateProjects()
+        public IActionResult Reports()
         {
             return View();
         }

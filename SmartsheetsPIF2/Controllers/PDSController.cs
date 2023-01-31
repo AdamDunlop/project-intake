@@ -310,8 +310,7 @@ namespace Smartsheetsproject.Controllers
                         string columnName = sheet.GetColumnById(columnid).Title.ToString();
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
-                        {
-                            
+                        {       
 
                             case "LOB":
                                 project.lob = cell.DisplayValue;

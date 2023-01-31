@@ -76,18 +76,23 @@
     <div class="col-12 col-md-6">
 
 
-        @*<div class="form-group project-dates">
-            <label asp-for="briefDate" class="control-label">Project Brief Date</label>
-            @Html.TextBoxFor(m => m.briefDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
-            <span asp-validation-for="briefDate" class="text-danger"></span>
+        <div class="form-group project-dates">
+            <label asp-for="am" class="control-label">Account Manager</label>
+            @Html.TextBoxFor(m => m.am, new { @class = "form-control" })
+            <span asp-validation-for="am" class="text-danger"></span>
         </div>
         <div class="form-group project-dates">
-            <label asp-for="liveDate" class="control-label">Project Live Date</label>
-            @Html.TextBoxFor(m => m.liveDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
-            <span asp-validation-for="liveDate" class="text-danger"></span>
-        </div>*@
+            <label asp-for="pm" class="control-label">Project Manager</label>
+            @Html.TextBoxFor(m => m.pm, new { @class = "form-control" })
+            <span asp-validation-for="pm" class="text-danger"></span>
+        </div>
 
         <hr />
+        <div class="form-group project-dates">
+            <label asp-for="jira" class="control-label">Jira</label>
+            @Html.TextBoxFor(m => m.jira, new { @class = "form-control" })
+            <span asp-validation-for="jira" class="text-danger"></span>
+        </div>
 
     </div>
            

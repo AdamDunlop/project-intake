@@ -165,6 +165,20 @@ namespace Smartsheetsproject.Controllers
                                 break;
 
 
+                            case "AM":
+                                project.am = cell.DisplayValue;
+                                break;
+
+
+                            case "PM":
+                                project.pm = cell.DisplayValue;
+                                break;
+
+                            case "Jira":
+                                project.jira = cell.DisplayValue;
+                                break;
+
+
                         }
                     }
                     project_list.Add(project);
@@ -230,8 +244,35 @@ namespace Smartsheetsproject.Controllers
                             //    project.liveDate = Convert.ToDateTime(cell.Value);
                             //    break;
 
+                            case "AM":
+                                project.am = cell.DisplayValue;
+                                break;
 
+                            case "PM":
+                                project.pm = cell.DisplayValue;
+                                break;
 
+                            case "Jira":
+                                if (cell.Value != null)
+                                {
+                                    string[] jira = cell.DisplayValue.Split(" ");
+                                    foreach (var item in jira)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            jira = item.Split('"');
+                                            foreach (var url in jira)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    project.jira = cell.DisplayValue;
+                                }
+                                break;
                         }
                     }
                 }
@@ -304,15 +345,27 @@ namespace Smartsheetsproject.Controllers
                                 }
                                 project.SelectedCategory = selectedvalues;
                             }
-                            break; 
+                            break;
 
-                            //case "Project Brief Date":
-                            //    project.briefDate = Convert.ToDateTime(cell.Value);
-                            //    break;
+                                //case "Project Brief Date":
+                                //    project.briefDate = Convert.ToDateTime(cell.Value);
+                                //    break;
 
-                            //case "Project Live Date":
-                            //    project.liveDate = Convert.ToDateTime(cell.Value);
-                            //    break;
+                                //case "Project Live Date":
+                                //    project.liveDate = Convert.ToDateTime(cell.Value);
+                                //    break;
+
+                            case "AM":
+                                project.am = cell.DisplayValue;
+                                break;
+
+                            case "PM":
+                                project.pm = cell.DisplayValue;
+                                break;
+
+                            case "Jira":
+                                project.jira = cell.DisplayValue;
+                                break;
                         }
                     }
                 }
@@ -345,7 +398,9 @@ namespace Smartsheetsproject.Controllers
             //var project_brief_cell = new Cell();
             //var project_live_cell = new Cell();
             var category_cell = new Cell();
-            var remove_cell = new Cell(); 
+            var am_cell = new Cell();
+            var pm_cell = new Cell();
+            var jira_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -414,13 +469,28 @@ namespace Smartsheetsproject.Controllers
                         category_cell.ObjectValue = objct;
                         break;
 
-                    //case "Project Brief Date":
-                    //    project.briefDate = Convert.ToDateTime(cell.Value);
-                    //    break;
+                    case "AM":
+                        am_cell.ColumnId = columnid;
+                        am_cell.Value = project.am;
+                        break;
 
-                    //case "Project Live Date":
-                    //    project.liveDate = Convert.ToDateTime(cell.Value);
-                    //    break;
+                    case "PM":
+                        pm_cell.ColumnId = columnid;
+                        pm_cell.Value = project.pm;
+                        break;
+
+                    case "Jira":
+                        jira_cell.ColumnId = columnid;
+                        jira_cell.Value = project.jira;
+                        break;
+
+                        //case "Project Brief Date":
+                        //    project.briefDate = Convert.ToDateTime(cell.Value);
+                        //    break;
+
+                        //case "Project Live Date":
+                        //    project.liveDate = Convert.ToDateTime(cell.Value);
+                        //    break;
 
                 }
             }
@@ -434,7 +504,10 @@ namespace Smartsheetsproject.Controllers
                     project_details_cell,
                     //project_brief_cell,
                     //project_live_cell,
-                    category_cell
+                    category_cell,
+                    am_cell,
+                    pm_cell,
+                    jira_cell
 
                 }
             };
