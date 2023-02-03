@@ -22,7 +22,7 @@ namespace Smartsheetsproject.Models
         public IEnumerable<SelectListItem> intake_options { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime dateRequested { get; set; }
 
         [DataType(DataType.Date)]
@@ -56,37 +56,14 @@ namespace Smartsheetsproject.Models
 
         //public bool removeProject { get; set; }
 
+      
+        public string jira { get; set; }
+        [Required(ErrorMessage = "Please provide a link")]
+
         public string am { get; set; }
 
         public string pm { get; set; }
 
-        public string jira { get; set; }
-        //[Required(ErrorMessage = "Please provide a link")]
-
-
-        //public class DateGreaterThan : ValidationAttribute
-        //{
-        //    private string _startDatePropertyName;
-        //    public DateGreaterThan(string startDatePropertyName)
-        //    {
-        //        _startDatePropertyName = startDatePropertyName;
-        //    }
-
-        //    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        //    {
-        //        var propertyInfo = validationContext.ObjectType.GetProperty(_startDatePropertyName);
-        //        var propertyValue = propertyInfo.GetValue(validationContext.ObjectInstance, null);
-
-        //        if ((DateTime)value > (DateTime)propertyValue)
-        //        {
-        //            return ValidationResult.Success;
-        //        }
-        //        else
-        //        {
-        //            return new ValidationResult("The end date occurs before the start date");
-        //        }
-        //    }
-        //}
     }
 
 }
