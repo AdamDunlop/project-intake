@@ -14,7 +14,7 @@ namespace Smartsheetsproject2.Controllers
     public class DisplayController : Controller
     {
 
-        public static long sheetId = 508222156105604;
+        public static long sheetId = 4277161877104516;
 
         [HttpGet]
         public IActionResult List()
@@ -133,9 +133,7 @@ namespace Smartsheetsproject2.Controllers
                                 //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
-                            case "Team":
-                                project.team = cell.DisplayValue;
-                                break;
+                    
                         }
                     }
                     project_list.Add(project);
@@ -217,14 +215,6 @@ namespace Smartsheetsproject2.Controllers
 
                             case "PM":
                                 project.pm = cell.DisplayValue;
-                                break;
-
-                            case "Type":
-                                project.requestType = cell.DisplayValue;
-                                break;
-
-                            case "Team":
-                                project.team = cell.DisplayValue;
                                 break;
 
                             case "Deck":
@@ -363,10 +353,6 @@ namespace Smartsheetsproject2.Controllers
 
                             case "Type":
                                 project.requestType = cell.DisplayValue;
-                                break;
-
-                            case "Team":
-                                project.team = cell.DisplayValue;
                                 break;
 
                             case "Deck":
@@ -528,11 +514,6 @@ namespace Smartsheetsproject2.Controllers
                     case "Ship":
                         end_cell.ColumnId = columnid;
                         end_cell.Value = project.endDate;
-                        break;
-
-                    case "Team":
-                        team_cell.ColumnId = columnid;
-                        team_cell.Value = project.team;
                         break;
 
                     case "Box Folder":

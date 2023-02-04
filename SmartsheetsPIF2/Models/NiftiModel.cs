@@ -56,9 +56,8 @@ namespace Smartsheetsproject.Models
 
         //public bool removeProject { get; set; }
 
-      
-        public string jira { get; set; }
         [Required(ErrorMessage = "Please provide a link")]
+        public string jira { get; set; }
 
         public string am { get; set; }
 

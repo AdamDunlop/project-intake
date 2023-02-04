@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Smartsheetsproject.Models.DesignModel>
+
+@{
+    ViewData["Title"] = "Design Production";
+}
+
+<div class="row">
+    <div class="col-12">
+        @{
+            if (TempData["Result"] != null)
+            {
+                if (TempData["Result"].Equals("Success"))
+                {
+                    <div class="alert alert-success alert-dismissible fade show spacing" role="alert">
+                        Your changes have been saved successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                else if (TempData["Result"].Equals("Failed"))
+                {
+                    <div class="alert alert-warning alert-dismissible fade show spacing" role="alert">
+                        Oh Snap! An error has ocurred, please try again.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="header-title">Design Production Pipeline(Stage 2)</h2>
+        <table class="table table-striped">
+            <thead class="project-list-header">
+                <tr>
+                    <th>
+                        LOB
+                    </th>
+
+                    <th class="project-col">
+                        Project
+                    </th>
+                    <th>
+                        Tenrox
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+
+                    <th>
+                        Due Date
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Jira
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var data in Model)
+                {
+                <tr>
+                    <td class="project-col">
+                            @Html.DisplayFor(modelItem => data.lob)
+                    </td>
+                    <td>
+                        <a class="clickable-row" href="@Url.Action("Details", "Design", new { id = data.pipelineId  } )">
+                             @Html.DisplayFor(modelItem => data.projectName)
+                        </a>
+                    </td>                      
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => data.tenrox)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => data.startDate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => data.endDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => data.status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => data.jira)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
+                            edit
+                        </a>
+                    </td>
+
+                </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -48,7 +48,7 @@ namespace Smartsheetsproject.Models
         [DateGreaterThan("startDate")]
         public DateTime endDate { get; set; }
 
-        public string team { get; set; }
+        public string jira { get; set; }
         [Required(ErrorMessage = "Please provide a link")]
 
         public string Deck { get; set; }
