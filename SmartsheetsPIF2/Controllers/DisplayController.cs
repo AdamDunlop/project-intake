@@ -77,7 +77,7 @@ namespace Smartsheetsproject2.Controllers
                 null,                       // IEnumerable<int> rowNumbers
                 null,                       // IEnumerable<long> columnIds
                 null,                       // Nullable<long> pageSize
-                null                        // Nullable<long> page
+                null                        
             );
             Console.WriteLine("Loaded " + sheet.Rows.Count + " rows from sheet: " + sheet.Name);
             return sheet;
