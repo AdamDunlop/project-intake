@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartsheetsPIF", "SmartsheetsPIF2\SmartsheetsPIF.csproj", "{B340F9C7-87E6-49DC-995C-60EFBE2337A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartsheetsPIF2", "SmartsheetsPIF2\SmartsheetsPIF2.csproj", "{B340F9C7-87E6-49DC-995C-60EFBE2337A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

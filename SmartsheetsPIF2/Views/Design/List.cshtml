@@ -48,20 +48,20 @@
                     <th>
                         Tenrox
                     </th>
-                    <th>
+                    @*<th>
                         Start Date
                     </th>
 
                     <th>
                         Due Date
-                    </th>
+                    </th>*@
 
                     <th>
                         Status
                     </th>
-                    <th>
+                    @*<th>
                         Jira
-                    </th>
+                    </th>*@
                     <th>
                         Edit
                     </th>
@@ -72,32 +72,33 @@
                 {
                 <tr>
                     <td class="project-col">
-                            @Html.DisplayFor(modelItem => data.lob)
+                        @Html.DisplayFor(modelItem => data.lob)
                     </td>
                     <td>
                         <a class="clickable-row" href="@Url.Action("Details", "Design", new { id = data.pipelineId  } )">
-                             @Html.DisplayFor(modelItem => data.projectName)
+                            @Html.DisplayFor(modelItem => data.projectName)
                         </a>
-                    </td>                      
+                    </td>
 
 
                     <td>
                         @Html.DisplayFor(modelItem => data.tenrox)
                     </td>
 
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => data.startDate)
                     </td>
 
                     <td>
                         @Html.DisplayFor(modelItem => data.endDate)
                     </td>
+                    *@
                     <td>
                         @Html.DisplayFor(modelItem => data.status)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => data.jira)
-                    </td>
+                    </td>*@
                     <td>
                         <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
                             edit

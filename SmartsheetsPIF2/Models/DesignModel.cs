@@ -27,22 +27,22 @@ namespace Smartsheetsproject.Models
         [BindProperty]
         public IEnumerable<SelectListItem> status_options { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        public DateTime startDate { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
+        //public DateTime startDate { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        public DateTime endDate { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
+        //public DateTime endDate { get; set; }
 
-        public string pm { get; set; }
+        //public string pm { get; set; }
 
-        public string am { get; set; }
+        //public string am { get; set; }
 
-        public string assignedTo { get; set; }
+        //public string assignedTo { get; set; }
 
-        public string jira { get; set; }
-        [Required(ErrorMessage = "Please provide a link")]
+        //[Required(ErrorMessage = "Please provide a link")}
+        //public string jira { get; set; }
 
         //public string PSDs { get; set; }
         //[Required(ErrorMessage = "Please provide a link")]
@@ -50,17 +50,17 @@ namespace Smartsheetsproject.Models
         //public string fxfDeck { get; set; }
         //[Required(ErrorMessage = "Please provide a link")]
 
-        public string finalDeliveryFolder { get; set; }
+        //public string finalDeliveryFolder { get; set; }
 
-        public string deliverables { get; set; }
+        //public string deliverables { get; set; }
 
-        public string wbs_link { get; set; }
+        //public string wbs_link { get; set; }
 
-        [BindProperty]
-        public IEnumerable<SelectListItem> SpecsList { get; set; }
+        //[BindProperty]
+        //public IEnumerable<SelectListItem> SpecsList { get; set; }
 
-        [BindProperty]
-        public IList<string> SelectedSpecs { get; set; }
+        //[BindProperty]
+        //public IList<string> SelectedSpecs { get; set; }
 
     }
     //public class DateGreaterThan : ValidationAttribute
