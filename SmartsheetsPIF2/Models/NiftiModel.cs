@@ -48,10 +48,10 @@ namespace Smartsheetsproject.Models
         public string clientGroup { get; set; }
 
         //[Required(ErrorMessage = "Please enter a number.")]
-        //[RegularExpression("^[0-9]*$", ErrorMessage = "Must be a number")]}
+        //[RegularExpression("^[0-9]*$", ErrorMessage = "Must be a number")]
         public string clientBudget { get; set; }
 
-
+        //[Required(ErrorMessage = "Provide the Client")]
         public string clientStakeholder { get; set; }
 
         //public bool removeProject { get; set; }
