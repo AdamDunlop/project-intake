@@ -2,14 +2,6 @@
     display: none;
 }
 
-form#pipelines {
-    height: 800px;
-}
-
-#pipeline {
-    max-width: 85% !important;
-/*    height: 850px;*/
-}
 .nifti, .pipeline, .finance {
     padding-top: 1rem;
 }
@@ -48,4 +40,16 @@ input.save-changes {
 
 .project-links {
     padding: .5em;
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+    border: none;
 }
+
+dl.row {
+    margin-bottom: 0;
+}
+
+div.links {
+    display: grid;
+}
+

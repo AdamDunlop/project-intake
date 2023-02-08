@@ -10,54 +10,65 @@
 
 
 <div class="row">
+
     <div class="col-12">
         <div class="flex">
             <h2 class="header-title">@Html.DisplayFor(model => model.projectName)</h2>
         </div>
-
+        <hr />
     </div>
 
+
     <div class="col-12 col-md-6 details">
-        <div class="row">
-            <dt class="col-sm-3">Date Requested</dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.dateRequested)
-            </dd>
-        </div>
 
-        <div class="row">
-            <dt class="col-sm-3">Type</dt>
+        <dl class="row">
+            <dt class="col-sm-3">Client</dt>
+            <dd class="col-sm-9"> @Html.DisplayFor(model => model.client)</dd>
+        </dl>
+
+        <dl class="row">
+            <dt class="col-sm-3">Intake Type</dt>
+            <dd class="col-sm-9"> @Html.DisplayFor(model => model.intakeType)</dd>
+        </dl>
+
+        <dl class="row">
+            <dt class="col-sm-3">Project Type</dt>
             <dd class="col-sm-9"> @Html.DisplayFor(model => model.projectType)</dd>
+        </dl>
 
-
-        </div>
-        <div class="row">
-            <dt class="col-sm-3">Brief - Live Dates</dt>
+        <dl class="row">
+            <dt class="col-sm-3">Brief - Live</dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.briefDate) -
                 @Html.DisplayFor(model => model.liveDate)
             </dd>
-        </div>
-
-
-
+        </dl>
 
     </div>
 
 
+
+
+
     <div class="col-12 col-md-6 details-col-2">
-        <div class="row">
-            <dt class="col-sm-3">Client</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.clientStakeholder)</dd>
-        </div>
+        <dl class="row">
+            <dt class="col-sm-4">Date Requested</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.dateRequested)</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-4">Client Lead</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.clientStakeholder)</dd>
+        </dl>
 
-        <div class="row">
-            <dt class="col-sm-3">Client Budget</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.clientBudget)</dd>
-        </div>
+        <dl class="row">
+            <dt class="col-sm-4">Client Group</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.clientGroup)</dd>
+        </dl>
 
-
-
+        <dl class="row">
+            <dt class="col-sm-4">Client Budget</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.clientBudget)</dd>
+        </dl>
     </div>
 
 </div>
@@ -67,46 +78,49 @@
 
     <div class="col-12 col-md-6 details">
 
-        <dt>Project Details <dt>
-        <dd>
-            @if (Model.projectDetails != null)
-            {
-                <textarea readonly class="form-control">@Html.DisplayFor(model => model.projectDetails)</textarea>
-            }
-            else
-            {
-                <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
-            }
+        <dl class="row">
+            <dt class="col-sm-2">Details
+            <dt>
+            <dd class="col-sm-10">
+                @if (Model.projectDetails != null)
+                {
+                    <textarea readonly class="form-control">@Html.DisplayFor(model => model.projectDetails)</textarea>
 
+                }
+                else
+                {
+                    <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
+                }
+            </dd>
 
-        </dd>
-
+        </dl>
     </div>
     <div class="col-12 col-md-6 details-col-2">
+        <dl class="row">
+            <dt class="col-sm-2">Links</dt>
 
-        <dt>Project Links</dt>
-     
-        <div class="project-links">
-            <div class="row">
-           
-                <dd class="col-sm-6"><a href="@Model.briefLink">Project Brief</a></dd>
-          
+            <dd class="col-sm-9 project-links">
+                <div class="links">
+                    <span>
+                        <a href="@Model.briefLink">Project Brief</a>
+                    </span>
 
-                <dd class="col-sm-6"> 
-                    @if (Model.jira != null)
-                    {
-                        <dd class="col-sm-9"><a href="@Model.jira"> Jira Epic</a></dd>
-                    }
-                    else
-                    {
-                        <dd class="col-sm-9 alert alert-warning" role="alert">No Jira Epic link provided.</dd>
-                    }
-                    </dd>
-           
-                     </div>
+                    <span>
+                        @if (Model.jira != null)
+                        {
+                            <a href="@Model.jira"> Jira Epic</a>
+                        }
+                        else
+                        {
+                            <dd class="col-sm-8 alert alert-warning" role="alert">No Jira Epic link provided.</dd>
+                        }
+                     </span>
                 </div>
+                </dd>
+
+                </dl>
+            </div>
         </div>
-    </div>
 
 
 

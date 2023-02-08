@@ -128,7 +128,10 @@ namespace Smartsheetsproject.Controllers
                                 project.projectName = cell.DisplayValue;
                                 break;
 
-                            
+
+                            case "Client":
+                                project.client = cell.DisplayValue;
+                                break;
 
                             case "Project Details":
                                 project.projectDetails = cell.DisplayValue;
@@ -222,10 +225,13 @@ namespace Smartsheetsproject.Controllers
                                 project.intakeType = cell.DisplayValue;
                                 break;
 
+                            case "Client":
+                                project.client = cell.DisplayValue;
+                                break;
+
                             case "Date Requested":
                                 project.dateRequested = Convert.ToDateTime(cell.Value);
                                 break;
-
 
                             case "Brief Date":
                                 project.briefDate = Convert.ToDateTime(cell.Value);
@@ -233,8 +239,8 @@ namespace Smartsheetsproject.Controllers
 
                             case "Live Date":
                                 project.liveDate = Convert.ToDateTime(cell.Value);
-
                                 break;
+
                             case "Project Type":
                                 project.projectType = cell.DisplayValue;
                                 break;
@@ -243,12 +249,16 @@ namespace Smartsheetsproject.Controllers
                                 project.clientStakeholder = cell.DisplayValue;
                                 break;
 
-                            case "Project Details":
-                                project.projectDetails = cell.DisplayValue;
+                            case "Client Group":
+                                project.clientGroup = cell.DisplayValue;
                                 break;
 
                             case "Client Budget":
                                 project.clientBudget = cell.DisplayValue;
+                                break;
+
+                            case "Project Details":
+                                project.projectDetails = cell.DisplayValue;
                                 break;
 
                             case "AM":

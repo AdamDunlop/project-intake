@@ -9,91 +9,92 @@
 
     <div class="col-12">
 
-
         @if (Model.projectName != null)
-
         {
             <h5 class="header-title">Project - @Html.DisplayFor(m => m.projectName)</h5>
         }
-
         @using (Html.BeginForm("Edit", "Nifti", FormMethod.Post, new { @class = "form-group row" }))
         {
-    <div class="col-12 col-md-6">
-        @Html.HiddenFor(m => m.pipelineId)
+            <div class="col-12 col-md-6">
+                @Html.HiddenFor(m => m.pipelineId)
 
-        <div class="form-group">
-            <label asp-for="projectName" class="control-label">Project Name</label>
-            @Html.TextBoxFor(m => m.projectName, new { @class = "form-control" })
-            <span asp-validation-for="projectName" class="text-danger"></span>
-        </div>
+                <div class="form-group">
+                    <label asp-for="intakeType" class="control-label">Intake Type</label>
+                    @Html.DropDownListFor(m => m.intakeType, Model.intake_options, new { @class = "form-control" })
+                    @Html.HiddenFor(m => m.intakeType)
+                    @Html.HiddenFor(m => m.intake_options)
+                    <span asp-validation-for="intakeType" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label asp-for="intakeType" class="control-label">Intake Type</label>
+                <div class="form-group hidden">
+                    <label asp-for="projectName" class="control-label">Project Name</label>
+                    @Html.TextBoxFor(m => m.projectName, new { @class = "form-control" })
+                    <span asp-validation-for="projectName" class="text-danger"></span>
+                </div>
 
-            @Html.DropDownListFor(m => m.intakeType, Model.intake_options, new { @class = "form-control" })
-            @Html.HiddenFor(m => m.intakeType)
-            @Html.HiddenFor(m => m.intake_options)
-            <span asp-validation-for="intakeType" class="text-danger"></span>
-        </div>
+                <div class="form-group">
+                    <label asp-for="SelectedCategory" class="control-label">Category</label>
+                    @Html.ListBoxFor(m => m.SelectedCategory, new MultiSelectList(Model.CategoryList, "Value", "Text", Model.SelectedCategory), new { @class = " form-control chosen-select" })
+                    @Html.HiddenFor(m => m.SelectedCategory)
+                    @Html.HiddenFor(m => m.CategoryList)
+                </div>
 
-        <div class="form-group">
-            <div class="form-group">
-                <label asp-for="projectDetails" class="control-label">Project Details</label>
-                @Html.TextAreaFor(m => m.projectDetails, new { @class = "form-control" })
-                <span asp-validation-for="projectDetails" class="text-danger"></span>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="projectDetails" class="control-label">Project Details</label>
+                        @Html.TextAreaFor(m => m.projectDetails, new { @class = "form-control" })
+                        <span asp-validation-for="projectDetails" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <input type="submit" asp-action="Edit" value="Save" class="float-left save-changes" />
+                </div>
             </div>
-        </div>
-
-
-        <div class="form-group">
-            <label asp-for="SelectedCategory" class="control-label">Category</label>
-            @Html.ListBoxFor(m => m.SelectedCategory, new MultiSelectList(Model.CategoryList, "Value", "Text", Model.SelectedCategory), new { @class = " form-control chosen-select" })
-            @Html.HiddenFor(m => m.SelectedCategory)
-            @Html.HiddenFor(m => m.CategoryList)
-        </div>
-      
-        <hr />
-       
-    </div>
 
 
 
-    <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6">
 
 
-        <div class="form-group project-dates">
-            <label asp-for="am" class="control-label">Account Manager</label>
-            @Html.TextBoxFor(m => m.am, new { @class = "form-control" })
-            <span asp-validation-for="am" class="text-danger"></span>
-        </div>
-        <div class="form-group project-dates">
-            <label asp-for="pm" class="control-label">Project Manager</label>
-            @Html.TextBoxFor(m => m.pm, new { @class = "form-control" })
-            <span asp-validation-for="pm" class="text-danger"></span>
-        </div>
-
-        <hr />
-        <div class="form-group project-dates">
-            <label asp-for="jira" class="control-label">Jira</label>
-            @Html.TextBoxFor(m => m.jira, new { @class = "form-control" })
-            <span asp-validation-for="jira" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-
-            <label asp-for="briefLink" class="control-label">Box Link to Brief</label>
-            @Html.TextBoxFor(m => m.briefLink, new { @class = "form-control" })
-            <span asp-validation-for="briefLink" class="text-danger"></span>
-        </div>
+                <div class="form-group project-dates">
+                    <label asp-for="am" class="control-label">Account Manager</label>
+                    @Html.TextBoxFor(m => m.am, new { @class = "form-control" })
+                    <span asp-validation-for="am" class="text-danger"></span>
+                </div>
+                <div class="form-group project-dates">
+                    <label asp-for="pm" class="control-label">Project Manager</label>
+                    @Html.TextBoxFor(m => m.pm, new { @class = "form-control" })
+                    <span asp-validation-for="pm" class="text-danger"></span>
+                </div>
 
 
-        <div class="form-group">
-            <input type="submit" asp-action="Edit" value="Save" class="float-left save-changes" />
-        </div>
-    </div>
-           
-            
+                <h6> Project Links</h6>
+                <div class="form-group project-dates">
+                    <label asp-for="jira" class="control-label">Jira</label>
+                    @Html.TextBoxFor(m => m.jira, new { @class = "form-control" })
+                    <span asp-validation-for="jira" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+
+                    <label asp-for="briefLink" class="control-label">Box Link to Brief</label>
+                    @Html.TextBoxFor(m => m.briefLink, new { @class = "form-control" })
+                    <span asp-validation-for="briefLink" class="text-danger"></span>
+                </div>
+
+
+
+            </div>
+            <hr />
+
         }
+        <hr />
+
         <div class="back">
             <a asp-action="List" class="btn back">
                 <i class="bi bi-arrow-bar-left"></i>
@@ -101,5 +102,6 @@
             </a>
 
         </div>
+
     </div>
 

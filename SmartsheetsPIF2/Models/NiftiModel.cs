@@ -16,6 +16,7 @@ namespace Smartsheetsproject.Models
 
         public long projectId { get; set; } //rowId
 
+        [Required(ErrorMessage = "Please enter the Project Name")]
         public string projectName { get; set; }
 
         [BindProperty]
@@ -35,9 +36,12 @@ namespace Smartsheetsproject.Models
 
         public string projectType { get; set; }
 
+        [Required(ErrorMessage = "Please enter a brief description.")]
         public string projectDetails { get; set; }
 
         public string intakeType { get; set; }
+
+        public string client { get; set; }
 
         [BindProperty]
         public IEnumerable<SelectListItem> CategoryList { get; set; }
@@ -54,14 +58,16 @@ namespace Smartsheetsproject.Models
 
         //public bool removeProject { get; set; }
 
-        [Required(ErrorMessage = "Please provide a link")]
+        [Required(ErrorMessage = "Please enter the Jira link.")]
         public string jira { get; set; }
 
-        [Required(ErrorMessage = "Please provide a link")]
+        [Required(ErrorMessage = "Please enter the brief link.")]
         public string briefLink { get; set; }
 
+        [Required(ErrorMessage = "Please enter the Account Manager.")]
         public string am { get; set; }
 
+        [Required(ErrorMessage = "Please enter the Project Manager.")]
         public string pm { get; set; }
 
     }

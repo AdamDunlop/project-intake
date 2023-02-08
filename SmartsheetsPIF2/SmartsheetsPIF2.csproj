@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Smartsheetsproject2' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'SmartsheetsPIF' " />
   <ItemGroup>
     <Content Remove="C:\Users\Pc\.nuget\packages\smartsheet-csharp-sdk\2.101.0\contentFiles\any\netstandard2.0\icons\logo.png" />
     <Content Remove="Views\Display\SocialPIFs.cshtml" />
