@@ -13,14 +13,19 @@
 
     <div class="col-12">
         <div class="flex">
-            <h2 class="header-title">@Html.DisplayFor(model => model.projectName)</h2>
-            @if (Model.projectDetails != "Fast Track")
+            @if (Model.intakeType == "Fast Track")
             {
-                <h1 class="fast-track"> ! </h1>
+                <h2 class="fast-track"> >> </h2>
+            }
+
+            <h2 class="header-title">@Html.DisplayFor(model => model.projectName)</h2>
+            @if (Model.intakeType == "Fast Track")
+            {
+                <h2 class="fast-track"> ! </h2>
             }
 
 
-                <p class="project-type"> (@Html.DisplayFor(model => model.intakeType) )</p>
+            <p class="project-type"> (@Html.DisplayFor(model => model.intakeType) )</p>
         </div>
      
         <hr />
