@@ -25,7 +25,7 @@
             }
 
 
-            <p class="project-type"> (@Html.DisplayFor(model => model.intakeType) )</p>
+            <p class="project-type"> (@Html.DisplayFor(model => model.intakeType))</p>
         </div>
      
         <hr />
@@ -44,11 +44,7 @@
             <dd class="col-sm-8 teams">
                 @Html.DisplayFor(model => model.teamCategory)
             </dd>
-               
-
-  
-
-</dl>
+        </dl>
 
         <dl class="row">
             <dt class="col-sm-4">Project Type</dt>
@@ -65,10 +61,6 @@
 
     </div>
 
-
-
-
-
     <div class="col-12 col-md-6 details-col-2">
         <dl class="row">
             <dt class="col-sm-4">Date Requested</dt>
@@ -78,12 +70,10 @@
             <dt class="col-sm-4">Client Lead</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientStakeholder)</dd>
         </dl>
-
         <dl class="row">
             <dt class="col-sm-4">Client Group</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientGroup)</dd>
         </dl>
-
         <dl class="row">
             <dt class="col-sm-4">Client Budget</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientBudget)</dd>
@@ -126,13 +116,13 @@
             <dd class="col-sm-9 project-links">
                 <div class="links">
                     <span>
-                        <a href="@Model.briefLink">Project Brief</a>
+                        <a href="@Model.briefLink" target="_blank">Project Brief</a>
                     </span>
 
                     <span>
                         @if (Model.jira != null)
                         {
-                            <a href="@Model.jira"> Jira Epic</a>
+                            <a href="@Model.jira" target="_blank"> Jira Epic</a>
                         }
                         else
                         {
