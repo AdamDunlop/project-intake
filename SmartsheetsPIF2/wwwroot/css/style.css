@@ -1,4 +1,9 @@
-﻿.is-hidden {
+﻿.flex {
+    display: flex;
+    align-items: baseline;
+}
+
+.is-hidden {
     display: none;
 }
 
@@ -38,7 +43,7 @@ input.save-changes {
     text-align: center;
 }
 
-.project-links {
+.project-links, .teams {
     padding: .5em;
     background-color: #e9ecef;
     border-radius: 0.25rem;
@@ -49,7 +54,20 @@ dl.row {
     margin-bottom: 0;
 }
 
+textarea.details {
+    border: none;
+}
+
 div.links {
     display: grid;
 }
 
+p.project-type {
+    padding-left: .5rem;
+}
+
+h1.fast-track {
+    color: red;
+    font-weight: 500;
+    padding-left: .25rem;
+}

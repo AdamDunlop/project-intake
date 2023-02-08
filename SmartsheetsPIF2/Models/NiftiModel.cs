@@ -39,9 +39,12 @@ namespace Smartsheetsproject.Models
         [Required(ErrorMessage = "Please enter a brief description.")]
         public string projectDetails { get; set; }
 
+
         public string intakeType { get; set; }
 
         public string client { get; set; }
+
+        public string teamCategory { get; set; }
 
         [BindProperty]
         public IEnumerable<SelectListItem> CategoryList { get; set; }

@@ -14,7 +14,15 @@
     <div class="col-12">
         <div class="flex">
             <h2 class="header-title">@Html.DisplayFor(model => model.projectName)</h2>
+            @if (Model.projectDetails != "Fast Track")
+            {
+                <h1 class="fast-track"> ! </h1>
+            }
+
+
+                <p class="project-type"> (@Html.DisplayFor(model => model.intakeType) )</p>
         </div>
+     
         <hr />
     </div>
 
@@ -22,23 +30,29 @@
     <div class="col-12 col-md-6 details">
 
         <dl class="row">
-            <dt class="col-sm-3">Client</dt>
-            <dd class="col-sm-9"> @Html.DisplayFor(model => model.client)</dd>
+            <dt class="col-sm-4">Client</dt>
+            <dd class="col-sm-8"> @Html.DisplayFor(model => model.client)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-3">Intake Type</dt>
-            <dd class="col-sm-9"> @Html.DisplayFor(model => model.intakeType)</dd>
+            <dt class="col-sm-4">Teams</dt>
+            <dd class="col-sm-8 teams">
+                @Html.DisplayFor(model => model.teamCategory)
+            </dd>
+               
+
+  
+
+</dl>
+
+        <dl class="row">
+            <dt class="col-sm-4">Project Type</dt>
+            <dd class="col-sm-8"> @Html.DisplayFor(model => model.projectType)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-3">Project Type</dt>
-            <dd class="col-sm-9"> @Html.DisplayFor(model => model.projectType)</dd>
-        </dl>
-
-        <dl class="row">
-            <dt class="col-sm-3">Brief - Live</dt>
-            <dd class="col-sm-9">
+            <dt class="col-sm-4">Brief - Live</dt>
+            <dd class="col-sm-8">
                 @Html.DisplayFor(model => model.briefDate) -
                 @Html.DisplayFor(model => model.liveDate)
             </dd>
@@ -84,17 +98,22 @@
             <dd class="col-sm-10">
                 @if (Model.projectDetails != null)
                 {
-                    <textarea readonly class="form-control">@Html.DisplayFor(model => model.projectDetails)</textarea>
+                    <textarea readonly class="form-control details">@Html.DisplayFor(model => model.projectDetails)</textarea>
 
                 }
                 else
                 {
                     <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
                 }
-            </dd>
 
+
+
+            </dd>
         </dl>
+        
     </div>
+
+   
     <div class="col-12 col-md-6 details-col-2">
         <dl class="row">
             <dt class="col-sm-2">Links</dt>
@@ -112,7 +131,7 @@
                         }
                         else
                         {
-                            <dd class="col-sm-8 alert alert-warning" role="alert">No Jira Epic link provided.</dd>
+                            <p><i>No Jira link provided.</i></p>
                         }
                      </span>
                 </div>

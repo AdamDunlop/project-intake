@@ -149,6 +149,10 @@ namespace Smartsheetsproject.Controllers
                                 project.projectType = cell.DisplayValue;
                                 break;
 
+                            case "Category":
+                                project.teamCategory = cell.DisplayValue;
+                                break;
+
                             case "Client Group":
                                 project.clientGroup = cell.DisplayValue;
                                 break;
@@ -203,8 +207,8 @@ namespace Smartsheetsproject.Controllers
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-
+            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(5));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(10));
 
             foreach (var row in sheet.Rows)
             {
@@ -243,6 +247,10 @@ namespace Smartsheetsproject.Controllers
 
                             case "Project Type":
                                 project.projectType = cell.DisplayValue;
+                                break;
+
+                            case "Category":
+                                project.teamCategory = cell.DisplayValue;
                                 break;
 
                             case "Lead Client Stakeholder":
@@ -326,8 +334,8 @@ namespace Smartsheetsproject.Controllers
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(6));
+            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(5));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(10));
 
             foreach (var row in sheet.Rows)
             {
@@ -566,8 +574,8 @@ namespace Smartsheetsproject.Controllers
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(6));
+            project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(5));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(10));
 
             return project;
         }
