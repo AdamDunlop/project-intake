@@ -120,13 +120,15 @@ namespace Smartsheetsproject.Controllers
                         switch (columnName)
                         {
 
+                            case "Intake Type":
+                                project.intakeType = cell.DisplayValue;
+                                break;
+
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;
                                 break;
 
-                            case "Intake Type":
-                                project.intakeType = cell.DisplayValue;
-                                break;
+                            
 
                             case "Project Details":
                                 project.projectDetails = cell.DisplayValue;
@@ -148,7 +150,7 @@ namespace Smartsheetsproject.Controllers
                                 project.clientGroup = cell.DisplayValue;
                                 break;
 
-                            case "Project Brief Date":
+                            case "Brief Date":
                                 if (project.briefDate != null)
                                 {
                                     project.briefDate = Convert.ToDateTime(cell.Value);
@@ -156,7 +158,7 @@ namespace Smartsheetsproject.Controllers
                                 //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
-                            case "Project Live Date":
+                            case "Live Date":
                                 if (project.liveDate != null)
                                 {
                                     project.liveDate = Convert.ToDateTime(cell.Value);
@@ -176,6 +178,10 @@ namespace Smartsheetsproject.Controllers
 
                             case "Jira":
                                 project.jira = cell.DisplayValue;
+                                break;
+
+                            case "Box Link to Brief":
+                                project.briefLink = cell.DisplayValue;
                                 break;
 
 
@@ -220,6 +226,15 @@ namespace Smartsheetsproject.Controllers
                                 project.dateRequested = Convert.ToDateTime(cell.Value);
                                 break;
 
+
+                            case "Brief Date":
+                                project.briefDate = Convert.ToDateTime(cell.Value);
+                                break;
+
+                            case "Live Date":
+                                project.liveDate = Convert.ToDateTime(cell.Value);
+
+                                break;
                             case "Project Type":
                                 project.projectType = cell.DisplayValue;
                                 break;
@@ -235,14 +250,6 @@ namespace Smartsheetsproject.Controllers
                             case "Client Budget":
                                 project.clientBudget = cell.DisplayValue;
                                 break;
-
-                            //case "Project Brief Date":
-                            //    project.briefDate = Convert.ToDateTime(cell.Value);
-                            //    break;
-
-                            //case "Project Live Date":
-                            //    project.liveDate = Convert.ToDateTime(cell.Value);
-                            //    break;
 
                             case "AM":
                                 project.am = cell.DisplayValue;
@@ -271,6 +278,28 @@ namespace Smartsheetsproject.Controllers
                                         }
                                     }
                                     project.jira = cell.DisplayValue;
+                                }
+                                break;
+
+                            case "Box Link to Brief":
+                                if (cell.Value != null)
+                                {
+                                    string[] brief = cell.DisplayValue.Split(" ");
+                                    foreach (var item in brief)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            brief = item.Split('"');
+                                            foreach (var url in brief)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    project.briefLink = cell.DisplayValue;
                                 }
                                 break;
                         }
@@ -347,14 +376,6 @@ namespace Smartsheetsproject.Controllers
                             }
                             break;
 
-                                //case "Project Brief Date":
-                                //    project.briefDate = Convert.ToDateTime(cell.Value);
-                                //    break;
-
-                                //case "Project Live Date":
-                                //    project.liveDate = Convert.ToDateTime(cell.Value);
-                                //    break;
-
                             case "AM":
                                 project.am = cell.DisplayValue;
                                 break;
@@ -365,6 +386,10 @@ namespace Smartsheetsproject.Controllers
 
                             case "Jira":
                                 project.jira = cell.DisplayValue;
+                                break;
+
+                            case "Box Link to Brief":
+                                project.briefLink = cell.DisplayValue;
                                 break;
                         }
                     }
@@ -401,6 +426,7 @@ namespace Smartsheetsproject.Controllers
             var am_cell = new Cell();
             var pm_cell = new Cell();
             var jira_cell = new Cell();
+            var brief_link_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -484,13 +510,11 @@ namespace Smartsheetsproject.Controllers
                         jira_cell.Value = project.jira;
                         break;
 
-                        //case "Project Brief Date":
-                        //    project.briefDate = Convert.ToDateTime(cell.Value);
-                        //    break;
+                    case "Box Link to Brief":
+                        brief_link_cell.ColumnId = columnid;
+                        brief_link_cell.Value = project.briefLink;
+                        break;
 
-                        //case "Project Live Date":
-                        //    project.liveDate = Convert.ToDateTime(cell.Value);
-                        //    break;
 
                 }
             }
@@ -502,12 +526,11 @@ namespace Smartsheetsproject.Controllers
                     intake_cell,
                     project_name_cell,
                     project_details_cell,
-                    //project_brief_cell,
-                    //project_live_cell,
                     category_cell,
                     am_cell,
                     pm_cell,
-                    jira_cell
+                    jira_cell,
+                    brief_link_cell
 
                 }
             };

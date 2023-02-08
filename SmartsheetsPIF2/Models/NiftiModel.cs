@@ -47,8 +47,6 @@ namespace Smartsheetsproject.Models
 
         public string clientGroup { get; set; }
 
-        //[Required(ErrorMessage = "Please enter a number.")]
-        //[RegularExpression("^[0-9]*$", ErrorMessage = "Must be a number")]
         public string clientBudget { get; set; }
 
         //[Required(ErrorMessage = "Provide the Client")]
@@ -58,6 +56,9 @@ namespace Smartsheetsproject.Models
 
         [Required(ErrorMessage = "Please provide a link")]
         public string jira { get; set; }
+
+        [Required(ErrorMessage = "Please provide a link")]
+        public string briefLink { get; set; }
 
         public string am { get; set; }
 
