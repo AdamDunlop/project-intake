@@ -67,14 +67,11 @@
 
     <div class="col-12 col-md-6 details">
 
-        <td>Project Details </td>
-        <td>
+        <dt>Project Details <dt>
+        <dd>
             @if (Model.projectDetails != null)
             {
-                <textarea readonly class="form-control">@Html.DisplayFor(model => model.projectDetails)
-                                
-                                
-                                </textarea>
+                <textarea readonly class="form-control">@Html.DisplayFor(model => model.projectDetails)</textarea>
             }
             else
             {
@@ -82,35 +79,32 @@
             }
 
 
-        </td>
+        </dd>
 
     </div>
     <div class="col-12 col-md-6 details-col-2">
 
+        <dt>Project Links</dt>
+     
+        <div class="project-links">
+            <div class="row">
+           
+                <dd class="col-sm-6"><a href="@Model.briefLink">Project Brief</a></dd>
+          
 
-
-        <div class="row">
-            <dt class="col-sm-3">Brief Link</dt>
-            @if (Model.briefLink != null)
-            {
-                <dd class="col-sm-9"><a href="@Model.briefLink">@Html.DisplayFor(model => model.briefLink)</a></dd>
-            }
-            else
-            {
-                <dd class="col-sm-9 alert alert-warning" role="alert">No Box Folder link provided.</dd>
-            }
-
-            <dt class="col-sm-3">Jira Epic</dt>
-            @if (Model.jira != null)
-            {
-                <dd class="col-sm-9"><a href="@Model.jira"> @Html.DisplayFor(model => model.jira)</a></dd>
-            }
-            else
-            {
-                <dd class="col-sm-9 alert alert-warning" role="alert">No Jira link provided.</dd>
-            }
-
-        </div>
+                <dd class="col-sm-6"> 
+                    @if (Model.jira != null)
+                    {
+                        <dd class="col-sm-9"><a href="@Model.jira"> Jira Epic</a></dd>
+                    }
+                    else
+                    {
+                        <dd class="col-sm-9 alert alert-warning" role="alert">No Jira Epic link provided.</dd>
+                    }
+                    </dd>
+           
+                     </div>
+                </div>
         </div>
     </div>
 

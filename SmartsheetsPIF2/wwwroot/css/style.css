@@ -45,3 +45,7 @@ input.save-changes {
     font-weight: 400;
     text-align: center;
 }
+
+.project-links {
+    padding: .5em;
+}
