@@ -66,19 +66,19 @@
 
     <div class="col-12 col-md-6 details-col-2">
         <dl class="row">
-            <dt class="col-sm-4">Date Requested</dt>
+            <dt class="col-sm-3">Requested</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.dateRequested)</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-4">Client Lead</dt>
+            <dt class="col-sm-3">Client Lead</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientStakeholder)</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-4">Client Group</dt>
+            <dt class="col-sm-3">Client Group</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientGroup)</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-4">Client Budget</dt>
+            <dt class="col-sm-3">Client Budget</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientBudget)</dd>
         </dl>
     </div>
@@ -91,8 +91,7 @@
     <div class="col-12 col-md-6 details">
 
         <dl class="row">
-            <dt class="col-sm-2">Details
-            <dt>
+            <dt class="col-sm-2">Details<dt>
             <dd class="col-sm-10">
                 @if (Model.projectDetails != null)
                 {
@@ -103,16 +102,13 @@
                 {
                     <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
                 }
-
-
-
             </dd>
         </dl>
         
     </div>
 
    
-    <div class="col-12 col-md-6 details-col-2">
+    <div class="col-12 col-md-6 details">
         <dl class="row">
             <dt class="col-sm-2">Links</dt>
 
