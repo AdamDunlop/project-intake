@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<Smartsheetsproject.Models.NiftiModel>
 
 @{
-    ViewData["Title"] = "Nifti Pipeline(Stage 1)";
+    ViewData["Title"] = "Nifti Pipeline";
 }
-
 
 
 
@@ -41,23 +40,20 @@
         <table class="table table-striped">
             <thead class="project-list-header">
                 <tr>
-
                     <th class="project-col">
                         Project
                     </th>
-
+                    <th>
+                        Client
+                    </th>
                     <th>
                         Intake Type
                     </th>
-
                     <th>
-                        Date Submitted
+                        Client Group
                     </th>
                     <th>
                         Type
-                    </th>
-                    <th>
-                        Client Group
                     </th>
                     <th>
                         Edit
@@ -74,19 +70,17 @@
                         </a>
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => data.client)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => data.intakeType)
                     </td>
-
-                    <td id="startDate">
-                        @Html.DisplayFor(modelItem => data.dateRequested)
+                    <td id="client-group">
+                        @Html.DisplayFor(modelItem => data.clientGroup)
                     </td>
 
                     <td id="type">
                         @Html.DisplayFor(modelItem => data.projectType)
-                    </td>
-
-                    <td id="client-group">
-                        @Html.DisplayFor(modelItem => data.clientGroup)
                     </td>
                     <td>
                         <a href="@Url.Action("Edit", "Nifti",new { id = data.pipelineId } )">
@@ -95,7 +89,7 @@
                     </td>
 
                 </tr>
-                } 
+                }
 
 
 
@@ -103,5 +97,4 @@
         </table>
     </div>
 </div>
-
 

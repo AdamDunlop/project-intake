@@ -120,12 +120,17 @@ namespace Smartsheetsproject.Controllers
                         switch (columnName)
                         {
 
-                            case "Intake Type":
-                                project.intakeType = cell.DisplayValue;
-                                break;
-
+                            
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;
+                                break;
+
+                            case "Tenrox":
+                                project.tenrox = cell.DisplayValue;
+                                break;
+
+                            case "Intake Type":
+                                project.intakeType = cell.DisplayValue;
                                 break;
 
 
@@ -223,6 +228,10 @@ namespace Smartsheetsproject.Controllers
                         {
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;
+                                break;
+
+                            case "Tenrox":
+                                project.tenrox = cell.DisplayValue;
                                 break;
 
                             case "Intake Type":
@@ -352,6 +361,10 @@ namespace Smartsheetsproject.Controllers
                                 project.projectName = cell.DisplayValue;
                                 break;
 
+                            case "Tenrox":
+                                project.tenrox = cell.DisplayValue;
+                                break;
+
                             case "Intake Type":
                                 project.intakeType = cell.DisplayValue;
                                 break;
@@ -434,8 +447,9 @@ namespace Smartsheetsproject.Controllers
             Row row = sheet.GetRowByRowNumber(row_number);
             var rowToTupdate = new Row();
 
-            var intake_cell = new Cell();
             var project_name_cell = new Cell();
+            var tenrox_cell = new Cell();
+            var intake_cell = new Cell();
             var project_details_cell = new Cell();
             var project_type_cell = new Cell();
             //var project_brief_cell = new Cell();
@@ -453,14 +467,22 @@ namespace Smartsheetsproject.Controllers
 
                 switch (columnName)
                 {
-                    case "Intake Type":
-                        intake_cell.ColumnId = columnid;
-                        intake_cell.Value = project.intakeType;
-                        break;
+
+                    
 
                     case "Project Name":
                         project_name_cell.ColumnId = columnid;
                         project_name_cell.Value = project.projectName;
+                        break;
+
+                    case "Tenrox":
+                        tenrox_cell.ColumnId = columnid;
+                        tenrox_cell.Value = project.tenrox;
+                        break;
+
+                    case "Intake Type":
+                        intake_cell.ColumnId = columnid;
+                        intake_cell.Value = project.intakeType;
                         break;
 
                     case "Project Details":
@@ -541,8 +563,9 @@ namespace Smartsheetsproject.Controllers
             {
                 Id = project.pipelineId,
                 Cells = new Cell[] {
-                    intake_cell,
                     project_name_cell,
+                    tenrox_cell,
+                    intake_cell,
                     project_details_cell,
                     category_cell,
                     am_cell,

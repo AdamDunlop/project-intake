@@ -39,6 +39,10 @@ namespace Smartsheetsproject.Models
         [Required(ErrorMessage = "Please enter a brief description.")]
         public string projectDetails { get; set; }
 
+        [Required(ErrorMessage = "Please provide the Tenrox Code")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Tenrox Code must be numeric")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Must be 9 characters")]
+        public string tenrox { get; set; }
 
         public string intakeType { get; set; }
 

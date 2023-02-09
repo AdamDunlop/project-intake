@@ -15,13 +15,13 @@
         <div class="flex">
             @if (Model.intakeType == "Fast Track")
             {
-                <h2 class="fast-track"> >> </h2>
+                <h3 class="fast-track"> >> </h3>
             }
 
-            <h2 class="header-title">@Html.DisplayFor(model => model.projectName)</h2>
+            <h3 class="header-title">@Html.DisplayFor(model => model.projectName)</h3>
             @if (Model.intakeType == "Fast Track")
             {
-                <h2 class="fast-track"> ! </h2>
+                <h3 class="fast-track"> ! </h3>
             }
 
 
@@ -35,24 +35,29 @@
     <div class="col-12 col-md-6 details">
 
         <dl class="row">
-            <dt class="col-sm-4">Client</dt>
+            <dt class="col-sm-3">Client</dt>
             <dd class="col-sm-8"> @Html.DisplayFor(model => model.client)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-4">Teams</dt>
+            <dt class="col-sm-3">Tenrox</dt>
+            <dd class="col-sm-8"> @Html.DisplayFor(model => model.tenrox)</dd>
+        </dl>
+
+        <dl class="row">
+            <dt class="col-sm-3">Teams</dt>
             <dd class="col-sm-8 teams">
                 @Html.DisplayFor(model => model.teamCategory)
             </dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-4">Project Type</dt>
+            <dt class="col-sm-3">Type</dt>
             <dd class="col-sm-8"> @Html.DisplayFor(model => model.projectType)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-4">Brief - Live</dt>
+            <dt class="col-sm-3">Brief - Live</dt>
             <dd class="col-sm-8">
                 @Html.DisplayFor(model => model.briefDate) -
                 @Html.DisplayFor(model => model.liveDate)
