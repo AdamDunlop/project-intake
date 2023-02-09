@@ -66,9 +66,12 @@ p.project-type {
     padding-left: .5rem;
 }
 
+.header-title {
+    padding-left: .5rem;
+}
 
-h2.fast-track {
+h4.fast-track {
     color: red;
     font-weight: 500;
-    padding-left: .25rem;
+    padding-left: .5rem;
 }
