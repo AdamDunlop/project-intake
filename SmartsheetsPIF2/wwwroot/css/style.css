@@ -49,6 +49,7 @@ input.save-changes {
     border-radius: 0.25rem;
     border: none;
     margin-left: 1rem;
+    width: 91%;
 }
 
 dl.row {
