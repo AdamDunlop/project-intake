@@ -25,7 +25,7 @@
             }
             <p class="project-type">(@Html.DisplayFor(model => model.intakeType))</p>
         </div>
-     
+
         <hr />
     </div>
 
@@ -33,38 +33,45 @@
     <div class="col-12 col-md-6 details">
 
         <dl class="row">
-            <dt class="col-sm-3">Name</dt>
+            <dt class="col-sm-4">Requestor Name</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.requestorName)</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-3">Email</dt>
+            <dt class="col-sm-4">Requestor Email</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.requestorEmail)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-3">Client</dt>
+            <dt class="col-sm-4">Client</dt>
             <dd class="col-sm-8"> @Html.DisplayFor(model => model.client)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-3">Tenrox</dt>
-            <dd class="col-sm-8"> @Html.DisplayFor(model => model.tenrox)</dd>
+            <dt class="col-sm-4">Tenrox Code</dt>
+            @if (Model.tenrox != null)
+            {
+                <dd class="col-sm-8"> @Html.DisplayFor(model => model.tenrox)</dd>
+            }
+            else
+            {
+                <dd class="col-sm-8"><em>No tenrox provided.</em></dd>
+            }
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-3">Teams</dt>
-            <dd class="col-sm-8 teams">
+            <dt class="col-sm-4">Category</dt>
+            <dd class="col-sm-7 teams">
                 @Html.DisplayFor(model => model.teamCategory)
             </dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-3">Type</dt>
+            <dt class="col-sm-4">Type</dt>
             <dd class="col-sm-8"> @Html.DisplayFor(model => model.projectType)</dd>
         </dl>
 
 
         <dl class="row">
-            <dt class="col-sm-3">Brief - Live</dt>
+            <dt class="col-sm-4">Brief - Live</dt>
             <dd class="col-sm-8">
                 @Html.DisplayFor(model => model.briefDate) -
                 @Html.DisplayFor(model => model.liveDate)
@@ -76,34 +83,34 @@
     <div class="col-12 col-md-6 details-col-2">
 
         <dl class="row">
-            <dt class="col-sm-3">Requested</dt>
+            <dt class="col-sm-4">Date Requested</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.dateRequested)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-3">Priority</dt>
+            <dt class="col-sm-4">Priority</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.priority)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-3">LOE</dt>
+            <dt class="col-sm-4">Level of Effort</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.loe)</dd>
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-3">In / OOS </dt>
+            <dt class="col-sm-4">In / OOS </dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.inOos)</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-3">Client Lead</dt>
+            <dt class="col-sm-4">Client Lead</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientStakeholder)</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-3">Client Group</dt>
+            <dt class="col-sm-4">Client Group</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientGroup)</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-3">Client Budget</dt>
+            <dt class="col-sm-4">Client Budget</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.clientBudget)</dd>
         </dl>
 
@@ -117,7 +124,8 @@
     <div class="col-12 col-md-6 details">
 
         <dl class="row">
-            <dt class="col-sm-2">Details<dt>
+            <dt class="col-sm-2">Details
+            <dt>
             <dd class="col-sm-10">
                 @if (Model.projectDetails != null)
                 {
@@ -130,10 +138,10 @@
                 }
             </dd>
         </dl>
-        
+
     </div>
 
-   
+
     <div class="col-12 col-md-6 details">
         <dl class="row">
             <dt class="col-sm-2">Links</dt>
@@ -153,23 +161,23 @@
                         {
                             <p><i>No Jira link provided.</i></p>
                         }
-                     </span>
+                    </span>
                 </div>
-                </dd>
+            </dd>
 
-                </dl>
-            </div>
-        </div>
-
-
-
-    <hr />
-    <div class="col-12 col-md-6 details">
-
-        <div class="row">
-            <a asp-action="List" class="btn back">
-                <i class="bi bi-arrow-bar-left"></i>
-                <span>Back to List</span>
-            </a>
-        </div>
+        </dl>
     </div>
+</div>
+
+
+
+<hr />
+<div class="col-12 col-md-6 details">
+
+    <div class="row">
+        <a asp-action="List" class="btn back">
+            <i class="bi bi-arrow-bar-left"></i>
+            <span>Back to List</span>
+        </a>
+    </div>
+</div>
