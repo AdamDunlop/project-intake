@@ -44,16 +44,17 @@
                         Project
                     </th>
                     <th>
+                        Type
+                    </th>
+                    <th>
                         Client
                     </th>
-                    <th>
-                        Intake Type
-                    </th>
-                    <th>
+
+                    <th id="client-group">
                         Client Group
                     </th>
-                    <th>
-                        Type
+                    <th id="type">
+                        Project Type
                     </th>
                     <th>
                         Edit
@@ -69,12 +70,14 @@
                             @Html.DisplayFor(modelItem => data.projectName)
                         </a>
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => data.client)
-                    </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => data.intakeType)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => data.client)
+                    </td>
+
                     <td id="client-group">
                         @Html.DisplayFor(modelItem => data.clientGroup)
                     </td>

@@ -46,9 +46,19 @@ namespace Smartsheetsproject.Models
 
         public string intakeType { get; set; }
 
-        public string client { get; set; }
+        public string requestorName { get; set; }
+
+        public string requestorEmail { get; set; }
+
+        public string inOos { get; set; }
 
         public string teamCategory { get; set; }
+
+        public string loe { get; set; }
+
+        public string priority { get; set; }
+
+        public string client { get; set; }
 
         [BindProperty]
         public IEnumerable<SelectListItem> CategoryList { get; set; }

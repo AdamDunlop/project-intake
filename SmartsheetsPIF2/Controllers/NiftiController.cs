@@ -119,8 +119,6 @@ namespace Smartsheetsproject.Controllers
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {
-
-                            
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;
                                 break;
@@ -133,6 +131,25 @@ namespace Smartsheetsproject.Controllers
                                 project.intakeType = cell.DisplayValue;
                                 break;
 
+                            case "Requestor Name":
+                                project.requestorName = cell.DisplayValue;
+                                break;
+
+                            case "Requestor Email":
+                                project.requestorEmail = cell.DisplayValue;
+                                break;
+
+                            case "In / OOS":
+                                project.inOos = cell.DisplayValue;
+                                break;
+
+                            case "Level of Effort":
+                                project.loe = cell.DisplayValue;
+                                break;
+
+                            case "Priority":
+                                project.priority = cell.DisplayValue;
+                                break;
 
                             case "Client":
                                 project.client = cell.DisplayValue;
@@ -236,6 +253,26 @@ namespace Smartsheetsproject.Controllers
 
                             case "Intake Type":
                                 project.intakeType = cell.DisplayValue;
+                                break;
+
+                            case "Requestor Name":
+                                project.requestorName = cell.DisplayValue;
+                                break;
+
+                            case "Requestor Email":
+                                project.requestorEmail = cell.DisplayValue;
+                                break;
+
+                            case "In / OOS":
+                                project.inOos = cell.DisplayValue;
+                                break;
+
+                            case "Level of Effort":
+                                project.loe = cell.DisplayValue;
+                                break;
+
+                            case "Priority":
+                                project.priority = cell.DisplayValue;
                                 break;
 
                             case "Client":

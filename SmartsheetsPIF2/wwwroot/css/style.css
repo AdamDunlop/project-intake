@@ -77,3 +77,18 @@ h4.fast-track {
     font-weight: 500;
     padding-left: .5rem;
 }
+
+#SelectedCategory_chosen {
+    width: 100% !important;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    #client-group{
+        display: none;
+    }
+    type {
+        display: none;
+    }
+}
