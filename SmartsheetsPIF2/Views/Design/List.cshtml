@@ -1,12 +1,14 @@
-﻿@model IEnumerable<Smartsheetsproject.Models.DesignModel>
+﻿@*@model IEnumerable<Smartsheetsproject.Models.DesignModel>
 
 @{
     ViewData["Title"] = "Design Production";
-}
+}*@
 
 <div class="row">
+
+   
     <div class="col-12">
-        @{
+        @*@{
             if (TempData["Result"] != null)
             {
                 if (TempData["Result"].Equals("Success"))
@@ -28,7 +30,9 @@
                     </div>
                 }
             }
-        }
+        }*@
+
+        <vc:design></vc:design>
     </div>
 </div>
 
@@ -36,77 +40,10 @@
     <div class="col-12">
         <h2 class="header-title">Design Production Pipeline(Stage 2)</h2>
         <table class="table table-striped">
-            <thead class="project-list-header">
-                <tr>
-                    <th>
-                        LOB
-                    </th>
-
-                    <th class="project-col">
-                        Project
-                    </th>
-                    <th>
-                        Tenrox
-                    </th>
-                    @*<th>
-                        Start Date
-                    </th>
-
-                    <th>
-                        Due Date
-                    </th>*@
-
-                    <th>
-                        Status
-                    </th>
-                    @*<th>
-                        Jira
-                    </th>*@
-                    <th>
-                        Edit
-                    </th>
-                </tr>
-            </thead>
+          
             <tbody>
-                @foreach (var data in Model)
-                {
-                <tr>
-                    <td class="project-col">
-                        @Html.DisplayFor(modelItem => data.lob)
-                    </td>
-                    <td>
-                        <a class="clickable-row" href="@Url.Action("Details", "Design", new { id = data.pipelineId  } )">
-                            @Html.DisplayFor(modelItem => data.projectName)
-                        </a>
-                    </td>
 
-
-                    <td>
-                        @Html.DisplayFor(modelItem => data.tenrox)
-                    </td>
-
-                    @*<td>
-                        @Html.DisplayFor(modelItem => data.startDate)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => data.endDate)
-                    </td>
-                    *@
-                    <td>
-                        @Html.DisplayFor(modelItem => data.status)
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => data.jira)
-                    </td>*@
-                    <td>
-                        <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
-                            edit
-                        </a>
-                    </td>
-
-                </tr>
-                }
+           
 
 
 

@@ -32,11 +32,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Nifti\" />
+    <None Remove="Components\" />
     <None Remove="Views\Shared\Components\" />
+    <None Remove="Views\Shared\Components\DesignViewComponent\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Nifti\" />
-    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Shared\ViewComponents\" />
+    <Folder Include="Views\Shared\ViewComponents\Design\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Views\Components\DesignForm">
