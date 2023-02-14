@@ -31,13 +31,13 @@
     <div class="col-12 col-md-6 details">
 
         <dl class="row">
-            <dt class="col-sm-4">Requestor Name</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.requestorName)</dd>
+            <dt class="col-sm-4">Requestor</dt>
+            <dd class="col-sm-8"><a href="mailto:  @Model.requestorEmail">@Html.DisplayFor(model => model.requestorName)</a></dd>
         </dl>
-        <dl class="row">
+        @*<dl class="row">
             <dt class="col-sm-4">Requestor Email</dt>
-            <dd class="col-sm-8"><a href ="mailto:  @Model.requestorEmail">@Html.DisplayFor(model => model.requestorEmail)</a></dd>
-        </dl>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.requestorEmail)</a></dd>
+        </dl>*@
 
         <dl class="row">
             <dt class="col-sm-4">Client</dt>
@@ -91,16 +91,10 @@
         </dl>
 
         <dl class="row">
-            <dt class="col-sm-4">Level of Effort</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.loe)</dd>
+            <dt class="col-sm-4">Size/ Level of Effort</dt>
+            <dd class="col-sm-8 flex"><p style="margin: 0;">@Html.DisplayFor(model => model.size)</span>
+            </dd>
         </dl>
-
-
-        <dl class="row">
-            <dt class="col-sm-4">Size</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.size)</dd>
-        </dl>
-
         <dl class="row">
             <dt class="col-sm-4">In / OOS </dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.inOos)</dd>
