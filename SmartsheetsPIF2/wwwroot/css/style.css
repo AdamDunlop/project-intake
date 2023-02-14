@@ -85,6 +85,20 @@ h4.fast-track {
 
 
 
+.toggle {
+    display: none
+}
+
+
+
+.select {
+ display: none;
+}
+
+label {
+    margin-right: 20px;
+}
+
 @media only screen and (max-width: 767px) {
     #client-group{
         display: none;
@@ -93,3 +107,4 @@ h4.fast-track {
         display: none;
     }
 }
+
