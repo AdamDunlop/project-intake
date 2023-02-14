@@ -100,7 +100,9 @@ label {
 }
 
 @media only screen and (max-width: 767px) {
-    #client-group{
+
+
+    #client-group, #intake-type{
         display: none;
     }
     type {
