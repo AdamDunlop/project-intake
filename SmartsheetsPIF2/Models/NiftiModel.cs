@@ -56,6 +56,8 @@ namespace Smartsheetsproject.Models
 
         public string loe { get; set; }
 
+        public string size { get; set; }
+
         public string priority { get; set; }
 
         public string client { get; set; }

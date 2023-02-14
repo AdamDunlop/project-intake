@@ -8,10 +8,10 @@ namespace SmartsheetsPIF2.Components
 {
     public class DesignViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            return View();
-        }
+        //public async Task<IViewComponentResult> InvokeAsync()
+        //{
+        //    return View();
+        //}
     }
 }
  

@@ -1,11 +1,9 @@
-﻿@model Smartsheetsproject.Models.NiftiModel
+﻿    @model Smartsheetsproject.Models.NiftiModel
 
 
 @{
     ViewData["Title"] = "Nifti Details";
 }
-
-
 
 
 
@@ -38,7 +36,7 @@
         </dl>
         <dl class="row">
             <dt class="col-sm-4">Requestor Email</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.requestorEmail)</dd>
+            <dd class="col-sm-8"><a href ="mailto:  @Model.requestorEmail">@Html.DisplayFor(model => model.requestorEmail)</a></dd>
         </dl>
 
         <dl class="row">
@@ -97,6 +95,12 @@
             <dd class="col-sm-8">@Html.DisplayFor(model => model.loe)</dd>
         </dl>
 
+
+        <dl class="row">
+            <dt class="col-sm-4">Size</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.size)</dd>
+        </dl>
+
         <dl class="row">
             <dt class="col-sm-4">In / OOS </dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.inOos)</dd>
@@ -121,9 +125,35 @@
 <hr />
 <div class="row">
 
+    <div class="col-sm-12">
+
+            <h4>Production</h4>
+
+    </div>
+    
     <div class="col-12 col-md-6 details">
 
+
+
         <dl class="row">
+
+
+            <dt class="col-sm-2">PM<dt>
+            <dd class="col-sm-10">
+                @if (Model.pm != null)
+                {
+                    <span>@Html.DisplayFor(model => model.pm)</span>
+
+                }
+                else
+                {
+                <span><em>PM not Specified.</em></span>
+                }
+            </dd>
+        </dl>
+        <dl class="row">
+
+
             <dt class="col-sm-2">Details
             <dt>
             <dd class="col-sm-10">
@@ -144,6 +174,24 @@
 
     <div class="col-12 col-md-6 details">
         <dl class="row">
+
+
+            <dt class="col-sm-2">AM
+            <dt>
+            <dd class="col-sm-10">
+                @if (Model.am != null)
+                {
+                    <span>@Html.DisplayFor(model => model.am)</span>
+
+                }
+                else
+                {
+                    <span><em>AM not Specified.</em></span>
+                }
+            </dd>
+        </dl>
+        <dl class="row">
+
             <dt class="col-sm-2">Links</dt>
 
             <dd class="col-sm-9 project-links">
