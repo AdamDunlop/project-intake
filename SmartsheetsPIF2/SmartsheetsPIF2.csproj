@@ -38,9 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Nifti\" />
-    <Folder Include="ViewComponents\" />
-    <Folder Include="Views\Shared\ViewComponents\" />
-    <Folder Include="Views\Shared\ViewComponents\Design\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Views\Components\DesignForm">

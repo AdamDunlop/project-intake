@@ -119,11 +119,7 @@
 <hr />
 <div class="row">
 
-    <div class="col-sm-12">
-
-            <h4>Production</h4>
-
-    </div>
+ 
     
     <div class="col-12 col-md-6 details">
 
@@ -186,15 +182,14 @@
         </dl>
         <dl class="row">
 
-            <dt class="col-sm-2">Links</dt>
+            <dt class="col-sm-2">Brief</dt>
 
-            <dd class="col-sm-9 project-links">
-                <div class="links">
+            <dd class="col-sm-9">
                     <span>
                         <a href="@Model.briefLink" target="_blank">Project Brief</a>
                     </span>
 
-                    <span>
+                    @*<span>
                         @if (Model.jira != null)
                         {
                             <a href="@Model.jira" target="_blank"> Jira Epic</a>
@@ -203,8 +198,8 @@
                         {
                             <p><i>No Jira link provided.</i></p>
                         }
-                    </span>
-                </div>
+                    </span>*@
+   
             </dd>
 
         </dl>

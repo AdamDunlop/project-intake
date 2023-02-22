@@ -72,10 +72,7 @@ namespace Smartsheetsproject.Models
 
         public string clientBudget { get; set; }
 
-        //[Required(ErrorMessage = "Provide the Client")]
         public string clientStakeholder { get; set; }
-
-        //public bool removeProject { get; set; }
 
         [Required(ErrorMessage = "Please enter the Jira link.")]
         public string jira { get; set; }

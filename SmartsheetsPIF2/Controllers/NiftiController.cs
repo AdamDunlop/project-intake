@@ -227,8 +227,7 @@ namespace Smartsheetsproject.Controllers
             return project_list;
         }
 
-
-            public NiftiModel GetProjectDetails(long row_id)
+        public NiftiModel GetProjectDetails(long row_id)
         {
             NiftiModel project = new NiftiModel();
             project.pipelineId = row_id;
@@ -382,7 +381,6 @@ namespace Smartsheetsproject.Controllers
             return project;
         }
 
-
         public NiftiModel GetProjectEdit(long row_id)
         {
             NiftiModel project = new NiftiModel();
@@ -475,7 +473,6 @@ namespace Smartsheetsproject.Controllers
             return project;
         }
    
-
         public void updateProject(NiftiModel project)
         {
             SmartsheetClient smartsheet_CL = initSheet();
