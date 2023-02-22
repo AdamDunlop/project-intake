@@ -165,8 +165,8 @@ namespace Smartsheetsproject.Controllers
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(1));
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(22));
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(25));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(26));
             //project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(23));
 
             foreach (var row in sheet.Rows)
@@ -276,9 +276,9 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             //Get LOB options
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(1));
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(25));
             //Get Status options
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(22));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(26));
 
             foreach (var row in sheet.Rows)
             {
@@ -519,9 +519,9 @@ namespace Smartsheetsproject.Controllers
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(1));
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(25));
 
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(22));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(26));
 
             //project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(23));
 
@@ -550,18 +550,18 @@ namespace Smartsheetsproject.Controllers
             return options;
         }
 
-        //public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
-        //{
-        //    List<SelectListItem> list = new List<SelectListItem>();
-        //    //int cont = 0;
-        //    foreach (var spec in specs_col.Options)
-        //    {
-        //        //cont++;
-        //        //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
-        //        list.Add(new SelectListItem { Text = spec, Value = spec });
-        //    }
-        //    return list;
-        //}
+        public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //int cont = 0;
+            foreach (var spec in specs_col.Options)
+            {
+                //cont++;
+                //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+                list.Add(new SelectListItem { Text = spec, Value = spec });
+            }
+            return list;
+        }
 
     }
 

@@ -11,8 +11,8 @@
 
     </div>
 </div>
-<!--<div class="row" style="margin: auto">
-    <div class="col-12 col-md-6 details">
+<div class="row" style="margin: auto">
+    <div class="col-12 details">
         <div class="row">
             <dt class="col-sm-3">Project</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.projectName)</dd>
@@ -45,45 +45,64 @@
                 <dd class="alert alert-warning" role="alert">Status unavailable</dd>
             }
 
-        </div>-->
-        @*<div class="row">
-            <dt class="col-sm-3">Timing</dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.startDate) -
-                @Html.DisplayFor(model => model.endDate)
-            </dd>
-        </div>*@
-    <!--</div>-->
-    @*<div class="col-12 col-md-6 details-col-2">
-        <div class="row">
-            <dt class="col-sm-3">PM</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
         </div>
+        @*<div class="row">
+                <dt class="col-sm-3">Timing</dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.startDate) -
+                    @Html.DisplayFor(model => model.endDate)
+                </dd>
+            </div>*@
+        <!--</div>-->
+        @*<div class="col-12 col-md-6 details-col-2">
+            <div class="row">
+                <dt class="col-sm-3">PM</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
+            </div>
 
-        <div class="row">
-            <dt class="col-sm-3">Designer</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.assignedTo)</dd>
-        </div>*@
+            <div class="row">
+                <dt class="col-sm-3">Designer</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.assignedTo)</dd>
+            </div>*@
 
     </div>
     @*<div class="wbs-section">
-        <hr />
-        <h4>WBS</h4>
-        <div class="wbs">
-            @if (Model.wbs_link != null)
-            {
-                <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs_link"></IFRAME>
+            <hr />
+            <h4>WBS</h4>
+            <div class="wbs">
+                @if (Model.wbs_link != null)
+                {
+                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs_link"></IFRAME>
 
-            }
-            else
-            {
-                <div class="alert alert-warning" role="alert">No WBS provided.</div>
-            }
-        </div>
-    </div>*@
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">No WBS provided.</div>
+                }
+            </div>
+        </div>*@
 
-    <a asp-action="List" class="btn btn-secondary">
-        <i class="bi bi-arrow-bar-left"></i>
-        <span>Back to List</span>
-    </a>
+    <hr />
+
+</div>
+<hr />
+
+
+<div class="col-12">
+    <iframe src="https://cm.app.box.com/embed/s/2cjiggi9b92af6r4zf6ggp0awtr4qbwr?showItemFeedActions=false&sortColumn=date&view=list" width="100%" height="400" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe>
+</div>
+
+<hr />
+
+<div class="col-12 col-md-6 details">
+
+    <div class="row">
+        <a asp-action="List" class="btn back">
+            <i class="bi bi-arrow-bar-left"></i>
+            <span>Back to List</span>
+        </a>
+    </div>
+</div>
+
+
 </div>
