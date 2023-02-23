@@ -33,14 +33,19 @@ namespace Smartsheetsproject.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
+        [DateGreaterThan("startDate")]
         public DateTime dueDate { get; set; }
 
         public string assignedTo { get; set; }
 
+        [Required(ErrorMessage = "Please enter the Box embed Link")]
         public string box { get; set; }
 
+        [Required(ErrorMessage = "Please enter the Figma embed Link")]
         public string figma { get; set; }
 
+
+        [Required(ErrorMessage = "Please enter the wbs Link")]
         public string wbs { get; set; }
 
 
@@ -65,7 +70,7 @@ namespace Smartsheetsproject.Models
             }
             else
             {
-                return new ValidationResult("The end date occurs before the start date");
+                return new ValidationResult("Cannot set Due Date before the Start Date.");
             }
         }
     }

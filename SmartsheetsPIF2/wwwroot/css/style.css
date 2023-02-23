@@ -99,9 +99,33 @@ label {
     margin-right: 20px;
 }
 
+.box-section, .figma-section {
+    width: 100%;
+}
+
+.box, .wbs, .figma {
+    display: flex;
+    align-items: baseline;
+}
+
+.wbs-expand, .box-expand, .figma-expand {
+    padding: 2px;
+    cursor: pointer;
+    margin: 0.5rem;
+    width: 100px;
+    border-radius: 7px;
+    background-color: #f9f9f9;
+}
+
+.box-content, .wbs-content, .figma-content {
+    display: none;
+    padding: 5px;
+}
+
+
+
+
 @media only screen and (max-width: 767px) {
-
-
     #client-group, #intake-type{
         display: none;
     }

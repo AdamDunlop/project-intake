@@ -119,29 +119,26 @@ namespace Smartsheetsproject.Controllers
                                 project.status = cell.DisplayValue;
                                 break;
 
-                            //case "Jira":
-                            //    project.jira = cell.DisplayValue;
-                            //    break;
+                 
+                            case "Start Date":
+                                if (project.startDate != null)
+                                {
+                                    project.startDate = Convert.ToDateTime(cell.Value);
+                                }
+                                //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                break;
 
-                            //case "Start Date":
-                            //    if (project.startDate != null)
-                            //    {
-                            //        project.startDate = Convert.ToDateTime(cell.Value);
-                            //    }
-                            //        //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
-                            //    break;
+                            case "Due Date":
+                                if (project.dueDate != null)
+                                {
+                                    project.dueDate = Convert.ToDateTime(cell.Value);
+                                }
+                                //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
+                                break;
 
-                            //case "Due Date":
-                            //    if (project.endDate != null)
-                            //    {
-                            //        project.endDate = Convert.ToDateTime(cell.Value);
-                            //    }
-                            //    //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
-                            //    break;
-
-                            //case "Assigned to":
-                            //    project.assignedTo = cell.DisplayValue;
-                            //    break;
+                            case "Assigned To":
+                                project.assignedTo = cell.DisplayValue;
+                                break;
 
                             //case "PM":
                             //    project.pm = cell.DisplayValue;
@@ -150,6 +147,20 @@ namespace Smartsheetsproject.Controllers
                             //case "AM":
                             //    project.pm = cell.DisplayValue;
                             //    break;
+
+
+                            case "WBS":
+                                project.wbs = cell.DisplayValue;
+                                break;
+
+                            case "Box":
+                                project.box = cell.DisplayValue;
+                                break;
+
+
+                            case "Figma":
+                                project.figma = cell.DisplayValue;
+                                break;
 
                         }
                     }
@@ -188,16 +199,12 @@ namespace Smartsheetsproject.Controllers
                                         item.Selected = true;
                                     }
                                 }
-                                //project.lob = cell.DisplayValue;
                                 break;
+
 
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;
                                 break;
-
-                            case "Tenrox":
-                                project.tenrox = cell.DisplayValue;
-                                break;              
 
                             case "Status":
                                 foreach (var item in project.status_options)
@@ -209,59 +216,60 @@ namespace Smartsheetsproject.Controllers
                                 }
                                 break;
 
-                            //case "Jira":
-                            //    project.jira = cell.DisplayValue;
-                            //    break;
 
-                            //case "Start Date":
-                            //    project.startDate = Convert.ToDateTime(cell.Value);
-                            //    break;
+                            case "Start Date":
+                                project.startDate = Convert.ToDateTime(cell.Value);
+                                break;
 
-                            //case "Due Date":
-                            //    project.endDate = Convert.ToDateTime(cell.Value);
-                            //    break;
+                            case "Due Date":
+                                project.dueDate = Convert.ToDateTime(cell.Value);
+                                break;
 
-                            //case "AM":
-                            //    project.pm = cell.DisplayValue;
-                            //    break;
+                            case "Assigned To":
+                                project.assignedTo = cell.DisplayValue;
+                                break;
 
-                            //case "PM":
-                            //    project.am = cell.DisplayValue;
-                            //    break;
+                            case "WBS":
+                                project.wbs = cell.DisplayValue;
+                                break;
 
-                            //case "Assigned to":
-                            //    project.assignedTo = cell.DisplayValue;
-                            //    break;
+                            case "Box":
+                                project.box = cell.DisplayValue;
+                                break;
 
-                            //case "Specs":
+                            case "Figma":
+                                project.figma = cell.DisplayValue;
+                                break;
 
-                            //    // List<SelectListItem> selectedvalues = new List<SelectListItem>();
+                                //case "Specs":
 
-                            //    if (cell.DisplayValue != null)
-                            //    {
-                            //        List<string> selectedvalues = new List<string>();
+                                //    // List<SelectListItem> selectedvalues = new List<SelectListItem>();
 
-                            //        var list = cell.DisplayValue.Split(",");
+                                //    if (cell.DisplayValue != null)
+                                //    {
+                                //        List<string> selectedvalues = new List<string>();
 
-                            //        foreach (var spec in list)
-                            //        {
-                            //            IEnumerable<SelectListItem> variable = project.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+                                //        var list = cell.DisplayValue.Split(",");
 
-                            //            var id = "";
+                                //        foreach (var spec in list)
+                                //        {
+                                //            IEnumerable<SelectListItem> variable = project.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
 
-                            //            foreach (var i in variable)
-                            //            {
-                            //                id = i.Value;
-                            //            }
+                                //            var id = "";
 
-                            //            //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
-                            //            selectedvalues.Add(id);
+                                //            foreach (var i in variable)
+                                //            {
+                                //                id = i.Value;
+                                //            }
 
-                            //            variable = null;
-                            //        }
-                            //        project.SelectedSpecs = selectedvalues;
-                            //    }
-                            //    break;
+                                //            //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                //            selectedvalues.Add(id);
+
+                                //            variable = null;
+                                //        }
+                                //        project.SelectedSpecs = selectedvalues;
+                                //    }
+                                //    break;
                         }
                     }
                 }
@@ -312,13 +320,13 @@ namespace Smartsheetsproject.Controllers
                             //    project.jira = cell.DisplayValue;
                             //    break;
 
-                            //case "Start Date":
-                            //    project.startDate = Convert.ToDateTime(cell.Value);
-                            //    break;
+                            case "Start Date":
+                                project.startDate = Convert.ToDateTime(cell.Value);
+                                break;
 
-                            //case "Due Date":
-                            //    project.endDate = Convert.ToDateTime(cell.Value);
-                            //    break;           
+                            case "Due Date":
+                                project.dueDate = Convert.ToDateTime(cell.Value);
+                                break;
 
                             //case "PM":
                             //    project.pm = cell.DisplayValue;
@@ -328,36 +336,81 @@ namespace Smartsheetsproject.Controllers
                             //    project.am = cell.DisplayValue;
                             //    break;
 
-                            //case "Assigned to":
-                            //    project.assignedTo = cell.DisplayValue;
-                            //    break;
+                            case "Assigned To":
+                                project.assignedTo = cell.DisplayValue;
+                                break;
 
-                            //case "WBS":
-                            //    if (cell.Value != null)
-                            //    {
-                            //        string[] wbs = cell.DisplayValue.Split(" ");
-                            //        foreach (var item in wbs)
-                            //        {
-                            //            if (item.Contains("https:"))
-                            //            {
-                            //                wbs = item.Split('"');
-                            //                foreach (var url in wbs)
-                            //                {
-                            //                    if (url.Contains("https:"))
-                            //                    {
-                            //                        cell.DisplayValue = url.Trim('"'); ;
-                            //                    }
-                            //                }
-                            //            }
-                            //        }
-                            //        project.wbs_link = cell.DisplayValue;
-                            //    }
-                            //    break;
+                            case "WBS":
+                                if (cell.Value != null)
+                                {
+                                    string[] wbs_link = cell.DisplayValue.Split(" ");
+                                    foreach (var item in wbs_link)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            wbs_link = item.Split('"');
+                                            foreach (var url in wbs_link)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    project.wbs = cell.DisplayValue;
+                                }
+                                break;
 
-                            //case "Specs":
-                            
-                            //    //TBD
-                            //    break;
+
+                            case "Box":
+                                if (cell.Value != null)
+                                {
+                                    string[] box_link = cell.DisplayValue.Split(" ");
+                                    foreach (var item in box_link)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            box_link = item.Split('"');
+                                            foreach (var url in box_link)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    project.box = cell.DisplayValue;
+                                }
+                                break;
+
+                            case "Figma":
+                                if (cell.Value != null)
+                                {
+                                    string[] figma_link = cell.DisplayValue.Split(" ");
+                                    foreach (var item in figma_link)
+                                    {
+                                        if (item.Contains("https:"))
+                                        {
+                                            figma_link = item.Split('"');
+                                            foreach (var url in figma_link)
+                                            {
+                                                if (url.Contains("https:"))
+                                                {
+                                                    cell.DisplayValue = url.Trim('"'); ;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    project.figma = cell.DisplayValue;
+                                }
+                                break;
+
+                                //case "Specs":
+
+                                //    //TBD
+                                //    break;
 
 
                         }
@@ -385,13 +438,16 @@ namespace Smartsheetsproject.Controllers
             var rowToTupdate = new Row();
 
             var lob_cell = new Cell();
-            var project_name_cell = new Cell();
-            var tenrox_cell = new Cell();
+            //var project_name_cell = new Cell();
+            //var tenrox_cell = new Cell();
             var status_cell = new Cell();
             //var jira_cell = new Cell();
-            //var start_date_cell = new Cell();
-            //var due_date_cell = new Cell();
-            //var assigned_cell = new Cell();
+            var start_date_cell = new Cell();
+            var due_date_cell = new Cell();
+            var assigned_cell = new Cell();
+            var wbs_cell = new Cell();
+            var box_cell = new Cell();
+            var figma_cell = new Cell();
             //var pm_cell = new Cell();
             //var am_cell = new Cell();
             //var specs_cell = new Cell();
@@ -409,75 +465,80 @@ namespace Smartsheetsproject.Controllers
                         lob_cell.Value = project.lob;
                         break;
 
-                    case "Project Name":
-                        project_name_cell.ColumnId = columnid;
-                        project_name_cell.Value = project.projectName;
-                        break;
-
-                    case "Tenrox":
-                        tenrox_cell.ColumnId = columnid;
-                        tenrox_cell.Value = project.tenrox;
-                        break;
-
                     case "Status":
                         status_cell.ColumnId = columnid;
                         status_cell.Value = project.status;
                         break;
 
-                    //case "Jira":
-                    //    jira_cell.ColumnId = columnid;
-                    //    jira_cell.Value = project.jira;
-                    //    break;
+                    case "Start Date":
+                        start_date_cell.ColumnId = columnid;
+                        start_date_cell.Value = project.startDate;
+                        break;
 
-                    //case "Start Date":
-                    //    start_date_cell.ColumnId = columnid;
-                    //    start_date_cell.Value = project.startDate;
-                    //    break;
+                    case "Due Date":
+                        due_date_cell.ColumnId = columnid;
+                        due_date_cell.Value = project.dueDate;
+                        break;
 
-                    //case "Due Date":
-                    //    due_date_cell.ColumnId = columnid;
-                    //    due_date_cell.Value = project.endDate;
-                    //    break;
+                    case "Assigned To":
+                        assigned_cell.ColumnId = columnid;
+                        assigned_cell.Value = project.assignedTo;
+                        break;
 
-                    //case "Specs":
-                    //    specs_cell.ColumnId = columnid;
-                    //    ObjectValue objct = null;
-                    //    bool flag = false;
-                    //    //count = project.SelectedSpecs.Count();
+                    case "WBS":
+                        wbs_cell.ColumnId = columnid;
+                        wbs_cell.Value = project.wbs;
+                        break;
 
-                    //    if (project.SelectedSpecs != null)
-                    //    {
+                    case "Box":
+                        box_cell.ColumnId = columnid;
+                        box_cell.Value = project.box;
+                        break;
 
-                    //        foreach (var size in project.SelectedSpecs)
+                    case "Figma":
+                        figma_cell.ColumnId = columnid;
+                        figma_cell.Value = project.figma;
+                        break;
 
-                    //        {
-                    //            if (size != null)
-                    //            {
-                    //                if (size.Contains("System.String"))
-                    //                {
-                    //                    flag = true;
-                    //                }
-                    //            }
-                    //        }
-                    //        if (flag)
-                    //        {
-                    //            project.SelectedSpecs.RemoveAt(project.SelectedSpecs.Count() - 1);
-                    //        }
+                        //case "Specs":
+                        //    specs_cell.ColumnId = columnid;
+                        //    ObjectValue objct = null;
+                        //    bool flag = false;
+                        //    //count = project.SelectedSpecs.Count();
 
-                    //        if (project.SelectedSpecs.Count() == 0) {
-                    //            project.SelectedSpecs.Add("TBD");
-                    //            objct = new MultiPicklistObjectValue(project.SelectedSpecs);
+                        //    if (project.SelectedSpecs != null)
+                        //    {
 
-                    //        }
-                    //        else
-                    //        {
-                    //            objct = new MultiPicklistObjectValue(project.SelectedSpecs);
+                        //        foreach (var size in project.SelectedSpecs)
 
-                    //        }
+                        //        {
+                        //            if (size != null)
+                        //            {
+                        //                if (size.Contains("System.String"))
+                        //                {
+                        //                    flag = true;
+                        //                }
+                        //            }
+                        //        }
+                        //        if (flag)
+                        //        {
+                        //            project.SelectedSpecs.RemoveAt(project.SelectedSpecs.Count() - 1);
+                        //        }
 
-                    //    }
-                    //    specs_cell.ObjectValue = objct;
-                    //    break;
+                        //        if (project.SelectedSpecs.Count() == 0) {
+                        //            project.SelectedSpecs.Add("TBD");
+                        //            objct = new MultiPicklistObjectValue(project.SelectedSpecs);
+
+                        //        }
+                        //        else
+                        //        {
+                        //            objct = new MultiPicklistObjectValue(project.SelectedSpecs);
+
+                        //        }
+
+                        //    }
+                        //    specs_cell.ObjectValue = objct;
+                        //    break;
 
                 }
             }
@@ -487,13 +548,13 @@ namespace Smartsheetsproject.Controllers
                 Id = project.pipelineId,
                 Cells = new Cell[] {
                     lob_cell,
-                    project_name_cell,
-                    tenrox_cell,
-                    status_cell
-                    //jira_cell,
-                  
-                    //start_date_cell,
-                    //due_date_cell,                 
+                    status_cell,         
+                    start_date_cell,
+                    due_date_cell,
+                    assigned_cell,
+                    wbs_cell,
+                    box_cell,
+                    figma_cell
                     //specs_cell
                 }
             };
@@ -550,18 +611,18 @@ namespace Smartsheetsproject.Controllers
             return options;
         }
 
-        public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
-        {
-            List<SelectListItem> list = new List<SelectListItem>();
-            //int cont = 0;
-            foreach (var spec in specs_col.Options)
-            {
-                //cont++;
-                //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
-                list.Add(new SelectListItem { Text = spec, Value = spec });
-            }
-            return list;
-        }
+        //public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
+        //{
+        //    List<SelectListItem> list = new List<SelectListItem>();
+        //    //int cont = 0;
+        //    foreach (var spec in specs_col.Options)
+        //    {
+        //        //cont++;
+        //        //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+        //        list.Add(new SelectListItem { Text = spec, Value = spec });
+        //    }
+        //    return list;
+        //}
 
     }
 
