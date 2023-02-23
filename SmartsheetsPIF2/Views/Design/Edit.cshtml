@@ -38,7 +38,7 @@
 
     <div class="form-group">
         <label asp-for="wbs" class="control-label">WBS</label>
-        @Html.TextBoxFor(m => m.wbs, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.wbs, new { @class = "form-control", @type = "url" })
         <span asp-validation-for="wbs" class="text-danger"></span>
     </div>
 
@@ -84,11 +84,6 @@
         @Html.TextBoxFor(m => m.figma, new { @class = "form-control" })
         <span asp-validation-for="figma" class="text-danger"></span>
     </div>
-
-
-
-
-
 
 </div>
     <div class="col-12 col-md-6">
