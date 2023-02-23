@@ -6,7 +6,20 @@
 
 <div class="row">
     <div class="col-12">
-        <h2 class="header-title">@Html.DisplayFor(model => model.projectName) Details</h2>
+        <div class="flex">
+            @if (Model.intakeType == "Fast Track")
+            {
+                <h4 class="fast-track"> >> </h4>
+            }
+
+            <h3 class="header-title"> @Html.DisplayFor(model => model.projectName) </h3>
+            @if (Model.intakeType == "Fast Track")
+            {
+                <h4 class="fast-track">  ! </h4>
+            }
+            <p class="project-type">(@Html.DisplayFor(model => model.intakeType))</p>
+        </div>
+
         <hr />
 
     </div>

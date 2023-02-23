@@ -13,6 +13,9 @@ namespace Smartsheetsproject.Models
 
         public long pipelineId { get; set; }
 
+
+        public string intakeType { get; set; }
+
         public string projectName { get; set; }
 
         public string lob { get; set; }

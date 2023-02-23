@@ -103,7 +103,11 @@ namespace Smartsheetsproject.Controllers
                         switch (columnName)
                         {
 
-                            case "LOB":
+                            case "Intake Type":
+                                project.intakeType = cell.DisplayValue;
+                                break;
+                           
+                           case "LOB":
                                 project.lob = cell.DisplayValue;
                                 break;
 
@@ -170,15 +174,16 @@ namespace Smartsheetsproject.Controllers
             return project_list;
         }
 
-        public DesignModel GetProjectEdit(long row_id)
+        public DesignModel GetProjectDetails(long row_id)
         {
             DesignModel project = new DesignModel();
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(25));
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(26));
-            //project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(23));
+            //Get LOB options
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
+            //Get Status options
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
 
             foreach (var row in sheet.Rows)
             {
@@ -191,114 +196,10 @@ namespace Smartsheetsproject.Controllers
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {
-                            case "LOB":
-                                foreach (var item in project.lob_options)
-                                {
-                                    if (item.Value.ToString() == cell.DisplayValue)
-                                    {
-                                        item.Selected = true;
-                                    }
-                                }
+
+                            case "Intake Type":
+                                project.intakeType = cell.DisplayValue;
                                 break;
-
-
-                            case "Project Name":
-                                project.projectName = cell.DisplayValue;
-                                break;
-
-                            case "Status":
-                                foreach (var item in project.status_options)
-                                {
-                                    if (item.Value.ToString() == cell.DisplayValue)
-                                    {
-                                        item.Selected = true;
-                                    }
-                                }
-                                break;
-
-
-                            case "Start Date":
-                                project.startDate = Convert.ToDateTime(cell.Value);
-                                break;
-
-                            case "Due Date":
-                                project.dueDate = Convert.ToDateTime(cell.Value);
-                                break;
-
-                            case "Assigned To":
-                                project.assignedTo = cell.DisplayValue;
-                                break;
-
-                            case "WBS":
-                                project.wbs = cell.DisplayValue;
-                                break;
-
-                            case "Box":
-                                project.box = cell.DisplayValue;
-                                break;
-
-                            case "Figma":
-                                project.figma = cell.DisplayValue;
-                                break;
-
-                                //case "Specs":
-
-                                //    // List<SelectListItem> selectedvalues = new List<SelectListItem>();
-
-                                //    if (cell.DisplayValue != null)
-                                //    {
-                                //        List<string> selectedvalues = new List<string>();
-
-                                //        var list = cell.DisplayValue.Split(",");
-
-                                //        foreach (var spec in list)
-                                //        {
-                                //            IEnumerable<SelectListItem> variable = project.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
-
-                                //            var id = "";
-
-                                //            foreach (var i in variable)
-                                //            {
-                                //                id = i.Value;
-                                //            }
-
-                                //            //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
-                                //            selectedvalues.Add(id);
-
-                                //            variable = null;
-                                //        }
-                                //        project.SelectedSpecs = selectedvalues;
-                                //    }
-                                //    break;
-                        }
-                    }
-                }
-            }
-            return project;
-        }
-
-        public DesignModel GetProjectDetails(long row_id)
-        {
-            DesignModel project = new DesignModel();
-            project.pipelineId = row_id;
-            Sheet sheet = LoadSheet(sheetId, initSheet());
-
-            //Get LOB options
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(25));
-            //Get Status options
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(26));
-
-            foreach (var row in sheet.Rows)
-            {
-                if (row.Id == row_id)
-                {
-                    foreach (var cell in row.Cells)
-                    {
-                        long columnid = cell.ColumnId.Value;
-                        string columnName = sheet.GetColumnById(columnid).Title.ToString();
-                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
-                        switch (columnName)
-                        {       
 
                             case "LOB":
                                 project.lob = cell.DisplayValue;
@@ -419,6 +320,115 @@ namespace Smartsheetsproject.Controllers
             }
             return project;
         }
+
+        public DesignModel GetProjectEdit(long row_id)
+        {
+            DesignModel project = new DesignModel();
+            project.pipelineId = row_id;
+            Sheet sheet = LoadSheet(sheetId, initSheet());
+
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
+            //project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(23));
+
+            foreach (var row in sheet.Rows)
+            {
+                if (row.Id == row_id)
+                {
+                    foreach (var cell in row.Cells)
+                    {
+                        long columnid = cell.ColumnId.Value;
+                        string columnName = sheet.GetColumnById(columnid).Title.ToString();
+                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
+                        switch (columnName)
+                        {
+                            case "LOB":
+                                foreach (var item in project.lob_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        item.Selected = true;
+                                    }
+                                }
+                                break;
+
+
+                            case "Project Name":
+                                project.projectName = cell.DisplayValue;
+                                break;
+
+                            case "Status":
+                                foreach (var item in project.status_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        item.Selected = true;
+                                    }
+                                }
+                                break;
+
+
+                            case "Start Date":
+                                project.startDate = Convert.ToDateTime(cell.Value);
+                                break;
+
+                            case "Due Date":
+                                project.dueDate = Convert.ToDateTime(cell.Value);
+                                break;
+
+                            case "Assigned To":
+                                project.assignedTo = cell.DisplayValue;
+                                break;
+
+                            case "WBS":
+                                project.wbs = cell.DisplayValue;
+                                break;
+
+                            case "Box":
+                                project.box = cell.DisplayValue;
+                                break;
+
+                            case "Figma":
+                                project.figma = cell.DisplayValue;
+                                break;
+
+                                //case "Specs":
+
+                                //    // List<SelectListItem> selectedvalues = new List<SelectListItem>();
+
+                                //    if (cell.DisplayValue != null)
+                                //    {
+                                //        List<string> selectedvalues = new List<string>();
+
+                                //        var list = cell.DisplayValue.Split(",");
+
+                                //        foreach (var spec in list)
+                                //        {
+                                //            IEnumerable<SelectListItem> variable = project.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+
+                                //            var id = "";
+
+                                //            foreach (var i in variable)
+                                //            {
+                                //                id = i.Value;
+                                //            }
+
+                                //            //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                //            selectedvalues.Add(id);
+
+                                //            variable = null;
+                                //        }
+                                //        project.SelectedSpecs = selectedvalues;
+                                //    }
+                                //    break;
+                        }
+                    }
+                }
+            }
+            return project;
+        }
+
+        
 
         public void updateProject(DesignModel project)
         {
@@ -580,16 +590,14 @@ namespace Smartsheetsproject.Controllers
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(25));
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
 
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(26));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
 
             //project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(23));
 
             return project;
-        }
-
-       
+        }  
 
         public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
         {

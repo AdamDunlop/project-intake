@@ -176,7 +176,7 @@ namespace Smartsheetsproject.Controllers
                                 project.projectType = cell.DisplayValue;
                                 break;
 
-                            case "Category":
+                            case "Team(s)":
                                 project.teamCategory = cell.DisplayValue;
                                 break;
 
@@ -235,7 +235,7 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(10));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(9));
 
             foreach (var row in sheet.Rows)
             {
@@ -304,7 +304,7 @@ namespace Smartsheetsproject.Controllers
                                 project.projectType = cell.DisplayValue;
                                 break;
 
-                            case "Category":
+                            case "Team(s)":
                                 project.teamCategory = cell.DisplayValue;
                                 break;
 
@@ -390,7 +390,7 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(10));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(9));
 
             foreach (var row in sheet.Rows)
             {
@@ -423,7 +423,7 @@ namespace Smartsheetsproject.Controllers
                                 project.projectDetails = cell.DisplayValue;
                                 break;
 
-                            case "Category":
+                            case "Team(s)":
 
                             // List<SelectListItem> selectedvalues = new List<SelectListItem>();
 
@@ -500,7 +500,7 @@ namespace Smartsheetsproject.Controllers
             var project_type_cell = new Cell();
             //var project_brief_cell = new Cell();
             //var project_live_cell = new Cell();
-            var category_cell = new Cell();
+            var teams_cell = new Cell();
             var am_cell = new Cell();
             var pm_cell = new Cell();
             var jira_cell = new Cell();
@@ -541,8 +541,8 @@ namespace Smartsheetsproject.Controllers
                         project_type_cell.Value = project.projectType;
                         break;
 
-                    case "Category":
-                        category_cell.ColumnId = columnid;
+                    case "Team(s)":
+                        teams_cell.ColumnId = columnid;
                         ObjectValue objct = null;
                         bool flag = false;
                         //count = project.SelectedSpecs.Count();
@@ -578,7 +578,7 @@ namespace Smartsheetsproject.Controllers
                             }
 
                         }
-                        category_cell.ObjectValue = objct;
+                        teams_cell.ObjectValue = objct;
                         break;
 
                     case "AM":
@@ -613,7 +613,7 @@ namespace Smartsheetsproject.Controllers
                     tenrox_cell,
                     intake_cell,
                     project_details_cell,
-                    category_cell,
+                    teams_cell,
                     am_cell,
                     pm_cell,
                     jira_cell,
@@ -644,7 +644,7 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(10));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(9));
 
             return project;
         }
