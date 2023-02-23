@@ -83,13 +83,23 @@ h4.fast-track {
     width: 100% !important;
 }
 
+#table-wrapper {
+    position: relative;
+}
 
+#table-scroll {
+    height: 600px;
+    overflow: auto;
+    margin-top: 20px;
+}
+
+#table-wrapper table {
+    width: 100%;
+}
 
 .toggle {
     display: none
 }
-
-
 
 .select {
  display: none;
@@ -113,8 +123,9 @@ label {
     cursor: pointer;
     margin: 0.5rem;
     width: 100px;
-    border-radius: 7px;
+/*    border-radius: 7px;*/
     background-color: #f9f9f9;
+    border: 1px solid black;
 }
 
 .box-content, .wbs-content, .figma-content {

@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="smartsheet-csharp-sdk" Version="2.101.0" />
+    <PackageReference Include="font-awesome" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,7 @@
     <None Remove="Components\" />
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\DesignViewComponent\" />
+    <None Remove="font-awesome" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Nifti\" />

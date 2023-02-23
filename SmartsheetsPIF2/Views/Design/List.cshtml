@@ -38,65 +38,68 @@
 <div class="row">
     <div class="col-12">
         <h2 class="header-title">Design Production Pipeline(Stage 2)</h2>
-        <table class="table table-striped">
-            <table class="table table-striped">
-                <thead class="project-list-header">
-                    <tr>
-                        <th class="project-col">
-                            Project
-                        </th>
+        <div id="table-wrapper">
+            <div id="table-scroll">
+                <table class="table table-striped">
+                    <thead class="project-list-header">
+                        <tr>
+                            <th class="project-col">
+                                Project
+                            </th>
 
-                        <th id="type">
-                            LOB
-                        </th>
-                        <th id="client-group">
-                            Tenrox
-                        </th>
+                            <th id="type">
+                                LOB
+                            </th>
+                            <th id="client-group">
+                                Tenrox
+                            </th>
 
-                        <th id="status">
-                            Status
-                        </th>
+                            <th id="status">
+                                Status
+                            </th>
 
-                        <th>
-                            Edit
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
+                            <th>
+                                Edit
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    @foreach (var data in Model)
-                    {
-                    <tr>
-                        <td class="project-col">
-                            <a class="clickable-row" href="@Url.Action("Details", "Design", new { id = data.pipelineId  } )">
-                                @Html.DisplayFor(modelItem => data.projectName)
-                            </a>
-                        </td>
+                        @foreach (var data in Model)
+                        {
+                            <tr>
+                                <td class="project-col">
+                                    <a class="clickable-row" href="@Url.Action("Details", "Design", new { id = data.pipelineId  } )">
+                                        @Html.DisplayFor(modelItem => data.projectName)
+                                    </a>
+                                </td>
 
-                        <td id="client-group">
-                            @Html.DisplayFor(modelItem => data.lob)
-                        </td>
+                                <td id="client-group">
+                                    @Html.DisplayFor(modelItem => data.lob)
+                                </td>
 
-                        <td id="type">
-                            @Html.DisplayFor(modelItem => data.tenrox)
-                        </td>
-                        <td id="status">
-                            @Html.DisplayFor(modelItem => data.status)
-                        </td>
+                                <td id="type">
+                                    @Html.DisplayFor(modelItem => data.tenrox)
+                                </td>
+                                <td id="status">
+                                    @Html.DisplayFor(modelItem => data.status)
+                                </td>
 
-                        <td>
-                            <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
-                                edit
-                            </a>
-                        </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
+                                        edit
+                                    </a>
+                                </td>
 
-                    </tr>
-                    }
+                            </tr>
+                        }
 
-                </tbody>
+                    </tbody>
 
 
 
-            </table>
-    </div>
-</div>
+                    </table>
+                </div>
+               </div>
+            </div>
+        </div>

@@ -376,9 +376,9 @@ namespace Smartsheetsproject.Controllers
                                 project.dueDate = Convert.ToDateTime(cell.Value);
                                 break;
 
-                            case "Assigned To":
-                                project.assignedTo = cell.DisplayValue;
-                                break;
+                            //case "Assigned To":
+                            //    project.assignedTo = cell.DisplayValue;
+                            //    break;
 
                             case "WBS":
                                 project.wbs = cell.DisplayValue;
@@ -454,7 +454,7 @@ namespace Smartsheetsproject.Controllers
             //var jira_cell = new Cell();
             var start_date_cell = new Cell();
             var due_date_cell = new Cell();
-            var assigned_cell = new Cell();
+            //var assigned_cell = new Cell();
             var wbs_cell = new Cell();
             var box_cell = new Cell();
             var figma_cell = new Cell();
@@ -490,10 +490,10 @@ namespace Smartsheetsproject.Controllers
                         due_date_cell.Value = project.dueDate;
                         break;
 
-                    case "Assigned To":
-                        assigned_cell.ColumnId = columnid;
-                        assigned_cell.Value = project.assignedTo;
-                        break;
+                    //case "Assigned To":
+                    //    assigned_cell.ColumnId = columnid;
+                    //    assigned_cell.Value = project.assignedTo;
+                    //    break;
 
                     case "WBS":
                         wbs_cell.ColumnId = columnid;
@@ -561,7 +561,7 @@ namespace Smartsheetsproject.Controllers
                     status_cell,         
                     start_date_cell,
                     due_date_cell,
-                    assigned_cell,
+                    //assigned_cell,
                     wbs_cell,
                     box_cell,
                     figma_cell
