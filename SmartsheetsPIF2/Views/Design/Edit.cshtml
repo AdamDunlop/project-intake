@@ -55,14 +55,14 @@
 
     <div class="form-group">
         <label asp-for="startDate" class="control-label">Start Date</label>
-        @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yy}", new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
         <span asp-validation-for="startDate" class="text-danger"></span>
     </div>
 
 
     <div class="form-group">
         <label asp-for="dueDate" class="control-label">Due Date</label>
-        @Html.TextBoxFor(m => m.dueDate, "{0:MM/dd/yy}", new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.dueDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
         <span asp-validation-for="dueDate" class="text-danger"></span>
     </div>
 
