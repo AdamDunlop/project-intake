@@ -13,6 +13,7 @@ namespace Smartsheetsproject.Models
 
         public long pipelineId { get; set; }
 
+        public long rowId { get; set; }
 
         public string intakeType { get; set; }
 

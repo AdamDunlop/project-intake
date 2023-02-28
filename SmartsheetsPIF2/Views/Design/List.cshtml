@@ -20,6 +20,16 @@
                         </button>
                     </div>
                 }
+                else if (TempData["Result"].Equals("Deleted"))
+                {
+                    <div class="alert alert-warning alert-dismissible fade show spacing" role="alert">
+                      You have successfully deleted the project.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
                 else if (TempData["Result"].Equals("Failed"))
                 {
                     <div class="alert alert-warning alert-dismissible fade show spacing" role="alert">
@@ -89,7 +99,12 @@
                                     <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
                                         edit
                                     </a>
+
+                                    <a href="@Url.Action("Delete", "Design",new { id = data.pipelineId } )">
+                                        delete
+                                    </a>
                                 </td>
+
 
                             </tr>
                         }
@@ -103,3 +118,8 @@
                </div>
             </div>
         </div>
+
+<script>
+
+    console.log(
+</script>

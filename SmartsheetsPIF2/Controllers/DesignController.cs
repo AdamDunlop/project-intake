@@ -19,6 +19,15 @@ namespace Smartsheetsproject.Controllers
 
 
         [HttpGet]
+        public IActionResult Details(long id)
+        {
+            DesignModel model = new DesignModel();
+            model = GetProjectDetails(id);
+            return View(model);
+        }
+
+
+        [HttpGet]
         public IActionResult List()
         {
             var sheet = LoadSheet(sheetId, initSheet());
@@ -51,14 +60,28 @@ namespace Smartsheetsproject.Controllers
                 return RedirectToAction("List");
             }
         }
+
+
+        //[HttpGet]
+        //public IActionResult Delete(long id)
+        //{
+        //    DesignModel model = new DesignModel();
+        //    model = GetProjectDelete(id);
+        //    return View(model);
+        //}
+
         [HttpGet]
-        public IActionResult Details(long id)
+        public IActionResult Delete(DesignModel model)
         {
-            DesignModel model = new DesignModel();
-            model = GetProjectDetails(id);
-            return View(model);
+            deleteProject(model);
+            return RedirectToAction("List");
+
+            //return View(model);
         }
 
+      
+
+      
         public SmartsheetClient initSheet()
         {
             // Initialize client
@@ -376,10 +399,6 @@ namespace Smartsheetsproject.Controllers
                                 project.dueDate = Convert.ToDateTime(cell.Value);
                                 break;
 
-                            //case "Assigned To":
-                            //    project.assignedTo = cell.DisplayValue;
-                            //    break;
-
                             case "WBS":
                                 project.wbs = cell.DisplayValue;
                                 break;
@@ -426,9 +445,7 @@ namespace Smartsheetsproject.Controllers
                 }
             }
             return project;
-        }
-
-        
+        } 
 
         public void updateProject(DesignModel project)
         {
@@ -448,18 +465,12 @@ namespace Smartsheetsproject.Controllers
             var rowToTupdate = new Row();
 
             var lob_cell = new Cell();
-            //var project_name_cell = new Cell();
-            //var tenrox_cell = new Cell();
             var status_cell = new Cell();
-            //var jira_cell = new Cell();
             var start_date_cell = new Cell();
             var due_date_cell = new Cell();
-            //var assigned_cell = new Cell();
             var wbs_cell = new Cell();
             var box_cell = new Cell();
             var figma_cell = new Cell();
-            //var pm_cell = new Cell();
-            //var am_cell = new Cell();
             //var specs_cell = new Cell();
 
             foreach (var cell in row.Cells)
@@ -561,7 +572,6 @@ namespace Smartsheetsproject.Controllers
                     status_cell,         
                     start_date_cell,
                     due_date_cell,
-                    //assigned_cell,
                     wbs_cell,
                     box_cell,
                     figma_cell
@@ -583,6 +593,47 @@ namespace Smartsheetsproject.Controllers
                 TempData["Result"] = "Failed";
             };
         }
+
+        public void deleteProject(DesignModel project)
+        {
+            SmartsheetClient smartsheet_CL = initSheet();
+            Sheet sheet = LoadSheet(sheetId, smartsheet_CL);
+
+            int row_number = 0;
+
+            foreach (var row_b in sheet.Rows)
+            {
+                if (row_b.Id == project.pipelineId)
+                {
+                    row_number = row_b.RowNumber.Value;
+                }
+
+                Row row = sheet.GetRowByRowNumber(row_number);
+
+                var brow = sheet.Rows[row_number].Id;
+
+
+
+                try
+                {
+                    smartsheet_CL.SheetResources.RowResources.DeleteRows(
+                     sheetId,
+                     new long[] { (long)brow },
+                     true
+                 );
+                    TempData["Result"] = "Delete";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Project Update has Failed: " + e.Message + e.Data.ToString());
+                    TempData["Result"] = "Failed";
+                };
+
+            }
+
+
+        }
+
 
         public DesignModel GetPickLists(long row_id)
         {
