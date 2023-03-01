@@ -151,7 +151,6 @@ namespace Smartsheetsproject.Controllers
                                 project.size = cell.DisplayValue;
                                 break;
 
-
                             case "Priority":
                                 project.priority = cell.DisplayValue;
                                 break;

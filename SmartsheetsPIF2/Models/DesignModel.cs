@@ -27,6 +27,8 @@ namespace Smartsheetsproject.Models
 
         public string status { get; set; }
 
+        public string specs_list { get; set; }
+
         [BindProperty]
         public IEnumerable<SelectListItem> status_options { get; set; }
 
@@ -41,16 +43,26 @@ namespace Smartsheetsproject.Models
 
         public string assignedTo { get; set; }
 
+        public string pm { get; set; }
+
+        public string am { get; set; }
+
         [Required(ErrorMessage = "Please enter the Box embed Link")]
         public string box { get; set; }
 
         [Required(ErrorMessage = "Please enter the Figma embed Link")]
         public string figma { get; set; }
 
-
         [Required(ErrorMessage = "Please enter the wbs Link")]
         public string wbs { get; set; }
 
+
+
+        [BindProperty]
+        public IEnumerable<SelectListItem> SpecsList { get; set; }
+
+        [BindProperty]
+        public IList<string> SelectedSpecs { get; set; }
 
     }
 

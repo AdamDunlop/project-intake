@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="SelectedCategory" class="control-label">Category</label>
+                    <label asp-for="SelectedCategory" class="control-label">Team(s)</label>
                     @Html.ListBoxFor(m => m.SelectedCategory, new MultiSelectList(Model.CategoryList, "Value", "Text", Model.SelectedCategory), new { @class = " form-control chosen-select" })
                     @Html.HiddenFor(m => m.SelectedCategory)
                     @Html.HiddenFor(m => m.CategoryList)

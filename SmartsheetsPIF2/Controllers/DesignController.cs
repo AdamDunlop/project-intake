@@ -42,7 +42,7 @@ namespace Smartsheetsproject.Controllers
                 DesignModel model_lists = GetPickLists(model.pipelineId);
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
-                //model.SpecsList = model_lists.SpecsList;
+                model.SpecsList = model_lists.SpecsList;
                 return View(model);
             }
             else
@@ -144,13 +144,13 @@ namespace Smartsheetsproject.Controllers
                                 project.assignedTo = cell.DisplayValue;
                                 break;
 
-                            //case "PM":
-                            //    project.pm = cell.DisplayValue;
-                            //    break;
+                            case "PM":
+                                project.pm = cell.DisplayValue;
+                                break;
 
-                            //case "AM":
-                            //    project.pm = cell.DisplayValue;
-                            //    break;
+                            case "AM":
+                                project.pm = cell.DisplayValue;
+                                break;
 
 
                             case "WBS":
@@ -164,6 +164,10 @@ namespace Smartsheetsproject.Controllers
 
                             case "Figma":
                                 project.figma = cell.DisplayValue;
+                                break;
+
+                            case "Specs":
+                                project.specs_list = cell.DisplayValue;
                                 break;
 
                         }
@@ -184,6 +188,10 @@ namespace Smartsheetsproject.Controllers
             project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
             //Get Status options
             project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
+
+            project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(26));
+
+
 
             foreach (var row in sheet.Rows)
             {
@@ -229,13 +237,13 @@ namespace Smartsheetsproject.Controllers
                                 project.dueDate = Convert.ToDateTime(cell.Value);
                                 break;
 
-                            //case "PM":
-                            //    project.pm = cell.DisplayValue;
-                            //    break;
+                            case "PM":
+                                project.pm = cell.DisplayValue;
+                                break;
 
-                            //case "AM":
-                            //    project.am = cell.DisplayValue;
-                            //    break;
+                            case "AM":
+                                project.am = cell.DisplayValue;
+                                break;
 
                             case "Assigned To":
                                 project.assignedTo = cell.DisplayValue;
@@ -308,11 +316,9 @@ namespace Smartsheetsproject.Controllers
                                 }
                                 break;
 
-                                //case "Specs":
-
-                                //    //TBD
-                                //    break;
-
+                            case "Specs":
+                                project.specs_list = cell.DisplayValue;
+                                break;
 
                         }
                     }
@@ -329,7 +335,7 @@ namespace Smartsheetsproject.Controllers
 
             project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
             project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
-            //project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(23));
+            project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(26));
 
             foreach (var row in sheet.Rows)
             {
@@ -392,35 +398,35 @@ namespace Smartsheetsproject.Controllers
                                 project.figma = cell.DisplayValue;
                                 break;
 
-                                //case "Specs":
+                            case "Specs":
 
-                                //    // List<SelectListItem> selectedvalues = new List<SelectListItem>();
+                                // List<SelectListItem> selectedvalues = new List<SelectListItem>();
 
-                                //    if (cell.DisplayValue != null)
-                                //    {
-                                //        List<string> selectedvalues = new List<string>();
+                                if (cell.DisplayValue != null)
+                                {
+                                    List<string> selectedvalues = new List<string>();
 
-                                //        var list = cell.DisplayValue.Split(",");
+                                    var list = cell.DisplayValue.Split(",");
 
-                                //        foreach (var spec in list)
-                                //        {
-                                //            IEnumerable<SelectListItem> variable = project.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
+                                    foreach (var spec in list)
+                                    {
+                                        IEnumerable<SelectListItem> variable = project.SpecsList.Where(x => x.Text.Contains(spec.TrimStart(' ')));
 
-                                //            var id = "";
+                                        var id = "";
 
-                                //            foreach (var i in variable)
-                                //            {
-                                //                id = i.Value;
-                                //            }
+                                        foreach (var i in variable)
+                                        {
+                                            id = i.Value;
+                                        }
 
-                                //            //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
-                                //            selectedvalues.Add(id);
+                                        //selectedvalues.Add(new SelectListItem { Value = id, Text = spec, Selected = true });
+                                        selectedvalues.Add(id);
 
-                                //            variable = null;
-                                //        }
-                                //        project.SelectedSpecs = selectedvalues;
-                                //    }
-                                //    break;
+                                        variable = null;
+                                    }
+                                    project.SelectedSpecs = selectedvalues;
+                                }
+                                break;
                         }
                     }
                 }
@@ -448,19 +454,13 @@ namespace Smartsheetsproject.Controllers
             var rowToTupdate = new Row();
 
             var lob_cell = new Cell();
-            //var project_name_cell = new Cell();
-            //var tenrox_cell = new Cell();
             var status_cell = new Cell();
-            //var jira_cell = new Cell();
             var start_date_cell = new Cell();
             var due_date_cell = new Cell();
-            //var assigned_cell = new Cell();
             var wbs_cell = new Cell();
             var box_cell = new Cell();
             var figma_cell = new Cell();
-            //var pm_cell = new Cell();
-            //var am_cell = new Cell();
-            //var specs_cell = new Cell();
+            var specs_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -490,11 +490,6 @@ namespace Smartsheetsproject.Controllers
                         due_date_cell.Value = project.dueDate;
                         break;
 
-                    //case "Assigned To":
-                    //    assigned_cell.ColumnId = columnid;
-                    //    assigned_cell.Value = project.assignedTo;
-                    //    break;
-
                     case "WBS":
                         wbs_cell.ColumnId = columnid;
                         wbs_cell.Value = project.wbs;
@@ -510,45 +505,46 @@ namespace Smartsheetsproject.Controllers
                         figma_cell.Value = project.figma;
                         break;
 
-                        //case "Specs":
-                        //    specs_cell.ColumnId = columnid;
-                        //    ObjectValue objct = null;
-                        //    bool flag = false;
-                        //    //count = project.SelectedSpecs.Count();
+                    case "Specs":
+                        specs_cell.ColumnId = columnid;
+                        ObjectValue objct = null;
+                        bool flag = false;
+                        //count = project.SelectedSpecs.Count();
 
-                        //    if (project.SelectedSpecs != null)
-                        //    {
+                        if (project.SelectedSpecs != null)
+                        {
 
-                        //        foreach (var size in project.SelectedSpecs)
+                            foreach (var size in project.SelectedSpecs)
 
-                        //        {
-                        //            if (size != null)
-                        //            {
-                        //                if (size.Contains("System.String"))
-                        //                {
-                        //                    flag = true;
-                        //                }
-                        //            }
-                        //        }
-                        //        if (flag)
-                        //        {
-                        //            project.SelectedSpecs.RemoveAt(project.SelectedSpecs.Count() - 1);
-                        //        }
+                            {
+                                if (size != null)
+                                {
+                                    if (size.Contains("System.String"))
+                                    {
+                                        flag = true;
+                                    }
+                                }
+                            }
+                            if (flag)
+                            {
+                                project.SelectedSpecs.RemoveAt(project.SelectedSpecs.Count() - 1);
+                            }
 
-                        //        if (project.SelectedSpecs.Count() == 0) {
-                        //            project.SelectedSpecs.Add("TBD");
-                        //            objct = new MultiPicklistObjectValue(project.SelectedSpecs);
+                            if (project.SelectedSpecs.Count() == 0)
+                            {
+                                project.SelectedSpecs.Add("TBD");
+                                objct = new MultiPicklistObjectValue(project.SelectedSpecs);
 
-                        //        }
-                        //        else
-                        //        {
-                        //            objct = new MultiPicklistObjectValue(project.SelectedSpecs);
+                            }
+                            else
+                            {
+                                objct = new MultiPicklistObjectValue(project.SelectedSpecs);
 
-                        //        }
+                            }
 
-                        //    }
-                        //    specs_cell.ObjectValue = objct;
-                        //    break;
+                        }
+                        specs_cell.ObjectValue = objct;
+                        break;
 
                 }
             }
@@ -561,11 +557,10 @@ namespace Smartsheetsproject.Controllers
                     status_cell,         
                     start_date_cell,
                     due_date_cell,
-                    //assigned_cell,
                     wbs_cell,
                     box_cell,
-                    figma_cell
-                    //specs_cell
+                    figma_cell,
+                    specs_cell
                 }
             };
 
@@ -594,7 +589,7 @@ namespace Smartsheetsproject.Controllers
 
             project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
 
-            //project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(23));
+            project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(26));
 
             return project;
         }  
@@ -619,18 +614,18 @@ namespace Smartsheetsproject.Controllers
             return options;
         }
 
-        //public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
-        //{
-        //    List<SelectListItem> list = new List<SelectListItem>();
-        //    //int cont = 0;
-        //    foreach (var spec in specs_col.Options)
-        //    {
-        //        //cont++;
-        //        //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
-        //        list.Add(new SelectListItem { Text = spec, Value = spec });
-        //    }
-        //    return list;
-        //}
+        public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //int cont = 0;
+            foreach (var spec in specs_col.Options)
+            {
+                //cont++;
+                //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+                list.Add(new SelectListItem { Text = spec, Value = spec });
+            }
+            return list;
+        }
 
     }
 

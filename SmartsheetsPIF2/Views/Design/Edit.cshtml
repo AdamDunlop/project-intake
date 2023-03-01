@@ -66,12 +66,12 @@
         <span asp-validation-for="dueDate" class="text-danger"></span>
     </div>
 
-    @*<div class="form-group">
+    <div class="form-group">
             <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>
             @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
             @Html.HiddenFor(m => m.SelectedSpecs)
             @Html.HiddenFor(m => m.SpecsList)
-        </div>*@
+        </div>
 
     @*<div class="form-group">
         <label asp-for="assignedTo" class="control-label">Assigned To:</label>

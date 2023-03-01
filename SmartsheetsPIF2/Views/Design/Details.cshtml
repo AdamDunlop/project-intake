@@ -45,6 +45,8 @@
                 <dd class="alert alert-warning" role="alert">No Tenrox Code Provided.</dd>
             }
         </div>
+
+
         <div class="row">
             <dt class="col-sm-3">Status</dt>
 
@@ -61,7 +63,12 @@
         </div>
 
 
-
+        <dl class="row">
+            <dt class="col-sm-3">Specs</dt>
+            <dd class="col-sm-9 specs">
+                @Html.DisplayFor(model => model.specs_list)
+            </dd>
+        </dl>
     </div>
 
     <div class="col-12 col-md-6 details">
@@ -77,13 +84,17 @@
             <dt class="col-sm-3">Designer</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.assignedTo)</dd>
         </div>
-        @*<div class="col-12 col-md-6 details-col-2">
-            <div class="row">
-                <dt class="col-sm-3">PM</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
-            </div>
+        <div class="row">
+            <dt class="col-sm-3">PM</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
+        </div>
 
-        *@
+        <div class="row">
+            <dt class="col-sm-3">AM</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.am)</dd>
+        </div>
+
+      
 
     </div>
     <div class="wbs-section">

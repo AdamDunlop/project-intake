@@ -43,7 +43,7 @@ input.save-changes {
     text-align: center;
 }
 
-.project-links, .teams {
+.project-links, .teams, .specs {
     padding: .5em;
     background-color: #e9ecef;
     border-radius: 0.25rem;
