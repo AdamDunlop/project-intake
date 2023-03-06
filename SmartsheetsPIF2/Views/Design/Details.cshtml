@@ -140,7 +140,7 @@
             <h4>Box</h4> &nbsp; <button class="box-expand">Expand <i class="bi bi-plus"></i></button>
         </div>
 
-        @*<div class="box-content">
+        <div class="box-content">
             @if (Model.box != null)
             {
                     <iframe src="@Model.box" width="100%" height="500" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe>
@@ -150,7 +150,7 @@
             {
                 <div class="alert alert-warning" role="alert">Sorry, No Box link provided.</div>
             }
-        </div>*@
+        </div>
 
 
     </div>
@@ -169,10 +169,10 @@
 
     <div class="col-12 col-md-6 details">
 
-        <a asp-action="Delete" class="btn back">
+        @*<a asp-action="Delete" class="btn back">
             
             <span>Delete</span>
-            </a>
+            </a>*@
 
             <div class="row">
                 <a asp-action="List" class="btn back">
