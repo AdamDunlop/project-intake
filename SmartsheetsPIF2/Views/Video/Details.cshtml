@@ -1,4 +1,4 @@
-﻿@model Smartsheetsproject.Models.SocialModel
+﻿@model Smartsheetsproject.Models.VideoModel
 
 @{
     ViewData["Title"] = "Project Details";
@@ -36,7 +36,7 @@
             <dt class="col-sm-3">Timing</dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.startDate) -
-                @Html.DisplayFor(model => model.endDate)
+                @Html.DisplayFor(model => model.dueDate)
             </dd>
         </div>
     </div>
@@ -130,7 +130,7 @@
                         <td>Review Links </td>
                         <td>
 
-                            <p><b>Social:</b></p>
+                            <p><b>Video:</b></p>
                             <p><b>Display:</b></p>
                         </td>
                     </tr>

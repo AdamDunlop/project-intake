@@ -8,13 +8,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Smartsheetsproject.Models
 {
-    public class SocialModel
+    public class VideoModel
     {
-        public long project_Id { get; set; }
+
+        public string intakeType { get; set; }
+
+        public long pipelineId { get; set; }
 
         public string projectName { get; set; }
 
         public string lob { get; set; }
+
+        public string tenrox { get; set; }
 
         [BindProperty]
         public IEnumerable<SelectListItem> lob_options { get; set; }
@@ -32,7 +37,7 @@ namespace Smartsheetsproject.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        public DateTime endDate { get; set; }
+        public DateTime dueDate { get; set; }
 
         public string type { get; set; }
 
@@ -47,7 +52,7 @@ namespace Smartsheetsproject.Models
 
         public string deliverables { get; set; }
 
-        public string notes { get; set;  }
+        public string description { get; set;  }
 
     }
 }

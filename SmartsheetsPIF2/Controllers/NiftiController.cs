@@ -55,7 +55,7 @@ namespace Smartsheetsproject.Controllers
                 model.CategoryList = model_lists.CategoryList;
 
                 return View(model);
-                //return RedirectToAction("Edit", new { id = model.project_Id });
+                //return RedirectToAction("Edit", new { id = model.pipelineId });
             }
             else
             {

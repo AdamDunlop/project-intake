@@ -1,4 +1,4 @@
-﻿@model Smartsheetsproject.Models.SocialModel
+﻿@model Smartsheetsproject.Models.VideoModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -24,10 +24,10 @@
 </div>
 
 
-@using (Html.BeginForm("Edit", "Social", FormMethod.Post, new { @class = "form-group row" }))
+@using (Html.BeginForm("Edit", "Video", FormMethod.Post, new { @class = "form-group row" }))
 {
 <div class="col-12 col-md-6">
-        @Html.HiddenFor(m => m.project_Id)
+        @Html.HiddenFor(m => m.pipelineId)
 
         <div class="form-group">
             <label asp-for="projectName" class="control-label">Project Name</label>
@@ -74,15 +74,15 @@
         <span asp-validation-for="startDate" class="text-danger"></span>
     </div>
     <div class="form-group project-dates">
-        <label asp-for="endDate" class="control-label">End Date</label>
-        @Html.TextBoxFor(m => m.endDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
-        <span asp-validation-for="endDate" class="text-danger"></span>
+        <label asp-for="dueDate" class="control-label">End Date</label>
+        @Html.TextBoxFor(m => m.dueDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+        <span asp-validation-for="dueDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="notes" class="control-label">Notes</label>
-        @Html.TextAreaFor(m => m.notes, new { @class = "form-control" })
-        <span asp-validation-for="notes" class="text-danger"></span>
+        <label asp-for="description" class="control-label">Notes</label>
+        @Html.TextAreaFor(m => m.description, new { @class = "form-control" })
+        <span asp-validation-for="description" class="text-danger"></span>
     </div>
     <div class="row spec-details">
         <div class=" col-sm-12 col-md-4">
@@ -95,11 +95,11 @@
         </div>
         <div class=" col-sm-12 col-md-4">
 
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="deliverables" class="control-label">Deliverables</label>
                 @Html.TextBoxFor(m => m.deliverables, new { @class = "form-control" })
                 <span asp-validation-for="deliverables" class="text-danger"></span>
-            </div>
+            </div>*@
         </div>
     </div>
 

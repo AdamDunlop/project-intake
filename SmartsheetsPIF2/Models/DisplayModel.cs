@@ -10,7 +10,7 @@ namespace Smartsheetsproject.Models
 {
     public class DisplayModel
     {
-        public long project_Id { get; set; }
+        public long pipelineId { get; set; }
         [Required(ErrorMessage = "Please enter the name")]
 
         public string projectName { get; set; }

@@ -37,12 +37,14 @@
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\DesignViewComponent\" />
     <None Remove="font-awesome" />
+    <None Remove="Views\Video\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Nifti\" />
     <Folder Include="ViewComponents\" />
     <Folder Include="Views\Shared\ViewComponents\" />
     <Folder Include="Views\Shared\ViewComponents\Design\" />
+    <Folder Include="Views\Video\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Views\Components\DesignForm">
