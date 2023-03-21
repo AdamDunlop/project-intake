@@ -1,0 +1,164 @@
+﻿@model Smartsheetsproject.Models.VideoModel
+
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="header-title">@Html.DisplayFor(model => model.projectName) Details</h2>
+        <hr />
+
+    </div>
+</div>
+<div class="row" style="margin: auto">
+    <div class="col-12 col-md-6 details">
+        <div class="row">
+            <dt class="col-sm-3">Project</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.projectName)</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-3">LOB</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.lob)</dd>
+        </div>
+        @*<div class="row">
+                <dt class="col-sm-3">Tenrox</dt>
+                @if (Model.tenroxCode != null)
+                    {
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.tenroxCode)</dd>
+                    }
+                    else
+                    {
+                        <dd class="alert alert-warning" role="alert">No Tenrox Code Provided.</dd>
+                    }
+            </div>*@
+        <div class="row">
+            <dt class="col-sm-3">Timing</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.startDate) -
+                @Html.DisplayFor(model => model.dueDate)
+            </dd>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 details-col-2">
+        <div class="row">
+            <dt class="col-sm-3">PM</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
+        </div>
+        <div class="row">
+
+            <dt class="col-sm-3">Producer</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.producer)</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-3">Status</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.status)</dd>
+            <dt class="col-sm-3">Type</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.type)</dd>
+        </div>
+
+    </div>
+</div>
+<div class="wbs-section">
+    <hr />
+    <h4>WBS</h4>
+    <div class="wbs">
+        <IFRAME WIDTH=100% HEIGHT=700 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=a67e615f87bc4dae8ac48be2a651daea"></IFRAME>
+        @*@if (Model.wbs_link != null)
+        {
+            <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs_link"></IFRAME>
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">No WBS provided.</div>
+        }*@
+    </div>
+</div>
+
+
+<div class="project-details">
+    <div class="details-section">
+        <hr />
+        <h4>Project Details</h4>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>Masters</td>
+                    <td>@Html.DisplayFor(model => model.masters)</dd>
+                </tr>
+                <tr>
+                    <td>Deliverables</td>
+                    <td>@Html.DisplayFor(model => model.deliverables)</dd>
+                </tr>
+            </tbody>
+        </table>
+        <div class="wander-section">
+            <hr />
+            <h4>Wander Internal Notes</h4>
+            <table class="table table-bordered">
+                <tbody>
+
+                    <tr>
+                        <td>Producer</td>
+
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>Editor</td>
+
+                        <td></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Path on Studio Server</td>
+
+                        <td></td>
+
+
+                    </tr>
+
+                    <tr>
+                        <td>Contractor Files</td>
+
+                        <td></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Review Links </td>
+                        <td>
+
+                            <p><b>Video:</b></p>
+                            <p><b>Display:</b></p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Art Buyer</td>
+                        <td>
+                            <p><input type="checkbox" /> Kickoff </p>
+                            <p>Audio:</p>
+                            <p><input type="checkbox" /> Quoted </p>
+                            <p><input type="checkbox" /> Purchased </p>
+                            <p>Visual:</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>QC Log</td>
+                        <td>
+                            <p><input type="checkbox" /> Kickoff Meeting</p>
+                            <p><input type="checkbox" /> Archived </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <a asp-action="List" class="btn btn-secondary">
+        <i class="bi bi-arrow-bar-left"></i>
+        <span>Back to List</span>
+    </a>
+</div>
