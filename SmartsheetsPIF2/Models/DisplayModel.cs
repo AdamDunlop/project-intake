@@ -32,6 +32,8 @@ namespace Smartsheetsproject.Models
 
         public string pm { get; set; }
 
+        public string am { get; set; }
+
         public string requestType { get; set; }
 
         [BindProperty]
