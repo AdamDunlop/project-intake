@@ -44,13 +44,13 @@ namespace Smartsheetsproject2.Controllers
         {
             if (!ModelState.IsValid)
             {
-                DisplayModel model_lists = GetPickLists(model.project_Id);
+                DisplayModel model_lists = GetPickLists(model.pipelineId);
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
                 model.team_options = model_lists.team_options;
                 model.SpecsList = model_lists.SpecsList;
                 return View(model);
-                //return RedirectToAction("Edit", new { id = model.project_Id });
+                //return RedirectToAction("Edit", new { id = model.pipelineId });
             }
             else
             {
@@ -91,7 +91,7 @@ namespace Smartsheetsproject2.Controllers
                 if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue))
                 {
                     DisplayModel project = new DisplayModel();
-                    project.project_Id = (long)row.Id;
+                    project.pipelineId = (long)row.Id;
                     foreach (var cell in row.Cells)
                     {
                         long columnid = cell.ColumnId.Value;
@@ -144,7 +144,7 @@ namespace Smartsheetsproject2.Controllers
         public DisplayModel GetProjectEdit(long row_id)
         {
             DisplayModel project = new DisplayModel();
-            project.project_Id = row_id;
+            project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             //Get LOB options
@@ -296,7 +296,7 @@ namespace Smartsheetsproject2.Controllers
         public DisplayModel GetProjectDetails(long row_id)
         {
             DisplayModel project = new DisplayModel();
-            project.project_Id = row_id;
+            project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             //Get LOB options
@@ -451,7 +451,7 @@ namespace Smartsheetsproject2.Controllers
             int row_number = 0;
             foreach (var row_b in sheet.Rows)
             {
-                if (row_b.Id == project.project_Id)
+                if (row_b.Id == project.pipelineId)
                 {
                     row_number = row_b.RowNumber.Value;
                 }
@@ -608,7 +608,7 @@ namespace Smartsheetsproject2.Controllers
 
             rowToTupdate = new Row
             {
-                Id = project.project_Id,
+                Id = project.pipelineId,
                 Cells = new Cell[] {
                     lob_cell,
                     project_cell,
@@ -649,7 +649,7 @@ namespace Smartsheetsproject2.Controllers
         public DisplayModel GetPickLists(long row_id)
         {
             DisplayModel project = new DisplayModel();
-            project.project_Id = row_id;
+            project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             //Get LOB options

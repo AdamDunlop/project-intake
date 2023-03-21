@@ -12,10 +12,10 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Smartsheetsproject.Controllers
 {
-    public class SocialController : Controller
+    public class VideoController : Controller
     {
 
-        public static long sheetId = 393055560853380;
+        public static long sheetId = 5887595533100932;
 
 
         [HttpGet]
@@ -29,35 +29,35 @@ namespace Smartsheetsproject.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            SocialModel model = new SocialModel();
+            VideoModel model = new VideoModel();
             model = GetProjectEdit(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(SocialModel model)
+        public IActionResult Edit(VideoModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                SocialModel model_lists = GetPickLists(model.project_Id);
-                model.lob_options = model_lists.lob_options;
-                model.status_options = model_lists.status_options;
-                model.type_options = model_lists.type_options;
-                return View(model);
-                //return RedirectToAction("Edit", new { id = model.project_Id });
-            }
-            else
-            {
+            //if (!ModelState.IsValid)
+            //{
+            //    VideoModel model_lists = GetPickLists(model.pipelineId);
+            //    model.lob_options = model_lists.lob_options;
+            //    model.status_options = model_lists.status_options;
+            //    model.type_options = model_lists.type_options;
+            //    return View(model);   
+            //    //return RedirectToAction("Edit", new { id = model.pipelineId });
+            //}
+            //else
+            //{
                 updateProject(model);
                 //return View("Index");
                 TempData["Success"] = "Success";
                 return RedirectToAction("List");
-            }
+            //}
         }
         [HttpGet]
         public IActionResult Details(long id)
         {
-            SocialModel model = new SocialModel();
+            VideoModel model = new VideoModel();
             model = GetProjectDetails(id);
             return View(model);
         }
@@ -65,7 +65,7 @@ namespace Smartsheetsproject.Controllers
         public SmartsheetClient initSheet()
         {
             // Initialize client
-            SmartsheetClient smartsheet_CL = new SmartsheetBuilder().SetAccessToken("voic91jwhahv2mws2cow5frz96")
+            SmartsheetClient smartsheet_CL = new SmartsheetBuilder().SetAccessToken("x5QRZ9m5hrjG4xdlnnHbQVcxHZnrC37oYPpO8")
                 // TODO: Set your API access in environment variable SMARTSHEET_ACCESS_TOKEN or else here
                 .Build();
             return smartsheet_CL;
@@ -88,17 +88,17 @@ namespace Smartsheetsproject.Controllers
             return sheet;
         }
 
-        public List<SocialModel> GetRows(Sheet sheet)
+        public List<VideoModel> GetRows(Sheet sheet)
         {
-            List<SocialModel> project_list = new List<SocialModel>();
+            List<VideoModel> project_list = new List<VideoModel>();
             //Get_lobs_picklist(sheet.GetColumnByIndex(0));
 
             foreach (var row in sheet.Rows)
             {
                 if (!string.IsNullOrWhiteSpace(row.Cells.ElementAt(0).DisplayValue))
                 {
-                    SocialModel project = new SocialModel();
-                    project.project_Id = (long)row.Id;
+                    VideoModel project = new VideoModel();
+                    project.pipelineId = (long)row.Id;
                     foreach (var cell in row.Cells)
                     {
                         long columnid = cell.ColumnId.Value;
@@ -107,26 +107,33 @@ namespace Smartsheetsproject.Controllers
                         switch (columnName)
                         {
 
+                            case "Intake Type":
+                                project.intakeType = cell.DisplayValue;
+                                break;
+
+                            case "Project Name":
+                                project.projectName = cell.DisplayValue;
+                                break;             
 
                             case "LOB":
                                 project.lob = cell.DisplayValue;
                                 break;
 
-                            case "Project":
-                                project.projectName = cell.DisplayValue;
+                            case "Tenrox":
+                                project.tenrox = cell.DisplayValue;
                                 break;
 
                             case "Status": 
                                 project.status = cell.DisplayValue;
                                 break;
 
-                            case "Start":
+                            case "Start Date":
                                 project.startDate = Convert.ToDateTime(cell.Value);
                                 //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
-                            case "Ship":
-                                project.endDate = Convert.ToDateTime(cell.Value);
+                            case "Due Date":
+                                project.dueDate = Convert.ToDateTime(cell.Value);
                                 //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
@@ -134,20 +141,12 @@ namespace Smartsheetsproject.Controllers
                                 project.pm = cell.DisplayValue;
                                 break;
 
-                            case "Type":
-                                project.type = cell.DisplayValue;
-                                break;
-
-                            case "Masters":
-                                project.masters = cell.DisplayValue;
-                                break;
-
-                            case "Deliverables":
+                            case "Specs":
                                 project.deliverables = cell.DisplayValue;
                                 break;
 
-                            case "Notes":
-                                project.notes = cell.DisplayValue;
+                            case "Description":
+                                project.description = cell.DisplayValue;
                                 break;
                         }
                     }
@@ -157,15 +156,15 @@ namespace Smartsheetsproject.Controllers
             return project_list;
         }
 
-        public SocialModel GetProjectEdit(long row_id)
+        public VideoModel GetProjectEdit(long row_id)
         {
-            SocialModel project = new SocialModel();
-            project.project_Id = row_id;
+            VideoModel project = new VideoModel();
+            project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
-            project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
+            //project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            //project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
+            //project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
 
 
             foreach (var row in sheet.Rows)
@@ -179,7 +178,7 @@ namespace Smartsheetsproject.Controllers
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {
-                            case "Project":
+                            case "Project Name":
                                 project.projectName = cell.DisplayValue;
                                 break;
 
@@ -206,35 +205,19 @@ namespace Smartsheetsproject.Controllers
                                 }
                                 break;
 
-                            case "Start":
+                            case "Start Date":
                                 project.startDate = Convert.ToDateTime(cell.Value);
                                 break;
 
-                            case "Ship":
+                            case "Due Date":
                                 if (cell.Value != null)
                                 {
-                                    project.endDate = Convert.ToDateTime(cell.Value);
+                                    project.dueDate = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
                             case "PM":
                                 project.pm = cell.DisplayValue;
-                                break;
-
-                            case "Producer":
-                                project.producer = cell.DisplayValue;
-                                break;
-
-                            case "Type":
-                                foreach (var item in project.type_options)
-                                {
-                                    if (item.Value.ToString() == cell.DisplayValue)
-                                    {
-                                        //project.lob_options.
-                                        item.Selected = true;
-                                    }
-                                }
-                                //project.lob = cell.DisplayValue;
                                 break;
 
                             case "Masters":
@@ -246,7 +229,7 @@ namespace Smartsheetsproject.Controllers
                                 break;
 
                             case "Notes":
-                                project.notes = cell.DisplayValue;
+                                project.description = cell.DisplayValue;
                                 break;
                         }
                     }
@@ -255,18 +238,18 @@ namespace Smartsheetsproject.Controllers
             return project;
         }
 
-        public SocialModel GetProjectDetails(long row_id)
+        public VideoModel GetProjectDetails(long row_id)
         {
-            SocialModel project = new SocialModel();
-            project.project_Id = row_id;
+            VideoModel project = new VideoModel();
+            project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            //Get LOB options
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
-            //Get Status options
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
-            //Get Team options
-            project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
+            ////Get LOB options
+            //project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+            ////Get Status options
+            //project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
+            ////Get Team options
+            //project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
 
 
             foreach (var row in sheet.Rows)
@@ -280,7 +263,7 @@ namespace Smartsheetsproject.Controllers
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {
-                            case "Project":
+                            case "Project Name":
                                 project.projectName = cell.DisplayValue;
                                 break;
 
@@ -292,13 +275,13 @@ namespace Smartsheetsproject.Controllers
                                 project.status = cell.DisplayValue;
                                 break;
 
-                            case "Start":
+                            case "Start Date":
                                 project.startDate = Convert.ToDateTime(cell.Value);
                                 //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
-                            case "Ship":
-                                project.endDate = Convert.ToDateTime(cell.Value);
+                            case "Due Date":
+                                project.dueDate = Convert.ToDateTime(cell.Value);
                                 //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
@@ -310,20 +293,12 @@ namespace Smartsheetsproject.Controllers
                                 project.producer = cell.DisplayValue;
                                 break;
 
-                            case "Type":
-                                project.type = cell.DisplayValue;
-                                break;
-
-                            case "Masters":
-                                project.masters = cell.DisplayValue;
-                                break;
-
                             case "Deliverables":
                                 project.deliverables = cell.DisplayValue;
                                 break;
 
                             case "Notes":
-                                project.notes = cell.DisplayValue;
+                                project.description = cell.DisplayValue;
                                 break;
 
 
@@ -334,7 +309,7 @@ namespace Smartsheetsproject.Controllers
             return project;
         }
 
-        public void updateProject(SocialModel project)
+        public void updateProject(VideoModel project)
         {
             SmartsheetClient smartsheet_CL = initSheet();
             Sheet sheet = LoadSheet(sheetId, smartsheet_CL);
@@ -342,7 +317,7 @@ namespace Smartsheetsproject.Controllers
             int row_number = 0;
             foreach (var row_b in sheet.Rows)
             {
-                if (row_b.Id == project.project_Id)
+                if (row_b.Id == project.pipelineId)
                 {
                     row_number = row_b.RowNumber.Value;
                 }
@@ -370,7 +345,7 @@ namespace Smartsheetsproject.Controllers
                 switch (columnName)
                 {
 
-                    case "Project":
+                    case "Project Name":
                         project_cell.ColumnId = columnid;
                         project_cell.Value = project.projectName;
                         break;
@@ -385,35 +360,26 @@ namespace Smartsheetsproject.Controllers
                             status_cell.Value = project.status;
                         break;
 
-                    case "Start":
+                    case "Start Date":
                         start_cell.ColumnId = columnid;
                         start_cell.Value = project.startDate;
                         break;
 
-                    case "Ship":
+                    case "Dute Date":
                         end_cell.ColumnId = columnid;
-                        end_cell.Value = project.endDate;
+                        end_cell.Value = project.dueDate;
                         break;
 
-                    case "Type":
-                        type_cell.ColumnId = columnid;
-                        type_cell.Value = project.type;
-                        break;
+     
 
-                    case "Masters":
-                        masters_cell.ColumnId = columnid;
-                        masters_cell.Value = project.masters;
-                        break;
-
-
-                    case "Deliverables":
+                    case "Specs":
                         deliverables_cell.ColumnId = columnid;
                         deliverables_cell.Value = project.deliverables;
                         break;
 
                     case "Notes":
                         notes_cell.ColumnId = columnid;
-                        notes_cell.Value = project.notes;
+                        notes_cell.Value = project.description;
                         break;
 
                         //case "Deliverables Tracker":
@@ -432,10 +398,10 @@ namespace Smartsheetsproject.Controllers
 
             rowToTupdate = new Row
             {
-                Id = project.project_Id,
+                Id = project.pipelineId,
                 Cells = new Cell[] {
-                    lob_cell,
                     project_cell,
+                    lob_cell,
                     status_cell,
                     start_cell,
                     end_cell,
@@ -459,71 +425,71 @@ namespace Smartsheetsproject.Controllers
             };
         }
 
-        public SocialModel GetPickLists(long row_id)
-        {
-            SocialModel project = new SocialModel();
-            project.project_Id = row_id;
-            Sheet sheet = LoadSheet(sheetId, initSheet());
+        //public VideoModel GetPickLists(long row_id)
+        //{
+        //    VideoModel project = new VideoModel();
+        //    project.pipelineId = row_id;
+        //    Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            //Get LOB options
-            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
-            //Get Status options
-            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
-            //Get Team options
-            project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
+        //    //Get LOB options
+        //    project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
+        //    //Get Status options
+        //    project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
+        //    //Get Team options
+        //    project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
 
 
-            return project;
-        }
-        public void runthroughallsheets()
-        {
-            /*
-            // List all sheets
-            PaginatedResult<Sheet> sheets = smartsheet_CL.SheetResources.ListSheets(
-                null,               // IEnumerable<SheetInclusion> includes
-                null,               // PaginationParameters
-                null                // Nullable<DateTime> modifiedSince = null
-            );
-            //Console.WriteLine("Found " + sheets.TotalCount + " sheets");
-            //iteration through all Sheet IDs
-            for (int i = 0; sheets.TotalCount > i; i++) {
-                ///Console.WriteLine("Loading sheet position: " + i);
-                //Console.WriteLine("Loading sheet id: " + (long)sheets.Data[i].Id);
-                GetSheet((long)sheets.Data[i].Id,smartsheet);
-            }
-            long sheetId = 1478730146178948; //Display TEST
-            */
-        }
-        public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
-        {
-            List<SelectListItem> options = new List<SelectListItem>();
-            foreach (var lob in lob_col.Options)
-            {
-                options.Add(new SelectListItem { Text = lob, Value = lob });
-            }
-            return options;
-        }
+        //    return project;
+        //}
+        //public void runthroughallsheets()
+        //{
+        //    /*
+        //    // List all sheets
+        //    PaginatedResult<Sheet> sheets = smartsheet_CL.SheetResources.ListSheets(
+        //        null,               // IEnumerable<SheetInclusion> includes
+        //        null,               // PaginationParameters
+        //        null                // Nullable<DateTime> modifiedSince = null
+        //    );
+        //    //Console.WriteLine("Found " + sheets.TotalCount + " sheets");
+        //    //iteration through all Sheet IDs
+        //    for (int i = 0; sheets.TotalCount > i; i++) {
+        //        ///Console.WriteLine("Loading sheet position: " + i);
+        //        //Console.WriteLine("Loading sheet id: " + (long)sheets.Data[i].Id);
+        //        GetSheet((long)sheets.Data[i].Id,smartsheet);
+        //    }
+        //    long sheetId = 1478730146178948; //Display TEST
+        //    */
+        //}
+        //public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
+        //{
+        //    List<SelectListItem> options = new List<SelectListItem>();
+        //    foreach (var lob in lob_col.Options)
+        //    {
+        //        options.Add(new SelectListItem { Text = lob, Value = lob });
+        //    }
+        //    return options;
+        //}
 
-        public IEnumerable<SelectListItem> Get_types_picklist(Column type_col)
-        {
-            List<SelectListItem> options = new List<SelectListItem>();
-            foreach (var type in type_col.Options)
-            {
-                options.Add(new SelectListItem { Text = type, Value = type });
-            }
-            return options;
-        }
+        //public IEnumerable<SelectListItem> Get_types_picklist(Column type_col)
+        //{
+        //    List<SelectListItem> options = new List<SelectListItem>();
+        //    foreach (var type in type_col.Options)
+        //    {
+        //        options.Add(new SelectListItem { Text = type, Value = type });
+        //    }
+        //    return options;
+        //}
 
-        public IEnumerable<SelectListItem> Get_status_picklist(Column status_col)
-        {
-            List<SelectListItem> options = new List<SelectListItem>();
+        //public IEnumerable<SelectListItem> Get_status_picklist(Column status_col)
+        //{
+        //    List<SelectListItem> options = new List<SelectListItem>();
 
-            foreach (var status in status_col.Options)
-            {
-                options.Add(new SelectListItem { Text = status, Value = status });
-            }
-            return options;
-        }
+        //    foreach (var status in status_col.Options)
+        //    {
+        //        options.Add(new SelectListItem { Text = status, Value = status });
+        //    }
+        //    return options;
+        //}
 
     }
 
