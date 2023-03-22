@@ -39,11 +39,9 @@
                     <th>
                         Status
                     </th>
+             
                     <th>
-                        Start
-                    </th>
-                    <th>
-                        Ship
+                        Due
                     </th>
                     <th>
                         Actions
@@ -68,18 +66,19 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.status)
                     </td>
-                    <td id="startDate">@Html.DisplayFor(modelItem => item.startDate)</td>
                     <td id="endDate">@Html.DisplayFor(modelItem => item.dueDate)</td>
 
                     <td class="action-buttons">
 
-                        <a href="@Url.Action("Edit", "Video",new { id = item.pipelineId } )" class="btn btn-warning">
-                            <i class="bi bi-pencil-fill"></i>
+                        <a href="@Url.Action("Edit", "Video",new { id = item.pipelineId } )">
+                           edit
                         </a>
 
+                    
+
                         @*<a href="@Url.Action("Details", "Video",new { id = item.pipelineId } )" class="btn btn-primary">
-                <i class="bi bi-card-list"></i>
-            </a>*@
+            <i class="bi bi-card-list"></i>
+        </a>*@
                     </td>
                 </tr>
             }

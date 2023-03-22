@@ -1,4 +1,4 @@
-﻿@model Smartsheetsproject.Models.DisplayModel
+﻿@model Smartsheetsproject.Models.TechModel
 
 @{
     ViewData["Title"] = "Project Details";
@@ -23,9 +23,9 @@
             </div>
             <div class="row">
                 <dt class="col-sm-3">Tenrox</dt>
-                @if (Model.tenroxCode != null)
+                @if (Model.tenrox != null)
                 {
-                    <dd class="col-sm-9">@Html.DisplayFor(model => model.tenroxCode)</dd>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.tenrox)</dd>
                 }
                 else
                 {
@@ -36,7 +36,7 @@
                 <dt class="col-sm-3">Timing</dt>
                 <dd class="col-sm-9">
                     @Html.DisplayFor(model => model.startDate) -
-                    @Html.DisplayFor(model => model.endDate)
+                    @Html.DisplayFor(model => model.dueDate)
                 </dd>
             </div>
         </div>
@@ -73,7 +73,7 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Deck</td>
+                            @*<td>Deck</td>
                             @if (Model.Deck != null)
                             {
                                 <td><a href="@Model.Deck"> Deck</a></td>
@@ -81,7 +81,7 @@
                             else
                             {
                                 <td class="alert alert-warning" role="alert">No Deck link provided.</td>
-                            }
+                            }*@
                         </tr>
 
                         <tr>
@@ -124,9 +124,9 @@
                                 {
                                     <span class="sets">Static per Set:</span> @Html.DisplayFor(model => model.staticPerSet) <br />
                                 }
-                                @if (Model.notes != null)
+                                @if (Model.description != null)
                                 {
-                                    <textarea readonly class="form-control">@Html.DisplayFor(model => model.notes)</textarea>
+                                    <textarea readonly class="form-control">@Html.DisplayFor(model => model.description)</textarea>
                                 }
                                 else
                                 {
@@ -136,15 +136,7 @@
                         </tr>
 
                         <tr>
-                            <td>Delivery Folder</td>
-                            @if (Model.finalDeliveryFolder != null)
-                            {
-                                <td><a href="@Model.finalDeliveryFolder">Delivery Folder</a></td>
-                            }
-                            else
-                            {
-                                <td class="alert alert-warning" role="alert">No Final Delivery Folder link provided.</td>
-                            }
+             
                         </tr>
                     </tbody>
                 </table>

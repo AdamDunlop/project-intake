@@ -1,4 +1,4 @@
-﻿@model Smartsheetsproject.Models.DisplayModel
+﻿@model Smartsheetsproject.Models.TechModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -48,9 +48,9 @@
             <span asp-validation-for="lob_options" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="tenroxCode" class="control-label">Tenrox Codes</label>
-            @Html.TextBoxFor(m => m.tenroxCode, new { @class = "form-control" })
-            <span asp-validation-for="tenroxCode" class="text-danger"></span>
+            <label asp-for="tenrox" class="control-label">Tenrox</label>
+            @Html.TextBoxFor(m => m.tenrox, new { @class = "form-control" })
+            <span asp-validation-for="tenrox" class="text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -63,13 +63,13 @@
 
         <div class="form-group project-dates">
             <label asp-for="startDate" class="control-label">Start Date</label>
-            @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yy}", new { @class = "form-control" })
             <span asp-validation-for="startDate" class="text-danger"></span>
         </div>
         <div class="form-group project-dates">
-            <label asp-for="endDate" class="control-label">End Date</label>
-            @Html.TextBoxFor(m => m.endDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
-            <span asp-validation-for="endDate" class="text-danger"></span>
+            <label asp-for="dueDate" class="control-label">End Date</label>
+            @Html.TextBoxFor(m => m.dueDate, "{0:MM/dd/yy}", new { @class = "form-control" })
+            <span asp-validation-for="dueDate" class="text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -79,11 +79,11 @@
         </div>
 
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label asp-for="Deck" class="control-label">Deck</label>
             @Html.TextBoxFor(m => m.Deck, new { @class = "form-control" })
             <span asp-validation-for="Deck" class="text-danger"></span>
-        </div>
+        </div>*@
     </div>
 
     <div class="col-12 col-md-6">
@@ -112,12 +112,6 @@
             <span asp-validation-for="boxFolder" class="text-danger"></span>
         </div>
 
-        <div class="form-group">
-            <label asp-for="finalDeliveryFolder" class="control-label">Final Delivery Folder</label>
-            @Html.TextBoxFor(m => m.finalDeliveryFolder, new { @class = "form-control" })
-            <span asp-validation-for="finalDeliveryFolder" class="text-danger"></span>
-        </div>
-
         <div class="row spec-details">
             <div class=" col-sm-12 col-md-4">
                 <div class="form-group">
@@ -144,13 +138,6 @@
 
             </div>
         </div>
-
-        <div class="form-group">
-            <label asp-for="notes" class="control-label">Deliverables</label>
-            @Html.TextAreaFor(m => m.notes, new { @class = "form-control" })
-            <span asp-validation-for="notes" class="text-danger"></span>
-        </div>
-
 
         <div class="form-group">
             <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>

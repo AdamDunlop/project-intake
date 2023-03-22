@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Smartsheetsproject.Models.TechModel>
+
+@{
+    ViewData["Title"] = "Tech/QA";
+}
+
+<div class="row">
+    <div class="col-12">
+        @{
+            if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show spacing" role="alert">
+                    Your changes have been saved successfully.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="header-title">Tech/QA</h2>
+        <table class="table table-striped">
+            <thead class="project-list-header">
+                <tr>
+
+                    <th class="project-col">
+                        Project
+                    </th>
+                    <th>
+                        LOB
+                    </th>
+                    <th>
+                        Tenrox
+                    </th>
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Due
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="project-col">
+                            <a href="@Url.Action("Details", "Tech",new { id = item.pipelineId } )" class="project-col">
+                                @Html.DisplayFor(modelItem => item.projectName)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lob)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tenrox)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td id="endDate">@Html.DisplayFor(modelItem => item.dueDate)</td>
+
+                        <td class="action-buttons">
+
+                            <a href="@Url.Action("Edit", "Video",new { id = item.pipelineId } )">
+                                edit
+                            </a>
+
+
+
+                            @*<a href="@Url.Action("Details", "Video",new { id = item.pipelineId } )" class="btn btn-primary">
+                                    <i class="bi bi-card-list"></i>
+                                </a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
