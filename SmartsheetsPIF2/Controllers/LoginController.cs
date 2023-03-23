@@ -22,8 +22,8 @@ namespace SmartsheetsPIF2.Controllers
             var users = new List<UserModel>
 
             {
-                new UserModel{ id=1, username="Adam", password="123abc"},
-                new UserModel{ id=2, username="Ana", password="helpme"},
+                new UserModel{ id=1, username="adunlop@criticalmass.com", password="123abc"},
+                new UserModel{ id=2, username="ana.nicolov@criticalmass.com", password="helpme"},
                 new UserModel{ id=3, username="Peter", password="another"},
                 new UserModel{ id=4, username="Nicole", password="basic"}
 
@@ -39,6 +39,9 @@ namespace SmartsheetsPIF2.Controllers
             var up = u.Where(p => p.password.Equals(usr.password));
 
             if (up.Count()==1)
+
+            //if (usr.username === ue && usr.password = up )
+
             {
                 ViewBag.message = "Login Successful";
 

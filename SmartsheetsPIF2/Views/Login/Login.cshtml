@@ -2,32 +2,81 @@
 
 @{
 
-    Layout = null; 
+    Layout = null;
 }
 
-<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Login </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/chosen.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
+</head>
+<body class="login">
+    <div class="row">
+
+        <div class="col-12">
+            <div class="flex">
+
+                <h3 class="header-title">Login</h3>
+
+            </div>
+            <hr />
+          
+                @if (ViewBag.message != null)
+                {
+                <div class="alert alert-warning alert-dismissible fade show spacing" role="alert">
+                    @ViewBag.message
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            <div class="col-12 col-md-6">
 
 
-    <div id="login-box">
-        @using (Html.BeginForm("Verify", "Login", FormMethod.Post))
-        {
+                @using (Html.BeginForm("Verify", "Login", FormMethod.Post, new { @class = "form-group" }))
+                {
+                    <div class="form-group">
+                        <label asp-for="username" class="control-label">Email</label>
+                        @Html.TextBoxFor(m => m.username, new { @class = "form-control", @placeholder = "Enter email" })
+                        <span asp-validation-for="username" class="text-danger"></span>
 
-            <h3>Login </h3>
-            <div class="form-group">
-                <label for="username" class="text-info">Username</label>
-                @Html.TextBoxFor(m => m.username, new { @class = "form-control", @placeholder = "enter username" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="password" class="control-label">Password</label>
+                        @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "enter password" })
+                        <span asp-validation-for="password" class="text-danger"></span>
+
+                    </div>
+
+
+
+                    @*<div class="checkbox">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe" />
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </label>
+                </div>*@
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" />
+                    </div>
+
+
+                }
+
             </div>
 
-            <div class="form-group">
-                <label for="password" class="text-info">Password</label>
-                @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "enter password" })
-            </div>
-            <div class="form-group">
-                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" />
-            </div>
+        </div>
 
-        }
-        <div>@ViewBag.message</div>
-       
+
     </div>
 </body>
