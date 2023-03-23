@@ -1,0 +1,33 @@
+﻿@model SmartsheetsPIF2.Models.UserModel;
+
+@{
+
+    Layout = null; 
+}
+
+<body>
+
+
+    <div id="login-box">
+        @using (Html.BeginForm("Verify", "Login", FormMethod.Post))
+        {
+
+            <h3>Login </h3>
+            <div class="form-group">
+                <label for="username" class="text-info">Username</label>
+                @Html.TextBoxFor(m => m.username, new { @class = "form-control", @placeholder = "enter username" })
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="text-info">Password</label>
+                @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "enter password" })
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" />
+            </div>
+
+        }
+        <div>@ViewBag.message</div>
+       
+    </div>
+</body>

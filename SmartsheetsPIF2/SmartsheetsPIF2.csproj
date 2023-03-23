@@ -38,6 +38,7 @@
     <None Remove="Views\Shared\Components\DesignViewComponent\" />
     <None Remove="font-awesome" />
     <None Remove="Views\Video\" />
+    <None Remove="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Nifti\" />
@@ -45,6 +46,7 @@
     <Folder Include="Views\Shared\ViewComponents\" />
     <Folder Include="Views\Shared\ViewComponents\Design\" />
     <Folder Include="Views\Video\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Views\Components\DesignForm">

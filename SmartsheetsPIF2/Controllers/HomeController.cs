@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 namespace Smartsheetsproject2.Controllers
 {
     public class HomeController : Controller
+
+
     {
+
    private readonly ILogger<HomeController> _logger;
        
         public HomeController(ILogger<HomeController> logger)
@@ -45,6 +48,13 @@ namespace Smartsheetsproject2.Controllers
         }
 
         public IActionResult Artbot()
+        {
+            return View();
+        }
+
+
+
+        public IActionResult Login()
         {
             return View();
         }
