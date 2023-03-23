@@ -1,7 +1,12 @@
-﻿@{
+﻿@model Smartsheetsproject.Models.UserModel
+
+@{
     ViewData["Title"] = "NIFTI Pipeline";
 }
 
-<div class="nifti">
-    <IFRAME id="nifti" WIDTH=100% HEIGHT=800 FRAMEBORDER=0 SRC="https://app.smartsheet.com/b/publish?EQBCT=5b309e75276742b0b7f757351ee34445" ></IFRAME>
-</div>
+<div class="welcome-title">Welcome,<span> @Html.DisplayFor(m => m.Username)</span> </div>
+
+<div class="row">
+    <div class="col-12">
+        <iframe width="100%" height="750" frameborder="0" src="https://app.smartsheet.com/b/form/49ef37e7b1344f2b8d5749ec69c12dfe"></iframe>
+    </div>
