@@ -73,15 +73,15 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            @*<td>Deck</td>
-                            @if (Model.Deck != null)
+                            <td>Deck</td>
+                            @if (Model.FxF != null)
                             {
-                                <td><a href="@Model.Deck"> Deck</a></td>
+                                <td><a href="@Model.FxF">FxF Deck</a></td>
                             }
                             else
                             {
-                                <td class="alert alert-warning" role="alert">No Deck link provided.</td>
-                            }*@
+                                <td class="alert alert-warning" role="alert">No FxF link provided.</td>
+                            }
                         </tr>
 
                         <tr>
@@ -109,7 +109,7 @@
                         </tr>
 
                         <tr>
-                            <td>Deliverables </td>
+                            @*<td>Deliverables </td>
                             <td>
                                 @if (Model.numberOfSets != null)
                                 {
@@ -132,7 +132,7 @@
                                 {
                                     <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
                                 }
-                            </td>
+                            </td>*@
                         </tr>
 
                         <tr>
@@ -140,7 +140,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <h4>Deliverables Tracker</h4>
+                @*<h4>Deliverables Tracker</h4>
 
                 <div id="deliverablesTracker">
 
@@ -154,71 +154,8 @@
                             No Deliverables Tracker link provided.
                         </div>
                     }
-                </div>
-                <div class="wander-section">
-                    <hr />
-                    <h4>Wander Internal Notes</h4>
-                    <table class="table table-bordered">
-                        <tbody>
-
-                            <tr>
-                                <td>Producer</td>
-
-                                <td></td>
-
-                            </tr>
-                            <tr>
-                                <td>Editor</td>
-
-                                <td></td>
-
-                            </tr>
-
-                            <tr>
-                                <td>Path on Studio Server</td>
-
-                                <td></td>
-
-
-                            </tr>
-
-                            <tr>
-                                <td>Contractor Files</td>
-
-                                <td></td>
-
-                            </tr>
-
-                            <tr>
-                                <td>Review Links </td>
-                                <td>
-
-                                    <p><b>Video:</b></p>
-                                    <p><b>Display:</b></p>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Art Buyer</td>
-                                <td>
-                                    <p><input type="checkbox" /> Kickoff </p>
-                                    <p>Audio:</p>
-                                    <p><input type="checkbox" /> Quoted </p>
-                                    <p><input type="checkbox" /> Purchased </p>
-                                    <p>Visual:</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>QC Log</td>
-                                <td>
-                                    <p><input type="checkbox" /> Kickoff Meeting</p>
-                                    <p><input type="checkbox" /> Archived </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
+                </div>*@
+                
             </div>
         </div>
         <a asp-action="List" class="btn btn-secondary">

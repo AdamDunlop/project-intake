@@ -169,7 +169,7 @@ namespace Smartsheetsproject2.Controllers
                         Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {
-                            case "Project":
+                            case "Project Name":
                                 project.projectName = cell.DisplayValue;
                                 break;
 
@@ -199,14 +199,14 @@ namespace Smartsheetsproject2.Controllers
                                 }
                                 break;
 
-                            case "Start":
+                            case "Start Date":
                                 if (cell.Value != null) 
                                 {
                                     project.startDate = Convert.ToDateTime(cell.Value);
                                 }                                
                                 break;
 
-                            case "Ship":
+                            case "Due Date":
                                 if (cell.Value != null) 
                                 {
                                     project.dueDate = Convert.ToDateTime(cell.Value);
@@ -309,7 +309,7 @@ namespace Smartsheetsproject2.Controllers
                         //Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
                         switch (columnName)
                         {
-                            case "Project":
+                            case "Project Name":
                                 project.projectName = cell.DisplayValue;
                                 break;
 
@@ -317,7 +317,7 @@ namespace Smartsheetsproject2.Controllers
                                 project.lob = cell.DisplayValue;
                                 break;
 
-                            case "Tenrox Code":
+                            case "Tenrox":
                                 project.tenrox = cell.DisplayValue;
                                 break;
 
@@ -462,7 +462,7 @@ namespace Smartsheetsproject2.Controllers
 
                 switch (columnName)
                 {
-                    case "Project":
+                    case "Project Name":
                         project_cell.ColumnId = columnid;
                         project_cell.Value = project.projectName;
                         break;
@@ -472,7 +472,7 @@ namespace Smartsheetsproject2.Controllers
                         lob_cell.Value = project.lob;
                         break;
 
-                    case "Tenrox Code":
+                    case "Tenrox":
                         tenrox_cell.ColumnId = columnid;
                         tenrox_cell.Value = project.tenrox;
                         break;
