@@ -8,20 +8,15 @@ namespace SmartsheetsPIF2.Services
 {
     public class SecurityService
     {
-        List<UserModel> userAccess = new List<UserModel>();
- 
+        SecurityDAO securityDAO = new SecurityDAO();
 
         public SecurityService()
         {
-            userAccess.Add(new UserModel { Id = 0, Username = "adunlop@criticalmass.com", Password = "cmpass" });
-            userAccess.Add(new UserModel { Id = 1, Username = "ana.nicolovp@criticalmass.com", Password = "cmpass" });
-            userAccess.Add(new UserModel { Id = 2, Username = "peter.ghering@criticalmass.com", Password = "cmpass" });
-
+            
         }
         public bool IsValid(UserModel user)
         {
-
-            return userAccess.Any(usr => usr.Username == user.Username && usr.Password == user.Password);
+            return securityDAO.FindUser(user);
            
         }
     }

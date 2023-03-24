@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="smartsheet-csharp-sdk" Version="2.101.0" />
     <PackageReference Include="font-awesome" Version="4.7.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
   <ItemGroup>
