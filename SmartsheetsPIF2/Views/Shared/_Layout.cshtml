@@ -27,7 +27,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Nifti" asp-action="List">Intake</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Pipeline">Team Pipelines</a>
+                            <div class="dropdown">
+                            <a class="nav-link text-dark dropbtn" asp-area="" asp-controller="Home" asp-action="Pipeline">Team Pipelines</a>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-controller="Design" asp-action="List">Design Pipeline</a>
+                                    <a asp-area="" asp-controller="Video" asp-action="List">Video Pipeline</a>
+                                    <a asp-area="" asp-controller="Tech" asp-action="List">Tech/QA Pipeline</a>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Reports">Aggregated</a>

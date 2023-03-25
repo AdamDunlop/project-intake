@@ -122,7 +122,6 @@ namespace Smartsheetsproject.Controllers
                             case "Status":
                                 project.status = cell.DisplayValue;
                                 break;
-
                  
                             case "Start Date":
                                 if (project.startDate != null)
@@ -152,7 +151,6 @@ namespace Smartsheetsproject.Controllers
                                 project.pm = cell.DisplayValue;
                                 break;
 
-
                             case "WBS":
                                 project.wbs = cell.DisplayValue;
                                 break;
@@ -160,7 +158,6 @@ namespace Smartsheetsproject.Controllers
                             case "Box":
                                 project.box = cell.DisplayValue;
                                 break;
-
 
                             case "Figma":
                                 project.figma = cell.DisplayValue;
@@ -184,11 +181,8 @@ namespace Smartsheetsproject.Controllers
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            //Get LOB options
             project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
-            //Get Status options
             project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
-
             project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(26));
 
 
@@ -213,12 +207,12 @@ namespace Smartsheetsproject.Controllers
                                 project.lob = cell.DisplayValue;
                                 break;
 
-                            case "Tenrox":
-                                project.tenrox = cell.DisplayValue;
-                                break;
-
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;
+                                break;
+
+                            case "Tenrox":
+                                project.tenrox = cell.DisplayValue;
                                 break;
 
                             case "Status":
@@ -382,9 +376,9 @@ namespace Smartsheetsproject.Controllers
                                 project.dueDate = Convert.ToDateTime(cell.Value);
                                 break;
 
-                            //case "Assigned To":
-                            //    project.assignedTo = cell.DisplayValue;
-                            //    break;
+                            case "Assigned To":
+                                project.assignedTo = cell.DisplayValue;
+                                break;
 
                             case "WBS":
                                 project.wbs = cell.DisplayValue;
@@ -461,6 +455,7 @@ namespace Smartsheetsproject.Controllers
             var box_cell = new Cell();
             var figma_cell = new Cell();
             var specs_cell = new Cell();
+            var assigned_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -503,6 +498,11 @@ namespace Smartsheetsproject.Controllers
                     case "Figma":
                         figma_cell.ColumnId = columnid;
                         figma_cell.Value = project.figma;
+                        break;
+
+                    case "Assigned To":
+                        assigned_cell.ColumnId = columnid;
+                        assigned_cell.Value = project.assignedTo;
                         break;
 
                     case "Specs":
@@ -560,7 +560,8 @@ namespace Smartsheetsproject.Controllers
                     wbs_cell,
                     box_cell,
                     figma_cell,
-                    specs_cell
+                    specs_cell,
+                    assigned_cell
                 }
             };
 
@@ -586,9 +587,7 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
-
             project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
-
             project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(26));
 
             return project;

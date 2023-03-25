@@ -47,13 +47,13 @@ namespace Smartsheetsproject.Models
 
         public string am { get; set; }
 
-        [Required(ErrorMessage = "Please enter the Box embed Link")]
+        //[Required(ErrorMessage = "Please enter the Box embed Link")]
         public string box { get; set; }
 
-        [Required(ErrorMessage = "Please enter the Figma embed Link")]
+        //[Required(ErrorMessage = "Please enter the Figma embed Link")]
         public string figma { get; set; }
 
-        [Required(ErrorMessage = "Please enter the wbs Link")]
+        //[Required(ErrorMessage = "Please enter the wbs Link")]
         public string wbs { get; set; }
 
 
