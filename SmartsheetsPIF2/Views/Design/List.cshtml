@@ -37,7 +37,7 @@
 
 <div class="row">
     <div class="col-12">
-        <h2 class="header-title">Design Production Pipeline(Stage 2)</h2>
+        <h2 class="header-title">Design Pipeline(Stage 2)</h2>
         <div id="table-wrapper">
             <div id="table-scroll">
                 <table class="table table-striped">
@@ -59,6 +59,10 @@
                             </th>
 
                             <th>
+                                Due
+                            </th>
+
+                            <th>
                                 Edit
                             </th>
                         </tr>
@@ -67,31 +71,34 @@
 
                         @foreach (var data in Model)
                         {
-                            <tr>
-                                <td class="project-col">
-                                    <a class="clickable-row" href="@Url.Action("Details", "Design", new { id = data.pipelineId  } )">
-                                        @Html.DisplayFor(modelItem => data.projectName)
-                                    </a>
-                                </td>
+                        <tr>
+                            <td class="project-col">
+                                <a class="clickable-row" href="@Url.Action("Details", "Design", new { id = data.pipelineId  } )">
+                                    @Html.DisplayFor(modelItem => data.projectName)
+                                </a>
+                            </td>
 
-                                <td id="client-group">
-                                    @Html.DisplayFor(modelItem => data.lob)
-                                </td>
+                            <td id="client-group">
+                                @Html.DisplayFor(modelItem => data.lob)
+                            </td>
 
-                                <td id="type">
-                                    @Html.DisplayFor(modelItem => data.tenrox)
-                                </td>
-                                <td id="status">
-                                    @Html.DisplayFor(modelItem => data.status)
-                                </td>
+                            <td id="type">
+                                @Html.DisplayFor(modelItem => data.tenrox)
+                            </td>
+                            <td id="status">
+                                @Html.DisplayFor(modelItem => data.status)
+                            </td>
 
-                                <td>
-                                    <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
-                                        edit
-                                    </a>
-                                </td>
+                            <td id="status">
+                                @Html.DisplayFor(modelItem => data.dueDate)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
+                                    edit
+                                </a>
+                            </td>
 
-                            </tr>
+                        </tr>
                         }
 
                     </tbody>

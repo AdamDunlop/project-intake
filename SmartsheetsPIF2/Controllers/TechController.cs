@@ -116,7 +116,7 @@ namespace Smartsheetsproject2.Controllers
                                 project.status = cell.DisplayValue;
                                 break;
 
-                            case "Start":
+                            case "Start Date":
                                 if (project.startDate != null) 
                                 {
                                     project.startDate = Convert.ToDateTime(cell.Value);
@@ -125,7 +125,7 @@ namespace Smartsheetsproject2.Controllers
                                 //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
-                            case "Due":
+                            case "Due Date":
                                 if (project.dueDate != null) 
                                 {
                                     project.dueDate = Convert.ToDateTime(cell.Value);
@@ -325,14 +325,14 @@ namespace Smartsheetsproject2.Controllers
                                 project.status = cell.DisplayValue;
                                 break;
 
-                            case "Start":
+                            case "Start Date":
                                 if (cell.Value != null)
                                 {
                                     project.startDate = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
-                            case "Ship":
+                            case "Due Date":
                                 if (cell.Value != null)
                                 {
                                     project.dueDate = Convert.ToDateTime(cell.Value);
@@ -341,6 +341,11 @@ namespace Smartsheetsproject2.Controllers
 
                             case "PM":
                                 project.pm = cell.DisplayValue;
+                                break;
+
+
+                            case "AM":
+                                project.am = cell.DisplayValue;
                                 break;
 
                             case "PSDs":
