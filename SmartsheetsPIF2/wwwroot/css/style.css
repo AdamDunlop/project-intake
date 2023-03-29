@@ -169,6 +169,29 @@ label {
     display: block;
 }
 
+#startdatepicker, #duedatepicker {
+    cursor: pointer;
+}
+
+.date-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.date-dropdown::before {
+    position: absolute;
+    content: "▼";
+    top: 8px;
+    right: -15px;
+    color: grey;
+}
+
+
+
+.edit-date {
+    width: 75px;
+}
+
 
 @media only screen and (max-width: 767px) {
     #client-group, #intake-type{

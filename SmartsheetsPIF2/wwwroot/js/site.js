@@ -5,6 +5,26 @@
 
 
 $(function () {
+    $("#startdatepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-5:+0",
+        dateFormat: 'mm/dd/yy',
+        controlType: 'select',
+    });
+});
+
+$(function () {
+    $("#duedatepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-5:+0",
+        dateFormat: 'mm/dd/yy',
+        controlType: 'select',
+    });
+});
+
+$(function () {
     $('textarea').each(function () {
         $(this).height($(this).prop('scrollHeight'));
     });
@@ -105,3 +125,5 @@ $(".figma-expand").click(function () {
     });
 
 });
+
+
