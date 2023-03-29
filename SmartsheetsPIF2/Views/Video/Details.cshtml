@@ -47,14 +47,12 @@
         </div>
         <div class="row">
 
-            <dt class="col-sm-3">Producer</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.producer)</dd>
+            <dt class="col-sm-3">AM</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.am)</dd>
         </div>
         <div class="row">
             <dt class="col-sm-3">Status</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.status)</dd>
-            <dt class="col-sm-3">Type</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.type)</dd>
         </div>
 
     </div>
@@ -82,80 +80,17 @@
         <h4>Project Details</h4>
         <table class="table table-bordered">
             <tbody>
-                <tr>
+                @*<tr>
                     <td>Masters</td>
                     <td>@Html.DisplayFor(model => model.masters)</dd>
                 </tr>
                 <tr>
                     <td>Deliverables</td>
                     <td>@Html.DisplayFor(model => model.deliverables)</dd>
-                </tr>
+                </tr>*@
             </tbody>
         </table>
-        <div class="wander-section">
-            <hr />
-            <h4>Wander Internal Notes</h4>
-            <table class="table table-bordered">
-                <tbody>
 
-                    <tr>
-                        <td>Producer</td>
-
-                        <td></td>
-
-                    </tr>
-                    <tr>
-                        <td>Editor</td>
-
-                        <td></td>
-
-                    </tr>
-
-                    <tr>
-                        <td>Path on Studio Server</td>
-
-                        <td></td>
-
-
-                    </tr>
-
-                    <tr>
-                        <td>Contractor Files</td>
-
-                        <td></td>
-
-                    </tr>
-
-                    <tr>
-                        <td>Review Links </td>
-                        <td>
-
-                            <p><b>Video:</b></p>
-                            <p><b>Display:</b></p>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Art Buyer</td>
-                        <td>
-                            <p><input type="checkbox" /> Kickoff </p>
-                            <p>Audio:</p>
-                            <p><input type="checkbox" /> Quoted </p>
-                            <p><input type="checkbox" /> Purchased </p>
-                            <p>Visual:</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>QC Log</td>
-                        <td>
-                            <p><input type="checkbox" /> Kickoff Meeting</p>
-                            <p><input type="checkbox" /> Archived </p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
     </div>
     <a asp-action="List" class="btn btn-secondary">
         <i class="bi bi-arrow-bar-left"></i>

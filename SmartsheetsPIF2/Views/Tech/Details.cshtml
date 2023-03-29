@@ -46,19 +46,25 @@
 
                 <dd class="col-sm-9">@Html.DisplayFor(model => model.pm)</dd>
             </div>
+
+            <div class="row">
+                <dt class="col-sm-3">AM</dt>
+
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.am)</dd>
+            </div>
             <div class="row">
                 <dt class="col-sm-3">Status</dt>
                 <dd class="col-sm-9">@Html.DisplayFor(model => model.status)</dd>
             </div>
-      
+
         </div>
         <div class="wbs-section">
             <hr />
             <h4>WBS</h4>
             <div class="wbs">
-                @if (Model.wbs_link != null)
+                @if (Model.wbs != null)
                 {
-                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs_link"></IFRAME>
+                    <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.wbs"></IFRAME>
                 }
                 else
                 {
@@ -73,7 +79,7 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Deck</td>
+                            <td>FxF</td>
                             @if (Model.FxF != null)
                             {
                                 <td><a href="@Model.FxF">FxF Deck</a></td>
@@ -98,9 +104,9 @@
 
                         <tr>
                             <td>Box Folder</td>
-                            @if (Model.boxFolder != null)
+                            @if (Model.box != null)
                             {
-                                <td><a href="@Model.boxFolder"> Box Folder</a></td>
+                                <td><a href="@Model.box"> Box Folder</a></td>
                             }
                             else
                             {
@@ -136,25 +142,17 @@
                         </tr>
 
                         <tr>
-             
+                            <dl class="row">
+                                <dt class="col-sm-3">Specs</dt>
+                                <dd class="col-sm-9 specs">
+                                    @Html.DisplayFor(model => model.specs_list)
+                                </dd>
+                            </dl>
+
                         </tr>
                     </tbody>
                 </table>
-                @*<h4>Deliverables Tracker</h4>
-
-                <div id="deliverablesTracker">
-
-                    @if (Model.deliverables_tracker_link != null)
-                    {
-                        <IFRAME WIDTH="100%" HEIGHT=700 FRAMEBORDER=0 SRC="@Model.deliverables_tracker_link"></IFRAME>
-                    }
-                    else
-                    {
-                        <div class="alert alert-warning" role="alert">
-                            No Deliverables Tracker link provided.
-                        </div>
-                    }
-                </div>*@
+               
                 
             </div>
         </div>

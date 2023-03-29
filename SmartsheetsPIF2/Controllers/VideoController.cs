@@ -142,11 +142,7 @@ namespace Smartsheetsproject.Controllers
                                 break;
 
                             case "Specs":
-                                project.deliverables = cell.DisplayValue;
-                                break;
-
-                            case "Description":
-                                project.description = cell.DisplayValue;
+                                project.specs_list = cell.DisplayValue;
                                 break;
                         }
                     }
@@ -156,87 +152,6 @@ namespace Smartsheetsproject.Controllers
             return project_list;
         }
 
-        public VideoModel GetProjectEdit(long row_id)
-        {
-            VideoModel project = new VideoModel();
-            project.pipelineId = row_id;
-            Sheet sheet = LoadSheet(sheetId, initSheet());
-
-            //project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
-            //project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
-            //project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
-
-
-            foreach (var row in sheet.Rows)
-            {
-                if (row.Id == row_id)
-                {
-                    foreach (var cell in row.Cells)
-                    {
-                        long columnid = cell.ColumnId.Value;
-                        string columnName = sheet.GetColumnById(columnid).Title.ToString();
-                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
-                        switch (columnName)
-                        {
-                            case "Project Name":
-                                project.projectName = cell.DisplayValue;
-                                break;
-
-                            case "LOB":
-                                foreach (var item in project.lob_options)
-                                {
-                                    if (item.Value.ToString() == cell.DisplayValue)
-                                    {
-                                        //project.lob_options.
-                                        item.Selected = true;
-                                    }
-                                }
-                                //project.lob = cell.DisplayValue;
-                                break;
-
-                            case "Status":
-                                foreach (var item in project.status_options)
-                                {
-                                    if (item.Value.ToString() == cell.DisplayValue)
-                                    {
-                                        //project.lob_options.
-                                        item.Selected = true;
-                                    }
-                                }
-                                break;
-
-                            case "Start Date":
-                                project.startDate = Convert.ToDateTime(cell.Value);
-                                break;
-
-                            case "Due Date":
-                                if (cell.Value != null)
-                                {
-                                    project.dueDate = Convert.ToDateTime(cell.Value);
-                                }
-                                break;
-
-                            case "PM":
-                                project.pm = cell.DisplayValue;
-                                break;
-
-                            case "Masters":
-                                project.masters = cell.DisplayValue;
-                                break;
-
-                            case "Deliverables":
-                                project.deliverables = cell.DisplayValue;
-                                break;
-
-                            case "Notes":
-                                project.description = cell.DisplayValue;
-                                break;
-                        }
-                    }
-                }
-            }
-            return project;
-        }
 
         public VideoModel GetProjectDetails(long row_id)
         {
@@ -244,12 +159,9 @@ namespace Smartsheetsproject.Controllers
             project.pipelineId = row_id;
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
-            ////Get LOB options
-            //project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
-            ////Get Status options
-            //project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
-            ////Get Team options
-            //project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
+            project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(26));
 
 
             foreach (var row in sheet.Rows)
@@ -289,18 +201,9 @@ namespace Smartsheetsproject.Controllers
                                 project.pm = cell.DisplayValue;
                                 break;
 
-                            case "Producer":
-                                project.producer = cell.DisplayValue;
+                            case "AM":
+                                project.am = cell.DisplayValue;
                                 break;
-
-                            case "Deliverables":
-                                project.deliverables = cell.DisplayValue;
-                                break;
-
-                            case "Notes":
-                                project.description = cell.DisplayValue;
-                                break;
-
 
                         }
                     }
@@ -308,6 +211,79 @@ namespace Smartsheetsproject.Controllers
             }
             return project;
         }
+
+        public VideoModel GetProjectEdit(long row_id)
+        {
+            VideoModel project = new VideoModel();
+            project.pipelineId = row_id;
+            Sheet sheet = LoadSheet(sheetId, initSheet());
+
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
+            project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(26));
+
+            foreach (var row in sheet.Rows)
+            {
+                if (row.Id == row_id)
+                {
+                    foreach (var cell in row.Cells)
+                    {
+                        long columnid = cell.ColumnId.Value;
+                        string columnName = sheet.GetColumnById(columnid).Title.ToString();
+                        Console.WriteLine("Column Name: " + columnName + " -- Cell Value: " + cell.DisplayValue);
+                        switch (columnName)
+                        {
+                            case "LOB":
+                                foreach (var item in project.lob_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        //project.lob_options.
+                                        item.Selected = true;
+                                    }
+                                }
+                                //project.lob = cell.DisplayValue;
+                                break;
+
+                            case "Project Name":
+                                project.projectName = cell.DisplayValue;
+                                break;
+
+                            
+
+                            case "Status":
+                                foreach (var item in project.status_options)
+                                {
+                                    if (item.Value.ToString() == cell.DisplayValue)
+                                    {
+                                        //project.lob_options.
+                                        item.Selected = true;
+                                    }
+                                }
+                                break;
+
+                            case "Start Date":
+                                project.startDate = Convert.ToDateTime(cell.Value);
+                                break;
+
+                            case "Due Date":
+                                if (cell.Value != null)
+                                {
+                                    project.dueDate = Convert.ToDateTime(cell.Value);
+                                }
+                                break;
+
+                            case "PM":
+                                project.pm = cell.DisplayValue;
+                                break;
+                        }
+                    }
+                }
+            }
+            return project;
+        }
+
+       
 
         public void updateProject(VideoModel project)
         {
@@ -332,7 +308,7 @@ namespace Smartsheetsproject.Controllers
             var start_cell = new Cell();
             var end_cell = new Cell();
             var type_cell = new Cell();
-            var masters_cell = new Cell();
+            var wbs_cell = new Cell();
             var deliverables_cell = new Cell();
             var notes_cell = new Cell();
 
@@ -356,8 +332,8 @@ namespace Smartsheetsproject.Controllers
                         break;
 
                     case "Status":
-                            status_cell.ColumnId = columnid;
-                            status_cell.Value = project.status;
+                        status_cell.ColumnId = columnid;
+                        status_cell.Value = project.status;
                         break;
 
                     case "Start Date":
@@ -365,32 +341,21 @@ namespace Smartsheetsproject.Controllers
                         start_cell.Value = project.startDate;
                         break;
 
-                    case "Dute Date":
+                    case "Due Date":
                         end_cell.ColumnId = columnid;
                         end_cell.Value = project.dueDate;
                         break;
 
-     
+                    case "WBS":
+                        wbs_cell.ColumnId = columnid;
+                        wbs_cell.Value = project.wbs;
+                        break;
 
                     case "Specs":
                         deliverables_cell.ColumnId = columnid;
-                        deliverables_cell.Value = project.deliverables;
+                        deliverables_cell.Value = project.SpecsList;
                         break;
 
-                    case "Notes":
-                        notes_cell.ColumnId = columnid;
-                        notes_cell.Value = project.description;
-                        break;
-
-                        //case "Deliverables Tracker":
-                        //    deliverables_t_cell.ColumnId = columnid;
-                        //    deliverables_t_cell.Value = project.deliverables_tracker_link;
-                        //    break;
-
-                        //case "WBS":
-                        //    wbs_cell.ColumnId = columnid;
-                        //    wbs_cell.Value = project.wbs_link;
-                        //    break;
 
 
                 }
@@ -400,15 +365,11 @@ namespace Smartsheetsproject.Controllers
             {
                 Id = project.pipelineId,
                 Cells = new Cell[] {
-                    project_cell,
                     lob_cell,
                     status_cell,
                     start_cell,
                     end_cell,
-                    type_cell,
-                    masters_cell,
-                    deliverables_cell,
-                    notes_cell
+                    wbs_cell
                 }
             };
 
@@ -425,22 +386,22 @@ namespace Smartsheetsproject.Controllers
             };
         }
 
-        //public VideoModel GetPickLists(long row_id)
-        //{
-        //    VideoModel project = new VideoModel();
-        //    project.pipelineId = row_id;
-        //    Sheet sheet = LoadSheet(sheetId, initSheet());
+        public VideoModel GetPickLists(long row_id)
+        {
+            VideoModel project = new VideoModel();
+            project.pipelineId = row_id;
+            Sheet sheet = LoadSheet(sheetId, initSheet());
 
-        //    //Get LOB options
-        //    project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(0));
-        //    //Get Status options
-        //    project.status_options = Get_status_picklist(sheet.GetColumnByIndex(2));
-        //    //Get Team options
-        //    project.type_options = Get_types_picklist(sheet.GetColumnByIndex(9));
+            //Get LOB options
+            project.lob_options = Get_lobs_picklist(sheet.GetColumnByIndex(24));
+            //Get Status options
+            project.status_options = Get_status_picklist(sheet.GetColumnByIndex(25));
+            //Get Team options
+            project.SpecsList = Get_Specs_List(sheet.GetColumnByIndex(26));
 
 
-        //    return project;
-        //}
+            return project;
+        }
         //public void runthroughallsheets()
         //{
         //    /*
@@ -460,36 +421,43 @@ namespace Smartsheetsproject.Controllers
         //    long sheetId = 1478730146178948; //Display TEST
         //    */
         //}
-        //public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
-        //{
-        //    List<SelectListItem> options = new List<SelectListItem>();
-        //    foreach (var lob in lob_col.Options)
-        //    {
-        //        options.Add(new SelectListItem { Text = lob, Value = lob });
-        //    }
-        //    return options;
-        //}
 
-        //public IEnumerable<SelectListItem> Get_types_picklist(Column type_col)
-        //{
-        //    List<SelectListItem> options = new List<SelectListItem>();
-        //    foreach (var type in type_col.Options)
-        //    {
-        //        options.Add(new SelectListItem { Text = type, Value = type });
-        //    }
-        //    return options;
-        //}
+     
 
-        //public IEnumerable<SelectListItem> Get_status_picklist(Column status_col)
-        //{
-        //    List<SelectListItem> options = new List<SelectListItem>();
+        public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)
+        {
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var lob in lob_col.Options)
+            {
+                options.Add(new SelectListItem { Text = lob, Value = lob });
+            }
+            return options;
+        }
 
-        //    foreach (var status in status_col.Options)
-        //    {
-        //        options.Add(new SelectListItem { Text = status, Value = status });
-        //    }
-        //    return options;
-        //}
+
+        public IEnumerable<SelectListItem> Get_status_picklist(Column status_col)
+        {
+            List<SelectListItem> options = new List<SelectListItem>();
+
+            foreach (var status in status_col.Options)
+            {
+                options.Add(new SelectListItem { Text = status, Value = status });
+            }
+            return options;
+        }
+
+        public ICollection<SelectListItem> Get_Specs_List(Column specs_col)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //int cont = 0;
+            foreach (var spec in specs_col.Options)
+            {
+                //cont++;
+                //list.Add(new SelectListItem { Text = spec, Value = cont.ToString()});
+                list.Add(new SelectListItem { Text = spec, Value = spec });
+            }
+            return list;
+        }
 
     }
 

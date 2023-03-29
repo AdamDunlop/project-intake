@@ -11,19 +11,15 @@ namespace Smartsheetsproject.Models
     public class DesignModel
     {
 
-        public long pipelineId { get; set; }
-
-
         public string intakeType { get; set; }
+
+        public long pipelineId { get; set; }
 
         public string projectName { get; set; }
 
         public string lob { get; set; }
 
         public string tenrox { get; set; }
-
-        [BindProperty]
-        public IEnumerable<SelectListItem> lob_options { get; set; }
 
         public string status { get; set; }
 
@@ -56,7 +52,8 @@ namespace Smartsheetsproject.Models
         //[Required(ErrorMessage = "Please enter the wbs Link")]
         public string wbs { get; set; }
 
-
+        [BindProperty]
+        public IEnumerable<SelectListItem> lob_options { get; set; }
 
         [BindProperty]
         public IEnumerable<SelectListItem> SpecsList { get; set; }

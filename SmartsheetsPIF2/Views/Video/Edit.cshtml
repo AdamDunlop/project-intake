@@ -56,13 +56,6 @@
             <span asp-validation-for="status_options" class="text-danger"></span>
         </div>
 
-        <div class="form-group">
-            <label asp-for="type" class="control-label">Type</label>
-            @Html.DropDownListFor(m => m.type, Model.type_options, new { @class = "form-control" })
-            @Html.HiddenFor(m => m.type)
-            @Html.HiddenFor(m => m.type_options)
-            <span asp-validation-for="status_options" class="text-danger"></span>
-        </div>
 
       
     </div>
@@ -79,20 +72,8 @@
         <span asp-validation-for="dueDate" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="description" class="control-label">Notes</label>
-        @Html.TextAreaFor(m => m.description, new { @class = "form-control" })
-        <span asp-validation-for="description" class="text-danger"></span>
-    </div>
     <div class="row spec-details">
-        <div class=" col-sm-12 col-md-4">
 
-            <div class="form-group">
-                <label asp-for="masters" class="control-label">Masters</label>
-                @Html.TextBoxFor(m => m.masters, new { @class = "form-control" })
-                <span asp-validation-for="masters" class="text-danger"></span>
-            </div>
-        </div>
         <div class=" col-sm-12 col-md-4">
 
             @*<div class="form-group">

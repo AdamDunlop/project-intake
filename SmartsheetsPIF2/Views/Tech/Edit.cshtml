@@ -28,17 +28,8 @@
 {
     <div class="col-12 col-md-6">
         @Html.HiddenFor(m => m.pipelineId)
-        @*<div class="form-group">
-                <label asp-for="lob" class="control-label">Line of Business</label>
-                @Html.TextBoxFor(m => m.lob, new { @class = "form-control" })
-                <span asp-validation-for="lob" class="text-danger"></span>
-            </div>*@
 
-        <div class="form-group">
-            <label asp-for="projectName" class="control-label">Project Name</label>
-            @Html.TextBoxFor(m => m.projectName, new { @class = "form-control" })
-            <span asp-validation-for="projectName" class="text-danger"></span>
-        </div>
+
         <div class="form-group">
 
             <label asp-for="lob" class="control-label">Line of Business</label>
@@ -46,11 +37,6 @@
             @Html.HiddenFor(m => m.lob)
             @Html.HiddenFor(m => m.lob_options)
             <span asp-validation-for="lob_options" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="tenrox" class="control-label">Tenrox</label>
-            @Html.TextBoxFor(m => m.tenrox, new { @class = "form-control" })
-            <span asp-validation-for="tenrox" class="text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -73,31 +59,34 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="boxFolder" class="control-label">Box Folder</label>
-            @Html.TextBoxFor(m => m.boxFolder, new { @class = "form-control" })
-            <span asp-validation-for="boxFolder" class="text-danger"></span>
+            <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>
+            @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
+            @Html.HiddenFor(m => m.SelectedSpecs)
+            @Html.HiddenFor(m => m.SpecsList)
         </div>
 
 
-        @*<div class="form-group">
-            <label asp-for="Deck" class="control-label">Deck</label>
-            @Html.TextBoxFor(m => m.Deck, new { @class = "form-control" })
-            <span asp-validation-for="Deck" class="text-danger"></span>
-        </div>*@
     </div>
 
     <div class="col-12 col-md-6">
 
         <div class="form-group">
-            <label asp-for="deliverables_tracker_link" class="control-label">Deliverables Tracker</label>
-            @Html.TextBoxFor(m => m.deliverables_tracker_link, new { @class = "form-control" })
-            <span asp-validation-for="deliverables_tracker_link" class="text-danger"></span>
+            <label asp-for="box" class="control-label">Box</label>
+            @Html.TextBoxFor(m => m.box, new { @class = "form-control" })
+            <span asp-validation-for="box" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="FxF" class="control-label">FxF</label>
+            @Html.TextBoxFor(m => m.FxF, new { @class = "form-control" })
+            <span asp-validation-for="FxF" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="wbs_link" class="control-label">WBS</label>
-            @Html.TextBoxFor(m => m.wbs_link, new { @class = "form-control" })
-            <span asp-validation-for="wbs_link" class="text-danger"></span>
+            <label asp-for="wbs" class="control-label">WBS</label>
+            @Html.TextBoxFor(m => m.wbs, new { @class = "form-control" })
+            <span asp-validation-for="wbs" class="text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -106,48 +95,13 @@
             <span asp-validation-for="PSDs" class="text-danger"></span>
         </div>
 
+
+
+    </div>
+
+    <div class="col-12 col-md-6">
         <div class="form-group">
-            <label asp-for="boxFolder" class="control-label">Box Folder</label>
-            @Html.TextBoxFor(m => m.boxFolder, new { @class = "form-control" })
-            <span asp-validation-for="boxFolder" class="text-danger"></span>
-        </div>
-
-        <div class="row spec-details">
-            <div class=" col-sm-12 col-md-4">
-                <div class="form-group">
-                    <label asp-for="numberOfSets" class="control-label">Nº of Sets</label>
-                    @Html.TextBoxFor(m => m.numberOfSets, new { @class = "form-control" })
-                    <span asp-validation-for="numberOfSets" class="text-danger"></span>
-                </div>
-            </div>
-            <div class=" col-sm-12 col-md-4">
-
-                <div class="form-group">
-                    <label asp-for="animatedPerSet" class="control-label">Animated</label>
-                    @Html.TextBoxFor(m => m.animatedPerSet, new { @class = "form-control" })
-                    <span asp-validation-for="animatedPerSet" class="text-danger"></span>
-                </div>
-            </div>
-            <div class=" col-sm-12 col-md-4">
-
-                <div class="form-group">
-                    <label asp-for="staticPerSet" class="control-label">Static(s)</label>
-                    @Html.TextBoxFor(m => m.staticPerSet, new { @class = "form-control" })
-                    <span asp-validation-for="staticPerSet" class="text-danger"></span>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>
-            @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
-            @Html.HiddenFor(m => m.SelectedSpecs)
-            @Html.HiddenFor(m => m.SpecsList)
-        </div>
-
-        <div class="form-group">
-            <input type="submit" asp-action="Edit" value="Save" class="btn btn-success float-right" />
+            <input type="submit" asp-action="Edit" value="Save" class="btn btn-success float-left" />
         </div>
     </div>
 

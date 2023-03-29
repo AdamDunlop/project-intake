@@ -21,15 +21,20 @@ namespace Smartsheetsproject.Models
 
         public string tenrox { get; set; }
 
-        [BindProperty]
-        public IEnumerable<SelectListItem> lob_options { get; set; }
-
-        //public string tenroxCode { get; set; }
+        public string specs_list { get; set; }
 
         public string status { get; set; }
 
-        [BindProperty]
-        public IEnumerable<SelectListItem> status_options { get; set; }
+        public string assignedTo { get; set; }
+
+        public string pm { get; set; }
+
+        public string am { get; set; }
+
+        public string jira { get; set; }
+
+        [Required(ErrorMessage = "Please provide a link")]
+        public string wbs { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
@@ -38,21 +43,17 @@ namespace Smartsheetsproject.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         public DateTime dueDate { get; set; }
-
-        public string type { get; set; }
+   
+        [BindProperty]
+        public IEnumerable<SelectListItem> lob_options { get; set; }
 
         [BindProperty]
-        public IEnumerable<SelectListItem> type_options { get; set; }
+        public IEnumerable<SelectListItem> status_options { get; set; }
 
-        public string producer { get; set; }
+        [BindProperty]
+        public IEnumerable<SelectListItem> SpecsList { get; set; }
 
-        public string pm { get; set; }
-
-        public string masters { get; set; }
-
-        public string deliverables { get; set; }
-
-        public string description { get; set;  }
-
+        [BindProperty]
+        public IList<string> SelectedSpecs { get; set; }
     }
 }
