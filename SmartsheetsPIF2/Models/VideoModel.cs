@@ -21,8 +21,6 @@ namespace Smartsheetsproject.Models
 
         public string tenrox { get; set; }
 
-        public string specs_list { get; set; }
-
         public string status { get; set; }
 
         public string assignedTo { get; set; }
@@ -33,6 +31,20 @@ namespace Smartsheetsproject.Models
 
         public string jira { get; set; }
 
+        public string frameio { get; set; }
+
+        public string script { get; set; }
+
+        public string hours { get; set; }
+
+        public string specs_list { get; set; }
+
+        //[Required(ErrorMessage = "Please provide a link")]
+        public string PSDs { get; set; }
+
+        //[Required(ErrorMessage = "Please provide a link")]
+        public string box { get; set; }
+
         [Required(ErrorMessage = "Please provide a link")]
         public string wbs { get; set; }
 
@@ -42,6 +54,7 @@ namespace Smartsheetsproject.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
+        [DateGreaterThan("startDate")]
         public DateTime dueDate { get; set; }
    
         [BindProperty]
@@ -56,4 +69,5 @@ namespace Smartsheetsproject.Models
         [BindProperty]
         public IList<string> SelectedSpecs { get; set; }
     }
+
 }

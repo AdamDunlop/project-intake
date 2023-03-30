@@ -26,51 +26,68 @@
 
 @using (Html.BeginForm("Edit", "Display", FormMethod.Post, new { @class = "form-group row" }))
 {
-    <div class="col-12 col-md-6">
-        @Html.HiddenFor(m => m.pipelineId)
+<div class="col-12 col-md-6">
+    @Html.HiddenFor(m => m.pipelineId)
 
 
-        <div class="form-group">
+    <div class="form-group">
 
-            <label asp-for="lob" class="control-label">Line of Business</label>
-            @Html.DropDownListFor(m => m.lob, Model.lob_options, new { @class = "form-control" })
-            @Html.HiddenFor(m => m.lob)
-            @Html.HiddenFor(m => m.lob_options)
-            <span asp-validation-for="lob_options" class="text-danger"></span>
-        </div>
+        <label asp-for="lob" class="control-label">LOB</label>
+        @Html.DropDownListFor(m => m.lob, Model.lob_options, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.lob)
+        @Html.HiddenFor(m => m.lob_options)
+        <span asp-validation-for="lob_options" class="text-danger"></span>
+    </div>
 
-        <div class="form-group">
-            <label asp-for="status" class="control-label">Status</label>
-            @Html.DropDownListFor(m => m.status, Model.status_options, new { @class = "form-control" })
-            @Html.HiddenFor(m => m.status)
-            @Html.HiddenFor(m => m.status_options)
-            <span asp-validation-for="status_options" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="status" class="control-label">Status</label>
+        @Html.DropDownListFor(m => m.status, Model.status_options, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.status)
+        @Html.HiddenFor(m => m.status_options)
+        <span asp-validation-for="status_options" class="text-danger"></span>
+    </div>
 
-        <div class="form-group project-dates">
-            <label asp-for="startDate" class="control-label">Start Date</label>
-            @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yy}", new { @class = "form-control" })
-            <span asp-validation-for="startDate" class="text-danger"></span>
-        </div>
-        <div class="form-group project-dates">
-            <label asp-for="dueDate" class="control-label">End Date</label>
-            @Html.TextBoxFor(m => m.dueDate, "{0:MM/dd/yy}", new { @class = "form-control" })
-            <span asp-validation-for="dueDate" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="wbs" class="control-label">WBS</label>
+        @Html.TextBoxFor(m => m.wbs, new { @class = "form-control", @type = "url" })
+        <span asp-validation-for="wbs" class="text-danger"></span>
+    </div>
 
-        <div class="form-group">
+    @*<div class="form-group">
             <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>
             @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
             @Html.HiddenFor(m => m.SelectedSpecs)
             @Html.HiddenFor(m => m.SpecsList)
-        </div>
+        </div>*@
 
 
-    </div>
+</div>
 
     <div class="col-12 col-md-6">
 
+        <div class="form-group project-dates">
+
+            <label asp-for="startDate" class="control-label edit-date">Start Date</label>
+            <div class="date-dropdown">
+                @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yyyy}", new { @class = "form-control", @id = "startdatepicker" })
+            </div>
+            <span asp-validation-for="startDate" class="text-danger"></span>
+        </div>
+        <div class="form-group project-dates">
+            <label asp-for="dueDate" class="control-label edit-date">Due Date</label>
+            <div class="date-dropdown">
+                @Html.TextBoxFor(m => m.dueDate, "{0:MM/dd/yyyy}", new { @class = "form-control", @id = "duedatepicker" })
+            </div>
+            <span asp-validation-for="dueDate" class="text-danger"></span>
+        </div>
+
         <div class="form-group">
+            <label asp-for="assignedTo" class="control-label">Assigned To:</label>
+            @Html.TextBoxFor(m => m.assignedTo, new { @class = "form-control" })
+            <span asp-validation-for="assignedTo" class="text-danger"></span>
+        </div>
+
+        @*<div class="form-group">
             <label asp-for="box" class="control-label">Box</label>
             @Html.TextBoxFor(m => m.box, new { @class = "form-control" })
             <span asp-validation-for="box" class="text-danger"></span>
@@ -81,19 +98,14 @@
             <label asp-for="FxF" class="control-label">FxF</label>
             @Html.TextBoxFor(m => m.FxF, new { @class = "form-control" })
             <span asp-validation-for="FxF" class="text-danger"></span>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            <label asp-for="wbs" class="control-label">WBS</label>
-            @Html.TextBoxFor(m => m.wbs, new { @class = "form-control" })
-            <span asp-validation-for="wbs" class="text-danger"></span>
-        </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label asp-for="PSDs" class="control-label">PSDs</label>
             @Html.TextBoxFor(m => m.PSDs, new { @class = "form-control" })
             <span asp-validation-for="PSDs" class="text-danger"></span>
-        </div>
+        </div>*@
 
 
 

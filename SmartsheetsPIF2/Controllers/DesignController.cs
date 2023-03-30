@@ -128,7 +128,6 @@ namespace Smartsheetsproject.Controllers
                                 {
                                     project.startDate = Convert.ToDateTime(cell.Value);
                                 }
-                                //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
                             case "Due Date":
@@ -136,7 +135,6 @@ namespace Smartsheetsproject.Controllers
                                 {
                                     project.dueDate = Convert.ToDateTime(cell.Value);
                                 }
-                                //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
                             case "Assigned To":
@@ -165,6 +163,10 @@ namespace Smartsheetsproject.Controllers
 
                             case "Specs":
                                 project.specs_list = cell.DisplayValue;
+                                break;
+
+                            case "Hours":
+                                project.hours = cell.DisplayValue;
                                 break;
 
                         }
@@ -351,7 +353,6 @@ namespace Smartsheetsproject.Controllers
                                     }
                                 }
                                 break;
-
 
                             case "Project Name":
                                 project.projectName = cell.DisplayValue;

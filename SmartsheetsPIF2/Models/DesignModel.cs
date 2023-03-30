@@ -43,6 +43,8 @@ namespace Smartsheetsproject.Models
 
         public string am { get; set; }
 
+        public string hours { get; set; }
+
         //[Required(ErrorMessage = "Please enter the Box embed Link")]
         public string box { get; set; }
 
