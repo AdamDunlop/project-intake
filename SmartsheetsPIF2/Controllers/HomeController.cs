@@ -44,7 +44,7 @@ namespace Smartsheetsproject2.Controllers
             return View();
         }
 
-        public IActionResult Artbot()
+        public IActionResult MKS()
         {
             return View();
         }
