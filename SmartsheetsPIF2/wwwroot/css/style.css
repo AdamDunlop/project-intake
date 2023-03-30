@@ -171,19 +171,24 @@ label {
 
 #startdatepicker, #duedatepicker {
     cursor: pointer;
+    background: transparent !important;
+    position: relative;
+    z-index: 2;
 }
 
 .date-dropdown {
     position: relative;
     display: inline-block;
+
 }
 
 .date-dropdown::before {
     position: absolute;
     content: "▼";
     top: 8px;
-    right: -15px;
+    right: 5px;
     color: grey;
+    z-index: 0;
 }
 
 
