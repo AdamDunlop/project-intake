@@ -50,6 +50,11 @@
             <span asp-validation-for="box" class="text-danger"></span>
         </div>
 
+        <div class="form-group">
+            <label asp-for="figma" class="control-label">Figma</label>
+            @Html.TextBoxFor(m => m.figma, new { @class = "form-control" })
+            <span asp-validation-for="figma" class="text-danger"></span>
+        </div>
     </div>
 
     <div class="col-12 col-md-6">
@@ -59,10 +64,10 @@
 
 
             <label asp-for="startDate" class="control-label edit-date">Start Date</label>
-            <div class="date-dropdown">    
+            <div class="date-dropdown">
                 @Html.TextBoxFor(m => m.startDate, "{0:MM/dd/yyyy}", new { @class = "form-control", @id = "startdatepicker" })
             </div>
-             <span asp-validation-for="startDate" class="text-danger"></span>
+            <span asp-validation-for="startDate" class="text-danger"></span>
         </div>
 
 
@@ -71,43 +76,43 @@
             <div class="date-dropdown">
                 @Html.TextBoxFor(m => m.dueDate, "{0:MM/dd/yyyy}", new { @class = "form-control", @id = "duedatepicker" })
             </div>
-                <span asp-validation-for="dueDate" class="text-danger"></span>
+            <span asp-validation-for="dueDate" class="text-danger"></span>
         </div>
 
-            <div class="form-group">
-                <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>
-                @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
-                @Html.HiddenFor(m => m.SelectedSpecs)
-                @Html.HiddenFor(m => m.SpecsList)
-            </div>
-
-            <div class="form-group">
-                <label asp-for="assignedTo" class="control-label">Assigned To:</label>
-                @Html.TextBoxFor(m => m.assignedTo, new { @class = "form-control" })
-                <span asp-validation-for="assignedTo" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="figma" class="control-label">Figma</label>
-                @Html.TextBoxFor(m => m.figma, new { @class = "form-control" })
-                <span asp-validation-for="figma" class="text-danger"></span>
-            </div>
-
-        </div>
-    <div class="col-12 col-md-6">
         <div class="form-group">
-            <input type="submit" asp-action="Edit" value="Save" class="btn btn-success float-left" />
+            <label asp-for="SelectedSpecs" class="control-label">Specs/Resizes</label>
+            @Html.ListBoxFor(m => m.SelectedSpecs, new MultiSelectList(Model.SpecsList, "Value", "Text", Model.SelectedSpecs), new { @class = " form-control chosen-select" })
+            @Html.HiddenFor(m => m.SelectedSpecs)
+            @Html.HiddenFor(m => m.SpecsList)
+        </div>
+
+        <div class="form-group">
+            <label asp-for="assignedTo" class="control-label">Assigned To:</label>
+            @Html.TextBoxFor(m => m.assignedTo, new { @class = "form-control" })
+            <span asp-validation-for="assignedTo" class="text-danger"></span>
+        </div>
+
+
+
+    </div>
+    <div class="col-12 col-md-12 form-actions">
+
+
+        <div class="form-group">
+            <input type="submit" asp-action="Edit" value="Save" class="btn btn-info float-left" />
+        </div>
+        <div class="back">
+            <a asp-action="List" class="btn btn-secondary">
+                <span>Back to List</span>
+                <i class="bi bi-arrow-bar-right"></i>
+
+            </a>
         </div>
     </div>
 }
 
-<div class="back">
-    <a asp-action="List" class="btn btn-secondary">
-        <i class="bi bi-arrow-bar-left"></i>
-        <span>Back to List</span>
-    </a>
-</div>
 
 
 
-    
+
+

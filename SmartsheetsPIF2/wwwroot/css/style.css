@@ -145,6 +145,12 @@ label {
     display: inline-block;
 }
 
+
+.form-actions {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
 .dropdown-content {
     display: none;
     position: absolute;
@@ -170,7 +176,7 @@ label {
 }
 
 #startdatepicker, #duedatepicker {
-    cursor: pointer;
+    cursor: default;
     background: transparent !important;
     position: relative;
     z-index: 2;
@@ -182,19 +188,72 @@ label {
 
 }
 
-.date-dropdown::before {
-    position: absolute;
-    content: "▼";
-    top: 8px;
-    right: 5px;
-    color: grey;
-    z-index: 0;
-}
+    .date-dropdown::before {
+        position: absolute;
+        content: "⌄";
+        font-size: 18px;
+        top: 0px;
+        right: 5px;
+        color: grey;
+        z-index: 0;
+    }
 
 
 
 .edit-date {
     width: 75px;
+}
+
+.ui-datepicker.ui-widget-content {
+    background: #f3f3f3 !important;
+}
+
+.ui-datepicker-title {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ui-datepicker-month, .ui-datepicker-year{
+
+    border: none;
+}
+
+
+.ui-state-default, .ui-widget-content .ui-state-default {
+    text-decoration: none;
+    text-align: center;
+    border: none !important;
+    background: none;
+}
+
+a.ui-state-default.ui-state-active {
+    background: #0073EC;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.ui-state-default a:hover{
+   text-decoration: none;
+}
+
+#ui-datepicker-div, #ui-date-picker-header {
+    background-color: #F3F3F3 !important;
+    width: 15%;
+    font-size: 12px;
+    border: none;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.2);
+    border-radius: 0;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    background: #F3F3F3 !important;
+    border: none;
+}
+
+.ui-datepicker table {
+    background: #F3F3F3
 }
 
 
