@@ -8,7 +8,7 @@ $(function () {
     $("#startdatepicker").datepicker({
         changeMonth: true,
         changeYear: true,
-        yearRange: "-5:+0",
+        yearRange: "-1:+1",
         dateFormat: 'mm/dd/yy',
         controlType: 'select',
     });
@@ -18,7 +18,7 @@ $(function () {
     $("#duedatepicker").datepicker({
         changeMonth: true,
         changeYear: true,
-        yearRange: "-5:+0",
+        yearRange: "-1:+1",
         dateFormat: 'mm/dd/yy',
         controlType: 'select',
     });

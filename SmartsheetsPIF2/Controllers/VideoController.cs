@@ -48,6 +48,7 @@ namespace Smartsheetsproject.Controllers
             else
             {
                 updateProject(model);
+                TempData["Success"] = "Success";
                 return RedirectToAction("List");
             }
         }
@@ -125,16 +126,16 @@ namespace Smartsheetsproject.Controllers
                                 break;
 
                             case "Start Date":
-                                if (project.startDate != null)
+                                if (project.videoStart != null)
                                 {
-                                    project.startDate = Convert.ToDateTime(cell.Value);
+                                    project.videoStart = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
                             case "Due Date":
-                                if (project.dueDate != null)
+                                if (project.videoDue != null)
                                 {
-                                    project.dueDate = Convert.ToDateTime(cell.Value);
+                                    project.videoDue = Convert.ToDateTime(cell.Value);
                                 }
                                 break;        
 
@@ -224,12 +225,12 @@ namespace Smartsheetsproject.Controllers
                                 break;
 
                             case "Start Date":
-                                project.startDate = Convert.ToDateTime(cell.Value);
-                                //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                project.videoStart = Convert.ToDateTime(cell.Value);
+                                //project.videoStart = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
                             case "Due Date":
-                                project.dueDate = Convert.ToDateTime(cell.Value);
+                                project.videoDue = Convert.ToDateTime(cell.Value);
                                 //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
 
@@ -268,75 +269,75 @@ namespace Smartsheetsproject.Controllers
                                 break;
 
 
-                            case "PSDs":
-                                if (cell.Value != null)
-                                {
-                                    string[] psds_link = cell.DisplayValue.Split(" ");
-                                    foreach (var item in psds_link)
-                                    {
-                                        if (item.Contains("https:"))
-                                        {
-                                            psds_link = item.Split('"');
-                                            foreach (var url in psds_link)
-                                            {
-                                                if (url.Contains("https:"))
-                                                {
-                                                    cell.DisplayValue = url.Trim('"'); ;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    project.PSDs = cell.DisplayValue;
-                                }
-                                break;
+                            //case "PSDs":
+                            //    if (cell.Value != null)
+                            //    {
+                            //        string[] psds_link = cell.DisplayValue.Split(" ");
+                            //        foreach (var item in psds_link)
+                            //        {
+                            //            if (item.Contains("https:"))
+                            //            {
+                            //                psds_link = item.Split('"');
+                            //                foreach (var url in psds_link)
+                            //                {
+                            //                    if (url.Contains("https:"))
+                            //                    {
+                            //                        cell.DisplayValue = url.Trim('"'); ;
+                            //                    }
+                            //                }
+                            //            }
+                            //        }
+                            //        project.PSDs = cell.DisplayValue;
+                            //    }
+                            //    break;
 
-                            case "Script":
-                                if (cell.Value != null)
-                                {
-                                    string[] box_link = cell.DisplayValue.Split(" ");
-                                    foreach (var item in box_link)
-                                    {
-                                        if (item.Contains("https:"))
-                                        {
-                                            box_link = item.Split('"');
-                                            foreach (var url in box_link)
-                                            {
-                                                if (url.Contains("https:"))
-                                                {
-                                                    cell.DisplayValue = url.Trim('"'); ;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    project.box = cell.DisplayValue;
-                                }
-                                break;
+                            //case "Script":
+                            //    if (cell.Value != null)
+                            //    {
+                            //        string[] box_link = cell.DisplayValue.Split(" ");
+                            //        foreach (var item in box_link)
+                            //        {
+                            //            if (item.Contains("https:"))
+                            //            {
+                            //                box_link = item.Split('"');
+                            //                foreach (var url in box_link)
+                            //                {
+                            //                    if (url.Contains("https:"))
+                            //                    {
+                            //                        cell.DisplayValue = url.Trim('"'); ;
+                            //                    }
+                            //                }
+                            //            }
+                            //        }
+                            //        project.box = cell.DisplayValue;
+                            //    }
+                            //    break;
 
-                            case "Frame.io":
-                                if (cell.Value != null)
-                                {
-                                    string[] frameio_link = cell.DisplayValue.Split(" ");
-                                    foreach (var item in frameio_link)
-                                    {
-                                        if (item.Contains("https:"))
-                                        {
-                                            frameio_link = item.Split('"');
-                                            foreach (var url in frameio_link)
-                                            {
-                                                if (url.Contains("https:"))
-                                                {
-                                                    cell.DisplayValue = url.Trim('"'); ;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    project.frameio = cell.DisplayValue;
-                                }
-                                break;
+                            //case "Frame.io":
+                            //    if (cell.Value != null)
+                            //    {
+                            //        string[] frameio_link = cell.DisplayValue.Split(" ");
+                            //        foreach (var item in frameio_link)
+                            //        {
+                            //            if (item.Contains("https:"))
+                            //            {
+                            //                frameio_link = item.Split('"');
+                            //                foreach (var url in frameio_link)
+                            //                {
+                            //                    if (url.Contains("https:"))
+                            //                    {
+                            //                        cell.DisplayValue = url.Trim('"'); ;
+                            //                    }
+                            //                }
+                            //            }
+                            //        }
+                            //        project.frameio = cell.DisplayValue;
+                            //    }
+                            //    break;
 
-                            case "Specs":
-                                project.specs_list = cell.DisplayValue;
-                                break;
+                            //case "Specs":
+                            //    project.specs_list = cell.DisplayValue;
+                            //    break;
                         }
                     }
                 }
@@ -390,11 +391,11 @@ namespace Smartsheetsproject.Controllers
                                 break;
 
                             case "Start Date":
-                                project.startDate = Convert.ToDateTime(cell.Value);
+                                project.videoStart = Convert.ToDateTime(cell.Value);
                                 break;
 
                             case "Due Date":
-                                project.dueDate = Convert.ToDateTime(cell.Value);
+                                project.videoDue = Convert.ToDateTime(cell.Value);
                                 break;
 
                             case "Assigned To":
@@ -505,12 +506,12 @@ namespace Smartsheetsproject.Controllers
 
                     case "Start Date":
                         start_cell.ColumnId = columnid;
-                        start_cell.Value = project.startDate;
+                        start_cell.Value = project.videoStart;
                         break;
 
                     case "Due Date":
                         due_cell.ColumnId = columnid;
-                        due_cell.Value = project.dueDate;
+                        due_cell.Value = project.videoDue;
                         break;
 
                     case "WBS":
@@ -591,26 +592,6 @@ namespace Smartsheetsproject.Controllers
 
             return project;
         }
-        //public void runthroughallsheets()
-        //{
-        //    /*
-        //    // List all sheets
-        //    PaginatedResult<Sheet> sheets = smartsheet_CL.SheetResources.ListSheets(
-        //        null,               // IEnumerable<SheetInclusion> includes
-        //        null,               // PaginationParameters
-        //        null                // Nullable<DateTime> modifiedSince = null
-        //    );
-        //    //Console.WriteLine("Found " + sheets.TotalCount + " sheets");
-        //    //iteration through all Sheet IDs
-        //    for (int i = 0; sheets.TotalCount > i; i++) {
-        //        ///Console.WriteLine("Loading sheet position: " + i);
-        //        //Console.WriteLine("Loading sheet id: " + (long)sheets.Data[i].Id);
-        //        GetSheet((long)sheets.Data[i].Id,smartsheet);
-        //    }
-        //    long sheetId = 1478730146178948; //Display TEST
-        //    */
-        //}
-
      
 
         public IEnumerable<SelectListItem> Get_lobs_picklist(Column lob_col)

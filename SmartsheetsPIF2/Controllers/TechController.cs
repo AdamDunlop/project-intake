@@ -42,21 +42,21 @@ namespace Smartsheetsproject2.Controllers
         [HttpPost]
         public IActionResult Edit(TechModel model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    TechModel model_lists = GetPickLists(model.pipelineId);
-            //    model.lob_options = model_lists.lob_options;
-            //    model.status_options = model_lists.status_options;
-            //    model.team_options = model_lists.team_options;
-            //    model.SpecsList = model_lists.SpecsList;
-            //    return View(model);
-            //    //return RedirectToAction("Edit", new { id = model.pipelineId });
-            //}
-            //else
-            //{
-                updateProject(model);      
+            if (!ModelState.IsValid)
+            {
+                TechModel model_lists = GetPickLists(model.pipelineId);
+                model.lob_options = model_lists.lob_options;
+                model.status_options = model_lists.status_options;
+                model.SpecsList = model_lists.SpecsList;
+                return View(model);
+                //return RedirectToAction("Edit", new { id = model.pipelineId });
+            }
+            else
+            {
+                updateProject(model);
+                TempData["Success"] = "Success";
                 return RedirectToAction("List");
-            //}
+            }
         }
         public SmartsheetClient initSheet()
         {
@@ -117,22 +117,25 @@ namespace Smartsheetsproject2.Controllers
                                 break;
 
                             case "Status":
-                                project.status = cell.DisplayValue;
+                                if (project.status != null)
+                                {
+                                    project.status = cell.DisplayValue;
+                                }
                                 break;
 
                             case "Start Date":
-                                if (project.startDate != null) 
+                                if (project.techStart != null) 
                                 {
-                                    project.startDate = Convert.ToDateTime(cell.Value);
+                                    project.techStart = Convert.ToDateTime(cell.Value);
                                 }
                                 
-                                //project.startDate = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
+                                //project.techStart = DateTime.ParseExact( cell.Value.ToString(), "mm,dd,yyyy",null);
                                 break;
 
                             case "Due Date":
-                                if (project.dueDate != null) 
+                                if (project.techDue != null) 
                                 {
-                                    project.dueDate = Convert.ToDateTime(cell.Value);
+                                    project.techDue = Convert.ToDateTime(cell.Value);
                                 }                                
                                 //project.endDate = DateTime.ParseExact(cell.Value.ToString(), "mm,dd,yyyy", null);
                                 break;
@@ -199,20 +202,23 @@ namespace Smartsheetsproject2.Controllers
                                 break;
 
                             case "Status":
-                                project.status = cell.DisplayValue;
+                                if (cell.Value != null)
+                                {
+                                    project.status = cell.DisplayValue;
+                                }
                                 break;
 
                             case "Start Date":
                                 if (cell.Value != null)
                                 {
-                                    project.startDate = Convert.ToDateTime(cell.Value);
+                                    project.techStart = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
                             case "Due Date":
                                 if (cell.Value != null)
                                 {
-                                    project.dueDate = Convert.ToDateTime(cell.Value);
+                                    project.techDue = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
@@ -320,14 +326,14 @@ namespace Smartsheetsproject2.Controllers
                             case "Start Date":
                                 if (cell.Value != null)
                                 {
-                                    project.startDate = Convert.ToDateTime(cell.Value);
+                                    project.techStart = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
                             case "Due Date":
                                 if (cell.Value != null)
                                 {
-                                    project.dueDate = Convert.ToDateTime(cell.Value);
+                                    project.techDue = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
@@ -416,8 +422,8 @@ namespace Smartsheetsproject2.Controllers
             var status_cell = new Cell();
             var start_date_cell = new Cell();
             var due_date_cell = new Cell();
-            var am_cell = new Cell();
-            var pm_cell = new Cell();
+            //var am_cell = new Cell();
+            //var pm_cell = new Cell();
             var assigned_cell = new Cell();
             var wbs_cell = new Cell();
             //var psds_cell = new Cell();
@@ -445,12 +451,12 @@ namespace Smartsheetsproject2.Controllers
 
                     case "Start Date":
                         start_date_cell.ColumnId = columnid;
-                        start_date_cell.Value = project.startDate;
+                        start_date_cell.Value = project.techStart;
                         break;
 
                     case "Due Date":
                         due_date_cell.ColumnId = columnid;
-                        due_date_cell.Value = project.dueDate;
+                        due_date_cell.Value = project.techDue;
                         break;
 
                     case "Assigned To":

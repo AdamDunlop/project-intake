@@ -50,12 +50,12 @@ namespace Smartsheetsproject.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        public DateTime startDate { get; set; }
+        public DateTime videoStart { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        [DateGreaterThan("startDate")]
-        public DateTime dueDate { get; set; }
+        //[DateGreaterThan("startDate")]
+        public DateTime videoDue { get; set; }
    
         [BindProperty]
         public IEnumerable<SelectListItem> lob_options { get; set; }

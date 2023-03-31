@@ -245,8 +245,12 @@ a:hover {
         width: 50%;
     }
 
+    .date-dropdown {
+        width: 80%;
+    }
+
     .project-dates {
-        width: 50%;
+        margin-top: 1rem;
     }
 
 }

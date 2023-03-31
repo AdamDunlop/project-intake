@@ -43,11 +43,13 @@ namespace Smartsheetsproject.Controllers
                 model.lob_options = model_lists.lob_options;
                 model.status_options = model_lists.status_options;
                 model.SpecsList = model_lists.SpecsList;
+
                 return View(model);
             }
             else
             {
                 updateProject(model);
+                TempData["Success"] = "Success";
                 return RedirectToAction("List");
             }
         }
@@ -124,16 +126,16 @@ namespace Smartsheetsproject.Controllers
                                 break;
                  
                             case "Start Date":
-                                if (project.startDate != null)
+                                if (project.designStart != null)
                                 {
-                                    project.startDate = Convert.ToDateTime(cell.Value);
+                                    project.designStart = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
                             case "Due Date":
-                                if (project.dueDate != null)
+                                if (project.designDue != null)
                                 {
-                                    project.dueDate = Convert.ToDateTime(cell.Value);
+                                    project.designDue = Convert.ToDateTime(cell.Value);
                                 }
                                 break;
 
@@ -226,11 +228,11 @@ namespace Smartsheetsproject.Controllers
                             //    break;
 
                             case "Start Date":
-                                project.startDate = Convert.ToDateTime(cell.Value);
+                                project.designStart = Convert.ToDateTime(cell.Value);
                                 break;
 
                             case "Due Date":
-                                project.dueDate = Convert.ToDateTime(cell.Value);
+                                project.designDue = Convert.ToDateTime(cell.Value);
                                 break;
 
                             case "PM":
@@ -370,11 +372,11 @@ namespace Smartsheetsproject.Controllers
 
 
                             case "Start Date":
-                                project.startDate = Convert.ToDateTime(cell.Value);
+                                project.designStart = Convert.ToDateTime(cell.Value);
                                 break;
 
                             case "Due Date":
-                                project.dueDate = Convert.ToDateTime(cell.Value);
+                                project.designDue = Convert.ToDateTime(cell.Value);
                                 break;
 
                             case "Assigned To":
@@ -453,10 +455,11 @@ namespace Smartsheetsproject.Controllers
             var start_date_cell = new Cell();
             var due_date_cell = new Cell();
             var wbs_cell = new Cell();
-            var box_cell = new Cell();
-            var figma_cell = new Cell();
-            var specs_cell = new Cell();
             var assigned_cell = new Cell();
+
+            //var box_cell = new Cell();
+            //var figma_cell = new Cell();
+            //var specs_cell = new Cell();
 
             foreach (var cell in row.Cells)
             {
@@ -478,12 +481,12 @@ namespace Smartsheetsproject.Controllers
 
                     case "Start Date":
                         start_date_cell.ColumnId = columnid;
-                        start_date_cell.Value = project.startDate;
+                        start_date_cell.Value = project.designStart;
                         break;
 
                     case "Due Date":
                         due_date_cell.ColumnId = columnid;
-                        due_date_cell.Value = project.dueDate;
+                        due_date_cell.Value = project.designDue;
                         break;
 
                     case "WBS":
@@ -491,61 +494,61 @@ namespace Smartsheetsproject.Controllers
                         wbs_cell.Value = project.wbs;
                         break;
 
-                    case "Box":
-                        box_cell.ColumnId = columnid;
-                        box_cell.Value = project.box;
-                        break;
+                    //case "Box":
+                    //    box_cell.ColumnId = columnid;
+                    //    box_cell.Value = project.box;
+                    //    break;
 
-                    case "Figma":
-                        figma_cell.ColumnId = columnid;
-                        figma_cell.Value = project.figma;
-                        break;
+                    //case "Figma":
+                    //    figma_cell.ColumnId = columnid;
+                    //    figma_cell.Value = project.figma;
+                    //    break;
 
                     case "Assigned To":
                         assigned_cell.ColumnId = columnid;
                         assigned_cell.Value = project.assignedTo;
                         break;
 
-                    case "Specs":
-                        specs_cell.ColumnId = columnid;
-                        ObjectValue objct = null;
-                        bool flag = false;
-                        //count = project.SelectedSpecs.Count();
+                    //case "Specs":
+                    //    specs_cell.ColumnId = columnid;
+                    //    ObjectValue objct = null;
+                    //    bool flag = false;
+                    //    //count = project.SelectedSpecs.Count();
 
-                        if (project.SelectedSpecs != null)
-                        {
+                    //    if (project.SelectedSpecs != null)
+                    //    {
 
-                            foreach (var size in project.SelectedSpecs)
+                    //        foreach (var size in project.SelectedSpecs)
 
-                            {
-                                if (size != null)
-                                {
-                                    if (size.Contains("System.String"))
-                                    {
-                                        flag = true;
-                                    }
-                                }
-                            }
-                            if (flag)
-                            {
-                                project.SelectedSpecs.RemoveAt(project.SelectedSpecs.Count() - 1);
-                            }
+                    //        {
+                    //            if (size != null)
+                    //            {
+                    //                if (size.Contains("System.String"))
+                    //                {
+                    //                    flag = true;
+                    //                }
+                    //            }
+                    //        }
+                    //        if (flag)
+                    //        {
+                    //            project.SelectedSpecs.RemoveAt(project.SelectedSpecs.Count() - 1);
+                    //        }
 
-                            if (project.SelectedSpecs.Count() == 0)
-                            {
-                                project.SelectedSpecs.Add("TBD");
-                                objct = new MultiPicklistObjectValue(project.SelectedSpecs);
+                    //        if (project.SelectedSpecs.Count() == 0)
+                    //        {
+                    //            project.SelectedSpecs.Add("TBD");
+                    //            objct = new MultiPicklistObjectValue(project.SelectedSpecs);
 
-                            }
-                            else
-                            {
-                                objct = new MultiPicklistObjectValue(project.SelectedSpecs);
+                    //        }
+                    //        else
+                    //        {
+                    //            objct = new MultiPicklistObjectValue(project.SelectedSpecs);
 
-                            }
+                    //        }
 
-                        }
-                        specs_cell.ObjectValue = objct;
-                        break;
+                    //    }
+                    //    specs_cell.ObjectValue = objct;
+                    //    break;
 
                 }
             }
@@ -559,10 +562,8 @@ namespace Smartsheetsproject.Controllers
                     start_date_cell,
                     due_date_cell,
                     wbs_cell,
-                    box_cell,
-                    figma_cell,
-                    specs_cell,
                     assigned_cell
+
                 }
             };
 

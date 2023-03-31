@@ -47,14 +47,12 @@ namespace Smartsheetsproject.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "Please provide a start date")]
-        public DateTime startDate { get; set; }
+        public DateTime techStart { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "Please provide an end date")]
         //[DateGreaterThan("startDate")]
-        public DateTime dueDate { get; set; }
+        public DateTime techDue { get; set; }
 
         [Required(ErrorMessage = "Please provide a link")]
         public string FxF { get; set; }

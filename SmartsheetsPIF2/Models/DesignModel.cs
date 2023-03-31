@@ -30,12 +30,11 @@ namespace Smartsheetsproject.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        public DateTime startDate { get; set; }
+        public DateTime designStart { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        [DateGreaterThan("startDate")]
-        public DateTime dueDate { get; set; }
+        public DateTime designDue { get; set; }
 
         public string assignedTo { get; set; }
 
@@ -65,27 +64,27 @@ namespace Smartsheetsproject.Models
 
     }
 
-    public class DateGreaterThan : ValidationAttribute
-    {
-        private string _startDatePropertyName;
-        public DateGreaterThan(string startDatePropertyName)
-        {
-            _startDatePropertyName = startDatePropertyName;
-        }
+    //public class DateGreaterThan : ValidationAttribute
+    //{
+    //    private string _startDatePropertyName;
+    //    public DateGreaterThan(string startDatePropertyName)
+    //    {
+    //        _startDatePropertyName = startDatePropertyName;
+    //    }
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            var propertyInfo = validationContext.ObjectType.GetProperty(_startDatePropertyName);
-            var propertyValue = propertyInfo.GetValue(validationContext.ObjectInstance, null);
+    //    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    //    {
+    //        var propertyInfo = validationContext.ObjectType.GetProperty(_startDatePropertyName);
+    //        var propertyValue = propertyInfo.GetValue(validationContext.ObjectInstance, null);
 
-            if ((DateTime)value > (DateTime)propertyValue)
-            {
-                return ValidationResult.Success;
-            }
-            else
-            {
-                return new ValidationResult("Cannot set Due Date before the Start Date.");
-            }
-        }
-    }
+    //        if ((DateTime)value > (DateTime)propertyValue)
+    //        {
+    //            return ValidationResult.Success;
+    //        }
+    //        else
+    //        {
+    //            return new ValidationResult("Cannot set Due Date before the Start Date.");
+    //        }
+    //    }
+    //}
 }
