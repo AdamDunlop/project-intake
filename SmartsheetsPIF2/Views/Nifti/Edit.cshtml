@@ -73,13 +73,12 @@
 
                 <h6> Project Links</h6>
                 <div class="form-group project-dates">
-                    <label asp-for="jira" class="control-label">Jira</label>
-                    @Html.TextBoxFor(m => m.jira, new { @class = "form-control", @type = "url" })
-                    <span asp-validation-for="jira" class="text-danger"></span>
+                    <label asp-for="wbs" class="control-label">WBS</label>
+                    @Html.TextBoxFor(m => m.wbs, new { @class = "form-control" })
+                    <span asp-validation-for="wbs" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-
                     <label asp-for="briefLink" class="control-label">Box Link to Brief</label>
                     @Html.TextBoxFor(m => m.briefLink, new { @class = "form-control", @type = "url" })
                     <span asp-validation-for="briefLink" class="text-danger"></span>

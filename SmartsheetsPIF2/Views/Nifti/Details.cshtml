@@ -125,7 +125,8 @@
         <dl class="row">
 
 
-            <dt class="col-sm-2">PM<dt>
+            <dt class="col-sm-2">PM
+            <dt>
             <dd class="col-sm-10">
                 @if (Model.pm != null)
                 {
@@ -134,35 +135,9 @@
                 }
                 else
                 {
-                <span><em>PM not Specified.</em></span>
+                    <span><em>PM not Specified.</em></span>
                 }
             </dd>
-        </dl>
-        <dl class="row">
-
-
-            <dt class="col-sm-2">Details
-            <dt>
-            <dd class="col-sm-10">
-                @if (Model.projectDetails != null)
-                {
-                    <textarea readonly class="form-control details">@Html.DisplayFor(model => model.projectDetails)</textarea>
-
-                }
-                else
-                {
-                    <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
-                }
-            </dd>
-        </dl>
-
-    </div>
-
-
-    <div class="col-12 col-md-6 details">
-        <dl class="row">
-
-
             <dt class="col-sm-2">AM
             <dt>
             <dd class="col-sm-10">
@@ -188,29 +163,64 @@
                     </span>
 
                     <span>
-                        @if (Model.jira != null)
-                        {
-                            <a href="@Model.jira" target="_blank"> Jira Epic</a>
-                        }
-                        else
-                        {
-                            <p><i>No Jira link provided.</i></p>
-                        }
+
                     </span>
                 </div>
             </dd>
+            <dt class="col-sm-2">Details
+            <dt>
+            <dd class="col-sm-10">
+                @if (Model.projectDetails != null)
+                {
+                    <textarea readonly class="form-control details">@Html.DisplayFor(model => model.projectDetails)</textarea>
+
+                }
+                else
+                {
+                    <textarea readonly class="form-control" role="alert">No Details provided.</textarea>
+                }
+            </dd>
+        </dl>
+
+    </div>
+
+
+    <div class="col-12 col-md-6 details">
+        <dl class="row">
+
+
+        
+        </dl>
+        <dl class="row">
+
+           
+
 
         </dl>
+      
     </div>
 </div>
 
 <hr />
-<div class="col-12 col-md-6 details">
 
-    <div class="row">
-        <a asp-action="List" class="btn back">
-            <i class="bi bi-arrow-bar-left"></i>
-            <span>Back to List</span>
-        </a>
-    </div>
+
+<div class="col-12 col-md-12 details">
+    @if (Model.wbs != null)
+    {
+        <IFRAME WIDTH="100%" HEIGHT=500 FRAMEBORDER=0 SRC="@Model.wbs"></IFRAME>
+    }
+    else
+    {
+        <p><i>No WBS link provided.</i></p>
+    }
 </div>
+
+    <div class="col-12 col-md-6 details">
+
+        <div class="row">
+            <a asp-action="List" class="btn back">
+                <i class="bi bi-arrow-bar-left"></i>
+                <span>Back to List</span>
+            </a>
+        </div>
+    </div>

@@ -45,9 +45,6 @@
                             <th class="project-col">
                                 Project
                             </th>
-                            <th id="intake-type">
-                                Type
-                            </th>
                             <th>
                                 Client
                             </th>
@@ -58,6 +55,10 @@
                             <th id="type">
                                 Project Type
                             </th>
+                            <th id="type">
+                                Live Date
+                            </th>
+
                             <th>
                                 Edit
                             </th>
@@ -66,34 +67,36 @@
                     <tbody>
                         @foreach (var data in Model)
                         {
-                            <tr>
-                                <td class="project-col">
-                                    <a class="clickable-row" href="@Url.Action("Details", "Nifti", new { id = data.pipelineId  } )">
-                                        @Html.DisplayFor(modelItem => data.projectName)
-                                    </a>
-                                </td>
+                        <tr>
+                            <td class="project-col">
+                                <a class="clickable-row" href="@Url.Action("Details", "Nifti", new { id = data.pipelineId  } )">
+                                    @Html.DisplayFor(modelItem => data.projectName)
+                                </a>
+                            </td>
 
-                                <td id="intake-type">
-                                    @Html.DisplayFor(modelItem => data.intakeType)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => data.client)
-                                </td>
 
-                                <td id="client-group">
-                                    @Html.DisplayFor(modelItem => data.clientGroup)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.client)
+                            </td>
 
-                                <td id="type">
-                                    @Html.DisplayFor(modelItem => data.projectType)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Edit", "Nifti",new { id = data.pipelineId } )">
-                                        edit
-                                    </a>
-                                </td>
+                            <td id="client-group">
+                                @Html.DisplayFor(modelItem => data.clientGroup)
+                            </td>
 
-                            </tr>
+                            <td id="type">
+                                @Html.DisplayFor(modelItem => data.projectType)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => data.liveDate)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "Nifti",new { id = data.pipelineId } )">
+                                    edit
+                                </a>
+                            </td>
+
+                        </tr>
                         }
 
 

@@ -77,8 +77,8 @@ namespace Smartsheetsproject.Models
 
         //public bool removeProject { get; set; }
 
-        [Required(ErrorMessage = "Please enter the Jira link.")]
-        public string jira { get; set; }
+        //[Required(ErrorMessage = "Please enter the Jira link.")]
+        //public string jira { get; set; }
 
         [Required(ErrorMessage = "Please enter the brief link.")]
         public string briefLink { get; set; }
@@ -88,6 +88,10 @@ namespace Smartsheetsproject.Models
 
         [Required(ErrorMessage = "Please enter the Project Manager.")]
         public string pm { get; set; }
+
+        [Required(ErrorMessage = "Please enter the WBS.")]
+        public string wbs { get; set; }
+
 
     }
 

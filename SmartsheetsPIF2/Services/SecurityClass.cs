@@ -13,9 +13,9 @@ namespace SmartsheetsPIF2.Services
 
         public SecurityService()
         {
-            userAccess.Add(new UserModel { Id = 0, Username = "adunlop@criticalmass.com", Password = "cmpass" });
-            userAccess.Add(new UserModel { Id = 1, Username = "ana.nicolov@criticalmass.com", Password = "cmpass" });
-            userAccess.Add(new UserModel { Id = 2, Username = "peter.ghering@criticalmass.com", Password = "cmpass" });
+            userAccess.Add(new UserModel { Id = 0, Username = "adunlop", Password = "cmpass" });
+            userAccess.Add(new UserModel { Id = 1, Username = "ana.nicolov", Password = "cmpass" });
+            userAccess.Add(new UserModel { Id = 2, Username = "peter.ghering", Password = "cmpass" });
 
         }
         public bool IsValid(UserModel user)

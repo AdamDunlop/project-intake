@@ -37,7 +37,7 @@
 
 <div class="row">
     <div class="col-12">
-        <h2 class="header-title">Design Production Pipeline(Stage 2)</h2>
+        <h2 class="header-title">Design Production</h2>
         <div id="table-wrapper">
             <div id="table-scroll">
                 <table class="table table-striped">
@@ -63,9 +63,9 @@
                             </th>
 
 
-                            <th>
+                            @*<th>
                                 Edit
-                            </th>
+                            </th>*@
                         </tr>
                     </thead>
                     <tbody>
@@ -94,11 +94,11 @@
                                 @Html.DisplayFor(modelItem => data.dueDate)
                             </td>
 
-                            <td>
+                            @*<td>
                                 <a href="@Url.Action("Edit", "Design",new { id = data.pipelineId } )">
                                     edit
                                 </a>
-                            </td>
+                            </td>*@
 
                         </tr>
                         }

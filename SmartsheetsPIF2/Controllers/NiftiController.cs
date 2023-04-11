@@ -209,8 +209,8 @@ namespace Smartsheetsproject.Controllers
                                 project.pm = cell.DisplayValue;
                                 break;
 
-                            case "Jira":
-                                project.jira = cell.DisplayValue;
+                            case "WBS":
+                                project.wbs = cell.DisplayValue;
                                 break;
 
                             case "Box Link to Brief":
@@ -234,7 +234,7 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(9));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(8));
 
             foreach (var row in sheet.Rows)
             {
@@ -331,16 +331,16 @@ namespace Smartsheetsproject.Controllers
                                 project.pm = cell.DisplayValue;
                                 break;
 
-                            case "Jira":
+                            case "WBS":
                                 if (cell.Value != null)
                                 {
-                                    string[] jira = cell.DisplayValue.Split(" ");
-                                    foreach (var item in jira)
+                                    string[] wbs_link = cell.DisplayValue.Split(" ");
+                                    foreach (var item in wbs_link)
                                     {
                                         if (item.Contains("https:"))
                                         {
-                                            jira = item.Split('"');
-                                            foreach (var url in jira)
+                                            wbs_link = item.Split('"');
+                                            foreach (var url in wbs_link)
                                             {
                                                 if (url.Contains("https:"))
                                                 {
@@ -349,7 +349,7 @@ namespace Smartsheetsproject.Controllers
                                             }
                                         }
                                     }
-                                    project.jira = cell.DisplayValue;
+                                    project.wbs = cell.DisplayValue;
                                 }
                                 break;
 
@@ -389,7 +389,7 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(9));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(8));
 
             foreach (var row in sheet.Rows)
             {
@@ -460,8 +460,8 @@ namespace Smartsheetsproject.Controllers
                                 project.pm = cell.DisplayValue;
                                 break;
 
-                            case "Jira":
-                                project.jira = cell.DisplayValue;
+                            case "WBS":
+                                project.wbs = cell.DisplayValue;
                                 break;
 
                             case "Box Link to Brief":
@@ -502,7 +502,7 @@ namespace Smartsheetsproject.Controllers
             var teams_cell = new Cell();
             var am_cell = new Cell();
             var pm_cell = new Cell();
-            var jira_cell = new Cell();
+            var wbs_cell = new Cell();
             var brief_link_cell = new Cell();
 
             foreach (var cell in row.Cells)
@@ -590,9 +590,9 @@ namespace Smartsheetsproject.Controllers
                         pm_cell.Value = project.pm;
                         break;
 
-                    case "Jira":
-                        jira_cell.ColumnId = columnid;
-                        jira_cell.Value = project.jira;
+                    case "WBS":
+                        wbs_cell.ColumnId = columnid;
+                        wbs_cell.Value = project.wbs;
                         break;
 
                     case "Box Link to Brief":
@@ -615,7 +615,7 @@ namespace Smartsheetsproject.Controllers
                     teams_cell,
                     am_cell,
                     pm_cell,
-                    jira_cell,
+                    wbs_cell,
                     brief_link_cell
 
                 }
@@ -643,7 +643,7 @@ namespace Smartsheetsproject.Controllers
             Sheet sheet = LoadSheet(sheetId, initSheet());
 
             project.intake_options = Get_Intake_List(sheet.GetColumnByIndex(0));
-            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(9));
+            project.CategoryList = Get_Category_List(sheet.GetColumnByIndex(8));
 
             return project;
         }
